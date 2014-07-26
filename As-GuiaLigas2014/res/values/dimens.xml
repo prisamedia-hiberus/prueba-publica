@@ -1,0 +1,103 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="height_actionBar">80dip</dimen>
+    <dimen name="widht_menu_size">320dip</dimen>
+
+    <!-- Action Bar -->
+    <dimen name="size_actionbar">20dp</dimen>
+    <dimen name="size_item_actionbar">15sp</dimen>
+    <dimen name="size_subtitle">19sp</dimen>
+    <dimen name="size_button_bar">15sp</dimen>
+    <!--  -->
+    <dimen name="padding_search">30dp</dimen>
+    <dimen name="padding_menu_item">6dp</dimen>
+    <dimen name="marginTopTeamCompetition">15dp</dimen>
+    <dimen name="padding_footer">50dp</dimen>
+    <dimen name="padding_footer_min">40dp</dimen>
+    <dimen name="padding_photo">4dp</dimen>
+
+    <!-- ImageFetcher -->
+
+    <dimen name="image_player_height">68dp</dimen>
+    <dimen name="image_player_height_small">51dp</dimen>
+    <dimen name="image_thumb_height_small">170dp</dimen>
+    <dimen name="image_thumb_height">206dp</dimen>
+    <dimen name="image_image_height">640dp</dimen>
+    <dimen name="image_news_detail_height">300dp</dimen>
+
+    <!-- Spinner -->
+    <dimen name="size_spinner_message">20sp</dimen>
+    <dimen name="size_pulltorefresh_message">14sp</dimen>
+    <dimen name="size_error_message">18sp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="size_comparator_player_16">16sp</dimen>
+    <dimen name="size_comparator_player_9">9sp</dimen>
+    <dimen name="size_comparator_player_12">12sp</dimen>
+    <dimen name="size_comparator_player_22">22sp</dimen>
+    <dimen name="size_comparator_player_stats">25dp</dimen>
+    <dimen name="size_comparator_player_title">20sp</dimen>
+    <dimen name="size_item_grid_team_teamName">10sp</dimen>
+    <dimen name="size_fragment_team_22">22sp</dimen>
+    <dimen name="size_fragment_calendar_days">20sp</dimen>
+    <dimen name="size_home_group_name">20sp</dimen>
+    <dimen name="size_item_grid_player_playerName">12sp</dimen>
+    <dimen name="size_item_grid_player_dorsal">10sp</dimen>
+    <dimen name="size_calendar">13sp</dimen>
+    <dimen name="size_calendar_16">16sp</dimen>
+    <dimen name="size_calendar_big">20sp</dimen>
+    <dimen name="size_fragment_player_20">20sp</dimen>
+    <dimen name="size_fragment_player_19">19sp</dimen>
+    <dimen name="size_fragment_player_15">15sp</dimen>
+    <dimen name="size_item_player_no_14">14sp</dimen>
+    <dimen name="size_item_list_trayectoria_18">18sp</dimen>
+    <dimen name="size_item_player_statiscs_17">17sp</dimen>
+    <dimen name="size_item_player_statiscs_13">13sp</dimen>
+    <dimen name="size_item_player_palmares_17">17sp</dimen>
+    <dimen name="size_item_player_palmares_15">15sp</dimen>
+    <dimen name="size_8_px">8px</dimen>
+    <dimen name="size_10_px">10px</dimen>
+    <dimen name="size_12_px">12px</dimen>
+    <dimen name="size_14_px">14px</dimen>
+    <dimen name="size_16_px">16px</dimen>
+    <dimen name="size_item_list_clasificacion_26">26sp</dimen>
+    <dimen name="size_item_list_clasificacion_18">18sp</dimen>
+    <dimen name="size_item_list_clasificacion_16">16sp</dimen>
+    <dimen name="size_item_list_clasificacion_14">14sp</dimen>
+    <dimen name="size_item_list_clasificacion_12">12sp</dimen>
+    <dimen name="size_item_list_clasificacion_10">10sp</dimen>
+    <dimen name="size_item_list_clasificacion_8">8px</dimen>
+    <dimen name="size_clasification">16dp</dimen>
+    <dimen name="size_palmares">16dp</dimen>
+    <dimen name="size_palmares_big">18dp</dimen>
+    <dimen name="size_palmares_Title">26dp</dimen>
+    <dimen name="size_photo_title">16dp</dimen>
+    <dimen name="size_photo_numelements">14dp</dimen>
+    <dimen name="size_news_pretitle">14dp</dimen>
+    <dimen name="size_news_title">24dp</dimen>
+    <dimen name="size_news_abstract">18dp</dimen>
+    <dimen name="size_news_body">20dp</dimen>
+    <dimen name="size_news_pretitle_onephoto">14dp</dimen>
+    <dimen name="size_news_title_onephoto">20dp</dimen>
+    <dimen name="size_news_pretitle_twophoto">12dp</dimen>
+    <dimen name="size_news_title_twophoto">17dp</dimen>
+    <dimen name="size_news_pretitle_small_photo">9dp</dimen>
+    <dimen name="size_news_title_small_photo">13dp</dimen>
+    <dimen name="size_calendar_14">12sp</dimen>
+    <dimen name="size_carrusel_subtext">13sp</dimen>
+    <dimen name="size_carrusel_stats">12sp</dimen>
+    <dimen name="size_carrusel_20">20sp</dimen>
+    <dimen name="size_carrusel_18">18sp</dimen>
+    <dimen name="size_carrusel_16">16sp</dimen>
+    <dimen name="size_carrusel_playerName">12sp</dimen>
+    <dimen name="size_carrusel_playerDorsal">11sp</dimen>
+    <dimen name="size_header_sedes">18sp</dimen>
+    <dimen name="size_data_sedes">16sp</dimen>
+    <dimen name="size_dataBig_sedes">16sp</dimen>
+    <dimen name="size_fragment_team_14">14sp</dimen>
+    <dimen name="size_fragment_team_15">15sp</dimen>
+    <dimen name="size_fragment_team_16">16sp</dimen>
+    <dimen name="size_fragment_team_18">18sp</dimen>
+
+</resources>

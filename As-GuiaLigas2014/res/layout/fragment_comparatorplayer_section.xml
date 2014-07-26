@@ -1,0 +1,759 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:id="@+id/dataPlayers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/playerLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/playerImagesContentLeft"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dip"
+                android:clickable="true" >
+
+                <RelativeLayout
+                    android:id="@+id/playerIconContentLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+
+                    <ImageView
+                        android:id="@+id/photoPlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/foto_generica"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/borde_circulo"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dorsalContentLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="-7dp"
+                    android:layout_toLeftOf="@+id/playerIconContentLeft"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@+id/dorsalImageLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/circulo_dorsal"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <TextView
+                        android:id="@+id/playerDorsalLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_item_grid_player_dorsal" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/messageContentNoPlayerLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerImagesContentLeft"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp" >
+
+                <TextView
+                    android:id="@+id/messageNoPlayerLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/comparator_gray"
+                    android:textSize="@dimen/size_fragment_player_15" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/playerDataContentLeft"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerImagesContentLeft"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/namePlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/teamPlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="5dp"
+                        android:maxLines="3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/datePlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/paisPlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/positionPlayerLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/playerImagesContentRight"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dip"
+                android:clickable="true" >
+
+                <RelativeLayout
+                    android:id="@+id/playerIconContentRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+
+                    <ImageView
+                        android:id="@+id/photoPlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/foto_generica"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/borde_circulo"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dorsalContentRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="-7dp"
+                    android:layout_toLeftOf="@+id/playerIconContentRight"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@+id/dorsalImageRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/circulo_dorsal"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <TextView
+                        android:id="@+id/playerDorsalRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_item_grid_player_dorsal" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/messageContentNoPlayerRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerImagesContentRight"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp" >
+
+                <TextView
+                    android:id="@+id/messageNoPlayerRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/comparator_gray"
+                    android:textSize="@dimen/size_fragment_player_15" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/playerDataContentRight"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerImagesContentRight"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/namePlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/teamPlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="5dp"
+                        android:maxLines="3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/datePlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/paisPlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/positionPlayerRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textColor="@color/comparator_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/dataPlayers"
+        android:padding="0dp" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/dataPlayersScroll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal" >
+
+                    <RelativeLayout
+                        android:id="@+id/yearsPlayerLeftContent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <HorizontalScrollView
+                            android:id="@+id/yearsPlayerLeftSroll"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:id="@+id/linear_tabs_years_playerLeft"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonYearPLLeft"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonYearPLPrev"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/button_previus"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonYearPLRight"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonYearPLNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/button_next"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/yearsPlayerRightContent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <HorizontalScrollView
+                            android:id="@+id/yearsPlayerRightSroll"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:id="@+id/linear_tabs_years_playerRight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonYearPRLeft"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonYearPRPrev"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/button_previus"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonYearPRRight"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonYearPRNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/button_next"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal" >
+
+                    <RelativeLayout
+                        android:id="@+id/competitionsPlayerLeftContent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <HorizontalScrollView
+                            android:id="@+id/competitionPlayerLeftSroll"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:id="@+id/linear_tabs_competition_playerLeft"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonCompetitionPLLeft"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonCompetitionPLPrev"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/button_previus"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonCompetitionPLRight"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonCompetitionPLNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/button_next"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/competitionsPlayerRightContent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <HorizontalScrollView
+                            android:id="@+id/competitionPlayerRightSroll"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:id="@+id/linear_tabs_competition_playerRight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonCompetitionPRLeft"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonCompetitionPRPrev"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/button_previus"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/buttonCompetitionPRRight"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:contentDescription="@string/defualt" >
+
+                            <ImageView
+                                android:id="@+id/buttonCompetitionPRNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/button_next"
+                                android:clickable="false"
+                                android:contentDescription="@string/defualt" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/statsLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/team_gap_bar_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:contentDescription="@string/defualt" />
+
+                <LinearLayout
+                    android:id="@+id/palmaresLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/palmaresLinearPL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/palmaresLinearPR"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/noDataPlayersScroll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/comparatorGap"
+                    style="@style/team_gap_bar_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" >
+
+                    <ImageView
+                        android:id="@+id/versusImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/icn_versus"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/versusImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/player_comparator_message_versus"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

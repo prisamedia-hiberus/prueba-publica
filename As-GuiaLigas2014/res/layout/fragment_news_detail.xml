@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <!-- <com.diarioas.guiamundial.utils.imageutils.ImageViewTopCrop -->
+
+    <RelativeLayout
+        android:id="@+id/contentImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/clear_gray" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/galeria_imagenrecurso02"
+            android:contentDescription="@string/defualt" />
+
+        <!-- ImageView -->
+
+        <com.diarioas.guiamundial.utils.imageutils.ImageViewTopCrop
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_news_detail_height"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/defualt"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/contentVideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/videoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/icn_play"
+            android:clickable="false"
+            android:contentDescription="@string/defualt" />
+    </RelativeLayout>
+
+    <com.diarioas.guiamundial.utils.scroll.ParallaxScrollView
+        android:id="@+id/scrollNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:minHeight="0dp" >
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <TextView
+                    android:id="@+id/preTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/gray_news"
+                    android:textSize="@dimen/size_news_pretitle" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_news_title" />
+
+                <TextView
+                    android:id="@+id/abstractText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/gray_news"
+                    android:textSize="@dimen/size_news_abstract" />
+
+                <ImageView
+                    android:id="@+id/gapBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/clear_gray"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:id="@+id/webViewNewsContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp" >
+
+                    <WebView
+                        android:id="@+id/webViewNewsDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbarSize="0dp"
+                        android:scrollbars="none" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.diarioas.guiamundial.utils.scroll.ParallaxScrollView>
+
+</RelativeLayout>

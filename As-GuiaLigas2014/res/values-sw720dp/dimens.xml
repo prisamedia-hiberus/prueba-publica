@@ -1,0 +1,71 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    -->
+    <dimen name="height_actionBar">120dip</dimen>
+    <dimen name="activity_horizontal_margin">40dp</dimen>
+    <dimen name="activity_vertical_margin">40dp</dimen>
+    <dimen name="marginTopTeamCompetition">25dp</dimen>
+
+    <!-- ImageFetcher -->
+    <!-- <dimen name="image_player_height">137dp</dimen> -->
+    <!-- <dimen name="image_player_height_small">103dp</dimen> -->
+    <!-- <dimen name="image_thumb_height_small">250dp</dimen> -->
+    <!-- <dimen name="image_thumb_height">619dp</dimen> -->
+    <!-- <dimen name="image_image_height">1920dp</dimen> -->
+
+
+    <!-- Spinner -->
+    <dimen name="size_spinner_message">30sp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="size_8">22sp</dimen>
+    <dimen name="size_10">28sp</dimen>
+    <dimen name="size_12">32sp</dimen>
+    <dimen name="size_calendar">40sp</dimen>
+    <dimen name="size_actionbar">50dp</dimen>
+    <dimen name="size_item_actionbar">38sp</dimen>
+    <dimen name="size_button_bar">38sp</dimen>
+    <dimen name="size_subtitle">47sp</dimen>
+    <dimen name="size_fragment_calendar_days">50sp</dimen>
+    <dimen name="size_item_grid_player_dorsal">14sp</dimen>
+    <dimen name="size_player_dorsal">18sp</dimen>
+    <dimen name="size_item_grid_player_playerName">30sp</dimen>
+    <dimen name="size_item_grid_team_teamName">20sp</dimen>
+    <dimen name="size_fragment_player_20">50sp</dimen>
+    <dimen name="size_fragment_player_19">47sp</dimen>
+    <dimen name="size_fragment_player_15">38sp</dimen>
+    <dimen name="size_fragment_team_20">50sp</dimen>
+    <dimen name="size_fragment_team_22">55sp</dimen>
+    <dimen name="size_fragment_team_19">48sp</dimen>
+    <dimen name="size_fragment_team_17">42sp</dimen>
+    <dimen name="size_fragment_team_15">38sp</dimen>
+    <dimen name="size_fragment_team_14">30sp</dimen>
+    <dimen name="size_fragment_team_13">32sp</dimen>
+    <dimen name="size_item_list_trayectoria_18">26sp</dimen>
+    <dimen name="size_item_player_no_14">36sp</dimen>
+    <dimen name="size_item_player_statiscs_17">42sp</dimen>
+    <dimen name="size_item_player_statiscs_13">32sp</dimen>
+    <dimen name="size_item_player_palmares_17">42sp</dimen>
+    <dimen name="size_item_player_palmares_15">38sp</dimen>
+    <dimen name="widht_menu_size">320dip</dimen>
+    <dimen name="size_item_list_clasificacion_16">8sp</dimen>
+    <dimen name="size_item_list_clasificacion_10">10sp</dimen>
+    <dimen name="size_comparator_player_16">16sp</dimen>
+    <dimen name="size_comparator_player_9">9sp</dimen>
+    <dimen name="size_comparator_player_12">12sp</dimen>
+    <dimen name="size_comparator_player_22">22sp</dimen>
+    <dimen name="size_comparator_player_stats">25dp</dimen>
+    <dimen name="size_calendar_14">12sp</dimen>
+    <dimen name="size_calendar_16">16sp</dimen>
+    <dimen name="size_calendar_big">20sp</dimen>
+    <dimen name="size_carrusel_subtext">35sp</dimen>
+    <dimen name="size_carrusel_stats">30sp</dimen>
+    <dimen name="padding_search">60dp</dimen>
+    <dimen name="size_carrusel_playerName">25sp</dimen>
+    <dimen name="size_carrusel_playerDorsal">27sp</dimen>
+    <dimen name="size_fragment_team_18">25sp</dimen>
+
+</resources>

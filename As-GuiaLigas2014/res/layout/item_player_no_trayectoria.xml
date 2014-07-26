@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/noTrayectoria"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dip" >
+
+    <ImageView
+        android:id="@+id/noTrayectoriaImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/no_trayectoria"
+        android:contentDescription="@string/defualt" />
+
+    <TextView
+        android:id="@+id/noTrayectoriaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noTrayectoriaImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
+        android:layout_marginTop="5dip"
+        android:gravity="center"
+        android:text="@string/player_no_trayectoria"
+        android:textColor="@color/medium_gray"
+        android:textSize="@dimen/size_item_player_no_14" />
+
+</RelativeLayout>

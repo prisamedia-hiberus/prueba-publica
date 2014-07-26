@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="red">#e30000</color>
+    <color name="red_comparator">#e61717</color>
+    <color name="yellow">#FFA500</color>
+    <color name="blue">#324fb0</color>
+    <color name="calendar_yellow">#ea9c17</color>
+    <color name="calendar_gray">#959595</color>
+    <color name="calendar_clear_gray">#f1f1f1</color>
+    <color name="calendar_red">#d10703</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_spinner">#C8ffffff</color>
+    <color name="black_transparent">#44000000</color>
+    <color name="black_semi_transparent">#88000000</color>
+    <color name="white_field">#ffffff</color>
+    <color name="clear_gray">#e5e5e5</color>
+    <color name="medium_gray">#929292</color>
+    <color name="dark_gray">#999999</color>
+    <color name="comparator_gray">#646464</color>
+    <color name="gray_search">#b3b3b3</color>
+    <color name="blue_dark_clasification">#005480</color>
+    <color name="blue_light_clasification">#0099CC</color>
+    <color name="red_dark_clasification">#A30000</color>
+    <color name="gray_clasification">#EAEAEA</color>
+    <color name="gray_clasification_background">#EDEDED</color>
+    <color name="gray_carrusel_resumen">#757575</color>
+    <color name="yellow_directo">#EA9C17</color>
+    <color name="red_directo">#D10703</color>
+    <color name="background_red">#550000</color>
+    <color name="red_sedes">#BC1521</color>
+    <color name="gray_sedes">#929292</color>
+    <color name="gray_news_items">#e6e6e6</color>
+    <color name="gray_news">#666666</color>
+
+</resources>

@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="10dp"
+    android:clickable="true"
+    android:onClick="playerClicked" >
+
+    <RelativeLayout
+        android:id="@+id/playerImagesContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dip" >
+
+        <ImageView
+            android:id="@+id/playerImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="false"
+            android:background="@drawable/foto_plantilla_generica"
+            android:contentDescription="@string/defualt"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="false"
+            android:background="@drawable/borde_circulo_plantilla"
+            android:contentDescription="@string/defualt"
+            android:scaleType="center" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/playerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playerImagesContent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:lines="2"
+        android:maxLines="2"
+        android:textColor="@color/medium_gray"
+        android:textSize="@dimen/size_item_grid_player_playerName" />
+
+    <RelativeLayout
+        android:id="@+id/dorsalContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="-7dp"
+        android:layout_toLeftOf="@+id/playerImagesContent" >
+
+        <ImageView
+            android:id="@+id/dorsalImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/circulo_dorsal"
+            android:contentDescription="@string/defualt"
+            android:scaleType="center" />
+
+        <TextView
+            android:id="@+id/playerDorsal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_item_grid_player_dorsal" />
+    </RelativeLayout>
+
+</RelativeLayout>

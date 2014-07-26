@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/linearTrayectoria"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/dataPlayer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dip" >
+
+                <RelativeLayout
+                    android:id="@+id/playerImagesContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="10dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="5dip" >
+
+                    <ImageView
+                        android:id="@+id/photoPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/foto_generica"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/borde_circulo"
+                        android:contentDescription="@string/defualt"
+                        android:scaleType="center" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/infoPlayer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dip"
+                    android:layout_toRightOf="@+id/playerImagesContent" >
+
+                    <TextView
+                        android:id="@+id/namePlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"
+                        android:textSize="@dimen/size_fragment_player_20" />
+
+                    <TextView
+                        android:id="@+id/teamPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/namePlayer"
+                        android:layout_marginBottom="5dip"
+                        android:maxLines="3"
+                        android:textSize="@dimen/size_fragment_player_15" />
+
+                    <TextView
+                        android:id="@+id/datePlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/teamPlayer"
+                        android:maxLines="3"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+
+                    <TextView
+                        android:id="@+id/paisPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/datePlayer"
+                        android:maxLines="3"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+
+                    <TextView
+                        android:id="@+id/edadPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/paisPlayer"
+                        android:maxLines="3"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_fragment_player_15" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/playerTagButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/button_team_noticias"
+                android:gravity="center"
+                android:onClick="buttonClick"
+                android:tag="103"
+                android:text="@string/player_noticias"
+                android:textSize="@dimen/size_fragment_player_19" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/button_team_noticias"
+                android:gravity="center"
+                android:onClick="buttonClick"
+                android:tag="104"
+                android:text="@string/player_comparator"
+                android:textSize="@dimen/size_fragment_player_19" />
+
+            <ImageView
+                style="@style/team_gap_bar_dark"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:contentDescription="@string/defualt" />
+
+            <TextView
+                android:id="@+id/trayectoriaText"
+                style="@style/subtitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_trayectoria" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

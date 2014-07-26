@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <RelativeLayout
+        android:id="@+id/playerSpinnerContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/playerSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/spinner_guia0000"
+            android:clickable="false" >
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/playerSpinner"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/titlePulltoRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ptr_pull_to_refresh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_pulltorefresh_message" />
+
+            <TextView
+                android:id="@+id/datePulltoRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_pulltorefresh_message" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.aphidmobile.flip.FlipViewController
+        xmlns:flip="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/flipView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        flip:animationBitmapFormat="ARGB_8888"
+        flip:orientation="vertical" />
+
+</RelativeLayout>
