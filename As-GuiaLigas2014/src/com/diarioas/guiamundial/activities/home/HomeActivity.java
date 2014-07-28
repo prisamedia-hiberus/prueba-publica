@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -43,6 +44,7 @@ import com.diarioas.guiamundial.activities.team.fragment.TeamsSectionFragment;
 import com.diarioas.guiamundial.activities.videos.fragment.VideosSectionFragment;
 import com.diarioas.guiamundial.dao.model.competition.Competition;
 import com.diarioas.guiamundial.dao.model.general.Section;
+import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO;
 import com.diarioas.guiamundial.utils.Defines;
 import com.diarioas.guiamundial.utils.Defines.RequestSectionTypes;
@@ -240,6 +242,19 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setDisplayShowCustomEnabled(true);
 		getSupportActionBar().setCustomView(R.layout.header_bar);
+		
+		final String headerLink = DatabaseDAO.getInstance(mContext).getHeaderInfo();
+		if (headerLink!=null){
+			View adsButtonContainer = getSupportActionBar().getCustomView().findViewById(R.id.adsButtonContainer);
+			adsButtonContainer.setVisibility(View.VISIBLE);
+			adsButtonContainer.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					openLink(headerLink);
+				}
+			});
+		}
 	}
 
 	private void configSlidingMenu() {
@@ -648,6 +663,9 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			selectedFragment.closedSlidingMenu();
 			sectionChanged = false;
 		}
+		
+		Section selectedSection = (Section) sectionList
+				.getItemAtPosition(selectedSectionIndex);
 	}
 
 	/*

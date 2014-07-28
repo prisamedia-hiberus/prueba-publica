@@ -53,6 +53,7 @@ import com.diarioas.guiamundial.utils.Defines.DateFormat;
 import com.diarioas.guiamundial.utils.Defines.MEDIA_TYPE;
 import com.diarioas.guiamundial.utils.Defines.SECTIONS;
 import com.diarioas.guiamundial.utils.Defines.STADIUM_IMAGE_TYPE;
+import com.diarioas.guiamundial.utils.Defines.SplashTypes;
 
 public class DatabaseDAO extends SQLiteOpenHelper {
 
@@ -65,8 +66,10 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	private static final String TABLE_SPLASH = "splash";
 	// SPLASH Table Column name
 	private static final String KEY_SPLASH_AVAILABLE = "available";
-	private static final String KEY_SPLASH_IMAGE = "image";
+	private static final String KEY_SPLASH_URL = "image";
 	private static final String KEY_SPLASH_SECONDS = "seconds";
+	private static final String KEY_SPLASH_TYPE = "type";
+	
 
 	private static final String TABLE_CLASIFICATION_LABELS = "clasificationLabels";
 	private static final String KEY_CLASIFICATION_LABELS_CODE = "code";
@@ -529,20 +532,22 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			String imageUrl, int seconds) throws Exception {
 		ContentValues values = new ContentValues();
 		values.put(KEY_SPLASH_AVAILABLE, available);
-		values.put(KEY_SPLASH_IMAGE, imageUrl);
+		values.put(KEY_SPLASH_URL, imageUrl);
 		values.put(KEY_SPLASH_SECONDS, seconds);
+		values.put(KEY_SPLASH_TYPE, SplashTypes.TYPE_SPLASH);
 		try {
-			db.delete(TABLE_SPLASH, null, null);
+			String whereClause = KEY_SPLASH_TYPE + " like ? ";
+			db.delete(TABLE_SPLASH, whereClause, new String[] { SplashTypes.TYPE_SPLASH });
 			db.insert(TABLE_SPLASH, null, values);
 		} catch (SQLiteException e) {
-			throw new Exception("Error al actualizar db: " + e.getMessage());
+			throw new Exception("Error al actualizar db splash : " + e.getMessage());
 		}
 	}
 
 	public ArrayList<Object> getSplashInfo() {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
 		String selectQuery = "SELECT * FROM " + TABLE_SPLASH + " where "
-				+ KEY_SPLASH_AVAILABLE + " = 1";
+				+ KEY_SPLASH_AVAILABLE + " = 1 and "+KEY_SPLASH_TYPE +" like '"+SplashTypes.TYPE_SPLASH+"'";
 
 		Cursor cursor = null;
 		ArrayList<Object> splash = new ArrayList<Object>();
@@ -553,7 +558,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			// Article article;
 			if (cursor.moveToFirst()) {
 				splash.add(cursor.getString(cursor
-						.getColumnIndex(KEY_SPLASH_IMAGE)));
+						.getColumnIndex(KEY_SPLASH_URL)));
 				splash.add(cursor.getInt(cursor
 						.getColumnIndex(KEY_SPLASH_SECONDS)));
 			}
@@ -573,6 +578,76 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	}
 
 	/****************************************** SPLASH *****************************************************/
+
+	/****************************************** HEADER *****************************************************/
+	public void updateStaticHeader(HashMap<?, ?> header) {
+		SQLiteDatabase db = sInstance.getWritableDatabase();
+		try {
+			db.beginTransaction();
+			insertHeader(db, (Boolean) header.get("available"),
+					(String) header.get("imageURL"));
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+		}
+
+	}
+
+	/**
+	 * @param db
+	 * @param available
+	 * @param imageUrl
+	 * @param seconds
+	 * @throws Exception
+	 */
+	private void insertHeader(SQLiteDatabase db, boolean available,
+			String imageUrl) throws Exception {
+		ContentValues values = new ContentValues();
+		values.put(KEY_SPLASH_AVAILABLE, available);
+		values.put(KEY_SPLASH_URL, imageUrl);
+		values.put(KEY_SPLASH_TYPE, SplashTypes.TYPE_HEADER);
+		try {
+			String whereClause = KEY_SPLASH_TYPE + " like ? ";
+			db.delete(TABLE_SPLASH, whereClause, new String[] { SplashTypes.TYPE_HEADER });
+			db.insert(TABLE_SPLASH, null, values);
+		} catch (SQLiteException e) {
+			throw new Exception("Error al actualizar db Splash header: " + e.getMessage());
+		}
+	}
+
+	public String getHeaderInfo() {
+		SQLiteDatabase db = sInstance.getWritableDatabase();
+		String selectQuery = "SELECT * FROM " + TABLE_SPLASH + " where "
+				+ KEY_SPLASH_AVAILABLE + " = 1 and "+KEY_SPLASH_TYPE +" like '"+SplashTypes.TYPE_HEADER+"'";
+
+		Cursor cursor = null;
+		String header = null;
+
+		try {
+			cursor = db.rawQuery(selectQuery, null);
+
+			// Article article;
+			if (cursor.moveToFirst()) {
+				header = cursor.getString(cursor.getColumnIndex(KEY_SPLASH_URL));
+			}
+
+		} catch (Exception e) {
+			Log.e(TAG,
+					"Se ha producido un error al obtener el Splash: "
+							+ e.getMessage());
+		} finally {
+			if (cursor != null && !cursor.isClosed()) {
+				cursor.close();
+				cursor = null;
+			}
+		}
+
+		return header;
+	}
+
+	/****************************************** HEADER *****************************************************/	
 
 	/****************************************** PREFIX *****************************************************/
 	public void updateStaticPrefix(HashMap<String, String> prefixes) {

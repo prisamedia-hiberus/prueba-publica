@@ -14,6 +14,7 @@ import com.diarioas.guiamundial.dao.reader.async.AsyncLoadLocalFeedXML.AsyncLoca
 import com.diarioas.guiamundial.dao.reader.async.AsyncLoadRemoteFeedXML;
 import com.diarioas.guiamundial.dao.reader.async.AsyncLoadRemoteFeedXML.AsyncRemoteFeedXMLListener;
 import com.diarioas.guiamundial.utils.Defines;
+import com.diarioas.guiamundial.utils.Defines.DATABASE;
 import com.diarioas.guiamundial.utils.Reachability;
 import com.diarioas.guiamundial.utils.comparator.SectionComparator;
 
@@ -113,7 +114,7 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		this.mainStaticLoadFeedXMLReader = new AsyncLoadLocalFeedXML(this,
 				mContext);
 		this.mainStaticLoadFeedXMLReader
-				.execute(Defines.ReturnDataDatabases.DB_SETTINGS_FILE_NAME);
+				.execute(DATABASE.DB_SETTINGS_FILE_NAME);
 	}
 
 	public void loadRemoteSettings() {

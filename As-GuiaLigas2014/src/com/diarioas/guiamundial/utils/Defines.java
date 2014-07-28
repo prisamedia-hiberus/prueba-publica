@@ -28,6 +28,13 @@ public class Defines {
 		public static final String PREFIX_RESULT = "resultsURLPrefix";
 
 	}
+	
+	
+	public static interface SplashTypes {
+		public static final String TYPE_SPLASH = "splash";
+		public static final String TYPE_HEADER = "header";
+
+	}
 
 	public static interface RequestSectionTypes {
 		public static final String EXTERNAL_VIEW = "external_view";
@@ -40,11 +47,11 @@ public class Defines {
 		public static final String TAG_VIEW = "tag_view";
 	}
 
-	public static interface ReturnDataDatabases {
-
+	public static interface DATABASE {
+		public static String DB_NAME = "ligas_2014_.sqlite";
+		public static final int VERSION = 1;
 		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
 		public static String DATABASE_NAME = "2014_mundial.db";
-
 	}
 
 	public static interface URL_DATA {
@@ -61,10 +68,7 @@ public class Defines {
 
 	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
 
-	public static interface DATABASE {
-		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 3;
-	}
+
 
 	// public static String URL_REMOTE_CONFIG_FILE =
 	// "https://googledrive.com/host/0B57LzJ1pIeo2eFhrZmRLemtqZGc/conf-guia-mundial.plist";
@@ -88,7 +92,7 @@ public class Defines {
 		public static String GRID = "grid";
 		public static String CALENDAR = "calendar";
 		public static String DETAIL = "detail";
-		public static String PREFIX_FLAG = "flag_";
+//		public static String PREFIX_FLAG = "flag_";
 		public static String PREFIX_SHIELD = "escudo_";
 	}
 

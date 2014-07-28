@@ -8,6 +8,7 @@ import com.diarioas.guiamundial.dao.model.competition.Competition;
 public class GeneralSettings {
 
 	private HashMap<?, ?> splash;
+	private HashMap<?, ?> header;
 	private HashMap<String, String> prefix;
 	// private String search;
 	private HashMap<String, String> status;
@@ -41,6 +42,21 @@ public class GeneralSettings {
 	 */
 	public void setSplash(HashMap<?, ?> splash) {
 		this.splash = splash;
+	}
+	
+
+	/**
+	 * @return the header
+	 */
+	public HashMap<?, ?> getHeader() {
+		return header;
+	}
+
+	/**
+	 * @param header the header to set
+	 */
+	public void setHeader(HashMap<?, ?> header) {
+		this.header = header;
 	}
 
 	/**
@@ -170,5 +186,7 @@ public class GeneralSettings {
 	public void setCurrentCompetition(int index) {
 		this.currentCompetition = index;
 	}
+
+
 
 }

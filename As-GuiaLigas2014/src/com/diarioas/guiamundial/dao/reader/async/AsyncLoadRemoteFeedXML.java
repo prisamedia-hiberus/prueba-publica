@@ -12,8 +12,8 @@ import com.diarioas.guiamundial.dao.model.general.GeneralSettings;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
 import com.diarioas.guiamundial.dao.reader.parser.ParsePlistCompetition;
 import com.diarioas.guiamundial.dao.reader.parser.ParsePlistLoad;
+import com.diarioas.guiamundial.utils.Defines.DATABASE;
 import com.diarioas.guiamundial.utils.Defines.Prefix;
-import com.diarioas.guiamundial.utils.Defines.ReturnDataDatabases;
 
 public class AsyncLoadRemoteFeedXML extends
 		AsyncTask<String, Void, GeneralSettings> {
@@ -46,6 +46,7 @@ public class AsyncLoadRemoteFeedXML extends
 		try {
 
 			HashMap<?, ?> splash;
+			HashMap<?, ?> header;
 			HashMap<String, String> prefix;
 			// String strFileContents = readRemoteFile(urls[0]);
 			String strFileContents = ReadRemote.readRemoteFile(urls[0], false);
@@ -58,6 +59,11 @@ public class AsyncLoadRemoteFeedXML extends
 				splash = parse.parsePlistSplash();
 				DatabaseDAO.getInstance(appContext).updateStaticSplash(splash);
 				generalSettings.setSplash(splash);
+
+				// Se actualiza la info del Header
+				header = parse.parsePlistHeader();
+				DatabaseDAO.getInstance(appContext).updateStaticHeader(splash);
+				generalSettings.setHeader(header);
 
 				// Se obtiene la informacion de los prefijos
 				prefix = parse.parsePlistPrefix();
@@ -97,8 +103,7 @@ public class AsyncLoadRemoteFeedXML extends
 				readCompetitions(competitions);
 				generalSettings.setCompetitions(competitions);
 				// Se copia el fichero en local
-				ReadRemote.copyFile(appContext,
-						ReturnDataDatabases.DB_SETTINGS_FILE_NAME,
+				ReadRemote.copyFile(appContext, DATABASE.DB_SETTINGS_FILE_NAME,
 						strFileContents);
 			}
 		} catch (Exception e) {

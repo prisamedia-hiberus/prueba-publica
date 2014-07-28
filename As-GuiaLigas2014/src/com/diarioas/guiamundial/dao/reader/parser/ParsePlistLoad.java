@@ -35,6 +35,14 @@ public class ParsePlistLoad {
 		else
 			return null;
 	}
+	
+	public HashMap<?, ?> parsePlistHeader() {
+		if (hashMap != null)
+			return (HashMap<String, HashMap<String, String>>) hashMap
+					.get("header");
+		else
+			return null;
+	}
 
 	public HashMap<String, String> parsePlistPrefix() {
 		return getHashMap("URLPrefixes");
@@ -118,5 +126,7 @@ public class ParsePlistLoad {
 
 		return competitions;
 	}
+
+
 
 }

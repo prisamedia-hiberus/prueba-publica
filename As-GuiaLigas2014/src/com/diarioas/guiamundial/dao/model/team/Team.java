@@ -213,29 +213,29 @@ public class Team implements Serializable {
 	 * @param string
 	 */
 	public void addShield(String detail, String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-			shield = ShieldName.PREFIX_FLAG + shield;
+//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+//			shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(detail, shield);
 
 	}
 
 	public void addShieldGrid(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-			shield = ShieldName.PREFIX_FLAG + shield;
+//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+//			shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(ShieldName.GRID, shield);
 
 	}
 
 	public void addShieldCalendar(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-			shield = ShieldName.PREFIX_FLAG + shield;
+//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+//			shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(ShieldName.CALENDAR, shield);
 
 	}
 
 	public void addShieldDetail(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-			shield = ShieldName.PREFIX_SHIELD + shield;
+//		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+//			shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(ShieldName.DETAIL, shield);
 
 	}

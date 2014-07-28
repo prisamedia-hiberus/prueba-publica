@@ -430,22 +430,22 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		}
 
 		final int idLocal;
-		if (currentMatch.getLocalId() != null) {
-			idLocal = DrawableUtils.getDrawableId(mContext,
-					ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
-		} else {
+//		if (currentMatch.getLocalId() != null) {
+//			idLocal = DrawableUtils.getDrawableId(mContext,
+//					ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
+//		} else {
 			idLocal = 0;
-		}
+//		}
 
 		localShield.setBackgroundResource(idLocal);
 
 		final int idAway;
-		if (currentMatch.getAwayId() != null) {
-			idAway = DrawableUtils.getDrawableId(mContext,
-					ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
-		} else {
+//		if (currentMatch.getAwayId() != null) {
+//			idAway = DrawableUtils.getDrawableId(mContext,
+//					ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
+//		} else {
 			idAway = 0;
-		}
+//		}
 
 		awayShield.setBackgroundResource(idAway);
 
@@ -1012,22 +1012,22 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			}
 
 			final int idLocal;
-			if (currentMatch.getLocalId() != null) {
-				idLocal = DrawableUtils.getDrawableId(mContext,
-						ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
-			} else {
+//			if (currentMatch.getLocalId() != null) {
+//				idLocal = DrawableUtils.getDrawableId(mContext,
+//						ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
+//			} else {
 				idLocal = 0;
-			}
+//			}
 
 			holder.localShield.setBackgroundResource(idLocal);
 
 			final int idAway;
-			if (currentMatch.getAwayId() != null) {
-				idAway = DrawableUtils.getDrawableId(mContext,
-						ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
-			} else {
+//			if (currentMatch.getAwayId() != null) {
+//				idAway = DrawableUtils.getDrawableId(mContext,
+//						ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
+//			} else {
 				idAway = 0;
-			}
+//			}
 
 			holder.awayShield.setBackgroundResource(idAway);
 

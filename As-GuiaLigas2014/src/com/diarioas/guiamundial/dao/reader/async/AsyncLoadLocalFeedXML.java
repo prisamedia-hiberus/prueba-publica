@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -19,6 +21,7 @@ import com.diarioas.guiamundial.dao.reader.parser.ParsePlistCompetition;
 import com.diarioas.guiamundial.dao.reader.parser.ParsePlistLoad;
 import com.diarioas.guiamundial.utils.Defines.Prefix;
 import com.diarioas.guiamundial.utils.Defines.RequestSectionTypes;
+import com.diarioas.guiamundial.utils.comparator.CompetitionComparator;
 import com.diarioas.guiamundial.utils.FileUtils;
 
 public class AsyncLoadLocalFeedXML extends
@@ -60,6 +63,10 @@ public class AsyncLoadLocalFeedXML extends
 				// Se actualiza la info del Splash
 				generalSettings.setSplash(parse.parsePlistSplash());
 				// DatabaseDAO.getInstance(appContext).updateStaticSplash(splash);
+				
+				// Se actualiza la info del Header
+				generalSettings.setHeader(parse.parsePlistHeader());
+				// DatabaseDAO.getInstance(appContext).updateStaticHeader(header);
 
 				// Se obtiene la informacion de los prefijos
 				generalSettings.setPrefix(parse.parsePlistPrefix());
@@ -86,6 +93,7 @@ public class AsyncLoadLocalFeedXML extends
 				// Se obtiene la info de las competiciones
 				ArrayList<Competition> competitions = readCompetitions(parse
 						.parsePlistCompetitions());
+				Collections.sort(competitions,new CompetitionComparator());
 				generalSettings.setCompetitions(competitions);
 
 			}

@@ -197,11 +197,11 @@ public class ParsePlistCompetition {
 		}
 
 		if (sectionJSON.containsKey("available"))
-			return new Section(type, (String) sectionJSON.get("viewType"),
+			return new Section((String) sectionJSON.get("name"), type, (String) sectionJSON.get("viewType"),
 					retorno, order, start,
 					(Boolean) sectionJSON.get("available"));
 		else
-			return new Section(type, (String) sectionJSON.get("viewType"),
+			return new Section((String) sectionJSON.get("name"), type, (String) sectionJSON.get("viewType"),
 					retorno, order, start);
 
 	}
@@ -216,6 +216,7 @@ public class ParsePlistCompetition {
 
 				section = new Section();
 				section.setType(SECTIONS.LINK);
+				section.setName((String) sectionJSON.get("name"));
 				section.setViewType((String) sectionJSON.get("viewType"));
 				section.setOrder(order + offset);
 				section.setActive((Boolean) sectionJSON.get("available"));
@@ -249,6 +250,7 @@ public class ParsePlistCompetition {
 
 				section = new Section();
 				section.setType(SECTIONS.LINK_VIEW_OUTSIDE);
+				section.setName((String) sectionJSON.get("name"));
 				section.setViewType((String) sectionJSON.get("viewType"));
 				section.setOrder(order + offset);
 				section.setActive((Boolean) sectionJSON.get("available"));
@@ -287,6 +289,7 @@ public class ParsePlistCompetition {
 						.get("clasificationWS");
 				section = new ClasificacionSection();
 				section.setType(SECTIONS.CLASIFICATION);
+				section.setName((String) sectionJSON.get("name"));
 				section.setViewType((String) sectionJSON.get("viewType"));
 				section.setOrder(order + offset);
 				section.setActive((Boolean) sectionJSON.get("available"));
@@ -322,6 +325,7 @@ public class ParsePlistCompetition {
 
 			TeamSection section = new TeamSection();
 			section.setType(SECTIONS.TEAMS);
+			section.setName((String) sectionJSON.get("name"));
 			section.setViewType((String) sectionJSON.get("viewType"));
 			section.setOrder(order + offset);
 			section.setTypeOrder((String) sectionJSON.get("order"));
