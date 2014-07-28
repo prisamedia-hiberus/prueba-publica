@@ -8,6 +8,7 @@ public class Section implements Serializable {
 
 	private String name;
 	private String type;
+	private String viewType;
 	private String url;
 	private int order;
 	private boolean active = true;
@@ -17,8 +18,8 @@ public class Section implements Serializable {
 
 	}
 
-	public Section(String type, String url, int order, boolean start,
-			boolean active) {
+	public Section(String type, String viewType, String url, int order,
+			boolean start, boolean active) {
 		this.type = type;
 		this.url = url;
 		this.order = order;
@@ -26,7 +27,8 @@ public class Section implements Serializable {
 		this.active = active;
 	}
 
-	public Section(String type, String url, int order, boolean start) {
+	public Section(String type, String viewType, String url, int order,
+			boolean start) {
 		this.type = type;
 		this.url = url;
 		this.order = order;
@@ -62,6 +64,21 @@ public class Section implements Serializable {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the viewType
+	 */
+	public String getViewType() {
+		return viewType;
+	}
+
+	/**
+	 * @param viewType
+	 *            the viewType to set
+	 */
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
 	}
 
 	/**
