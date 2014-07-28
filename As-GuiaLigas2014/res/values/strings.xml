@@ -111,6 +111,9 @@
     <string name="team_partidos_perdidos">Partidos Perdidos</string>
     <string name="team_autor_not_available">Nuestra opinión</string>
     <string name="team_charge_not_available">Diario AS</string>
+    <string name="team_estadisticas">ESTADÍSTICAS</string>
+    <string name="team_informacion">INFORMACIÓN</string>
+    <string name="team_plantilla">PLANTILLA</string>
 
     <!-- SPINNER -->
     <string name="spinner_message">Cargando información</string>

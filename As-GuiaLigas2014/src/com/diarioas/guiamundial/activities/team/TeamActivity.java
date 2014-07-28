@@ -5,15 +5,18 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,30 +33,43 @@ import com.diarioas.guiamundial.dao.model.team.TituloTeam;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
-import com.diarioas.guiamundial.dao.reader.StatisticsDAO;
 import com.diarioas.guiamundial.utils.AlertManager;
 import com.diarioas.guiamundial.utils.Defines;
 import com.diarioas.guiamundial.utils.Defines.NativeAds;
-import com.diarioas.guiamundial.utils.Defines.Omniture;
 import com.diarioas.guiamundial.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guiamundial.utils.FontUtils;
 import com.diarioas.guiamundial.utils.FragmentAdapter;
 import com.diarioas.guiamundial.utils.StringUtils;
 import com.diarioas.guiamundial.utils.bitmapfun.ImageCache.ImageCacheParams;
 import com.diarioas.guiamundial.utils.bitmapfun.ImageFetcher;
-import com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
+
+
 
 public class TeamActivity extends GeneralFragmentActivity implements
 		RemoteTeamDAOListener, OnPageChangeListener, ScrollEndListener {
 
+	private static final int BUTTON_STATS = 0;
+	private static final int BUTTON_INFO = 1;
+	private static final int BUTTON_PLAYERS = 2;
+	private static final int BUTTON_WEB = 101;
+	private static final int BUTTON_ESTADIO = 102;
+	private static final int BUTTON_NOTICIAS = 103;
+	private static final int BUTTON_PREV = 201;
+	private static final int BUTTON_NEXT = 202;
+	
+	private Button statsButton;
+	private Button dataButton;
+	private Button playersButton;
+	
+	private int currentPos = -1;
+	
 	private Team currentTeam;
 	private ViewPager teamViewPager;
-	private CustomHoizontalScroll headerSroll;
 	private String competitionId;
 	private ImageFetcher mImageFetcher;
 	private ImageFetcher mImageFetcher2;
 	private ImageFetcher mImageFetcher3;
-	private ArrayList<String> headerNames;
 	private List<Fragment> fragments;
 	private TeamStatsFragment statsFragment;
 	private Fragment infoFragment;
@@ -196,8 +212,15 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	// }
 
 	private void configView() {
-		// TODO Auto-generated method stub
-
+		statsButton = ((Button) findViewById(R.id.statsButton));
+		FontUtils.setCustomfont(getApplicationContext(), statsButton,
+				FontUtils.FontTypes.ROBOTO_BLACK);
+		dataButton = ((Button) findViewById(R.id.dataButton));
+		FontUtils.setCustomfont(getApplicationContext(), dataButton,
+				FontUtils.FontTypes.ROBOTO_BLACK);
+		playersButton = ((Button) findViewById(R.id.playersButton));
+		FontUtils.setCustomfont(getApplicationContext(), playersButton,
+				FontUtils.FontTypes.ROBOTO_BLACK);
 	}
 
 	private void configureImageFetcher() {
@@ -271,8 +294,15 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 		teamViewPager.setAdapter(new FragmentAdapter(
 				getSupportFragmentManager(), fragments));
-		teamViewPager.setCurrentItem(0, true);
-		callToOmniture(0);
+		
+		if (statsFragment != null) {
+			currentPos = 1;
+		} else {
+			currentPos = 0;
+		}
+		teamViewPager.setCurrentItem(currentPos, true);
+		
+//		callToOmniture(1);
 		teamViewPager.setOnPageChangeListener(this);
 	}
 
@@ -399,6 +429,19 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	}
 
+	
+	private void goToWeb(String url) {
+		if (url != null && !url.equalsIgnoreCase("")) {
+			if (url.contains("http") == false) {
+				url = "http://" + url;
+			}
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+			intent.addCategory(Intent.CATEGORY_BROWSABLE);
+			TeamActivity.this.startActivity(intent);
+		}
+
+	}
 	public void playerClicked(View view) {
 		int tagged;
 		// try {
@@ -471,10 +514,132 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	}
 
+	
+	public void buttonClick(View v) {
+		int tag = Integer.valueOf((String) v.getTag());
+
+		switch (tag) {
+		case BUTTON_STATS:
+		case BUTTON_INFO:
+		case BUTTON_PLAYERS:
+			changeView(tag);
+			break;
+		case BUTTON_WEB:
+			if (currentTeam.getWeb() != null
+					&& !currentTeam.getWeb().equalsIgnoreCase("")) {
+//				StatisticsDAO.getInstance(this).sendStaticsOnAction(
+//						currentTeam.getShortName().toLowerCase(),
+//						Defines.Ommniture.SUBSECTION_TEAM_NEWS, null, null,
+//						Defines.Ommniture.HOMEPAGE_CONTENT_TYPE,
+//						currentTeam.getShortName().toLowerCase(), null);
+				goToWeb(currentTeam.getWeb());
+			}
+			break;
+		case BUTTON_ESTADIO:
+
+			if (currentTeam.getEstadio().getLon() != 0
+					&& currentTeam.getEstadio().getLat() != 0) {
+//				StatisticsDAO.getInstance(this).sendStaticsOnAction(
+//						currentTeam.getShortName().toLowerCase(),
+//						Defines.Ommniture.SUBSECTION_TEAM_MAP, null, null,
+//						Defines.Ommniture.HOMEPAGE_CONTENT_TYPE,
+//						currentTeam.getShortName().toLowerCase(), null);
+
+				// String uri = String.format(Locale.ENGLISH,
+				// "geo:%f,%f?z=%d&q=%f,%f (%s)", currentTeam.getEstadio()
+				// .getLat(), currentTeam.getEstadio().getLon(), 20,
+				// currentTeam.getEstadio().getLat(), currentTeam.getEstadio()
+				// .getLon(), currentTeam.getEstadio().getName());
+
+				String uri = String.format(Locale.ENGLISH,
+						"geo:%f,%f?z=%d&q=%f,%f ", currentTeam.getEstadio()
+								.getLat(), currentTeam.getEstadio().getLon(),
+						20, currentTeam.getEstadio().getLat(), currentTeam
+								.getEstadio().getLon());
+
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+				this.startActivity(intent);
+			}
+			break;
+		case BUTTON_NOTICIAS:
+			if (currentTeam.getUrlTag() != null
+					&& !currentTeam.getUrlTag().equalsIgnoreCase("")) {
+				goToWeb(currentTeam.getUrlTag());
+			}
+			break;
+		case BUTTON_PREV:
+			statsFragment.setPrevCompetition();
+			break;
+		case BUTTON_NEXT:
+			statsFragment.setNextCompetition();
+			break;
+
+		default:
+			break;
+		}
+
+	}
+	
+	private void changeView(int pos) {
+		if (currentPos != pos) {
+			currentPos = pos;
+			if (teamViewPager != null) {
+				teamViewPager.setCurrentItem(pos);
+			}
+
+			switch (pos) {
+			case BUTTON_STATS:
+				statsButton.setTextColor(getResources().getColor(R.color.red));
+				statsButton
+						.setBackgroundResource(R.drawable.textura_footer_team_selected);
+				dataButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				dataButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				playersButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				playersButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				break;
+			case BUTTON_INFO:
+				statsButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				statsButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				dataButton.setTextColor(getResources().getColor(R.color.red));
+				dataButton
+						.setBackgroundResource(R.drawable.textura_footer_team_selected);
+				playersButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				playersButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				break;
+			case BUTTON_PLAYERS:
+				statsButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				statsButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				dataButton.setTextColor(getResources().getColor(
+						R.color.medium_gray));
+				dataButton
+						.setBackgroundResource(R.drawable.textura_footer_team);
+				playersButton
+						.setTextColor(getResources().getColor(R.color.red));
+				playersButton
+						.setBackgroundResource(R.drawable.textura_footer_team_selected);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+	}
 	/**************** RemoteTeamDAO Methods *****************************/
 	@Override
 	public void onSuccessTeamRemoteconfig(Team team) {
 		RemoteTeamDAO.getInstance(getApplicationContext()).removeListener(this);
+		findViewById(R.id.buttonBar).setVisibility(View.VISIBLE);
 		loadInformation(team);
 		stopAnimation();
 	}
