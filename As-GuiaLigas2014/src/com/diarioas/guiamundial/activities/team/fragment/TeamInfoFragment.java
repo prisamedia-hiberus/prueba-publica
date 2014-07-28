@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.diarioas.guiamundial.R;
 import com.diarioas.guiamundial.dao.model.team.Staff;
 import com.diarioas.guiamundial.utils.DimenUtils;
+import com.diarioas.guiamundial.utils.DrawableUtils;
 import com.diarioas.guiamundial.utils.FontUtils;
 
 public class TeamInfoFragment extends TeamFragment {
@@ -36,10 +37,7 @@ public class TeamInfoFragment extends TeamFragment {
 		String shield = (String) getArguments().get("shield");
 		if (shield != null && !shield.equalsIgnoreCase("")) {
 			((ImageView) generalView.findViewById(R.id.photoTeam))
-					.setBackgroundResource(mContext.getResources()
-							.getIdentifier(
-									shield.substring(0, shield.length() - 4),
-									"drawable", mContext.getPackageName()));
+					.setBackgroundResource(DrawableUtils.getDrawableId(mContext, shield, 4));
 		} else {
 			((ImageView) generalView.findViewById(R.id.photoTeam))
 					.setBackgroundResource(R.drawable.escudo_generico_size01);

@@ -21,7 +21,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guiamundial.R;
 import com.diarioas.guiamundial.activities.GeneralFragmentActivity;
 import com.diarioas.guiamundial.activities.player.PlayerActivity;
-import com.diarioas.guiamundial.activities.team.fragment.TeamFragment;
 import com.diarioas.guiamundial.activities.team.fragment.TeamInfoFragment;
 import com.diarioas.guiamundial.activities.team.fragment.TeamPlayersFragment;
 import com.diarioas.guiamundial.activities.team.fragment.TeamStatsFragment;
@@ -320,25 +319,27 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		args.putString("fundation", currentTeam.getfundation());
 		args.putString("web", currentTeam.getWeb());
 		args.putString("shield", currentTeam.getDetailShield());
-		if (currentTeam.getEstadio().getName() != null) {
-			NumberFormat formatter = new DecimalFormat("###,###");
+		if (currentTeam.getEstadio() != null) {
+			if (currentTeam.getEstadio().getName() != null) {
+				NumberFormat formatter = new DecimalFormat("###,###");
 
-			args.putString(
-					"nameEstadio",
-					currentTeam.getEstadio().getName()
-							+ " (aforo "
-							+ formatter.format(currentTeam.getEstadio()
-									.getCapacity()) + ")");
-		} else
-			args.putString("nameEstadio", null);
+				args.putString(
+						"nameEstadio",
+						currentTeam.getEstadio().getName()
+								+ " (aforo "
+								+ formatter.format(currentTeam.getEstadio()
+										.getCapacity()) + ")");
+			} else
+				args.putString("nameEstadio", null);
 
-		String address = "";
-		if (currentTeam.getEstadio().getAddress() != null)
-			address = currentTeam.getEstadio().getAddress();
-		if (currentTeam.getEstadio().getAddress() != null)
-			address += " " + currentTeam.getEstadio().getCity();
+			String address = "";
+			if (currentTeam.getEstadio().getAddress() != null)
+				address = currentTeam.getEstadio().getAddress();
+			if (currentTeam.getEstadio().getAddress() != null)
+				address += " " + currentTeam.getEstadio().getCity();
 
-		args.putString("addressEstadio", address);
+			args.putString("addressEstadio", address);
+		}
 
 		if (currentTeam.getCountShirts() > 0)
 			args.putString("shirt1", currentTeam.getShirts().get(0));
@@ -358,7 +359,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			args.putString("article", currentTeam.getArticle().getBody());
 		}
 		infoFragment.setArguments(args);
-		fList.add(infoFragment);
+//		fList.add(infoFragment);
 
 		// if (currentTeam.getPlantilla().size() != 0) {
 		playerFragment = Fragment.instantiate(this,
@@ -444,29 +445,29 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	private void callToOmniture(final int pos) {
 
-		String subsection = headerNames.get(pos);
-		if (subsection.startsWith("la") || subsection.startsWith("La")
-				|| subsection.startsWith("El") || subsection.startsWith("el"))
-			subsection = subsection.substring(3, subsection.length());
-		if (subsection.startsWith("en los") || subsection.startsWith("En los"))
-			subsection = subsection.substring(7, subsection.length());
-
-		subsection = StringUtils
-				.getNormalizeText(subsection, true, false, true);
-
-		String section = "";
-		if (currentTeam.getShortName() != null)
-			section = StringUtils.getNormalizeText(currentTeam.getShortName());
-
-		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
-				getApplication(),
-				section,
-				subsection,
-				null,
-				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_INFORMACION + " " + section + " "
-						+ subsection, null);
+//		String subsection = headerNames.get(pos);
+//		if (subsection.startsWith("la") || subsection.startsWith("La")
+//				|| subsection.startsWith("El") || subsection.startsWith("el"))
+//			subsection = subsection.substring(3, subsection.length());
+//		if (subsection.startsWith("en los") || subsection.startsWith("En los"))
+//			subsection = subsection.substring(7, subsection.length());
+//
+//		subsection = StringUtils
+//				.getNormalizeText(subsection, true, false, true);
+//
+//		String section = "";
+//		if (currentTeam.getShortName() != null)
+//			section = StringUtils.getNormalizeText(currentTeam.getShortName());
+//
+//		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
+//				getApplication(),
+//				section,
+//				subsection,
+//				null,
+//				null,
+//				Omniture.TYPE_PORTADA,
+//				Omniture.DETAILPAGE_INFORMACION + " " + section + " "
+//						+ subsection, null);
 
 	}
 
@@ -560,10 +561,10 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		// headerSroll.setHeaderPosition(pos);
 		// }
 		// });
-		headerSroll.setHeaderPosition(pos);
-		callToOmniture(pos);
+//		headerSroll.setHeaderPosition(pos);
+//		callToOmniture(pos);
 
-//		((TeamFragment) fragments.get(pos)).onShown();
+		// ((TeamFragment) fragments.get(pos)).onShown();
 
 	}
 

@@ -41,13 +41,13 @@ import com.diarioas.guiamundial.dao.model.player.TituloPlayer;
 import com.diarioas.guiamundial.dao.model.player.Trayectoria;
 import com.diarioas.guiamundial.dao.model.stadium.Stadium;
 import com.diarioas.guiamundial.dao.model.team.Article;
+import com.diarioas.guiamundial.dao.model.team.Estadio;
 import com.diarioas.guiamundial.dao.model.team.PalmaresLabel;
 import com.diarioas.guiamundial.dao.model.team.Staff;
 import com.diarioas.guiamundial.dao.model.team.Star;
 import com.diarioas.guiamundial.dao.model.team.Team;
 import com.diarioas.guiamundial.dao.model.team.TeamStats;
 import com.diarioas.guiamundial.dao.model.team.TituloTeam;
-import com.diarioas.guiamundial.utils.Defines;
 import com.diarioas.guiamundial.utils.Defines.DATABASE;
 import com.diarioas.guiamundial.utils.Defines.DateFormat;
 import com.diarioas.guiamundial.utils.Defines.MEDIA_TYPE;
@@ -153,6 +153,17 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	private static final String KEY_TEAM_ARTICLE_BODY = "body";
 	private static final String KEY_TEAM_ARTICLE_VIDEO = "video";
 	private static final String KEY_TEAM_ARTICLE_VIDEOIMAGE = "videoImage";
+	
+	// Estadio Table Column names
+	private static final String KEY_TEAM_ESTADIO_NAME = "estadio_name";
+	private static final String KEY_TEAM_ESTADIO_PAIS = "estadio_country";
+	private static final String KEY_TEAM_ESTADIO_CIUDAD = "estadio_city";
+	private static final String KEY_TEAM_ESTADIO_DIRECCION = "estadio_address";
+	private static final String KEY_TEAM_ESTADIO_AFORO = "estadio_capacity";
+	private static final String KEY_TEAM_ESTADIO_DIMX = "estadio_dimx";
+	private static final String KEY_TEAM_ESTADIO_DIMY = "estadop_dimy";
+	private static final String KEY_TEAM_ESTADIO_LAT = "estadio_lat";
+	private static final String KEY_TEAM_ESTADIO_LON = "estadio_lon";
 
 	private static final String TABLE_COMPETITION_TEAM = "Competition_Team";
 	// COMPETITION_TEAM Table Column names
@@ -2420,6 +2431,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			cursor = db.rawQuery(selectQuery, null);
 
 			Article article;
+			Estadio estadio;
 
 			if (cursor.moveToFirst()) {
 				do {
@@ -2480,12 +2492,12 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 						article = new Article();
 						article.setAuthor(cursor.getString(cursor
 								.getColumnIndex(KEY_TEAM_ARTICLE_AUTHOR)));
-						// article.setCharge(cursor.getString(cursor
-						// .getColumnIndex(KEY_TEAM_ARTICLE_CHARGE)));
-						// article.setTitle(cursor.getString(cursor
-						// .getColumnIndex(KEY_TEAM_ARTICLE_TITLE)));
-						// article.setSubTitle(cursor.getString(cursor
-						// .getColumnIndex(KEY_TEAM_ARTICLE_SUBTITLE)));
+						 article.setCharge(cursor.getString(cursor
+						 .getColumnIndex(KEY_TEAM_ARTICLE_CHARGE)));
+						 article.setTitle(cursor.getString(cursor
+						 .getColumnIndex(KEY_TEAM_ARTICLE_TITLE)));
+						 article.setSubTitle(cursor.getString(cursor
+						 .getColumnIndex(KEY_TEAM_ARTICLE_SUBTITLE)));
 						article.setBody(cursor.getString(cursor
 								.getColumnIndex(KEY_TEAM_ARTICLE_BODY)));
 						article.setUrlVideo(cursor.getString(cursor
@@ -2495,6 +2507,30 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 
 						team.setArticle(article);
 					}
+					
+					if (cursor.getColumnIndex(KEY_TEAM_ESTADIO_NAME) > 0) {
+						estadio = new Estadio();
+						estadio.setName(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_NAME)));
+						estadio.setCountry(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_PAIS)));
+						estadio.setCity(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_CIUDAD)));
+						estadio.setAddress(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_DIRECCION)));
+						estadio.setCapacity(cursor.getInt(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_AFORO)));
+						estadio.setDimX(cursor.getInt(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_DIMX)));
+						estadio.setDimY(cursor.getInt(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_DIMY)));
+						estadio.setLat(cursor.getFloat(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_LAT)));
+						estadio.setLon(cursor.getFloat(cursor
+								.getColumnIndex(KEY_TEAM_ESTADIO_LON)));
+						team.setEstadio(estadio);
+					}
+
 
 					// Se recupera el staff
 					team.setTeamStaff(getStaff(currentTeamId, db));

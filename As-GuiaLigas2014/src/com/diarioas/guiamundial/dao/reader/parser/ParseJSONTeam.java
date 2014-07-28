@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.diarioas.guiamundial.dao.model.player.Player;
+import com.diarioas.guiamundial.dao.model.team.Estadio;
 import com.diarioas.guiamundial.dao.model.team.Staff;
 import com.diarioas.guiamundial.dao.model.team.Team;
 import com.diarioas.guiamundial.dao.model.team.TeamStats;
@@ -69,16 +70,16 @@ public class ParseJSONTeam {
 			if (datosGenerales.has("fecha_fundacion"))
 				team.setFundation(datosGenerales.getString("fecha_fundacion"));
 			// Se machacan los datos del presidente
-			// if (datosGenerales.has("presidente")) {
-			// if (team.getPresident() == null) {
-			// Staff st = new Staff();
-			// st.setCharge(StaffCharge.PRESIDENT);
-			// team.addPresident(st);
-			// }
-			//
-			// team.getPresident().setName(
-			// datosGenerales.getString("presidente"));
-			// }
+			if (datosGenerales.has("presidente")) {
+				if (team.getPresident() == null) {
+					Staff st = new Staff();
+					st.setCharge(StaffCharge.PRESIDENT);
+					team.addPresident(st);
+				}
+
+				team.getPresident().setName(
+						datosGenerales.getString("presidente"));
+			}
 			// Se machacan los datos del entrenador
 			if (datosGenerales.has("entrenador")) {
 				if (team.getMister() == null) {
@@ -92,8 +93,8 @@ public class ParseJSONTeam {
 			}
 
 			// Recupero datos del estadio
-			// Estadio estadio = getEstadio(datosGenerales);
-			// team.setEstadio(estadio);
+			Estadio estadio = getEstadio(datosGenerales);
+			team.setEstadio(estadio);
 
 			// Recupero datos de la plantilla
 			ArrayList<Player> plantilla = getPlantilla(json, imagePrefix,
@@ -101,12 +102,12 @@ public class ParseJSONTeam {
 			team.setPlantilla(plantilla);
 
 			// Recupero datos del Palmares
-			// ArrayList<TituloTeam> palmares = getPalmares(json);
-			// team.setPalmares(palmares);
+			ArrayList<TituloTeam> palmares = getPalmares(json);
+			team.setPalmares(palmares);
 
 			// Recupero datos de las estadisticas
-			// HashMap<String, TeamStats> stats = getEstadisticas(json);
-			// team.setStats(stats);
+			HashMap<String, TeamStats> stats = getEstadisticas(json);
+			team.setStats(stats);
 			return team;
 		} else {
 			// Log.d("Parser", "NO Se actualiza el fichero!!!!");
@@ -251,50 +252,49 @@ public class ParseJSONTeam {
 		// return new ArrayList<Player>();
 	}
 
-	// private Estadio getEstadio(JSONObject datosGenerales) throws
-	// JSONException {
-	// Estadio estadio = new Estadio();
-	// if (datosGenerales.has("estadio")) {
-	// JSONObject estadioJson = (JSONObject) datosGenerales.get("estadio");
-	//
-	// if (estadioJson.has("nombre"))
-	// estadio.setName(estadioJson.getString("nombre"));
-	// if (estadioJson.has("pais"))
-	// estadio.setCountry(estadioJson.getString("pais"));
-	// if (estadioJson.has("localidad"))
-	// estadio.setCity(estadioJson.getString("localidad"));
-	// if (estadioJson.has("direccion"))
-	// estadio.setAddress(estadioJson.getString("direccion"));
-	// if (estadioJson.has("aforo"))
-	// estadio.setCapacity(estadioJson.getInt("aforo"));
-	//
-	// if (estadioJson.has("dimensiones")) {
-	// try {
-	// String[] dim = estadioJson.getString("dimensiones").split(
-	// "x");
-	// estadio.setDimX(Integer.valueOf(dim[0].replace(" ", "")));
-	// estadio.setDimY(Integer.valueOf(dim[1].replace(" ", "")));
-	// } catch (Exception e) {
-	// Log.d(TAG, "Las dimensiones del estadio no estan definidas");
-	// }
-	//
-	// }
-	// if (estadioJson.has("geolocalizacion")) {
-	// String[] coor = estadioJson.getString("geolocalizacion").split(
-	// ",");
-	// try {
-	// estadio.setLat(Double.valueOf(coor[0].replace(" ", "")
-	// .substring(1)));
-	// estadio.setLon(Double
-	// .valueOf(coor[1].replace(" ", "").substring(0,
-	// coor[1].replace(" ", "").length() - 1)));
-	// } catch (Exception e) {
-	// Log.d(TAG, "Las coordenadas del estadio no estan definidas");
-	// }
-	//
-	// }
-	// }
-	// return estadio;
-	// }
+	private Estadio getEstadio(JSONObject datosGenerales) throws JSONException {
+		Estadio estadio = new Estadio();
+		if (datosGenerales.has("estadio")) {
+			JSONObject estadioJson = (JSONObject) datosGenerales.get("estadio");
+
+			if (estadioJson.has("nombre"))
+				estadio.setName(estadioJson.getString("nombre"));
+			if (estadioJson.has("pais"))
+				estadio.setCountry(estadioJson.getString("pais"));
+			if (estadioJson.has("localidad"))
+				estadio.setCity(estadioJson.getString("localidad"));
+			if (estadioJson.has("direccion"))
+				estadio.setAddress(estadioJson.getString("direccion"));
+			if (estadioJson.has("aforo"))
+				estadio.setCapacity(estadioJson.getInt("aforo"));
+
+			if (estadioJson.has("dimensiones")) {
+				try {
+					String[] dim = estadioJson.getString("dimensiones").split(
+							"x");
+					estadio.setDimX(Integer.valueOf(dim[0].replace(" ", "")));
+					estadio.setDimY(Integer.valueOf(dim[1].replace(" ", "")));
+				} catch (Exception e) {
+					Log.d(TAG, "Las dimensiones del estadio no estan definidas");
+				}
+
+			}
+			if (estadioJson.has("geolocalizacion")) {
+				String[] coor = estadioJson.getString("geolocalizacion").split(
+						",");
+				try {
+					estadio.setLat(Double.valueOf(coor[0].replace(" ", "")
+							.substring(1)));
+					estadio.setLon(Double
+							.valueOf(coor[1].replace(" ", "").substring(0,
+									coor[1].replace(" ", "").length() - 1)));
+				} catch (Exception e) {
+					Log.d(TAG, "Las coordenadas del estadio no estan definidas");
+				}
+
+			}
+		}
+		return estadio;
+	}
 
 }
