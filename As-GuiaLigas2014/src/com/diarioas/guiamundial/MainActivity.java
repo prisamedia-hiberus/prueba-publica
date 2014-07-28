@@ -9,10 +9,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.comscore.analytics.comScore;
+import com.diarioas.guiamundial.activities.general.fragment.LoadingSplashFragment;
 import com.diarioas.guiamundial.activities.home.HomeActivity;
 import com.diarioas.guiamundial.dao.reader.CookieDAO;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
@@ -32,6 +36,9 @@ public class MainActivity extends FragmentActivity implements
 	private static long splashTime = DEFAULT_SPLASHTIME;
 	// private static final long SPLASHTIME = 3000;
 
+	private FrameLayout fragmentContainerLoading;
+	private LoadingSplashFragment loadingFragment;
+	
 	private Handler splashHandler = new Handler() {
 
 		@Override
@@ -56,6 +63,8 @@ public class MainActivity extends FragmentActivity implements
 
 		setContentView(R.layout.activity_main);
 
+		
+		configureLoadingView();
 		// COMSCORE
 		comScore.setAppName(getString(R.string.app_name_normalize));
 		com.comscore.analytics.Census.getInstance().notifyStart(
@@ -157,6 +166,44 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	/************************** TIMER ****************************************/
+	/************************************* Configuration methods *************************************************/
+	private void configureLoadingView() {
+		Log.d("LOADING", "configureLoadingView");
+
+		// Create the database
+		DatabaseDAO.getInstance(getApplicationContext());
+
+		fragmentContainerLoading = (FrameLayout) findViewById(R.id.spinner_fragment);
+
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager
+				.beginTransaction();
+
+		loadingFragment = new LoadingSplashFragment();
+		fragmentTransaction.add(R.id.spinner_fragment, loadingFragment);
+		fragmentTransaction.commit();
+	}
+
+	/***************************************************************************/
+	/** Loading methods **/
+	/***************************************************************************/
+
+	public void startAnimation() {
+		Log.d("LOADING", "startAnimation");
+		fragmentContainerLoading.setVisibility(View.VISIBLE);
+		if (!loadingFragment.isLoadingAnimation())
+			loadingFragment.startAnimation();
+	}
+
+	public void stopAnimation() {
+		Log.d("LOADING", "stopAnimation");
+		fragmentContainerLoading.setVisibility(View.GONE);
+		if (loadingFragment.isLoadingAnimation())
+			loadingFragment.stopAnimation();
+	}
+
+	/************************************* Configuration methods *************************************************/
+	
 
 	@Override
 	public void onSuccessRemoteconfig() {
