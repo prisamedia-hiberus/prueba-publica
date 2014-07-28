@@ -2,53 +2,63 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- splash -->
 	<key>splash</key>
 	<dict>
 		<key>available</key>
 		<false/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_del_mundial/patrocinio/img_ford_splash.png</string>
+		<string></string>
 		<key>seconds</key>
-		<integer>3</integer>
+		<integer>1</integer>
 	</dict>
+
+	<!-- header -->
+	<key>header</key>
+	<dict>
+		<key>available</key>
+		<false/>
+		<key>imageURL</key>
+		<string></string>
+	</dict>
+
+    <!-- prefijos -->
 	<key>URLPrefixes</key>
 	<dict>
+		<!-- url  de imagenes -->
 		<key>imageURLPrefix</key>
 		<string>http://as02.epimg.net/</string>
+		<!-- url  de videos -->
 		<key>videoURLPrefix</key>
 		<string>http://as02.epimg.net/</string>
+		<!-- datos de dinamicos -->
 		<key>dataURLPrefix</key>
 		<string>http://as.com/apps/datos/</string>
+		<!-- url de resultados -->
 		<key>resultsURLPrefix</key>
 		<string>http://resultados.as.com/</string>
+		<!-- contenido editorial -->
 		<key>dataServiceURLPrefix</key>
 		<string>http://as.com/rss/</string>
 	</dict>
+
+	<!-- estados partido -->
 	<key>status</key>
 	<dict>
-		<key>0</key>
-		<string>Sin comenzar</string>
-		<key>1</key>
-		<string>1ª parte</string>
-		<key>2</key>
-		<string>Descanso</string>
-		<key>3</key>
-		<string>2ª parte</string>
-		<key>4</key>
-		<string>1ª parte (prórroga)</string>
-		<key>5</key>
-		<string>2ª parte (prórroga)</string>
-		<key>6</key>
-		<string>Penaltis</string>
-		<key>7</key>
-		<string>Finalizado</string>
-		<key>8</key>
-		<string>Suspendido</string>
-		<key>9</key>
-		<string>Aplazado</string>
-		<key>100</key>
-		<string>Anulado</string>
+		<key>0</key><string>Sin comenzar</string>
+		<key>1</key><string>1ª parte</string>
+		<key>2</key><string>Descanso</string>
+		<key>3</key><string>2ª parte</string>
+		<key>4</key><string>1ª parte (prórroga)</string>
+		<key>5</key><string>2ª parte (prórroga)</string>
+		<key>6</key><string>Penaltis</string>
+		<key>7</key><string>Finalizado</string>
+		<key>8</key><string>Suspendido</string>
+		<key>9</key><string>Aplazado</string>
+		<key>100</key><string>Anulado</string>
 	</dict>
+
+	<!-- sistemas de juego -->
 	<key>system</key>
 	<dict>
 		<key>19</key>
@@ -86,6 +96,8 @@
 		<key>35</key>
 		<string>3-4-1-2</string>
 	</dict>
+
+	<!-- picas -->
 	<key>spades</key>
 	<dict>
 		<key>-2</key>
@@ -103,6 +115,8 @@
 		<key>4</key>
 		<string>4</string>
 	</dict>
+
+	<!-- leyenda_clasificacion -->
 	<key>clasificationLabels</key>
 	<dict>
 		<key>top-1</key>
@@ -122,21 +136,37 @@
 		<key>bottom-4</key>
 		<string>#FFCC33</string>
 	</dict>
+
+	<!-- competiciones -->
 	<key>competitions</key>
 	<dict>
-		<key>145</key>
+		<key>10</key>
 		<dict>
 			<key>order</key>
 			<string>1</string>
 			<key>description</key>
-			<string>Mundial 2014</string>
+			<string>Liga BBVA</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_del_mundial/config/v1.x/v1.1/conf-guia-mundial.xml</string>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-primera.xml</string>
 			<key>headerLogo</key>
-			<string></string>
+			<string>sliding_logo_LigaBBVA.png</string>
 			<key>conFileTimestamp</key>
-			<date>2013-06-04T14:03:00Z</date>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>7</key>
+		<dict>
+			<key>order</key>
+			<string>2</string>
+			<key>description</key>
+			<string>Liga Adelante</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-segunda.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_ligaadelante.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
 		</dict>
 	</dict>
+
 </dict>
 </plist>

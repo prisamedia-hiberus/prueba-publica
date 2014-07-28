@@ -98,19 +98,19 @@ public class AsyncLoadLocalFeedXML extends
 			ArrayList<Competition> competitions) throws Exception {
 
 		ArrayList<Competition> competitionsBack = new ArrayList<Competition>();
+		Competition comp;
 		for (Competition competition : competitions) {
 			// Si la fecha de actualizacion del fichero es mayor, se actualiza
-			if (competition.getFecModificacion() > DatabaseDAO
-					.getInstance(appContext)
-					.getCompetition(competition.getId()).getFecModificacion()) {
+			comp = DatabaseDAO.getInstance(appContext).getCompetition(
+					competition.getId());
+			if (comp == null
+					|| competition.getFecModificacion() > comp
+							.getFecModificacion()) {
 				competitionsBack.add(readCompetition(competition));
 			} else {
 				// read competition for Database
-				// competitionsBack.add(DatabaseDAO.getInstance(appContext)
-				// .getCompetition(competition.getId()));
 				competition.setSections(DatabaseDAO.getInstance(appContext)
 						.getSectionsCompetition(competition.getId()));
-				// competition.addSection(getSectionTeams(competition.getId()));
 				competitionsBack.add(competition);
 
 			}

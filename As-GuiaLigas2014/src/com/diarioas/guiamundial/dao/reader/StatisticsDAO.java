@@ -60,10 +60,10 @@ public class StatisticsDAO {
 		s.events = "event2";
 		s.currencyCode = "EUR";
 
-		Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> " + s.prop1
-				+ " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
-				+ " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
-		s.track();
+		// Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> " + s.prop1
+		// + " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
+		// + " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
+		// s.track();
 	}
 
 	public void sendStatisticsAction(Application app, String section,
@@ -95,13 +95,13 @@ public class StatisticsDAO {
 			s.linkTrackVars = "events,eVar8,channel,pageName,prop1,prop2,prop17,prop32,eVar1,eVar17,eVar13";
 
 		}
-		if (evento != null && !evento.equalsIgnoreCase("")) {
-			Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> "
-					+ s.prop1 + " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
-					+ " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
-
-			s.trackLink(null, "o", evento);
-		}
+		// if (evento != null && !evento.equalsIgnoreCase("")) {
+		// Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> "
+		// + s.prop1 + " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
+		// + " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
+		//
+		// s.trackLink(null, "o", evento);
+		// }
 	}
 
 	private AppMeasurement getAppMeasurement(Application app, String section,

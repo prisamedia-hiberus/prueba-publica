@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">AS Mundial</string>
-    <string name="app_name_normalize" translatable="false">AS-GUIA-MUNDIAL</string>
+    <string name="app_name">Guía de las Ligas</string>
+    <string name="app_name_normalize" translatable="false">GUIA-LIGAS-2014</string>
 
     <!-- PLAYER -->
     <string name="player_comparator_message_versus">Escoge una Competición y una Temporada para iniciar la Comparativa</string>

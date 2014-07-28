@@ -8,13 +8,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.diarioas.guiamundial.R;
-import com.diarioas.guiamundial.dao.reader.PubliDAO;
 import com.diarioas.guiamundial.utils.imageutils.MemoryReleaseUtils;
 import com.prisadigital.realmedia.adlib.AdView;
 
@@ -126,26 +124,26 @@ public class GeneralFragmentActivity extends SherlockFragmentActivity {
 	 * @param section
 	 */
 	protected void callToAds(String section, boolean inter) {
-		if (section == null)
-			return;
-		// Delete old banner
-		if (banner != null) {
-			banner.removeBanner();
-			((ViewGroup) this.findViewById(R.id.publiContent))
-					.removeView(banner);
-		}
-
-		// Create new Banner
-		banner = PubliDAO.getInstance(getApplicationContext()).getBanner(
-				section);
-
-		// Set the new banner
-		if (banner != null)
-			((ViewGroup) this.findViewById(R.id.publiContent)).addView(banner);
-
-		if (inter)
-			// shows interstitial
-			PubliDAO.getInstance(getApplicationContext()).displayInterstitial(
-					section);
+		// if (section == null)
+		// return;
+		// // Delete old banner
+		// if (banner != null) {
+		// banner.removeBanner();
+		// ((ViewGroup) this.findViewById(R.id.publiContent))
+		// .removeView(banner);
+		// }
+		//
+		// // Create new Banner
+		// banner = PubliDAO.getInstance(getApplicationContext()).getBanner(
+		// section);
+		//
+		// // Set the new banner
+		// if (banner != null)
+		// ((ViewGroup) this.findViewById(R.id.publiContent)).addView(banner);
+		//
+		// if (inter)
+		// // shows interstitial
+		// PubliDAO.getInstance(getApplicationContext()).displayInterstitial(
+		// section);
 	}
 }

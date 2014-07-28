@@ -294,45 +294,12 @@ public class ParsePlistCompetition {
 				section.setStart((Boolean) sectionJSON.get("default"));
 			}
 
-			Team team;
-			Group group;
-
-			HashMap<String, ArrayList<HashMap<?, ?>>> groupPlist = (HashMap<String, ArrayList<HashMap<?, ?>>>) sectionJSON
-					.get("teamsByGroup");
-			Set<String> groupKeys = groupPlist.keySet();
-
-			ArrayList<HashMap<?, ?>> groupMap;
-			HashMap<String, String> shields;
-
-			for (String groupKey : groupKeys) {
-				groupMap = groupPlist.get(groupKey);
-
-				group = new Group();
-				group.setName(groupKey);
-
-				for (HashMap<?, ?> t : groupMap) {
-					// Lee la informacion b‡sica del equipo
-					team = new Team();
-					team.setId((String) t.get("id"));
-					team.setUrl(dataPrefix + ((String) t.get("teamWS")));
-					team.setUrlInfo((String) t.get("teamInfo"));
-					team.setShortName((String) t.get("name"));
-					if (t.containsKey("shields")) {
-						// team.setShields((HashMap<String, String>)
-						// t.get("shields"));
-						shields = (HashMap<String, String>) t.get("shields");
-						team.addShield(ShieldName.GRID,
-								shields.get(ShieldName.GRID));
-						team.addShield(ShieldName.CALENDAR,
-								shields.get(ShieldName.CALENDAR));
-						team.addShieldDetail(shields.get(ShieldName.DETAIL));
-						// team.addShield(ShieldName.DETAIL,shields.get(ShieldName.DETAIL));
-					}
-
-					group.addTeam(team);
-				}
-				section.addGroup(group);
-
+			if (sectionJSON.containsKey("teamsByGroup")) {
+				section.setGroups(getTeamsByGroup((HashMap<String, ArrayList<HashMap<?, ?>>>) sectionJSON
+						.get("teamsByGroup")));
+			} else if (sectionJSON.containsKey("teams")) {
+				section.setGroups(getTeams((HashMap<String, HashMap<?, ?>>) sectionJSON
+						.get("teams")));
 			}
 
 			return section;
@@ -341,6 +308,85 @@ public class ParsePlistCompetition {
 			return null;
 		}
 
+	}
+
+	private ArrayList<Group> getTeams(HashMap<String, HashMap<?, ?>> groupPlist) {
+		Team team;
+		ArrayList<Group> groups = new ArrayList<Group>();
+		Group group = new Group();
+
+		Set<String> groupKeys = groupPlist.keySet();
+		String id;
+		HashMap<String, String> shields;
+		for (Iterator<String> iterator = groupKeys.iterator(); iterator
+				.hasNext();) {
+			id = iterator.next();
+			// Lee la informacion b‡sica del equipo
+			team = new Team();
+			team.setId(id);
+			team.setShortName((String) groupPlist.get(id).get("name"));
+			team.setUrl(dataPrefix
+					+ ((String) groupPlist.get(id).get("teamWS")));
+			team.setUrlInfo((String) groupPlist.get(id).get("teamInfo"));
+			if (groupPlist.get(id).containsKey("shields")) {
+				shields = (HashMap<String, String>) groupPlist.get(id).get(
+						"shields");
+				team.addShield(ShieldName.GRID, shields.get(ShieldName.GRID));
+				team.addShield(ShieldName.CALENDAR,
+						shields.get(ShieldName.CALENDAR));
+				team.addShieldDetail(shields.get(ShieldName.DETAIL));
+				team.addShield(ShieldName.DETAIL,
+						shields.get(ShieldName.DETAIL));
+			}
+			group.addTeam(team);
+		}
+		groups.add(group);
+		return groups;
+	}
+
+	private ArrayList<Group> getTeamsByGroup(
+			HashMap<String, ArrayList<HashMap<?, ?>>> groupPlist) {
+		Team team;
+		ArrayList<Group> groups = new ArrayList<Group>();
+		Group group;
+
+		Set<String> groupKeys = groupPlist.keySet();
+
+		ArrayList<HashMap<?, ?>> groupMap;
+		HashMap<String, String> shields;
+
+		for (String groupKey : groupKeys) {
+			groupMap = groupPlist.get(groupKey);
+
+			group = new Group();
+			group.setName(groupKey);
+
+			for (HashMap<?, ?> t : groupMap) {
+				// Lee la informacion b‡sica del equipo
+				team = new Team();
+				team.setId((String) t.get("id"));
+				team.setUrl(dataPrefix + ((String) t.get("teamWS")));
+				team.setUrlInfo((String) t.get("teamInfo"));
+				team.setShortName((String) t.get("name"));
+				if (t.containsKey("shields")) {
+					// team.setShields((HashMap<String, String>)
+					// t.get("shields"));
+					shields = (HashMap<String, String>) t.get("shields");
+					team.addShield(ShieldName.GRID,
+							shields.get(ShieldName.GRID));
+					team.addShield(ShieldName.CALENDAR,
+							shields.get(ShieldName.CALENDAR));
+					team.addShieldDetail(shields.get(ShieldName.DETAIL));
+					// team.addShield(ShieldName.DETAIL,shields.get(ShieldName.DETAIL));
+				}
+
+				group.addTeam(team);
+			}
+
+			groups.add(group);
+
+		}
+		return groups;
 	}
 
 	public HashMap<String, String> parsePlistPalmaresLabelsPosition(

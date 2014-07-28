@@ -49,6 +49,7 @@ import com.diarioas.guiamundial.dao.model.team.Team;
 import com.diarioas.guiamundial.dao.model.team.TeamStats;
 import com.diarioas.guiamundial.dao.model.team.TituloTeam;
 import com.diarioas.guiamundial.utils.Defines;
+import com.diarioas.guiamundial.utils.Defines.DATABASE;
 import com.diarioas.guiamundial.utils.Defines.DateFormat;
 import com.diarioas.guiamundial.utils.Defines.MEDIA_TYPE;
 import com.diarioas.guiamundial.utils.Defines.SECTIONS;
@@ -59,10 +60,6 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	private static final String TAG = "DATABASEDAO";
 
 	private static DatabaseDAO sInstance = null;
-
-	// The Android's default system path of your application database.
-	private static String DB_NAME = "2014_mundial.sqlite";
-	private static final int VERSION = 3;
 
 	private static File DATABASE_FILE;
 
@@ -369,7 +366,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	}
 
 	public DatabaseDAO(Context context) {
-		super(context, DB_NAME, null, VERSION);
+		super(context, DATABASE.DB_NAME, null, DATABASE.VERSION);
 
 		this.mContext = context;
 		SQLiteDatabase db = null;
@@ -379,7 +376,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				db.close();
 			}
 
-			DATABASE_FILE = context.getDatabasePath(DB_NAME);
+			DATABASE_FILE = context.getDatabasePath(DATABASE.DB_NAME);
 
 			if (mInvalidDatabaseFile) {
 				copyDatabase();
@@ -405,7 +402,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		InputStream in = null;
 		OutputStream out = null;
 		try {
-			in = assetManager.open(DB_NAME);
+			in = assetManager.open(DATABASE.DB_NAME);
 			out = new FileOutputStream(DATABASE_FILE);
 			byte[] buffer = new byte[1024];
 			int read = 0;
@@ -436,7 +433,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		try {
 			db = SQLiteDatabase.openDatabase(DATABASE_FILE.getAbsolutePath(),
 					null, SQLiteDatabase.OPEN_READWRITE);
-			db.execSQL("PRAGMA user_version = " + VERSION);
+			db.execSQL("PRAGMA user_version = " + DATABASE.VERSION);
 		} catch (SQLiteException e) {
 		} finally {
 			if (db != null && db.isOpen()) {

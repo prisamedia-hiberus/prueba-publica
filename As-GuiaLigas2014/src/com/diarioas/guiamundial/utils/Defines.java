@@ -48,7 +48,12 @@ public class Defines {
 
 	public static final int NUM_MAX_TVS = 4;
 
-	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_del_mundial/config/v1.x/v1.1/conf-guia.xml";
+	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
+
+	public static interface DATABASE {
+		public static String DB_NAME = "ligas_2014_.sqlite";
+		public static final int VERSION = 3;
+	}
 
 	// public static String URL_REMOTE_CONFIG_FILE =
 	// "https://googledrive.com/host/0B57LzJ1pIeo2eFhrZmRLemtqZGc/conf-guia-mundial.plist";
