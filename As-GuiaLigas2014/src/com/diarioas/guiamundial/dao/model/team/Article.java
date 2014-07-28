@@ -3,9 +3,9 @@ package com.diarioas.guiamundial.dao.model.team;
 public class Article {
 
 	private String author;
-	// private String charge;
-	// private String title;
-	// private String subTitle;
+	private String charge;
+	private String title;
+	private String subTitle;
 	private String body;
 	private String urlVideo;
 	private String urlVideoImage;
@@ -25,50 +25,50 @@ public class Article {
 		this.author = author;
 	}
 
-	// /**
-	// * @return the charge
-	// */
-	// public String getCharge() {
-	// return charge;
-	// }
-	//
-	// /**
-	// * @param charge
-	// * the charge to set
-	// */
-	// public void setCharge(String charge) {
-	// this.charge = charge;
-	// }
-	//
-	// /**
-	// * @return the title
-	// */
-	// public String getTitle() {
-	// return title;
-	// }
-	//
-	// /**
-	// * @param title
-	// * the title to set
-	// */
-	// public void setTitle(String title) {
-	// this.title = title;
-	// }
-	//
-	// /**
-	// * @return the subTitle
-	// */
-	// public String getSubTitle() {
-	// return subTitle;
-	// }
-	//
-	// /**
-	// * @param subTitle
-	// * the subTitle to set
-	// */
-	// public void setSubTitle(String subTitle) {
-	// this.subTitle = subTitle;
-	// }
+	/**
+	 * @return the charge
+	 */
+	public String getCharge() {
+		return charge;
+	}
+
+	/**
+	 * @param charge
+	 *            the charge to set
+	 */
+	public void setCharge(String charge) {
+		this.charge = charge;
+	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title
+	 *            the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * @return the subTitle
+	 */
+	public String getSubTitle() {
+		return subTitle;
+	}
+
+	/**
+	 * @param subTitle
+	 *            the subTitle to set
+	 */
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
 
 	/**
 	 * @return the body

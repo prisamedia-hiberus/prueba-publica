@@ -15,8 +15,8 @@ public class Staff implements Parcelable {
 
 	private String charge;
 	private String name;
-	// private String born;
-	// private String contract;
+	private String born;
+	private String contract;
 	private String photo;
 	private String history;
 
@@ -61,32 +61,32 @@ public class Staff implements Parcelable {
 	/**
 	 * @return the born
 	 */
-	// public String getBorn() {
-	// return born;
-	// }
-	//
-	// /**
-	// * @param born
-	// * the born to set
-	// */
-	// public void setBorn(String born) {
-	// this.born = born;
-	// }
-	//
-	// /**
-	// * @return the contract
-	// */
-	// public String getContract() {
-	// return contract;
-	// }
-	//
-	// /**
-	// * @param contract
-	// * the contract to set
-	// */
-	// public void setContract(String contract) {
-	// this.contract = contract;
-	// }
+	public String getBorn() {
+		return born;
+	}
+
+	/**
+	 * @param born
+	 *            the born to set
+	 */
+	public void setBorn(String born) {
+		this.born = born;
+	}
+
+	/**
+	 * @return the contract
+	 */
+	public String getContract() {
+		return contract;
+	}
+
+	/**
+	 * @param contract
+	 *            the contract to set
+	 */
+	public void setContract(String contract) {
+		this.contract = contract;
+	}
 
 	/**
 	 * @return the photo

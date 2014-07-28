@@ -101,7 +101,6 @@ public class Defines {
 		public static String PRESIDENT = "President";
 		public static String MANAGER = "Manager";
 		public static String MISTER = "Mister";
-		public static String STAR = "Star";
 	}
 
 	public static interface RequestTimes {

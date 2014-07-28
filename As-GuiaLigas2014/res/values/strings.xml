@@ -91,6 +91,26 @@
     <string name="team_federation_fundation">Fundacion&#160;</string>
     <string name="team_federation_affiliation">Afiliación a la FIFA&#160;</string>
     <string name="team_federation_web">Web&#160;</string>
+    <string name="team_noticias">Ver Noticias de este equipo</string>
+    <string name="team_ver_mapa">Ver Mapa</string>
+    <string name="team_fundacion">"Fundacion - "</string>
+    <string name="team_web">"Web - "</string>
+    <string name="team_estadio">"Estadio - "</string>
+    <string name="team_historia">Historia</string>
+    <string name="team_presidente">Presidente</string>
+    <string name="team_manager">Director Deportivo</string>
+    <string name="team_mister">Entrenador</string>
+    <string name="team_fecha_de_nacimiento">Fecha de Nacimiento -&#160;</string>
+    <string name="team_fecha_del_cargo">Fecha del Cargo -&#160;</string>
+    <string name="team_goles_a_favor">Goles a favor</string>
+    <string name="team_partidos_jugados">Partidos Jugados</string>
+    <string name="team_tarjetas_amarillas">Tarjetas Amarillas</string>
+    <string name="team_tarjetas_rojas">Tarjetas Rojas</string>
+    <string name="team_partidos_ganados">Partidos Ganados</string>
+    <string name="team_partidos_empatados">Partidos Empatados</string>
+    <string name="team_partidos_perdidos">Partidos Perdidos</string>
+    <string name="team_autor_not_available">Nuestra opinión</string>
+    <string name="team_charge_not_available">Diario AS</string>
 
     <!-- SPINNER -->
     <string name="spinner_message">Cargando información</string>

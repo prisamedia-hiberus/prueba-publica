@@ -24,7 +24,7 @@ public class Team implements Serializable {
 	private String urlTag;
 	private HashMap<String, String> shields;// Colocacion, url
 	private String history;
-	// private Estadio estadio;
+	private Estadio estadio;
 	private ArrayList<String> shirts;
 	private ArrayList<TituloTeam> palmares;
 	private HashMap<String, TeamStats> stats;// A–o, Estadistica
@@ -213,29 +213,29 @@ public class Team implements Serializable {
 	 * @param string
 	 */
 	public void addShield(String detail, String shield) {
-//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-//			shield = ShieldName.PREFIX_FLAG + shield;
+		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+		// shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(detail, shield);
 
 	}
 
 	public void addShieldGrid(String shield) {
-//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-//			shield = ShieldName.PREFIX_FLAG + shield;
+		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+		// shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(ShieldName.GRID, shield);
 
 	}
 
 	public void addShieldCalendar(String shield) {
-//		if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-//			shield = ShieldName.PREFIX_FLAG + shield;
+		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
+		// shield = ShieldName.PREFIX_FLAG + shield;
 		this.shields.put(ShieldName.CALENDAR, shield);
 
 	}
 
 	public void addShieldDetail(String shield) {
-//		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-//			shield = ShieldName.PREFIX_SHIELD + shield;
+		// if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+		// shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(ShieldName.DETAIL, shield);
 
 	}
@@ -255,20 +255,20 @@ public class Team implements Serializable {
 		this.history = history;
 	}
 
-	// /**
-	// * @return the estadio
-	// */
-	// public Estadio getEstadio() {
-	// return estadio;
-	// }
-	//
-	// /**
-	// * @param estadio
-	// * the estadio to set
-	// */
-	// public void setEstadio(Estadio estadio) {
-	// this.estadio = estadio;
-	// }
+	/**
+	 * @return the estadio
+	 */
+	public Estadio getEstadio() {
+		return estadio;
+	}
+
+	/**
+	 * @param estadio
+	 *            the estadio to set
+	 */
+	public void setEstadio(Estadio estadio) {
+		this.estadio = estadio;
+	}
 
 	/**
 	 * @return the shirts
@@ -399,10 +399,10 @@ public class Team implements Serializable {
 		this.teamStaff.put(StaffCharge.MISTER, staff);
 	}
 
-	public void addStar(Staff staff) {
-		this.teamStaff.put(StaffCharge.STAR, staff);
-
-	}
+//	public void addStar(Staff staff) {
+//		this.teamStaff.put(StaffCharge.STAR, staff);
+//
+//	}
 
 	public Staff getStaff(String staff) {
 		return this.teamStaff.get(staff);

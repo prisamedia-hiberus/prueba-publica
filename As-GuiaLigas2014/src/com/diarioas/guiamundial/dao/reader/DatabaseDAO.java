@@ -2887,36 +2887,36 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					String charge = cursor2.getString(cursor2
 							.getColumnIndex(KEY_STAFF_CHARGE));
 
-					if (charge.equalsIgnoreCase(Defines.StaffCharge.STAR)) {
-						staff = new Star();
-						((Star) staff).setPosition(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_POSITION)));
-						((Star) staff)
-								.setNumInternational(cursor2.getString(cursor2
-										.getColumnIndex(KEY_STAFF_NUMINTERNATIONAL)));
-						((Star) staff).setAge(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_AGE)));
-						((Star) staff).setStature(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_STATURE)));
-						((Star) staff).setWeight(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_WEIGHT)));
-						((Star) staff).setClubName(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_CLUBNAME)));
-						((Star) staff).setClubShield(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_CLUBSHIELD)));
-						((Star) staff).setUrl(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_URL)));
-						((Star) staff).setPlayerId(cursor2.getString(cursor2
-								.getColumnIndex(KEY_STAFF_PLAYERID)));
-						if (((Star) staff).getUrl() == null) {
-							String id = ((Star) staff).getPlayerId();
-							Player play = getPlayer(Integer.valueOf(id));
-							((Star) staff).setUrl(play.getUrl());
-						}
-
-					} else {
+//					if (charge.equalsIgnoreCase(Defines.StaffCharge.STAR)) {
+//						staff = new Star();
+//						((Star) staff).setPosition(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_POSITION)));
+//						((Star) staff)
+//								.setNumInternational(cursor2.getString(cursor2
+//										.getColumnIndex(KEY_STAFF_NUMINTERNATIONAL)));
+//						((Star) staff).setAge(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_AGE)));
+//						((Star) staff).setStature(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_STATURE)));
+//						((Star) staff).setWeight(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_WEIGHT)));
+//						((Star) staff).setClubName(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_CLUBNAME)));
+//						((Star) staff).setClubShield(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_CLUBSHIELD)));
+//						((Star) staff).setUrl(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_URL)));
+//						((Star) staff).setPlayerId(cursor2.getString(cursor2
+//								.getColumnIndex(KEY_STAFF_PLAYERID)));
+//						if (((Star) staff).getUrl() == null) {
+//							String id = ((Star) staff).getPlayerId();
+//							Player play = getPlayer(Integer.valueOf(id));
+//							((Star) staff).setUrl(play.getUrl());
+//						}
+//
+//					} else {
 						staff = new Staff();
-					}
+//					}
 					staff.setName(cursor2.getString(cursor2
 							.getColumnIndex(KEY_STAFF_NAME)));
 					staff.setCharge(charge);

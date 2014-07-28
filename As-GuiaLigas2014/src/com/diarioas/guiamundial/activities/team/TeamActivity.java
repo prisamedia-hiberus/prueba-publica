@@ -1,12 +1,13 @@
 package com.diarioas.guiamundial.activities.team;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -20,28 +21,22 @@ import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guiamundial.R;
 import com.diarioas.guiamundial.activities.GeneralFragmentActivity;
 import com.diarioas.guiamundial.activities.player.PlayerActivity;
-import com.diarioas.guiamundial.activities.team.fragment.DetailTeamFragment;
-import com.diarioas.guiamundial.activities.team.fragment.HistoricalPalmaresTeamFragment;
-import com.diarioas.guiamundial.activities.team.fragment.IdealPlayersTeamFragment;
 import com.diarioas.guiamundial.activities.team.fragment.TeamFragment;
+import com.diarioas.guiamundial.activities.team.fragment.TeamInfoFragment;
 import com.diarioas.guiamundial.activities.team.fragment.TeamPlayersFragment;
+import com.diarioas.guiamundial.activities.team.fragment.TeamStatsFragment;
 import com.diarioas.guiamundial.dao.model.player.Player;
-import com.diarioas.guiamundial.dao.model.team.Staff;
-import com.diarioas.guiamundial.dao.model.team.Star;
 import com.diarioas.guiamundial.dao.model.team.Team;
+import com.diarioas.guiamundial.dao.model.team.TituloTeam;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guiamundial.dao.reader.StatisticsDAO;
 import com.diarioas.guiamundial.utils.AlertManager;
 import com.diarioas.guiamundial.utils.Defines;
-import com.diarioas.guiamundial.utils.Defines.Demarcation;
 import com.diarioas.guiamundial.utils.Defines.NativeAds;
 import com.diarioas.guiamundial.utils.Defines.Omniture;
 import com.diarioas.guiamundial.utils.Defines.ReturnRequestCodes;
-import com.diarioas.guiamundial.utils.Defines.StaffCharge;
-import com.diarioas.guiamundial.utils.DimenUtils;
-import com.diarioas.guiamundial.utils.FontUtils.FontTypes;
 import com.diarioas.guiamundial.utils.FragmentAdapter;
 import com.diarioas.guiamundial.utils.StringUtils;
 import com.diarioas.guiamundial.utils.bitmapfun.ImageCache.ImageCacheParams;
@@ -61,6 +56,9 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	private ImageFetcher mImageFetcher3;
 	private ArrayList<String> headerNames;
 	private List<Fragment> fragments;
+	private TeamStatsFragment statsFragment;
+	private Fragment infoFragment;
+	private Fragment playerFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -281,193 +279,123 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	private List<Fragment> getFragments() {
 		List<Fragment> fList = new ArrayList<Fragment>();
-		headerNames = new ArrayList<String>();
 
 		Bundle args;
-		Fragment fragment;
 
-		// Resumen
-		fragment = new DetailTeamFragment();
-		fList.add(fragment);
+		// Fragment Stats
+		if (currentTeam.getStats().size() != 0
+				|| currentTeam.getPalmares().size() != 0) {
+			statsFragment = (TeamStatsFragment) Fragment.instantiate(this,
+					TeamStatsFragment.class.getName());
+			args = new Bundle();
+			if (currentTeam.getName() != null)
+				args.putString("name", currentTeam.getName());
+			else
+				args.putString("name", currentTeam.getShortName());
+			args.putString("shield", currentTeam.getCalendarShield());
+			Bundle bundlePalm = new Bundle();
+			for (TituloTeam palm : currentTeam.getPalmares()) {
+				bundlePalm.putParcelable(palm.getName(), palm);
+			}
+			args.putBundle("palmares", bundlePalm);
+			Bundle bundle = new Bundle();
+			String year;
+			for (Iterator<String> iterator = currentTeam.getStats().keySet()
+					.iterator(); iterator.hasNext();) {
+				year = iterator.next();
+				bundle.putParcelable(year, currentTeam.getStats().get(year));
+			}
+			args.putBundle("stats", bundle);
+			statsFragment.setArguments(args);
+			fList.add(statsFragment);
+		}
+		// Fragment Info
+		infoFragment = Fragment.instantiate(this,
+				TeamInfoFragment.class.getName());
 		args = new Bundle();
-		args.putString("teamId", currentTeam.getId());
-		args.putString("teamName", currentTeam.getShortName());
-		args.putString("competitionId", competitionId);
-		args.putString("urlShield", currentTeam.getDetailShield());
+		if (currentTeam.getName() != null)
+			args.putString("name", currentTeam.getName());
+		else
+			args.putString("name", currentTeam.getShortName());
+		args.putString("fundation", currentTeam.getfundation());
+		args.putString("web", currentTeam.getWeb());
+		args.putString("shield", currentTeam.getDetailShield());
+		if (currentTeam.getEstadio().getName() != null) {
+			NumberFormat formatter = new DecimalFormat("###,###");
+
+			args.putString(
+					"nameEstadio",
+					currentTeam.getEstadio().getName()
+							+ " (aforo "
+							+ formatter.format(currentTeam.getEstadio()
+									.getCapacity()) + ")");
+		} else
+			args.putString("nameEstadio", null);
+
+		String address = "";
+		if (currentTeam.getEstadio().getAddress() != null)
+			address = currentTeam.getEstadio().getAddress();
+		if (currentTeam.getEstadio().getAddress() != null)
+			address += " " + currentTeam.getEstadio().getCity();
+
+		args.putString("addressEstadio", address);
+
 		if (currentTeam.getCountShirts() > 0)
 			args.putString("shirt1", currentTeam.getShirts().get(0));
 		if (currentTeam.getCountShirts() > 1)
 			args.putString("shirt2", currentTeam.getShirts().get(1));
 		if (currentTeam.getCountShirts() > 2)
 			args.putString("shirt3", currentTeam.getShirts().get(2));
-
+		args.putString("history", currentTeam.getHistory());
+		args.putParcelable("president", currentTeam.getPresident());
+		args.putParcelable("manager", currentTeam.getManager());
+		args.putParcelable("mister", currentTeam.getMister());
 		if (currentTeam.getArticle() != null) {
-			args.putString("body", currentTeam.getArticle().getBody());
-			args.putString("videoUrl", currentTeam.getArticle().getUrlVideo());
-			args.putString("videoImageUrl", currentTeam.getArticle()
-					.getUrlVideoImage());
+			args.putString("author", currentTeam.getArticle().getAuthor());
+			args.putString("charge", currentTeam.getArticle().getCharge());
+			args.putString("title", currentTeam.getArticle().getTitle());
+			args.putString("subtitle", currentTeam.getArticle().getSubTitle());
+			args.putString("article", currentTeam.getArticle().getBody());
 		}
-		Staff mister = currentTeam.getStaff(StaffCharge.MISTER);
-		if (mister != null) {
-			args.putString("misterImage", mister.getPhoto());
-			args.putString("misterName", mister.getName());
-			args.putString("misterHistory", mister.getHistory());
+		infoFragment.setArguments(args);
+		fList.add(infoFragment);
+
+		// if (currentTeam.getPlantilla().size() != 0) {
+		playerFragment = Fragment.instantiate(this,
+				TeamPlayersFragment.class.getName());
+		// Fragment Players
+		args = new Bundle();
+		if (currentTeam.getName() != null)
+			args.putString("name", currentTeam.getName());
+		else
+			args.putString("name", currentTeam.getShortName());
+		args.putString("shield", currentTeam.getCalendarShield());
+		Bundle bundlePlant = new Bundle();
+		Bundle bundlePlayer;
+		String dorsal;
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setMinimumIntegerDigits(3);
+		for (Player player : currentTeam.getPlantilla()) {
+			bundlePlayer = new Bundle();
+			dorsal = String.valueOf(player.getDorsal());
+			bundlePlayer.putString("id", String.valueOf(player.getId()));
+			bundlePlayer.putString("shortName", player.getShortName());
+			bundlePlayer.putString("dorsal", dorsal);
+			bundlePlayer.putString("photo", player.getUrlFoto());
+			if (player.getUrl() != null
+					&& !player.getUrl().equalsIgnoreCase(""))
+				bundlePlayer.putString("url", player.getUrl());
+			bundlePlayer.putString("demarcacion", player.getDemarcation());
+
+			bundlePlant.putBundle(nf.format(player.getDorsal()), bundlePlayer);
 		}
-
-		Star star = (Star) currentTeam.getStaff(StaffCharge.STAR);
-		if (star != null) {
-			args.putString("starImage", star.getPhoto());
-			args.putString("starName", star.getName());
-			args.putString("starAge", star.getAge());
-			args.putString("starWeight", star.getWeight());
-			args.putString("starStature", star.getStature());
-			args.putString("starPosition", star.getPosition());
-			args.putString("starNumInternational", star.getNumInternational());
-			args.putString("starClubName", star.getClubName());
-			args.putString("starClubShield", star.getClubShield());
-			args.putString("starHistory", star.getHistory());
-			args.putString("starId", star.getPlayerId());
-			args.putString("starUrl", star.getUrl());
-		}
-
-		args.putString("teamFederationName", currentTeam.getName());
-		args.putString("teamFederationFoundation",
-				currentTeam.getFederationFoundation());
-		args.putString("teamFederationAffiliation",
-				currentTeam.getFederationAffiliation());
-		args.putString("teamFederationWeb", currentTeam.getWeb());
-		args.putString("numJug", currentTeam.getNumPlayers());
-		args.putString("numClub", currentTeam.getNumClubs());
-		args.putString("numArb", currentTeam.getNumReferees());
-		args.putString("subsection",
-				getString(R.string.team_fragmentname_resumen));
-		fragment.setArguments(args);
-		headerNames.add(getString(R.string.team_fragmentname_resumen));
-
-		if ((currentTeam.getPlantilla() != null && currentTeam.getPlantilla()
-				.size() > 0)
-				|| (currentTeam.getIdealPlayers() != null && currentTeam
-						.getIdealPlayers().size() > 0)) {
-			Bundle bundlePlant = new Bundle();
-			Bundle bundlePlayer;
-			fragment = new TeamPlayersFragment();
-			args = new Bundle();
-			args.putString("teamName", currentTeam.getShortName());
-			args.putString("shield", currentTeam.getCalendarShield());
-
-			// Plantilla
-			if (currentTeam.getPlantilla() != null
-					&& currentTeam.getPlantilla().size() > 0) {
-
-				String dorsal;
-				NumberFormat nf = NumberFormat.getInstance();
-				nf.setMinimumIntegerDigits(3);
-				for (Player player : currentTeam.getPlantilla()) {
-					dorsal = String.valueOf(player.getDorsal());
-					if (dorsal != null && dorsal.length() > 0) {
-						bundlePlayer = new Bundle();
-						bundlePlayer.putString("id",
-								String.valueOf(player.getId()));
-						bundlePlayer.putString("shortName",
-								player.getShortName());
-						bundlePlayer.putString("dorsal", dorsal);
-						bundlePlayer.putString("photo", player.getUrlFoto());
-						bundlePlayer.putString("position",
-								String.valueOf(player.getPosition()));
-						if (player.getUrl() != null
-								&& !player.getUrl().equalsIgnoreCase(""))
-							bundlePlayer.putString("url", player.getUrl());
-						bundlePlayer.putString(Demarcation.DEMARCATION,
-								player.getDemarcation());
-
-						if (player.getDorsal() != 0)
-							bundlePlant
-									.putBundle(nf.format(player.getDorsal()),
-											bundlePlayer);
-						else {
-							bundlePlant.putBundle("000", bundlePlayer);
-						}
-						// bundlePlant.putBundle(player.getShortName(),bundlePlayer);
-					}
-				}
-
-				if (bundlePlant.size() > 0) {
-					args.putBundle("plantilla", bundlePlant);
-					fragment.setArguments(args);
-					fList.add(fragment);
-					headerNames
-							.add(getString(R.string.team_fragmentname_plantilla));
-				}
-
-			}
-
-			// Once Ideal
-			if (currentTeam.getIdealPlayers() != null
-					&& currentTeam.getIdealPlayers().size() > 0) {
-
-				// for (PlayerOnField player : currentTeam.getIdealPlayers()) {
-				// if (!bundlePlant.containsKey(player.getName())) {
-				// bundlePlayer = new Bundle();
-				// bundlePlayer.putString("id",
-				// String.valueOf(player.getId()));
-				// bundlePlayer.putString("shortName", player.getName());
-				// if (player.getDorsal() > 0)
-				// bundlePlayer.putString("dorsal",
-				// String.valueOf(player.getDorsal()));
-				// bundlePlayer.putString("photo", player.getUrlPhoto());
-				// bundlePlayer.putString("position",
-				// String.valueOf(player.getPosition()));
-				// if (player.getUrl() != null
-				// && !player.getUrl().equalsIgnoreCase(""))
-				// bundlePlayer.putString("url", player.getUrl());
-				//
-				// bundlePlant.putBundle(player.getName(), bundlePlayer);
-				// }
-				// }
-
-				// if (bundlePlant.size() > 0) {
-				// args.putBundle("plantilla", bundlePlant);
-				// fragment.setArguments(args);
-				// fList.add(fragment);
-				// headerNames
-				// .add(getString(R.string.team_fragmentname_plantilla));
-				// }
-
-				fragment = new IdealPlayersTeamFragment();
-				fList.add(fragment);
-				args = new Bundle();
-				args.putString("teamName", currentTeam.getShortName());
-				args.putString("gameSystem", currentTeam.getGameSystem());
-				args.putParcelableArrayList("idealPlayers",
-						currentTeam.getIdealPlayers());
-				fragment.setArguments(args);
-				headerNames.add(getString(R.string.team_fragmentname_elonce));
-
-			}
-		}
-		// Palmares
-		if (currentTeam.getHistoricalPalmares() != null
-				&& currentTeam.getHistoricalPalmares().size() > 0) {
-			fragment = new HistoricalPalmaresTeamFragment();
-			args = new Bundle();
-			args.putString("teamId", currentTeam.getId());
-			args.putString("competitionId", competitionId);
-			fragment.setArguments(args);
-			fList.add(fragment);
-			headerNames.add(getString(R.string.team_fragmentname_palmares));
-		}
-
-		headerSroll = (CustomHoizontalScroll) findViewById(R.id.headerSroll);
-		Point size = DimenUtils.getSize(getWindowManager());
-		headerSroll.setScreenWidth(size.x);
-		headerSroll.setFont(FontTypes.HELVETICANEUE);
-		headerSroll.setMainColor(getResources().getColor(R.color.red_sedes));
-		headerSroll.setSecondColor(getResources().getColor(R.color.gray_sedes));
-		headerSroll.addScrollEndListener(this);
-		headerSroll.setInitPosition(0);
-		headerSroll.addViews(headerNames);
+		args.putBundle("plantilla", bundlePlant);
+		playerFragment.setArguments(args);
+		fList.add(playerFragment);
+		// }
 
 		return fList;
+
 	}
 
 	public void playerClicked(View view) {
@@ -635,7 +563,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		headerSroll.setHeaderPosition(pos);
 		callToOmniture(pos);
 
-		((TeamFragment) fragments.get(pos)).onShown();
+//		((TeamFragment) fragments.get(pos)).onShown();
 
 	}
 
