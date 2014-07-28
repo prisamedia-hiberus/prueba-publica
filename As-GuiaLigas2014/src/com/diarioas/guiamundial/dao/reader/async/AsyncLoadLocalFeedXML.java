@@ -18,6 +18,7 @@ import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
 import com.diarioas.guiamundial.dao.reader.parser.ParsePlistCompetition;
 import com.diarioas.guiamundial.dao.reader.parser.ParsePlistLoad;
 import com.diarioas.guiamundial.utils.Defines.Prefix;
+import com.diarioas.guiamundial.utils.Defines.RequestSectionTypes;
 import com.diarioas.guiamundial.utils.FileUtils;
 
 public class AsyncLoadLocalFeedXML extends
@@ -228,8 +229,13 @@ public class AsyncLoadLocalFeedXML extends
 						// Se obtiene la info de los videos
 						competition.addSection(parse
 								.parsePlistVideos(i, offset));
-					} else if (((String) menu.get(i).get("name"))
-							.equalsIgnoreCase("triviaAS")) {
+					} else if (((String) menu.get(i).get("viewType"))
+							.equalsIgnoreCase(RequestSectionTypes.EXTERNAL_VIEW)) {
+						// Se obtiene la info del link
+						competition.addSection(parse.parsePlistExternalLink(i,
+								offset));
+					} else if (((String) menu.get(i).get("viewType"))
+							.equalsIgnoreCase(RequestSectionTypes.WEB_VIEW)) {
 						// Se obtiene la info del link
 						competition.addSection(parse.parsePlistLink(i, offset));
 					} else if (((String) menu.get(i).get("name"))

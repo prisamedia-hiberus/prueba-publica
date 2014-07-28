@@ -18,7 +18,6 @@ import android.util.Log;
 
 import com.diarioas.guiamundial.dao.model.competition.Group;
 import com.diarioas.guiamundial.dao.model.general.ClasificacionSection;
-import com.diarioas.guiamundial.dao.model.general.LinkSection;
 import com.diarioas.guiamundial.dao.model.general.Section;
 import com.diarioas.guiamundial.dao.model.general.TeamSection;
 import com.diarioas.guiamundial.dao.model.team.Team;
@@ -210,12 +209,12 @@ public class ParsePlistCompetition {
 	public Section parsePlistLink(int order, int offset) {
 		if (menu != null) {
 
-			LinkSection section = null;
+			Section section = null;
 			try {
 
 				HashMap<String, ?> sectionJSON = menu.get(order);
 
-				section = new LinkSection();
+				section = new Section();
 				section.setType(SECTIONS.LINK);
 				section.setViewType((String) sectionJSON.get("viewType"));
 				section.setOrder(order + offset);
@@ -225,6 +224,38 @@ public class ParsePlistCompetition {
 				}
 				section.setUrl((String) sectionJSON.get("triviaWV"));
 				section.setViewType((String) sectionJSON.get("viewType"));
+
+				return section;
+
+			} catch (Exception e) {
+
+				Log.d("PARSEPLISTCOMPETITION",
+						"No se ha leido correctamente trivias");
+			}
+
+			return section;
+		} else {
+			return null;
+		}
+	}
+
+	public Section parsePlistExternalLink(int order, int offset) {
+		if (menu != null) {
+
+			Section section = null;
+			try {
+
+				HashMap<String, ?> sectionJSON = menu.get(order);
+
+				section = new Section();
+				section.setType(SECTIONS.LINK_VIEW_OUTSIDE);
+				section.setViewType((String) sectionJSON.get("viewType"));
+				section.setOrder(order + offset);
+				section.setActive((Boolean) sectionJSON.get("available"));
+				if (sectionJSON.containsKey("default")) {
+					section.setStart((Boolean) sectionJSON.get("default"));
+				}
+				section.setUrl((String) sectionJSON.get("adidasWV"));
 
 				return section;
 

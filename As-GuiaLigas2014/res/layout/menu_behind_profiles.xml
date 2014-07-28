@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/defualt"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_menulateral" />
+        android:src="@drawable/menu_bg_fondo" />
 
     <RelativeLayout
         android:id="@+id/logoHeaderContainer"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/logo_home_menulateral02"
+            android:background="@drawable/menu_icn_logo"
             android:contentDescription="@string/defualt" />
     </RelativeLayout>
 

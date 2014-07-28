@@ -346,31 +346,31 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		}
 
 		private int getFlagResource(String winner) {
-			if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_argentina))) {
-				return R.drawable.palmares_flag_argentina;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_brasil))) {
-				return R.drawable.palmares_flag_brazil;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_england))) {
-				return R.drawable.palmares_flag_england;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_france))) {
-				return R.drawable.palmares_flag_france;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_germany))) {
-				return R.drawable.palmares_flag_germany;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_italy))) {
-				return R.drawable.palmares_flag_italy;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_spain))) {
-				return R.drawable.palmares_flag_spain;
-			} else if (winner
-					.equalsIgnoreCase(getString(R.string.team_champion_uruguay))) {
-				return R.drawable.palmares_flag_uruguay;
-			}
+			// if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_argentina))) {
+			// return R.drawable.palmares_flag_argentina;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_brasil))) {
+			// return R.drawable.palmares_flag_brazil;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_england))) {
+			// return R.drawable.palmares_flag_england;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_france))) {
+			// return R.drawable.palmares_flag_france;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_germany))) {
+			// return R.drawable.palmares_flag_germany;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_italy))) {
+			// return R.drawable.palmares_flag_italy;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_spain))) {
+			// return R.drawable.palmares_flag_spain;
+			// } else if (winner
+			// .equalsIgnoreCase(getString(R.string.team_champion_uruguay))) {
+			// return R.drawable.palmares_flag_uruguay;
+			// }
 			return 0;
 		}
 

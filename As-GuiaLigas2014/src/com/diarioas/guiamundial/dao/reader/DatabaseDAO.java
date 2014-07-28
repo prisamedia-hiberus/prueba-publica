@@ -27,7 +27,6 @@ import com.diarioas.guiamundial.dao.model.carrusel.PlayerOnField;
 import com.diarioas.guiamundial.dao.model.competition.Competition;
 import com.diarioas.guiamundial.dao.model.competition.Group;
 import com.diarioas.guiamundial.dao.model.general.ClasificacionSection;
-import com.diarioas.guiamundial.dao.model.general.LinkSection;
 import com.diarioas.guiamundial.dao.model.general.Section;
 import com.diarioas.guiamundial.dao.model.general.TeamSection;
 import com.diarioas.guiamundial.dao.model.news.MediaItem;
@@ -106,6 +105,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	// COMPETITIONSECTIONS Table Column names
 	private static final String KEY_COMPETITION_SECTION_COMPETITION_ID = "competitionId";
 	private static final String KEY_COMPETITION_SECTION_TYPE = "sectionType";
+	private static final String KEY_COMPETITION_SECTION_VIEWTYPE = "viewType";
+
 	private static final String KEY_COMPETITION_SECTION_URL = "url";
 	private static final String KEY_COMPETITION_SECTION_NAME = "name";
 	private static final String KEY_COMPETITION_SECTION_ACTIVE = "active";
@@ -1421,6 +1422,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		values.put(KEY_COMPETITION_SECTION_COMPETITION_ID, competitionId);
 		values.put(KEY_COMPETITION_SECTION_NAME, section.getName());
 		values.put(KEY_COMPETITION_SECTION_TYPE, section.getType());
+		values.put(KEY_COMPETITION_SECTION_VIEWTYPE, section.getViewType());
+
 		values.put(KEY_COMPETITION_SECTION_ORDER, section.getOrder());
 		if (section.isActive())
 			values.put(KEY_COMPETITION_SECTION_ACTIVE, 1);
@@ -1432,11 +1435,11 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					((TeamSection) section).getTypeOrder());
 
 		}
-		if (section instanceof LinkSection) {
-			values.put(KEY_COMPETITION_SECTION_TYPEORDER,
-					((LinkSection) section).getViewType());
-
-		}
+		// if (section instanceof LinkSection) {
+		// values.put(KEY_COMPETITION_SECTION_TYPEORDER,
+		// ((LinkSection) section).getViewType());
+		//
+		// }
 		values.put(KEY_COMPETITION_SECTION_URL, section.getUrl());
 		if (section instanceof ClasificacionSection) {
 			Object[] keys = ((ClasificacionSection) section).getUrls().keySet()
@@ -1582,6 +1585,16 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					} else if (type.equalsIgnoreCase(SECTIONS.COMPARATOR)) {
 						section = new Section();
 						section.setType(SECTIONS.COMPARATOR);
+					} else if (type
+							.equalsIgnoreCase(SECTIONS.LINK_VIEW_OUTSIDE)) {
+						section = new Section();
+						section.setType(SECTIONS.LINK_VIEW_OUTSIDE);
+					} else if (type.equalsIgnoreCase(SECTIONS.LINK_VIEW_INSIDE)) {
+						section = new Section();
+						section.setType(SECTIONS.LINK_VIEW_INSIDE);
+					} else if (type.equalsIgnoreCase(SECTIONS.LINK)) {
+						section = new Section();
+						section.setType(SECTIONS.LINK);
 					} else if (type.equalsIgnoreCase(SECTIONS.CLASIFICATION)) {
 						section = new ClasificacionSection();
 						section.setType(SECTIONS.CLASIFICATION);
@@ -1591,17 +1604,22 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 												.getColumnIndex(KEY_COMPETITION_SECTION_NAME)),
 										cursor.getString(cursor
 												.getColumnIndex(KEY_COMPETITION_SECTION_URL)));
-					} else if (type.equalsIgnoreCase(SECTIONS.LINK)) {
-						section = new LinkSection();
-						section.setType(SECTIONS.LINK);
-						((LinkSection) section)
-								.setViewType(cursor.getString(cursor
-										.getColumnIndex((KEY_COMPETITION_SECTION_TYPEORDER))));
+
+						// } else if (type.equalsIgnoreCase(SECTIONS.LINK)) {
+						// section = new LinkSection();
+						// section.setType(SECTIONS.LINK);
+						// ((LinkSection) section)
+						// .setViewType(cursor.getString(cursor
+						// .getColumnIndex((KEY_COMPETITION_SECTION_TYPEORDER))));
 					}
 
 					if (section != null) {
+						section.setName(cursor.getString(cursor
+								.getColumnIndex((KEY_COMPETITION_SECTION_NAME))));
 						section.setUrl(cursor.getString(cursor
 								.getColumnIndex((KEY_COMPETITION_SECTION_URL))));
+						section.setViewType(cursor.getString(cursor
+								.getColumnIndex((KEY_COMPETITION_SECTION_VIEWTYPE))));
 						section.setOrder(cursor.getInt(cursor
 								.getColumnIndex((KEY_COMPETITION_SECTION_ORDER))));
 						section.setActive(1 == cursor.getInt(cursor

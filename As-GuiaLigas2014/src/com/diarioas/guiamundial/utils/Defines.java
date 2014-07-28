@@ -29,6 +29,17 @@ public class Defines {
 
 	}
 
+	public static interface RequestSectionTypes {
+		public static final String EXTERNAL_VIEW = "external_view";
+		public static final String WEB_VIEW = "web_view";
+		public static final String SUBSECTION_VIEW = "subsection_view";
+		public static final String PRINCIPAL_VIEW = "principal_view";
+		public static final String NEWS_VIEW = "news_view";
+		public static final String FOTO_VIEW = "foto_view";
+		public static final String VIDEO_VIEW = "video_view";
+		public static final String TAG_VIEW = "tag_view";
+	}
+
 	public static interface ReturnDataDatabases {
 
 		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";

@@ -73,7 +73,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="23dp"
                 android:adjustViewBounds="false"
-                android:background="@drawable/palmares_flag_spain"
                 android:contentDescription="@string/defualt"
                 android:scaleType="centerInside" />
 
@@ -83,7 +82,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:adjustViewBounds="false"
-                android:background="@drawable/team_1star"
                 android:contentDescription="@string/defualt"
                 android:scaleType="center" />
         </RelativeLayout>

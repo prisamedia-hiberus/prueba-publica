@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ import com.diarioas.guiamundial.dao.model.competition.Competition;
 import com.diarioas.guiamundial.dao.model.general.Section;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO;
 import com.diarioas.guiamundial.utils.Defines;
+import com.diarioas.guiamundial.utils.Defines.RequestSectionTypes;
 import com.diarioas.guiamundial.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guiamundial.utils.Defines.SECTIONS;
 import com.diarioas.guiamundial.utils.DimenUtils;
@@ -272,12 +274,8 @@ public class HomeActivity extends SlidingFragmentActivity implements
 				} else {
 					Section selectedSection = menuSections.get(position);
 					if (selectedSection.isActive()) {
-						if (selectedSection.getType().equalsIgnoreCase(
-								SECTIONS.LINK)
-						// && ((LinkSection) selectedSection)
-						// .getViewType().equalsIgnoreCase(
-						// SECTIONS.LINK_VIEW_OUTSIDE)
-						) {
+						if (selectedSection.getViewType().equalsIgnoreCase(
+								RequestSectionTypes.EXTERNAL_VIEW)) {
 							openLink(selectedSection.getUrl());
 						} else {
 							if (!selectedSection.getType().equalsIgnoreCase(
@@ -472,7 +470,10 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			int competitionId) {
 		SectionFragment fragment = null;
 		Bundle args = new Bundle();
-		if (section.getType().equalsIgnoreCase(SECTIONS.CALENDAR)) {
+		if (section.getViewType()
+				.equalsIgnoreCase(RequestSectionTypes.WEB_VIEW)) {
+			fragment = new LinkSectionFragment();
+		} else if (section.getType().equalsIgnoreCase(SECTIONS.CALENDAR)) {
 			fragment = new CalendarSectionFragment();
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.CARROUSEL)) {
 			fragment = new CarrouselSectionFragment();
@@ -724,7 +725,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 			String name = "";
 			int img = 0;
-			// Log.d("SECTIONS", "Seccion de tipo: " + item.getType());
+			Log.d("SECTIONS", "Seccion de tipo: " + item.getType());
 			if (item.getType().equalsIgnoreCase(SECTIONS.CALENDAR)) {
 				name = getString(R.string.menu_calendario);
 				img = R.drawable.sliding_menu_icon_calendario;
@@ -758,6 +759,10 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.VIDEOS)) {
 				name = getString(R.string.menu_videos);
 				img = R.drawable.icn_menu_videos;
+			} else if (item.getType().equalsIgnoreCase(
+					SECTIONS.LINK_VIEW_OUTSIDE)) {
+				name = item.getName();
+				img = R.drawable.icn_menu_trivias;
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.LINK)) {
 				name = getString(R.string.menu_trivias);
 				img = R.drawable.icn_menu_trivias;
