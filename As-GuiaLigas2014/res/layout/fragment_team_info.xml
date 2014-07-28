@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp" >
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/dataTeam"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dip" >
 
-                <RelativeLayout
-                    android:id="@+id/teamImagesContent"
+                <ImageView
+                    android:id="@+id/photoTeam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginBottom="10dip"
-                    android:layout_marginLeft="15dip"
-                    android:layout_marginTop="5dip" >
-
-                    <ImageView
-                        android:id="@+id/photoTeam"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:contentDescription="@string/defualt" />
-                </RelativeLayout>
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginTop="5dip"
+                    android:contentDescription="@string/defualt" />
 
                 <RelativeLayout
                     android:id="@+id/infoTeam"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dip"
-                    android:layout_toRightOf="@+id/teamImagesContent"
+                    android:layout_toRightOf="@+id/photoTeam"
                     android:paddingRight="10dp" >
 
                     <TextView
@@ -58,7 +50,7 @@
 
                     <RelativeLayout
                         android:id="@+id/webContent"
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/nameTeam"
                         android:layout_alignParentLeft="true"
@@ -91,61 +83,65 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/estadioContent"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/nameTeam"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/webContent"
-                        android:clickable="true"
-                        android:onClick="buttonClick"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:tag="102" >
+                    android:id="@+id/estadioContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/nameTeam"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/webContent"
+                    android:clickable="true"
+                    android:onClick="buttonClick"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:tag="102" >
 
-                        <TextView
-                            android:id="@+id/estadioTeam"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:maxLines="5"
-                            android:textColor="@color/medium_gray"
-                            android:textSize="@dimen/size_fragment_team_15" />
 
-                        <TextView
-                            android:id="@+id/estadioAddressTeam"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_below="@+id/estadioTeam"
-                            android:maxLines="5"
-                            android:textColor="@color/medium_gray"
-                            android:textSize="@dimen/size_fragment_team_15" />
+                    <TextView
+                    android:id="@+id/estadioTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:maxLines="5"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="@dimen/size_fragment_team_15" />
 
-                        <ImageView
-                            android:id="@+id/iconMap"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/estadioAddressTeam"
-                            android:layout_marginRight="15dip"
-                            android:background="@drawable/icn_map"
-                            android:contentDescription="@string/defualt" />
 
-                        <TextView
-                            android:id="@+id/mapTeam"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@+id/iconMap"
-                            android:layout_toRightOf="@+id/iconMap"
-                            android:text="@string/team_ver_mapa"
-                            android:textColor="@color/red"
-                            android:textSize="@dimen/size_fragment_team_14" />
+                    <TextView
+                    android:id="@+id/estadioAddressTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/estadioTeam"
+                    android:maxLines="5"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="@dimen/size_fragment_team_15" />
+
+
+                    <ImageView
+                    android:id="@+id/iconMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/estadioAddressTeam"
+                    android:layout_marginRight="15dip"
+                    android:background="@drawable/icn_map"
+                    android:contentDescription="@string/defualt" />
+
+
+                    <TextView
+                    android:id="@+id/mapTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/iconMap"
+                    android:layout_toRightOf="@+id/iconMap"
+                    android:text="@string/team_ver_mapa"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/size_fragment_team_14" />
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
 
             <Button
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dip"
                 android:layout_marginRight="20dip"
@@ -172,7 +168,7 @@
 
             <LinearLayout
                 android:id="@+id/shieldContent1"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
@@ -210,7 +206,7 @@
 
             <RelativeLayout
                 android:id="@+id/presidentContent"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dip" >
 
@@ -225,8 +221,8 @@
                         android:id="@+id/presidentTeamImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/foto_generica"
-                        android:contentDescription="@string/defualt" />
+                        android:contentDescription="@string/defualt"
+                        android:src="@drawable/foto_generica" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -235,13 +231,13 @@
                         android:layout_alignLeft="@+id/presidentTeamImage"
                         android:layout_alignRight="@+id/presidentTeamImage"
                         android:layout_alignTop="@+id/presidentTeamImage"
-                        android:background="@drawable/borde_circulo"
-                        android:contentDescription="@string/defualt" />
+                        android:contentDescription="@string/defualt"
+                        android:src="@drawable/borde_circulo" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/infoPresindetTeam"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dip"
@@ -296,7 +292,7 @@
 
             <RelativeLayout
                 android:id="@+id/misterContent"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dip" >
 
@@ -327,7 +323,7 @@
 
                 <RelativeLayout
                     android:id="@+id/infoMisterTeam"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dip"
@@ -382,7 +378,7 @@
 
             <RelativeLayout
                 android:id="@+id/managerContent"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dip" >
 
@@ -413,7 +409,7 @@
 
                 <RelativeLayout
                     android:id="@+id/infoManagerTeam"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dip"
@@ -468,7 +464,7 @@
 
             <RelativeLayout
                 android:id="@+id/articleContent"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dip" >
 
@@ -479,10 +475,10 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/defualt" />
-<!--                 android:background="@drawable/noticia_icn" -->
+            android:background="@drawable/noticia_icn"
 
                 <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dip"
@@ -540,6 +536,7 @@
                 android:layout_marginRight="20dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/size_fragment_team_15" />
+
         </LinearLayout>
     </ScrollView>
 

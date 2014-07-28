@@ -98,6 +98,9 @@
     <dimen name="size_fragment_team_14">14sp</dimen>
     <dimen name="size_fragment_team_15">15sp</dimen>
     <dimen name="size_fragment_team_16">16sp</dimen>
+    <dimen name="size_fragment_team_17">17sp</dimen>
     <dimen name="size_fragment_team_18">18sp</dimen>
+    <dimen name="size_fragment_team_19">19sp</dimen>
+    <dimen name="size_fragment_team_20">20sp</dimen>
 
 </resources>

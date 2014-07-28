@@ -389,7 +389,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			args.putString("article", currentTeam.getArticle().getBody());
 		}
 		infoFragment.setArguments(args);
-//		fList.add(infoFragment);
+		fList.add(infoFragment);
 
 		// if (currentTeam.getPlantilla().size() != 0) {
 		playerFragment = Fragment.instantiate(this,
