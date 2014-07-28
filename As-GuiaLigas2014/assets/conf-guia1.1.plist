@@ -6,9 +6,9 @@
 	<key>splash</key>
 	<dict>
 		<key>available</key>
-		<false/>
+		<true/>
 		<key>imageURL</key>
-		<string></string>
+		<string>http://as.com/apps/guia_del_mundial/patrocinio/img_ford_splash.png</string>
 		<key>seconds</key>
 		<integer>1</integer>
 	</dict>
@@ -17,9 +17,9 @@
 	<key>header</key>
 	<dict>
 		<key>available</key>
-		<false/>
+		<true/>
 		<key>imageURL</key>
-		<string></string>
+		<string>http://as.com/apps/guia_del_mundial/patrocinio/img_ford_splash.png</string>
 	</dict>
 
     <!-- prefijos -->
@@ -166,6 +166,98 @@
 			<key>conFileTimestamp</key>
 			<date>2014-07-22T00:00:00Z</date>
 		</dict>
+		<!--<key>13</key>
+		<dict>
+			<key>order</key>
+			<string>3</string>
+			<key>description</key>
+			<string>Liga de Campeones</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-champions.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_champions.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>12</key>
+		<dict>
+			<key>order</key>
+			<string>4</string>
+			<key>description</key>
+			<string>Europa Liga</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-uefa.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_europaleague.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>107</key>
+		<dict>
+			<key>order</key>
+			<string>5</string>
+			<key>description</key>
+			<string>Copa</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-copa.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_copa.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>-->
+		<key>9</key>
+		<dict>
+			<key>order</key>
+			<string>3</string>
+			<key>description</key>
+			<string>Serie A</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-italia.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_italia.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>8</key>
+		<dict>
+			<key>order</key>
+			<string>4</string>
+			<key>description</key>
+			<string>Premier League</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-inglaterra.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_inglaterra.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>5</key>
+		<dict>
+			<key>order</key>
+			<string>5</string>
+			<key>description</key>
+			<string>Bundesliga</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-alemania.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_alemania.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+		<key>6</key>
+		<dict>
+			<key>order</key>
+			<string>6</string>
+			<key>description</key>
+			<string>Liga Francesa</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-francia.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_francia.png</string>
+			<key>conFileTimestamp</key>
+			<date>2014-07-22T00:00:00Z</date>
+		</dict>
+
 	</dict>
 
 </dict>
