@@ -201,10 +201,10 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		ImageView localShield = (ImageView) generalView
 				.findViewById(R.id.localShield);
 
-		if (idShieldLocal == 0) {
-			// idShieldLocal = R.drawable.escudo_generico_size03;
-			idShieldLocal = R.drawable.flag_956;
-		}
+//		if (idShieldLocal == 0) {
+//			// idShieldLocal = R.drawable.escudo_generico_size03;
+//			idShieldLocal = R.drawable.flag_956;
+//		}
 
 		localShield.setBackgroundResource(idShieldLocal);
 
@@ -258,10 +258,10 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 
 		ImageView awayShield = (ImageView) generalView
 				.findViewById(R.id.awayShield);
-		if (idShieldAway == 0) {
-			// idShieldAway = R.drawable.escudo_generico_size03;
-			idShieldAway = R.drawable.flag_956;
-		}
+//		if (idShieldAway == 0) {
+//			// idShieldAway = R.drawable.escudo_generico_size03;
+//			idShieldAway = R.drawable.flag_956;
+//		}
 
 		awayShield.setBackgroundResource(idShieldAway);
 
