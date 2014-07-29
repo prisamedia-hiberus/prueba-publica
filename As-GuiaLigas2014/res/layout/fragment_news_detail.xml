@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@color/white" >
 
-    <!-- <com.diarioas.guiamundial.utils.imageutils.ImageViewTopCrop -->
+    <!-- <com.diarioas.guialigas.utils.imageutils.ImageViewTopCrop -->
 
     <RelativeLayout
         android:id="@+id/contentImage"
@@ -22,7 +22,7 @@
 
         <!-- ImageView -->
 
-        <com.diarioas.guiamundial.utils.imageutils.ImageViewTopCrop
+        <com.diarioas.guialigas.utils.imageutils.ImageViewTopCrop
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/image_news_detail_height"
@@ -47,7 +47,7 @@
             android:contentDescription="@string/defualt" />
     </RelativeLayout>
 
-    <com.diarioas.guiamundial.utils.scroll.ParallaxScrollView
+    <com.diarioas.guialigas.utils.scroll.ParallaxScrollView
         android:id="@+id/scrollNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,6 +122,6 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-    </com.diarioas.guiamundial.utils.scroll.ParallaxScrollView>
+    </com.diarioas.guialigas.utils.scroll.ParallaxScrollView>
 
 </RelativeLayout>

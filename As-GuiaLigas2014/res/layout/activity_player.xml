@@ -131,7 +131,7 @@
             android:textSize="@dimen/size_spinner_message" />
     </RelativeLayout>
 
-    <com.diarioas.guiamundial.utils.viewpager.CustomViewPagerPlayer
+    <com.diarioas.guialigas.utils.viewpager.CustomViewPagerPlayer
         android:id="@+id/playerViewPager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

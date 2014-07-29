@@ -161,13 +161,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gapBar" >
 
-        <com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll
+        <com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll
             android:id="@+id/detailSroll"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:scrollbars="none" >
-        </com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll>
+        </com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll>
 
         <RelativeLayout
             android:id="@+id/buttonLeft"
@@ -225,7 +225,7 @@
         android:contentDescription="@string/defualt"
         android:visibility="gone" />
 
-    <com.diarioas.guiamundial.utils.viewpager.CustomViewPagerLeague
+    <com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague
         android:id="@+id/carruselViewPager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

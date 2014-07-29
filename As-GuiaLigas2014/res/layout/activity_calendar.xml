@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:background="@android:color/white" >
 
-    <com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll
+    <com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll
         android:id="@+id/calendarSrolldays"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:scrollbars="none" >
-    </com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll>
+    </com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll>
 
     <ImageView
         android:id="@+id/gapBar"

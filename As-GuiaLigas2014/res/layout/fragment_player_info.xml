@@ -291,7 +291,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" >
 
-                    <com.diarioas.guiamundial.utils.CustomHorizontalScrollView
+                    <com.diarioas.guialigas.utils.CustomHorizontalScrollView
                         android:id="@+id/competitionPlayerSroll"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal" >
                         </LinearLayout>
-                    </com.diarioas.guiamundial.utils.CustomHorizontalScrollView>
+                    </com.diarioas.guialigas.utils.CustomHorizontalScrollView>
 
                     <RelativeLayout
                         android:id="@+id/buttonLeft1"

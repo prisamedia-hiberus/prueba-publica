@@ -65,7 +65,7 @@
             android:background="@color/clear_gray"
             android:contentDescription="@string/defualt" />
 
-        <com.diarioas.guiamundial.utils.viewpager.CustomViewPagerStadium
+        <com.diarioas.guialigas.utils.viewpager.CustomViewPagerStadium
             android:id="@+id/stadiumViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

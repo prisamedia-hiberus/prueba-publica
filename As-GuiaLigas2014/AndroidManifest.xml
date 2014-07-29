@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.diarioas.guiamundial"
+    package="com.diarioas.guialigas"
     android:versionCode="7"
     android:versionName="1.0.6" >
 
@@ -23,7 +23,7 @@
         android:screenOrientation="portrait"
         android:theme="@style/Theme.MySherlock" >
         <activity
-            android:name="com.diarioas.guiamundial.MainActivity"
+            android:name="com.diarioas.guialigas.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -34,46 +34,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.diarioas.guiamundial.activities.home.HomeActivity"
+            android:name="com.diarioas.guialigas.activities.home.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.carrusel.CarruselDetailActivity"
+            android:name="com.diarioas.guialigas.activities.carrusel.CarruselDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.team.TeamActivity"
+            android:name="com.diarioas.guialigas.activities.team.TeamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.team.TeamVideoActivity"
+            android:name="com.diarioas.guialigas.activities.team.TeamVideoActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.player.PlayerActivity"
+            android:name="com.diarioas.guialigas.activities.player.PlayerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.player.comparator.PlayerComparatorStepFirstActivity"
+            android:name="com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepFirstActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.player.comparator.PlayerComparatorStepSecondActivity"
+            android:name="com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepSecondActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.player.comparator.PlayerComparatorStepThirdActivity"
+            android:name="com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepThirdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.stadiums.StadiumsDetailActivity"
+            android:name="com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.stadiums.StadiumsPhotoGalleryActivity"
+            android:name="com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.palmares.PalmaresDetailActivity"
+            android:name="com.diarioas.guialigas.activities.palmares.PalmaresDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.news.NewsDetailActivity"
+            android:name="com.diarioas.guialigas.activities.news.NewsDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guiamundial.activities.photo.PhotoGalleryActivity"
+            android:name="com.diarioas.guialigas.activities.photo.PhotoGalleryActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="sensor" />
         <activity
