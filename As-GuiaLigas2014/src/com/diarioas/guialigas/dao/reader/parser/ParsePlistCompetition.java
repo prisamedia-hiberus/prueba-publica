@@ -257,7 +257,7 @@ public class ParsePlistCompetition {
 				if (sectionJSON.containsKey("default")) {
 					section.setStart((Boolean) sectionJSON.get("default"));
 				}
-				section.setUrl((String) sectionJSON.get("adidasWV"));
+				section.setUrl((String) sectionJSON.get("urlWV"));
 
 				return section;
 
