@@ -32,6 +32,7 @@ import com.diarioas.guiamundial.dao.model.player.Player;
 import com.diarioas.guiamundial.dao.model.player.PlayerStats;
 import com.diarioas.guiamundial.dao.model.player.TituloPlayer;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemotePlayerDAO;
 import com.diarioas.guiamundial.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener;
 import com.diarioas.guiamundial.dao.reader.StatisticsDAO;
@@ -443,12 +444,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	private void loadLeftPlayer() {
 		String url = currentPlayerLeft.getUrlFoto();
 		if (url != null) {
-			((HomeActivity) getActivity()).getmImageFetcher()
-					.loadImage(
-							url,
-							((ImageView) generalView
-									.findViewById(R.id.photoPlayerLeft)),
-							R.drawable.mask_foto);
+			ImageDAO.getInstance(mContext).loadImage(url,((ImageView) generalView.findViewById(R.id.photoPlayerLeft)),R.drawable.mask_foto);
 		}
 
 		generalView.findViewById(R.id.playerDataContentLeft).setVisibility(
@@ -499,11 +495,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	private void loadRightPlayer() {
 		String url = currentPlayerRight.getUrlFoto();
 		if (url != null) {
-			((HomeActivity) getActivity()).getmImageFetcher().loadImage(
-					url,
-					((ImageView) generalView
-							.findViewById(R.id.photoPlayerRight)),
-					R.drawable.mask_foto);
+			ImageDAO.getInstance(mContext).loadImage(url,((ImageView) generalView.findViewById(R.id.photoPlayerRight)),R.drawable.mask_foto);
 		}
 		generalView.findViewById(R.id.playerImagesContentRight).setVisibility(
 				View.VISIBLE);

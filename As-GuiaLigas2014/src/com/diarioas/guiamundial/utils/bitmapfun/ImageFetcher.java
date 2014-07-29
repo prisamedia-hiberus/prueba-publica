@@ -28,6 +28,8 @@ import java.net.URL;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -250,6 +252,9 @@ public class ImageFetcher extends ImageResizer {
 		if (fileDescriptor != null) {
 			bitmap = decodeSampledBitmapFromDescriptor(fileDescriptor,
 					mImageWidth, mImageHeight, getImageCache());
+			//4andgo
+			Utils.adjustOpacity(bitmap, 0);
+
 		}
 		if (fileInputStream != null) {
 			try {
@@ -259,6 +264,8 @@ public class ImageFetcher extends ImageResizer {
 		}
 		return bitmap;
 	}
+
+	
 
 	@Override
 	protected Bitmap processBitmap(Object data) {

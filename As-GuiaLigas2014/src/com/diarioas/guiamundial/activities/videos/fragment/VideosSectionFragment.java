@@ -25,6 +25,7 @@ import com.diarioas.guiamundial.activities.general.fragment.FlipSectionFragment;
 import com.diarioas.guiamundial.activities.home.HomeActivity;
 import com.diarioas.guiamundial.activities.team.TeamVideoActivity;
 import com.diarioas.guiamundial.dao.model.video.VideoItem;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteVideosDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteVideosDAO.RemoteVideosDAOListener;
 import com.diarioas.guiamundial.dao.reader.StatisticsDAO;
@@ -359,10 +360,7 @@ public class VideosSectionFragment extends FlipSectionFragment implements
 		}
 
 		private void loadImage(String urlPhoto, ImageView imageView) {
-
-			((HomeActivity) getActivity()).getmHalfImageFetcher().loadImage(
-					urlPhoto, imageView);
-
+			ImageDAO.getInstance(mContext).loadHalfImage(urlPhoto, imageView);
 		}
 	}
 

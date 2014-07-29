@@ -16,7 +16,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -45,16 +44,17 @@ import com.diarioas.guiamundial.activities.videos.fragment.VideosSectionFragment
 import com.diarioas.guiamundial.dao.model.competition.Competition;
 import com.diarioas.guiamundial.dao.model.general.Section;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO;
-import com.diarioas.guiamundial.utils.Defines;
 import com.diarioas.guiamundial.utils.Defines.RequestSectionTypes;
 import com.diarioas.guiamundial.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guiamundial.utils.Defines.SECTIONS;
+import com.diarioas.guiamundial.utils.Defines;
 import com.diarioas.guiamundial.utils.DimenUtils;
 import com.diarioas.guiamundial.utils.FontUtils;
 import com.diarioas.guiamundial.utils.FontUtils.FontTypes;
-import com.diarioas.guiamundial.utils.bitmapfun.ImageCache.ImageCacheParams;
 import com.diarioas.guiamundial.utils.bitmapfun.ImageFetcher;
+import com.diarioas.guiamundial.utils.bitmapfun.ImageCache.ImageCacheParams;
 import com.diarioas.guiamundial.utils.imageutils.MemoryReleaseUtils;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
@@ -92,12 +92,6 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 	// private AdView banner;
 
-	private ImageFetcher mImageFetcher;
-	private ImageFetcher mImageFetcherOne;
-	private ImageFetcher mImageFetcherHalf;
-	private ImageFetcher mImageFetcherThird;
-	private ImageFetcher mImageFetcherFourth;
-	private ImageFetcher mImageFetcherHeader;
 	private int height;
 	private int width;
 
@@ -125,12 +119,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 	@Override
 	public void onLowMemory() {
 		super.onLowMemory();
-		mImageFetcher.clearCache();
-		mImageFetcherOne.clearCache();
-		mImageFetcherHalf.clearCache();
-		mImageFetcherThird.clearCache();
-		mImageFetcherFourth.clearCache();
-		mImageFetcherHeader.clearCache();
+		ImageDAO.getInstance(mContext).clearCache();
 	}
 
 	@Override
@@ -152,7 +141,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		// TODO Auto-generated method stub
 		super.onResume();
 
-		setExitTaskEarlyAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
 	}
 
 	@Override
@@ -169,9 +158,9 @@ public class HomeActivity extends SlidingFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		setExitTaskEarlyAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
+		ImageDAO.getInstance(mContext).flushCache();
 
-		setFlushCacheAllImageFetcher();
 	}
 
 	@Override
@@ -183,13 +172,8 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			this.menuSections.clear();
 			this.menuSections = null;
 		}
-		setCloseCacheAllImageFetcher();
-		mImageFetcher = null;
-		mImageFetcherOne = null;
-		mImageFetcherHalf = null;
-		mImageFetcherThird = null;
-		mImageFetcherFourth = null;
-		mImageFetcherHeader = null;
+		
+		ImageDAO.removeInstance();
 	}
 
 	@Override
@@ -230,7 +214,6 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
 		FontUtils.setCustomfont(mContext, (findViewById(R.id.spinnerMessage)),
 				FontTypes.HELVETICANEUE);
-		configureImageFetcher();
 		configActionBar();
 		configureSize();
 		configSlidingMenu();
@@ -242,18 +225,35 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setDisplayShowCustomEnabled(true);
 		getSupportActionBar().setCustomView(R.layout.header_bar);
-		
-		final String headerLink = DatabaseDAO.getInstance(mContext).getHeaderInfo();
-		if (headerLink!=null){
-			View adsButtonContainer = getSupportActionBar().getCustomView().findViewById(R.id.adsButtonContainer);
+
+		final String headerLink = DatabaseDAO.getInstance(mContext)
+				.getHeaderInfo();
+		if (headerLink != null) {
+			View adsButtonContainer = getSupportActionBar().getCustomView()
+					.findViewById(R.id.adsButtonContainer);
 			adsButtonContainer.setVisibility(View.VISIBLE);
-			adsButtonContainer.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					openLink(headerLink);
-				}
-			});
+			ImageView adsButton = (ImageView) getSupportActionBar()
+					.getCustomView().findViewById(R.id.adsButton);
+			
+			ImageCacheParams cacheParams = new ImageCacheParams(this,
+					Defines.NAME_CACHE_THUMBS+"action");
+			cacheParams.setMemCacheSizePercent(0.25f);
+
+			ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
+					.getDimensionPixelSize(R.dimen.image_actionbar_height));
+			FragmentManager fragmentManager = this.getSupportFragmentManager();
+			mImageFetcher.addImageCache(fragmentManager, cacheParams);
+			mImageFetcher.setImageFadeIn(true);
+			mImageFetcher.loadImageWhitoutCache((String) headerLink,adsButton);
+			
+//			ImageDAO.getInstance(this).loadActionBarImage(headerLink, adsButton);
+			// adsButtonContainer.setOnClickListener(new OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View v) {
+			// // openLink(headerLink);
+			// }
+			// });
 		}
 	}
 
@@ -311,117 +311,6 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		menuSectionsAdapter = new MenuSectionsAdapter();
 		menuSectionsAdapter.addItems(menuSections);
 		sectionList.setAdapter(menuSectionsAdapter);
-	}
-
-	/************************************ mImageFetcher Methods ************************************************************/
-	private void configureImageFetcher() {
-
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(mContext, width / 2, height / 2);
-		mImageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
-
-		ImageCacheParams cacheParamsOne = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "1");
-		cacheParamsOne.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherOne = new ImageFetcher(mContext, width, height);
-		mImageFetcherOne.addImageCache(getSupportFragmentManager(),
-				cacheParamsOne);
-
-		ImageCacheParams cacheParamsHalf = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParamsHalf.setMemCacheSizePercent(0.20f);
-
-		mImageFetcherHalf = new ImageFetcher(mContext, width, height / 2);
-		mImageFetcherHalf.addImageCache(getSupportFragmentManager(),
-				cacheParamsHalf);
-
-		ImageCacheParams cacheParamsThird = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "3");
-		cacheParamsThird.setMemCacheSizePercent(0.20f);
-
-		mImageFetcherThird = new ImageFetcher(mContext, width, height / 3);
-		mImageFetcherThird.addImageCache(getSupportFragmentManager(),
-				cacheParamsThird);
-
-		ImageCacheParams cacheParamsFourth = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "4");
-		cacheParamsFourth.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherFourth = new ImageFetcher(mContext, width, height / 4);
-		mImageFetcherFourth.addImageCache(getSupportFragmentManager(),
-				cacheParamsFourth);
-
-		ImageCacheParams cacheParamsHeader = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "5");
-		cacheParamsHeader.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherHeader = new ImageFetcher(mContext, width / 2, height / 4);
-		mImageFetcherHeader.addImageCache(getSupportFragmentManager(),
-				cacheParamsHeader);
-
-	}
-
-	public ImageFetcher getmHeaderImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherHeader;
-	}
-
-	public ImageFetcher getmFourthImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherFourth;
-	}
-
-	public ImageFetcher getmThirdImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherThird;
-	}
-
-	public ImageFetcher getmHalfImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherHalf;
-	}
-
-	public ImageFetcher getmOneImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherOne;
-	}
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
-
-	public void setExitTaskEarlyAllImageFetcher() {
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcherOne.setExitTasksEarly(false);
-		mImageFetcherHalf.setExitTasksEarly(false);
-		mImageFetcherThird.setExitTasksEarly(false);
-		mImageFetcherFourth.setExitTasksEarly(false);
-		mImageFetcherHeader.setExitTasksEarly(false);
-	}
-
-	public void setFlushCacheAllImageFetcher() {
-		mImageFetcher.flushCache();
-		mImageFetcherOne.flushCache();
-		mImageFetcherHalf.flushCache();
-		mImageFetcherThird.flushCache();
-		mImageFetcherFourth.flushCache();
-		mImageFetcherHeader.flushCache();
-	}
-
-	public void setCloseCacheAllImageFetcher() {
-		mImageFetcher.closeCache();
-		mImageFetcherOne.closeCache();
-		mImageFetcherHalf.closeCache();
-		mImageFetcherThird.closeCache();
-		mImageFetcherFourth.closeCache();
-		mImageFetcherHeader.closeCache();
 	}
 
 	/************************************ mImageFetcher Methods ************************************************************/
@@ -663,7 +552,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			selectedFragment.closedSlidingMenu();
 			sectionChanged = false;
 		}
-		
+
 		Section selectedSection = (Section) sectionList
 				.getItemAtPosition(selectedSectionIndex);
 	}

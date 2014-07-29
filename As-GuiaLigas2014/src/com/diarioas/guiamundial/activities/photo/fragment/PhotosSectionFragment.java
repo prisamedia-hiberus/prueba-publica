@@ -27,6 +27,7 @@ import com.diarioas.guiamundial.activities.home.HomeActivity;
 import com.diarioas.guiamundial.activities.photo.PhotoGalleryActivity;
 import com.diarioas.guiamundial.dao.model.news.GalleryMediaItem;
 import com.diarioas.guiamundial.dao.model.news.PhotoMediaItem;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteGalleryDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteGalleryDAO.RemotePhotosDAOListener;
 import com.diarioas.guiamundial.dao.reader.StatisticsDAO;
@@ -68,15 +69,15 @@ public class PhotosSectionFragment extends SectionFragment implements
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		((HomeActivity) getActivity()).setExitTaskEarlyAllImageFetcher();
-		((HomeActivity) getActivity()).setFlushCacheAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
+		ImageDAO.getInstance(mContext).flushCache();
 	}
 
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		((HomeActivity) getActivity()).setExitTaskEarlyAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
 	}
 
 	@Override
@@ -271,7 +272,7 @@ public class PhotosSectionFragment extends SectionFragment implements
 				width, height);
 		imageRelativeLayout.setLayoutParams(relativeLayoutParams);
 
-		((HomeActivity) getActivity()).getmImageFetcher().loadImage(
+		ImageDAO.getInstance(mContext).loadImage(
 				galleryMediaItem.getCoverPhoto().getUrl(),
 				(ImageView) imageRelativeLayout.findViewById(R.id.image));
 

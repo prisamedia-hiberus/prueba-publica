@@ -24,8 +24,10 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -111,6 +113,31 @@ public abstract class ImageWorker {
 			imageView.setImageDrawable(value);
 
 		} else if (cancelPotentialWork(data, imageView)) {
+			final BitmapWorkerTask task = new BitmapWorkerTask(imageView);
+			final AsyncDrawable asyncDrawable = new AsyncDrawable(mResources,
+					mLoadingBitmap, task);
+			imageView.setImageDrawable(asyncDrawable);
+
+			// NOTE: This uses a custom version of AsyncTask that has been
+			// pulled from the
+			// framework and slightly modified. Refer to the docs at the top of
+			// the class
+			// for more info on what was changed.
+			task.executeOnExecutor(AsyncTask.DUAL_THREAD_EXECUTOR, data);
+		}
+	}
+	
+	public void loadImageWhitoutCache(Object data, ImageView imageView) {
+		loadImageWhitoutCache(data, imageView, maskResource);
+	}
+
+	public void loadImageWhitoutCache(Object data, ImageView imageView, int maskResource) {
+		if (data == null) {
+			return;
+		}
+		this.maskResource = maskResource;
+
+		if (cancelPotentialWork(data, imageView)) {
 			final BitmapWorkerTask task = new BitmapWorkerTask(imageView);
 			final AsyncDrawable asyncDrawable = new AsyncDrawable(mResources,
 					mLoadingBitmap, task);
@@ -341,6 +368,7 @@ public abstract class ImageWorker {
 			// add the processed
 			// bitmap to our cache as it might be used again in the future
 			if (bitmap != null) {
+				Utils.adjustOpacity(bitmap, 0);
 				if (Utils.hasHoneycomb()) {
 					// Running on Honeycomb or newer, so wrap in a standard
 					// BitmapDrawable
@@ -432,7 +460,7 @@ public abstract class ImageWorker {
 		Canvas mCanvas = new Canvas(bitmap);
 		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-		mCanvas.drawBitmap(originalBitmapScaled, 0, 0, null);
+		mCanvas.drawBitmap(originalBitmapScaled, 0, 0, null);     
 		mCanvas.drawBitmap(mask, 0, 0, paint);
 		paint.setXfermode(null);
 

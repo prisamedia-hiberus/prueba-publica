@@ -20,6 +20,7 @@ import com.diarioas.guiamundial.activities.general.fragment.LoadingSplashFragmen
 import com.diarioas.guiamundial.activities.home.HomeActivity;
 import com.diarioas.guiamundial.dao.reader.CookieDAO;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO.RemoteDataDAOListener;
 import com.diarioas.guiamundial.utils.Defines;
@@ -79,17 +80,18 @@ public class MainActivity extends FragmentActivity implements
 			splashTime = ((Integer) splash.get(1)) * 1000;
 
 			ImageCacheParams cacheParams = new ImageCacheParams(this,
-					Defines.NAME_CACHE_THUMBS);
+					Defines.NAME_CACHE_THUMBS+"splash");
 			cacheParams.setMemCacheSizePercent(0.25f);
 
 			ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
 					.getDimensionPixelSize(R.dimen.image_thumb_height));
-			// mImageFetcher.setLoadingImage(R.drawable.galeria_imagenrecurso);
 			FragmentManager fragmentManager = this.getSupportFragmentManager();
 			mImageFetcher.addImageCache(fragmentManager, cacheParams);
 			mImageFetcher.setImageFadeIn(true);
 			mImageFetcher.loadImage((String) splash.get(0),
 					((ImageView) findViewById(R.id.publi_splash)));
+			
+//			ImageDAO.getInstance(this).loadSplashImage((String) splash.get(0),((ImageView) findViewById(R.id.publi_splash)));
 
 		}
 

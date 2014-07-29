@@ -17,6 +17,9 @@
 package com.diarioas.guiamundial.utils.bitmapfun;
 
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.StrictMode;
 
@@ -36,6 +39,20 @@ import com.diarioas.guiamundial.activities.team.TeamActivity;
 public class Utils {
 	private Utils() {
 	};
+	
+	public static Bitmap adjustOpacity(Bitmap bitmap, int opacity) {
+
+//		Bitmap mutableBitmap = bitmap.isMutable()? bitmap: bitmap.copy(Bitmap.Config.ARGB_8888, true);
+		Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+		Canvas canvas = new Canvas(mutableBitmap);
+		int colour = (opacity & 0xFF) << 24;
+		canvas.drawColor(colour, PorterDuff.Mode.DST_IN);
+
+		return mutableBitmap;
+
+	}
+	
 
 	@TargetApi(11)
 	public static void enableStrictMode() {

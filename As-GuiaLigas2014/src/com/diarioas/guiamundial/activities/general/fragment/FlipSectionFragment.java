@@ -18,6 +18,7 @@ import com.aphidmobile.flip.FlipViewController;
 import com.aphidmobile.flip.FlipViewController.ViewFlipListener;
 import com.diarioas.guiamundial.R;
 import com.diarioas.guiamundial.activities.home.HomeActivity;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.utils.FontUtils;
 import com.diarioas.guiamundial.utils.FontUtils.FontTypes;
 import com.diarioas.guiamundial.utils.imageutils.MemoryReleaseUtils;
@@ -54,7 +55,7 @@ public abstract class FlipSectionFragment extends SectionFragment implements
 		super.onResume();
 		if (flipView != null)
 			flipView.onResume();
-		((HomeActivity) getActivity()).setExitTaskEarlyAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
 	}
 
 	@Override
@@ -63,8 +64,8 @@ public abstract class FlipSectionFragment extends SectionFragment implements
 		super.onPause();
 		if (flipView != null)
 			flipView.onPause();
-		((HomeActivity) getActivity()).setExitTaskEarlyAllImageFetcher();
-		((HomeActivity) getActivity()).setFlushCacheAllImageFetcher();
+		ImageDAO.getInstance(mContext).exitTaskEarly();
+		ImageDAO.getInstance(mContext).flushCache();
 	}
 
 	@Override

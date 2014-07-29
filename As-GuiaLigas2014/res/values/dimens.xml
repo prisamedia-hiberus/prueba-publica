@@ -23,6 +23,7 @@
     <dimen name="image_player_height_small">51dp</dimen>
     <dimen name="image_thumb_height_small">170dp</dimen>
     <dimen name="image_thumb_height">206dp</dimen>
+    <dimen name="image_actionbar_height">23dp</dimen>
     <dimen name="image_image_height">640dp</dimen>
     <dimen name="image_news_detail_height">300dp</dimen>
 

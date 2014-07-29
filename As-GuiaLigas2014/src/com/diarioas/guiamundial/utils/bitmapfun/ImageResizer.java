@@ -22,6 +22,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.Log;
@@ -207,6 +208,7 @@ public class ImageResizer extends ImageWorker {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
+
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
 
@@ -217,6 +219,7 @@ public class ImageResizer extends ImageWorker {
 		// Decode bitmap with inSampleSize set
 		options.inJustDecodeBounds = false;
 
+		
 		// If we're running on Honeycomb or newer, try to use inBitmap
 		if (Utils.hasHoneycomb()) {
 			addInBitmapOptions(options, cache);
@@ -236,7 +239,7 @@ public class ImageResizer extends ImageWorker {
 		if (cache != null) {
 			// Try and find a bitmap to use for inBitmap
 			Bitmap inBitmap = cache.getBitmapFromReusableSet(options);
-
+			
 			if (inBitmap != null) {
 				if (BuildConfig.DEBUG) {
 					Log.d(TAG, "Found bitmap to use for inBitmap");

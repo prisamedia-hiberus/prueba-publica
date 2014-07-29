@@ -25,6 +25,7 @@ import com.diarioas.guiamundial.activities.general.fragment.FlipSectionFragment;
 import com.diarioas.guiamundial.activities.home.HomeActivity;
 import com.diarioas.guiamundial.activities.news.NewsDetailActivity;
 import com.diarioas.guiamundial.dao.model.news.NewsItem;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteDataDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteNewsDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteNewsDAO.RemoteNewsDAOListener;
@@ -634,7 +635,7 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 		private void setItemOneType(int position, final ViewHolder holder) {
 			setItem(holder.content1, (NewsItem) array.get(position),
 					getUrl((NewsItem) array.get(position), TYPE_ONE_ITEM),
-					((HomeActivity) getActivity()).getmOneImageFetcher(),
+					ImageDAO.getInstance(mContext).getOneImageFetcher(),
 					position, 0);
 		}
 
@@ -642,16 +643,15 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 
 			setItem(holder.content1, (NewsItem) array.get(position),
 					getUrl((NewsItem) array.get(position), TYPE_TWO_ITEM),
-					((HomeActivity) getActivity()).getmHalfImageFetcher(),
+					ImageDAO.getInstance(mContext).getHalfImageFetcher(),
 					position, 0);
 
 			if (array.size() > (position + 1)) {
 				setItem(holder.content2,
 						(NewsItem) array.get(position + 1),
 						getUrl((NewsItem) array.get(position + 1),
-								TYPE_TWO_ITEM),
-						((HomeActivity) getActivity()).getmHalfImageFetcher(),
-						position, 1);
+								TYPE_TWO_ITEM), ImageDAO.getInstance(mContext)
+								.getHalfImageFetcher(), position, 1);
 			} else {
 				holder.content2.setVisibility(View.GONE);
 			}
@@ -662,23 +662,23 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 
 			setItem(holder.content1, (NewsItem) array.get(position),
 					getUrl((NewsItem) array.get(position), TYPE_THREE_ITEM),
-					((HomeActivity) getActivity()).getmThirdImageFetcher(),
+					ImageDAO.getInstance(mContext).getThirdImageFetcher(),
 					position, 0);
 
 			if (array.size() > (position + 1)) {
 				setItem(holder.content2,
 						(NewsItem) array.get(position + 1),
 						getUrl((NewsItem) array.get(position + 1),
-								TYPE_THREE_ITEM),
-						((HomeActivity) getActivity()).getmThirdImageFetcher(),
+								TYPE_THREE_ITEM), ImageDAO
+								.getInstance(mContext).getThirdImageFetcher(),
 						position, 1);
 				if (array.size() > (position + 2)) {
 					setItem(holder.content3,
 							(NewsItem) array.get(position + 2),
 							getUrl((NewsItem) array.get(position + 2),
 									TYPE_THREE_ITEM),
-							((HomeActivity) getActivity())
-									.getmThirdImageFetcher(), position, 2);
+							ImageDAO.getInstance(mContext)
+									.getThirdImageFetcher(), position, 2);
 				} else {
 					holder.content3.setVisibility(View.GONE);
 				}
@@ -692,30 +692,29 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 		private void setItemFourType(int position, ViewHolder holder) {
 			setItem(holder.content1, (NewsItem) array.get(position),
 					getUrl((NewsItem) array.get(position), TYPE_FOUR_ITEM),
-					((HomeActivity) getActivity()).getmFourthImageFetcher(),
+					ImageDAO.getInstance(mContext).getFourthImageFetcher(),
 					position, 0);
 
 			if (array.size() > (position + 1)) {
 				setItem(holder.content2,
 						(NewsItem) array.get(position + 1),
 						getUrl((NewsItem) array.get(position + 1),
-								TYPE_FOUR_ITEM),
-						((HomeActivity) getActivity()).getmFourthImageFetcher(),
-						position, 1);
+								TYPE_FOUR_ITEM), ImageDAO.getInstance(mContext)
+								.getFourthImageFetcher(), position, 1);
 				if (array.size() > (position + 2)) {
 					setItem(holder.content3,
 							(NewsItem) array.get(position + 2),
 							getUrl((NewsItem) array.get(position + 2),
 									TYPE_FOUR_ITEM),
-							((HomeActivity) getActivity())
-									.getmFourthImageFetcher(), position, 2);
+							ImageDAO.getInstance(mContext)
+									.getFourthImageFetcher(), position, 2);
 					if (array.size() > (position + 3)) {
 						setItem(holder.content4,
 								(NewsItem) array.get(position + 3),
 								getUrl((NewsItem) array.get(position + 3),
 										TYPE_FOUR_ITEM),
-								((HomeActivity) getActivity())
-										.getmFourthImageFetcher(), position, 3);
+								ImageDAO.getInstance(mContext)
+										.getFourthImageFetcher(), position, 3);
 					} else {
 						holder.content4.setVisibility(View.GONE);
 					}
@@ -734,7 +733,7 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 		private void setItemHeaderType(int position, ViewHolder holder) {
 			setItem(holder.content1, (NewsItem) array.get(position),
 					getUrl((NewsItem) array.get(position), TYPE_HEADER_ITEM),
-					((HomeActivity) getActivity()).getmFourthImageFetcher(),
+					ImageDAO.getInstance(mContext).getFourthImageFetcher(),
 					position, 0);
 
 			boolean pos2 = array.size() > (position + 1);
@@ -749,23 +748,21 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 					smallUrl = getUrl((NewsItem) array.get(position + 1),
 							TYPE_HEADER_ITEM);
 
-				setItem(holder.content2,
-						(NewsItem) array.get(position + 1),
-						smallUrl,
-						((HomeActivity) getActivity()).getmHeaderImageFetcher(),
-						position, 1);
+				setItem(holder.content2, (NewsItem) array.get(position + 1),
+						smallUrl, ImageDAO.getInstance(mContext)
+								.getHeaderImageFetcher(), position, 1);
 				if (pos3) {
 					smallUrl = getSmallUrl((NewsItem) array.get(position + 2));
 					setItem(holder.content3,
 							(NewsItem) array.get(position + 2), smallUrl,
-							((HomeActivity) getActivity())
-									.getmHeaderImageFetcher(), position, 2);
+							ImageDAO.getInstance(mContext)
+									.getHeaderImageFetcher(), position, 2);
 					if (pos4) {
 						setItem(holder.content4,
 								(NewsItem) array.get(position + 3),
 								getSmallUrl((NewsItem) array.get(position + 3)),
-								((HomeActivity) getActivity())
-										.getmHeaderImageFetcher(), position, 3);
+								ImageDAO.getInstance(mContext)
+										.getHeaderImageFetcher(), position, 3);
 					} else {
 						holder.content4.setVisibility(View.GONE);
 					}
