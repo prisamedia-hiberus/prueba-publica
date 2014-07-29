@@ -30,7 +30,8 @@ public abstract class FlipSectionFragment extends SectionFragment implements
 			R.drawable.spinner_guia0001, R.drawable.spinner_guia0002,
 			R.drawable.spinner_guia0003, R.drawable.spinner_guia0004,
 			R.drawable.spinner_guia0005, R.drawable.spinner_guia0006,
-			R.drawable.spinner_guia0007 };
+			R.drawable.spinner_guia0007,R.drawable.spinner_guia0008,
+			R.drawable.spinner_guia0009};
 
 	protected RelativeLayout playerSpinner;
 	protected View firstView;

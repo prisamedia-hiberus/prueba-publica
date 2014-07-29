@@ -20,10 +20,13 @@ import com.diarioas.guiamundial.utils.FontUtils;
 
 public class TeamInfoFragment extends TeamFragment {
 
+	private LayoutInflater inflater;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		this.inflater = inflater;
+		
 		// Inflating layout
 		generalView = inflater.inflate(R.layout.fragment_team_info, container,
 				false);
@@ -37,7 +40,8 @@ public class TeamInfoFragment extends TeamFragment {
 		String shield = (String) getArguments().get("shield");
 		if (shield != null && !shield.equalsIgnoreCase("")) {
 			((ImageView) generalView.findViewById(R.id.photoTeam))
-					.setBackgroundResource(DrawableUtils.getDrawableId(mContext, shield, 4));
+					.setBackgroundResource(DrawableUtils.getDrawableId(
+							mContext, shield, 4));
 		} else {
 			((ImageView) generalView.findViewById(R.id.photoTeam))
 					.setBackgroundResource(R.drawable.escudo_generico_size01);
@@ -110,29 +114,22 @@ public class TeamInfoFragment extends TeamFragment {
 		String shirt1 = (String) getArguments().get("shirt1");
 		int idShirt1 = 0;
 		if (shirt1 != null && !shirt1.equalsIgnoreCase("")) {
-			idShirt1 = mContext.getResources().getIdentifier(
-					shirt1.substring(0, shirt1.length() - 4), "drawable",
-					mContext.getPackageName());
+			idShirt1 =DrawableUtils.getDrawableId(mContext, shirt1, 4);
 		}
 		String shirt2 = (String) getArguments().get("shirt2");
 		int idShirt2 = 0;
 		if (shirt2 != null && !shirt2.equalsIgnoreCase("")) {
-			idShirt2 = mContext.getResources().getIdentifier(
-					shirt2.substring(0, shirt1.length() - 4), "drawable",
-					mContext.getPackageName());
+			idShirt2 =DrawableUtils.getDrawableId(mContext, shirt2, 4);
 		}
 		String shirt3 = (String) getArguments().get("shirt3");
 		int idShirt3 = 0;
 		if (shirt3 != null && !shirt3.equalsIgnoreCase("")) {
-			idShirt3 = mContext.getResources().getIdentifier(
-					shirt3.substring(0, shirt1.length() - 4), "drawable",
-					mContext.getPackageName());
+			idShirt3 =DrawableUtils.getDrawableId(mContext, shirt3, 4);
 		}
 
 		if (idShirt1 != 0 || idShirt2 != 0 || idShirt3 != 0) {
 			LinearLayout llShield = (LinearLayout) generalView
 					.findViewById(R.id.shieldContent1);
-			LayoutInflater inf = LayoutInflater.from(mContext);
 
 			Point size = DimenUtils.getSize(getActivity().getWindowManager());
 			int width = size.x;
@@ -141,44 +138,13 @@ public class TeamInfoFragment extends TeamFragment {
 					LayoutParams.WRAP_CONTENT);
 
 			if (idShirt1 != 0) {
-				RelativeLayout contentShirt1 = (RelativeLayout) inf.inflate(
-						R.layout.item_shirt, null);
-				TextView shield1Text = (TextView) contentShirt1
-						.findViewById(R.id.shirtText);
-				shield1Text.setText(getString(R.string.team_equipacion_local));
-				FontUtils.setCustomfont(mContext, shield1Text,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-
-				((ImageView) contentShirt1.findViewById(R.id.shirtImage))
-						.setBackgroundResource(idShirt1);
-				llShield.addView(contentShirt1, parameters);
+				llShield.addView(getShirtItem(idShirt1), parameters);
 			}
 			if (idShirt2 != 0) {
-				RelativeLayout contentShirt2 = (RelativeLayout) inf.inflate(
-						R.layout.item_shirt, null);
-				TextView shield2Text = (TextView) contentShirt2
-						.findViewById(R.id.shirtText);
-				shield2Text
-						.setText(getString(R.string.team_equipacion_visitante));
-				FontUtils.setCustomfont(mContext, shield2Text,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-
-				((ImageView) contentShirt2.findViewById(R.id.shirtImage))
-						.setBackgroundResource(idShirt2);
-				llShield.addView(contentShirt2, parameters);
+				llShield.addView(getShirtItem(idShirt2), parameters);
 			}
 			if (idShirt3 != 0) {
-				RelativeLayout contentShirt3 = (RelativeLayout) inf.inflate(
-						R.layout.item_shirt, null);
-				TextView shield3Text = (TextView) contentShirt3
-						.findViewById(R.id.shirtText);
-				shield3Text
-						.setText(getString(R.string.team_equipacion_alternativa));
-				FontUtils.setCustomfont(mContext, shield3Text,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				((ImageView) contentShirt3.findViewById(R.id.shirtImage))
-						.setBackgroundResource(idShirt3);
-				llShield.addView(contentShirt3, parameters);
+				llShield.addView(getShirtItem(idShirt3), parameters);
 			}
 		} else {
 			generalView.findViewById(R.id.gapShield).setVisibility(View.GONE);
@@ -209,161 +175,9 @@ public class TeamInfoFragment extends TeamFragment {
 
 		/**************************** Info del Staff ****************************************/
 
-		// Info del presidente
-		Staff president = (Staff) getArguments().get("president");
-		TextView presidentLabelTeam = (TextView) generalView
-				.findViewById(R.id.presidentLabelTeam);
-		TextView presidentName = (TextView) generalView
-				.findViewById(R.id.presidentNameTeam);
-		TextView presidentBorn = (TextView) generalView
-				.findViewById(R.id.presidentBornLabelTeam);
-		TextView presidentContract = (TextView) generalView
-				.findViewById(R.id.presidentContractTeam);
-		boolean presidentActive = false;
-		if (president != null && president.getName() != null
-				&& !president.getName().equalsIgnoreCase("")
-				&& !president.getName().equalsIgnoreCase(" ")) {
-			presidentActive = true;
-			if (president.getPhoto() != null
-					&& !president.getPhoto().equalsIgnoreCase("")) {
-				int idPresi = mContext.getResources().getIdentifier(
-						president.getPhoto().substring(0,
-								president.getPhoto().length() - 4), "drawable",
-						mContext.getPackageName());
-				if (idPresi != 0) {
-					((ImageView) generalView
-							.findViewById(R.id.presidentTeamImage))
-							.setBackgroundResource(idPresi);
-				}
-
-			}
-			FontUtils.setCustomfont(mContext, presidentLabelTeam,
-					FontUtils.FontTypes.ROBOTO_LIGHT);
-			FontUtils.setCustomfont(mContext, presidentName,
-					FontUtils.FontTypes.ROBOTO_LIGHT);
-			FontUtils.setCustomfont(mContext, presidentBorn,
-					FontUtils.FontTypes.ROBOTO_LIGHT);
-			FontUtils.setCustomfont(mContext, presidentContract,
-					FontUtils.FontTypes.ROBOTO_LIGHT);
-			presidentName.setText(president.getName());
-
-			presidentBorn.setText(Html.fromHtml(getDate(
-					getString(R.string.team_fecha_de_nacimiento),
-					president.getBorn())));
-
-			presidentContract.setText(Html.fromHtml(getDate(
-					getString(R.string.team_fecha_del_cargo),
-					president.getContract())));
-		} else {
-			generalView.findViewById(R.id.presidentContent).setVisibility(
-					View.GONE);
-
-		}
-
-		Staff mister = (Staff) getArguments().get("mister");
-		TextView misterLabelTeam = (TextView) generalView
-				.findViewById(R.id.misterLabelTeam);
-		TextView misterName = (TextView) generalView
-				.findViewById(R.id.misterNameTeam);
-		TextView misterBorn = (TextView) generalView
-				.findViewById(R.id.misterBornLabelTeam);
-		TextView misterContract = (TextView) generalView
-				.findViewById(R.id.misterContractTeam);
-
-		boolean misterActive = false;
-		if (mister != null && mister.getName() != null
-				&& !mister.getName().equalsIgnoreCase("")
-				&& !mister.getName().equalsIgnoreCase(" ")) {
-			misterActive = true;
-			// Info del mister
-			if (mister != null) {
-				if (mister.getPhoto() != null
-						&& !mister.getPhoto().equalsIgnoreCase("")) {
-					int idMister = mContext.getResources().getIdentifier(
-							mister.getPhoto().substring(0,
-									mister.getPhoto().length() - 4),
-							"drawable", mContext.getPackageName());
-					if (idMister != 0)
-						((ImageView) generalView
-								.findViewById(R.id.misterTeamImage))
-								.setBackgroundResource(idMister);
-				}
-				FontUtils.setCustomfont(mContext, misterLabelTeam,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, misterName,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, misterBorn,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, misterContract,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				misterName.setText(mister.getName());
-
-				misterBorn.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_de_nacimiento),
-						mister.getBorn())));
-
-				misterContract.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_del_cargo),
-						mister.getContract())));
-			}
-		} else {
-			generalView.findViewById(R.id.misterContent).setVisibility(
-					View.GONE);
-
-		}
-
-		Staff manager = (Staff) getArguments().get("manager");
-		TextView managerLabelTeam = (TextView) generalView
-				.findViewById(R.id.managerLabelTeam);
-		TextView managerName = (TextView) generalView
-				.findViewById(R.id.managerNameTeam);
-		TextView managerBorn = (TextView) generalView
-				.findViewById(R.id.managerBornLabelTeam);
-		TextView managerContract = (TextView) generalView
-				.findViewById(R.id.managerContractTeam);
-
-		boolean managerActive = false;
-		if (manager != null && manager.getName() != null
-				&& !manager.getName().equalsIgnoreCase("")
-				&& !manager.getName().equalsIgnoreCase(" ")) {
-			managerActive = true;
-			// Info del manager
-			if (manager != null) {
-				if (manager.getPhoto() != null
-						&& !manager.getPhoto().equalsIgnoreCase("")) {
-					int idManager = mContext.getResources().getIdentifier(
-							manager.getPhoto().substring(0,
-									manager.getPhoto().length() - 4),
-							"drawable", mContext.getPackageName());
-					if (idManager != 0)
-						((ImageView) generalView
-								.findViewById(R.id.managerTeamImage))
-								.setBackgroundResource(idManager);
-				}
-
-				FontUtils.setCustomfont(mContext, managerLabelTeam,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, managerName,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, managerBorn,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				FontUtils.setCustomfont(mContext, managerContract,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
-				managerName.setText(manager.getName());
-
-				managerBorn.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_de_nacimiento),
-						manager.getBorn())));
-
-				managerContract.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_del_cargo),
-						manager.getContract())));
-			}
-
-		} else {
-			generalView.findViewById(R.id.managerContent).setVisibility(
-					View.GONE);
-		}
+		boolean presidentActive = configurePresident();
+		boolean misterActive = configureMister();
+		boolean managerActive = configureManager();
 
 		if (presidentActive && (misterActive || managerActive)) {
 			generalView.findViewById(R.id.gapPresident).setVisibility(
@@ -386,6 +200,11 @@ public class TeamInfoFragment extends TeamFragment {
 		}
 		/**************************** Info del articulo ****************************************/
 
+		configureArticle();
+
+	}
+
+	private void configureArticle() {
 		TextView article = (TextView) generalView
 				.findViewById(R.id.articleTeam);
 		TextView title = (TextView) generalView
@@ -450,7 +269,120 @@ public class TeamInfoFragment extends TeamFragment {
 					View.GONE);
 			generalView.findViewById(R.id.gapArticle).setVisibility(View.GONE);
 		}
+	}
 
+	private RelativeLayout getShirtItem(int idShirt1) {
+		RelativeLayout contentShirt1 = (RelativeLayout) inflater.inflate(
+				R.layout.item_shirt, null);
+		TextView shield1Text = (TextView) contentShirt1
+				.findViewById(R.id.shirtText);
+		shield1Text.setText(getString(R.string.team_equipacion_local));
+		FontUtils.setCustomfont(mContext, shield1Text,
+				FontUtils.FontTypes.ROBOTO_LIGHT);
+
+		((ImageView) contentShirt1.findViewById(R.id.shirtImage)).setImageDrawable(getResources().getDrawable(idShirt1));
+		return contentShirt1;
+	}
+
+	private boolean configurePresident() {
+		// Info del presidente
+		Staff president = (Staff) getArguments().get("president");
+		TextView presidentLabelTeam = (TextView) generalView
+				.findViewById(R.id.presidentLabelTeam);
+		TextView presidentName = (TextView) generalView
+				.findViewById(R.id.presidentNameTeam);
+		TextView presidentBorn = (TextView) generalView
+				.findViewById(R.id.presidentBornLabelTeam);
+		TextView presidentContract = (TextView) generalView
+				.findViewById(R.id.presidentContractTeam);
+
+		return configureStaff(
+				president,
+				presidentLabelTeam,
+				presidentName,
+				presidentBorn,
+				presidentContract,
+				((ImageView) generalView.findViewById(R.id.presidentTeamImage)),
+				generalView.findViewById(R.id.presidentContent));
+	}
+
+	private boolean configureMister() {
+		Staff mister = (Staff) getArguments().get("mister");
+		TextView misterLabelTeam = (TextView) generalView
+				.findViewById(R.id.misterLabelTeam);
+		TextView misterName = (TextView) generalView
+				.findViewById(R.id.misterNameTeam);
+		TextView misterBorn = (TextView) generalView
+				.findViewById(R.id.misterBornLabelTeam);
+		TextView misterContract = (TextView) generalView
+				.findViewById(R.id.misterContractTeam);
+
+		return configureStaff(mister, misterLabelTeam, misterName, misterBorn,
+				misterContract,
+				((ImageView) generalView.findViewById(R.id.misterTeamImage)),
+				generalView.findViewById(R.id.misterContent));
+	}
+
+	private boolean configureManager() {
+		Staff manager = (Staff) getArguments().get("manager");
+		TextView managerLabelTeam = (TextView) generalView
+				.findViewById(R.id.managerLabelTeam);
+		TextView managerName = (TextView) generalView
+				.findViewById(R.id.managerNameTeam);
+		TextView managerBorn = (TextView) generalView
+				.findViewById(R.id.managerBornLabelTeam);
+		TextView managerContract = (TextView) generalView
+				.findViewById(R.id.managerContractTeam);
+
+		return configureStaff(manager, managerLabelTeam, managerName,
+				managerBorn, managerContract,
+				((ImageView) generalView.findViewById(R.id.managerTeamImage)),
+				generalView.findViewById(R.id.managerContent));
+	}
+
+	private boolean configureStaff(Staff staff, TextView staffLabelTeam,
+			TextView staffName, TextView staffBorn, TextView staffContract,
+			ImageView staffImage, View staffContent) {
+		boolean managerActive = false;
+		if (staff != null && staff.getName() != null
+				&& !staff.getName().equalsIgnoreCase("")
+				&& !staff.getName().equalsIgnoreCase(" ")) {
+			managerActive = true;
+			// Info del manager
+			if (staff != null) {
+				if (staff.getPhoto() != null
+						&& !staff.getPhoto().equalsIgnoreCase("")) {
+					int idManager = DrawableUtils.getDrawableId(mContext,
+							staff.getPhoto(), 4);
+					if (idManager != 0) {
+						staffImage.setImageDrawable(getResources().getDrawable(
+								idManager));
+					}
+				}
+
+				FontUtils.setCustomfont(mContext, staffLabelTeam,
+						FontUtils.FontTypes.ROBOTO_LIGHT);
+				FontUtils.setCustomfont(mContext, staffName,
+						FontUtils.FontTypes.ROBOTO_LIGHT);
+				FontUtils.setCustomfont(mContext, staffBorn,
+						FontUtils.FontTypes.ROBOTO_LIGHT);
+				FontUtils.setCustomfont(mContext, staffContract,
+						FontUtils.FontTypes.ROBOTO_LIGHT);
+				staffName.setText(staff.getName());
+
+				staffBorn.setText(Html.fromHtml(getDate(
+						getString(R.string.team_fecha_de_nacimiento),
+						staff.getBorn())));
+
+				staffContract.setText(Html.fromHtml(getDate(
+						getString(R.string.team_fecha_del_cargo),
+						staff.getContract())));
+			}
+
+		} else {
+			staffContent.setVisibility(View.GONE);
+		}
+		return managerActive;
 	}
 
 }

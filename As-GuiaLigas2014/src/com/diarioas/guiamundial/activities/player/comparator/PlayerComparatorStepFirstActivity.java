@@ -206,7 +206,7 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 			getSupportActionBar().setDisplayShowTitleEnabled(true);
 			getSupportActionBar().setTitle(teamPLName);
 		} else {
-			getSupportActionBar().setIcon(R.drawable.logo_home_menulateral);
+			getSupportActionBar().setIcon(R.drawable.home_icn_logoheader);
 			getSupportActionBar().setDisplayShowHomeEnabled(true);
 			getSupportActionBar().setDisplayShowTitleEnabled(false);
 		}

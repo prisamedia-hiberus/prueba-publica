@@ -42,8 +42,8 @@
         <item name="android:background">@drawable/header01</item>
         <item name="height">@dimen/height_actionBar</item>
         <item name="android:height">@dimen/height_actionBar</item>
-        <item name="icon">@drawable/logo_home_menulateral</item>
-        <item name="android:icon">@drawable/logo_home_menulateral</item>
+        <item name="icon">@drawable/home_icn_logoheader</item>
+        <item name="android:icon">@drawable/home_icn_logoheader</item>
         <item name="titleTextStyle">@style/CustomTitleActionBar</item>
         <item name="android:titleTextStyle">@style/CustomTitleActionBar</item>
         <item name="actionMenuTextColor">@color/red</item>

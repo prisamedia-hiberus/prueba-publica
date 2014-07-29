@@ -22,8 +22,10 @@ public class ImageDAO {
 	private ImageFetcher mImageFetcherThird = null;
 	private ImageFetcher mImageFetcherFourth = null;
 	private ImageFetcher mImageFetcherHeader = null;
-	private ImageFetcher mImageFetcherSplash = null;
-	private ImageFetcher mImageFetcherActionBar = null;
+	// private ImageFetcher mImageFetcherSplash = null;
+	// private ImageFetcher mImageFetcherActionBar = null;
+	private ImageFetcher mImageFetcherPlayer;
+	private ImageFetcher mImageFetcherSmallPlayer;
 
 	public static ImageDAO getInstance(Context ctx) {
 		if (sInstance == null) {
@@ -41,8 +43,8 @@ public class ImageDAO {
 		sInstance.mImageFetcherThird = null;
 		sInstance.mImageFetcherFourth = null;
 		sInstance.mImageFetcherHeader = null;
-		sInstance.mImageFetcherSplash = null;		
-		sInstance.mImageFetcherActionBar = null;
+		// sInstance.mImageFetcherSplash = null;
+		// sInstance.mImageFetcherActionBar = null;
 
 		sInstance = null;
 
@@ -61,8 +63,9 @@ public class ImageDAO {
 		configureImageFetcherThree(size.x, size.y / 3);
 		configureImageFetcherFourth(size.x, size.y / 4);
 		configureImageFetcherHeader(size.x / 2, size.y / 4);
-		configurSplashImageFetcher();
-		configurActionBarImageFetcher();
+		// configurSplashImageFetcher();
+		// configurActionBarImageFetcher();
+
 	}
 
 	/**
@@ -142,33 +145,73 @@ public class ImageDAO {
 		this.mImageFetcherHeader.setImageFadeIn(true);
 	}
 
-	private void configurSplashImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "splash");
-		cacheParams.setMemCacheSizePercent(0.25f);
+	// private void configurSplashImageFetcher() {
+	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+	// Defines.NAME_CACHE_THUMBS + "splash");
+	// cacheParams.setMemCacheSizePercent(0.25f);
+	//
+	// mImageFetcherSplash = new ImageFetcher(mContext, mContext
+	// .getResources().getDimensionPixelSize(
+	// R.dimen.image_thumb_height));
+	// // mImageFetcherSplash.setLoadingImage(R.drawable.galeria_imagenrecurso);
+	// mImageFetcherSplash.addImageCache(
+	// ((FragmentActivity) this.mContext).getSupportFragmentManager(),
+	// cacheParams);
+	// mImageFetcherSplash.setImageFadeIn(true);
+	// }
+	//
+	// private void configurActionBarImageFetcher() {
+	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+	// Defines.NAME_CACHE_THUMBS + "actionbar");
+	// cacheParams.setMemCacheSizePercent(0.10f);
+	//
+	// mImageFetcherActionBar = new ImageFetcher(mContext, mContext
+	// .getResources().getDimensionPixelSize(
+	// R.dimen.image_actionbar_height));
+	// mImageFetcherActionBar.addImageCache(
+	// ((FragmentActivity) this.mContext).getSupportFragmentManager(),
+	// cacheParams);
+	// mImageFetcherActionBar.setImageFadeIn(true);
+	// }
 
-		mImageFetcherSplash = new ImageFetcher(mContext, mContext
+	// private void configureImageFetcherPlantilla() {
+	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+	// Defines.NAME_CACHE_THUMBS);
+	// cacheParams.setMemCacheSizePercent(0.25f);
+	//
+	// mImageFetcher = new ImageFetcher(mContext, mContext.getResources()
+	// .getDimensionPixelSize(R.dimen.image_thumb_height));
+	// mImageFetcher.setLoadingImage(R.drawable.galeria_imagenrecurso);
+	// mImageFetcher.addImageCache(((FragmentActivity)
+	// this.mContext).getSupportFragmentManager(),
+	// cacheParams);
+	// }
+	private void configureImageFetcherPlayer() {
+		ImageCacheParams cacheParams2 = new ImageCacheParams(mContext,
+				Defines.NAME_CACHE_THUMBS + "2");
+		cacheParams2.setMemCacheSizePercent(0.25f);
+
+		mImageFetcherPlayer = new ImageFetcher(mContext, mContext
 				.getResources().getDimensionPixelSize(
-						R.dimen.image_thumb_height));
-		// mImageFetcherSplash.setLoadingImage(R.drawable.galeria_imagenrecurso);
-		mImageFetcherSplash.addImageCache(
+						R.dimen.image_player_height));
+		mImageFetcherPlayer.setLoadingImage(R.drawable.foto_generica);
+		mImageFetcherPlayer.addImageCache(
 				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		// mImageFetcherSplash.setImageFadeIn(true);
+				cacheParams2);
 	}
 
-	private void configurActionBarImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "actionbar");
-		cacheParams.setMemCacheSizePercent(0.10f);
-
-		mImageFetcherActionBar = new ImageFetcher(mContext, mContext
+	private void configureImageFetcherSmallPlayer() {
+		ImageCacheParams cacheParams3 = new ImageCacheParams(mContext,
+				Defines.NAME_CACHE_THUMBS + "3");
+		cacheParams3.setMemCacheSizePercent(0.25f);
+		mImageFetcherSmallPlayer = new ImageFetcher(mContext, mContext
 				.getResources().getDimensionPixelSize(
-						R.dimen.image_actionbar_height));
-		mImageFetcherActionBar.addImageCache(
+						R.dimen.image_player_height_small));
+		mImageFetcherSmallPlayer
+				.setLoadingImage(R.drawable.foto_plantilla_generica);
+		mImageFetcherSmallPlayer.addImageCache(
 				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		// mImageFetcherActionBar.setImageFadeIn(true);
+				cacheParams3);
 	}
 
 	/***************************************************************************/
@@ -182,8 +225,15 @@ public class ImageDAO {
 		this.mImageFetcherThird.setExitTasksEarly(false);
 		this.mImageFetcherFourth.setExitTasksEarly(false);
 		this.mImageFetcherHeader.setExitTasksEarly(false);
-		this.mImageFetcherSplash.setExitTasksEarly(false);
-		this.mImageFetcherActionBar.setExitTasksEarly(false);
+		// this.mImageFetcherSplash.setExitTasksEarly(false);
+		// this.mImageFetcherActionBar.setExitTasksEarly(false);
+	}
+
+	public void exitPlayerTaskEarly() {
+		if (this.mImageFetcherPlayer != null)
+			this.mImageFetcherPlayer.setExitTasksEarly(false);
+		if (this.mImageFetcherSmallPlayer != null)
+			this.mImageFetcherSmallPlayer.setExitTasksEarly(false);
 	}
 
 	public void clearCache() {
@@ -193,8 +243,16 @@ public class ImageDAO {
 		this.mImageFetcherThird.clearCache();
 		this.mImageFetcherFourth.clearCache();
 		this.mImageFetcherHeader.clearCache();
-		this.mImageFetcherSplash.clearCache();
-		this.mImageFetcherActionBar.clearCache();
+		// this.mImageFetcherSplash.clearCache();
+		// this.mImageFetcherActionBar.clearCache();
+
+	}
+
+	public void clearPlayerCache() {
+		if (this.mImageFetcherPlayer != null)
+			this.mImageFetcherPlayer.clearCache();
+		if (this.mImageFetcherSmallPlayer != null)
+			this.mImageFetcherSmallPlayer.clearCache();
 	}
 
 	public void flushCache() {
@@ -204,8 +262,15 @@ public class ImageDAO {
 		this.mImageFetcherThird.flushCache();
 		this.mImageFetcherFourth.flushCache();
 		this.mImageFetcherHeader.flushCache();
-		this.mImageFetcherSplash.flushCache();
-		this.mImageFetcherActionBar.flushCache();
+		// this.mImageFetcherSplash.flushCache();
+		// this.mImageFetcherActionBar.flushCache();
+	}
+
+	public void flushPlayerCache() {
+		if (this.mImageFetcherPlayer != null)
+			this.mImageFetcherPlayer.flushCache();
+		if (this.mImageFetcherSmallPlayer != null)
+			this.mImageFetcherSmallPlayer.flushCache();
 	}
 
 	public void closeCache() {
@@ -215,8 +280,16 @@ public class ImageDAO {
 		this.mImageFetcherThird.closeCache();
 		this.mImageFetcherFourth.closeCache();
 		this.mImageFetcherHeader.closeCache();
-		this.mImageFetcherSplash.closeCache();
-		this.mImageFetcherActionBar.closeCache();
+		// this.mImageFetcherSplash.closeCache();
+		// this.mImageFetcherActionBar.closeCache();
+
+	}
+
+	public void closePlayerCache() {
+		if (this.mImageFetcherPlayer != null)
+			this.mImageFetcherPlayer.closeCache();
+		if (this.mImageFetcherSmallPlayer != null)
+			this.mImageFetcherSmallPlayer.closeCache();
 	}
 
 	public void pauseWork(boolean pause) {
@@ -226,8 +299,20 @@ public class ImageDAO {
 		this.mImageFetcherThird.setPauseWork(pause);
 		this.mImageFetcherFourth.setPauseWork(pause);
 		this.mImageFetcherHeader.setPauseWork(pause);
-		this.mImageFetcherSplash.setPauseWork(pause);
-		this.mImageFetcherActionBar.setPauseWork(pause);
+		// this.mImageFetcherSplash.setPauseWork(pause);
+		// this.mImageFetcherActionBar.setPauseWork(pause);
+	}
+
+	public void pausePlayerWork(boolean pause) {
+		if (this.mImageFetcherPlayer != null)
+			this.mImageFetcherPlayer.setPauseWork(pause);
+		if (this.mImageFetcherSmallPlayer != null)
+			this.mImageFetcherSmallPlayer.setPauseWork(pause);
+	}
+
+	public void erasePlayerCache() {
+		sInstance.mImageFetcherPlayer = null;
+		sInstance.mImageFetcherSmallPlayer = null;
 	}
 
 	/***************************************************************************/
@@ -317,33 +402,67 @@ public class ImageDAO {
 		this.mImageFetcherHeader.loadImage(imageUrl, imageView, loadingResId);
 	}
 
-	public ImageFetcher getSplashImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherSplash;
+	// public ImageFetcher getSplashImageFetcher() {
+	// // TODO Auto-generated method stub
+	// return mImageFetcherSplash;
+	// }
+	//
+	// public void loadSplashImage(String imageUrl, ImageView imageView) {
+	// this.mImageFetcherSplash.loadImage(imageUrl, imageView);
+	// }
+	//
+	// public void loadSplashImage(String imageUrl, ImageView imageView,
+	// int loadingResId) {
+	// this.mImageFetcherSplash.loadImage(imageUrl, imageView, loadingResId);
+	// }
+	//
+	// public ImageFetcher getActionBarImageFetcher() {
+	// // TODO Auto-generated method stub
+	// return mImageFetcherActionBar;
+	// }
+	//
+	// public void loadActionBarImage(String imageUrl, ImageView imageView) {
+	// this.mImageFetcherActionBar.loadImage(imageUrl, imageView);
+	// }
+	//
+	// public void loadActionBarImage(String imageUrl, ImageView imageView,
+	// int loadingResId) {
+	// this.mImageFetcherActionBar
+	// .loadImage(imageUrl, imageView, loadingResId);
+	// }
+
+	public ImageFetcher getPlayerImageFetcher() {
+		if (mImageFetcherPlayer == null) {
+			configureImageFetcherPlayer();
+		}
+		return mImageFetcherPlayer;
 	}
 
-	public void loadSplashImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherSplash.loadImage(imageUrl, imageView);
+	public void loadPlayerImage(String imageUrl, ImageView imageView) {
+		this.getPlayerImageFetcher().loadImage(imageUrl, imageView);
 	}
 
-	public void loadSplashImage(String imageUrl, ImageView imageView,
+	public void loadPlayerImage(String imageUrl, ImageView imageView,
 			int loadingResId) {
-		this.mImageFetcherSplash.loadImage(imageUrl, imageView, loadingResId);
+		this.getPlayerImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
 	}
 
-	public ImageFetcher getActionBarImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherActionBar;
+	public ImageFetcher getSmallPlayerImageFetcher() {
+		if (mImageFetcherSmallPlayer == null) {
+			configureImageFetcherSmallPlayer();
+		}
+		return mImageFetcherSmallPlayer;
 	}
 
-	public void loadActionBarImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherActionBar.loadImage(imageUrl, imageView);
+	public void loadASmallPlayerImage(String imageUrl, ImageView imageView) {
+		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView);
 	}
 
-	public void loadActionBarImage(String imageUrl, ImageView imageView,
+	public void loadSmallPlayerImage(String imageUrl, ImageView imageView,
 			int loadingResId) {
-		this.mImageFetcherActionBar
-				.loadImage(imageUrl, imageView, loadingResId);
+		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
 	}
 
 }

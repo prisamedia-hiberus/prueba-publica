@@ -31,6 +31,7 @@ import com.diarioas.guiamundial.dao.model.player.Player;
 import com.diarioas.guiamundial.dao.model.team.Team;
 import com.diarioas.guiamundial.dao.model.team.TituloTeam;
 import com.diarioas.guiamundial.dao.reader.DatabaseDAO;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO;
 import com.diarioas.guiamundial.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guiamundial.utils.AlertManager;
@@ -67,9 +68,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	private Team currentTeam;
 	private ViewPager teamViewPager;
 	private String competitionId;
-	private ImageFetcher mImageFetcher;
-	private ImageFetcher mImageFetcher2;
-	private ImageFetcher mImageFetcher3;
+
 	private List<Fragment> fragments;
 	private TeamStatsFragment statsFragment;
 	private Fragment infoFragment;
@@ -86,8 +85,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
 		configView();
 
-		configureImageFetcher();
-
 		String teamId = getIntent().getExtras().getString("teamId");
 		competitionId = getIntent().getExtras().getString("competitionId");
 		currentTeam = DatabaseDAO.getInstance(getApplicationContext()).getTeam(
@@ -103,9 +100,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher2.setExitTasksEarly(false);
-		mImageFetcher3.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 
 	}
 
@@ -130,29 +125,22 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
-		mImageFetcher2.setExitTasksEarly(false);
-		mImageFetcher2.flushCache();
-		mImageFetcher3.setExitTasksEarly(false);
-		mImageFetcher3.flushCache();
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
+		ImageDAO.getInstance(this).flushPlayerCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
-		mImageFetcher2.clearCache();
-		mImageFetcher3.clearCache();
+		ImageDAO.getInstance(this).clearPlayerCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
-		mImageFetcher2.closeCache();
-		mImageFetcher3.closeCache();
+		ImageDAO.getInstance(this).closePlayerCache();
+		ImageDAO.getInstance(this).erasePlayerCache();
 	}
 
 	/*
@@ -223,58 +211,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				FontUtils.FontTypes.ROBOTO_BLACK);
 	}
 
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_thumb_height));
-		mImageFetcher.setLoadingImage(R.drawable.galeria_imagenrecurso);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-
-		ImageCacheParams cacheParams2 = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher2 = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height));
-		mImageFetcher2.setLoadingImage(R.drawable.foto_generica);
-		mImageFetcher2.addImageCache(this.getSupportFragmentManager(),
-				cacheParams2);
-
-		ImageCacheParams cacheParams3 = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS + "3");
-		cacheParams.setMemCacheSizePercent(0.25f);
-		mImageFetcher3 = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height_small));
-		mImageFetcher3.setLoadingImage(R.drawable.foto_plantilla_generica);
-		mImageFetcher3.addImageCache(this.getSupportFragmentManager(),
-				cacheParams3);
-
-	}
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher2() {
-		return mImageFetcher2;
-	}
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher3() {
-		return mImageFetcher3;
-	}
 
 	private void loadInformation(Team team) {
 		currentTeam = team;
@@ -711,6 +647,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onPageSelected(final int pos) {
 		Log.d("SCROLL", "onPageSelected");
+		changeView(pos);
 		// ViewTreeObserver vto = teamViewPager.getViewTreeObserver();
 		// vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 		// @SuppressLint("NewApi")

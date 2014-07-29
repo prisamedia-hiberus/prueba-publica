@@ -17,6 +17,7 @@ import android.widget.TableLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.diarioas.guiamundial.R;
+import com.diarioas.guiamundial.dao.reader.ImageDAO;
 import com.diarioas.guiamundial.utils.DimenUtils;
 import com.diarioas.guiamundial.utils.FontUtils;
 import com.diarioas.guiamundial.utils.comparator.DorsalComparator;
@@ -207,12 +208,9 @@ public class TeamPlayersFragment extends TeamFragment {
 			} else {
 				item.setTag(-1);
 			}
-//			if (url != null) {
-//				imgL.DisplayImageWithMask(url,
-//						((ImageView) item.findViewById(R.id.playerImage)),
-//						R.drawable.foto_plantilla_generica,
-//						R.drawable.foto_plantilla_mask);
-//			}
+			if (url != null) {
+				ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(url, ((ImageView) item.findViewById(R.id.playerImage)), R.drawable.foto_plantilla_mask);
+			}
 
 			linear.addView(item, paramsItem);
 			if ((i + 1) % NUM_VIEWS_ROW == 0) {

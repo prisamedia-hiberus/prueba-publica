@@ -375,23 +375,24 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		}
 
 		private int getStarResource(Integer numStar) {
-			switch (numStar) {
-			case 1:
-				return R.drawable.team_1star;
-			case 2:
-				return R.drawable.team_2star;
-			case 3:
-				return R.drawable.team_3star;
-			case 4:
-				return R.drawable.team_4star;
-			case 5:
-				return R.drawable.team_5star;
-			case 6:
-				return R.drawable.team_6star;
-
-			default:
-				return R.drawable.team_1star;
-			}
+//			switch (numStar) {
+//			case 1:
+//				return R.drawable.team_1star;
+//			case 2:
+//				return R.drawable.team_2star;
+//			case 3:
+//				return R.drawable.team_3star;
+//			case 4:
+//				return R.drawable.team_4star;
+//			case 5:
+//				return R.drawable.team_5star;
+//			case 6:
+//				return R.drawable.team_6star;
+//
+//			default:
+//				return R.drawable.team_1star;
+//			}
+			return 0;
 		}
 
 	}

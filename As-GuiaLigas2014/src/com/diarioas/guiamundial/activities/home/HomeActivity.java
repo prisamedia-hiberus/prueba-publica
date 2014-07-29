@@ -81,7 +81,8 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			R.drawable.spinner_guia0001, R.drawable.spinner_guia0002,
 			R.drawable.spinner_guia0003, R.drawable.spinner_guia0004,
 			R.drawable.spinner_guia0005, R.drawable.spinner_guia0006,
-			R.drawable.spinner_guia0007 };
+			R.drawable.spinner_guia0007,R.drawable.spinner_guia0008,
+			R.drawable.spinner_guia0009};
 	protected RelativeLayout spinner;
 	protected boolean sectionChanged;
 	protected int selectedSectionIndex;
@@ -228,33 +229,33 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 		final String headerLink = DatabaseDAO.getInstance(mContext)
 				.getHeaderInfo();
-		if (headerLink != null) {
-			View adsButtonContainer = getSupportActionBar().getCustomView()
-					.findViewById(R.id.adsButtonContainer);
-			adsButtonContainer.setVisibility(View.VISIBLE);
-			ImageView adsButton = (ImageView) getSupportActionBar()
-					.getCustomView().findViewById(R.id.adsButton);
-			
-			ImageCacheParams cacheParams = new ImageCacheParams(this,
-					Defines.NAME_CACHE_THUMBS+"action");
-			cacheParams.setMemCacheSizePercent(0.25f);
-
-			ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
-					.getDimensionPixelSize(R.dimen.image_actionbar_height));
-			FragmentManager fragmentManager = this.getSupportFragmentManager();
-			mImageFetcher.addImageCache(fragmentManager, cacheParams);
-			mImageFetcher.setImageFadeIn(true);
-			mImageFetcher.loadImageWhitoutCache((String) headerLink,adsButton);
-			
-//			ImageDAO.getInstance(this).loadActionBarImage(headerLink, adsButton);
-			// adsButtonContainer.setOnClickListener(new OnClickListener() {
-			//
-			// @Override
-			// public void onClick(View v) {
-			// // openLink(headerLink);
-			// }
-			// });
-		}
+//		if (headerLink != null) {
+//			View adsButtonContainer = getSupportActionBar().getCustomView()
+//					.findViewById(R.id.adsButtonContainer);
+//			adsButtonContainer.setVisibility(View.VISIBLE);
+//			ImageView adsButton = (ImageView) getSupportActionBar()
+//					.getCustomView().findViewById(R.id.adsButton);
+//			
+//			ImageCacheParams cacheParams = new ImageCacheParams(this,
+//					Defines.NAME_CACHE_THUMBS+"action");
+//			cacheParams.setMemCacheSizePercent(0.25f);
+//
+//			ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
+//					.getDimensionPixelSize(R.dimen.image_actionbar_height));
+//			FragmentManager fragmentManager = this.getSupportFragmentManager();
+//			mImageFetcher.addImageCache(fragmentManager, cacheParams);
+//			mImageFetcher.setImageFadeIn(true);
+//			mImageFetcher.loadImageWhitoutCache((String) headerLink,adsButton);
+//			
+////			ImageDAO.getInstance(this).loadActionBarImage(headerLink, adsButton);
+//			// adsButtonContainer.setOnClickListener(new OnClickListener() {
+//			//
+//			// @Override
+//			// public void onClick(View v) {
+//			// // openLink(headerLink);
+//			// }
+//			// });
+//		}
 	}
 
 	private void configSlidingMenu() {

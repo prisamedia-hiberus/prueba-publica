@@ -1,6 +1,10 @@
 package com.diarioas.guiamundial.utils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.View;
 
 public class DrawableUtils {
 
@@ -12,5 +16,15 @@ public class DrawableUtils {
 					url.substring(0, url.length() - numCharacterExtension),
 					"drawable", ctx.getPackageName());
 		return idLocal;
+	}
+	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	public static void setBackGround(View view, Drawable drawable) {
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			view.setBackgroundDrawable(drawable);
+		} else {
+			view.setBackground(drawable);
+		}
 	}
 }
