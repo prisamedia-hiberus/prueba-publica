@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/localShield"
-                android:layout_width="37dp"
-                android:layout_height="21dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/defualt" />
         </RelativeLayout>
@@ -40,8 +40,8 @@
 
             <ImageView
                 android:id="@+id/awayShield"
-                android:layout_width="37dp"
-                android:layout_height="21dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/defualt" />
         </RelativeLayout>

@@ -24,6 +24,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="@dimen/marginTopTeamCompetition"
+        android:gravity="center"
         android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="@dimen/size_item_grid_team_teamName" />

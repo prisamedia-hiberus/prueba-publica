@@ -126,6 +126,9 @@ public abstract class CompetitionHomeFragment extends Fragment {
 				&& !team.getGridShield().equalsIgnoreCase("")) {
 			id = DrawableUtils.getDrawableId(mContext, team.getGridShield(), 4);
 		}
+		if (id==0){
+			id = R.drawable.escudo_generico_size02;
+		}
 		photo.setBackgroundResource(id);
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override

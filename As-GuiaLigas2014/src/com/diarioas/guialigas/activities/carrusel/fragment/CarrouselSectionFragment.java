@@ -429,22 +429,22 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		}
 
 		final int idLocal;
-//		if (currentMatch.getLocalId() != null) {
-//			idLocal = DrawableUtils.getDrawableId(mContext,
-//					ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
-//		} else {
-			idLocal = 0;
-//		}
+		// if (currentMatch.getLocalId() != null) {
+		// idLocal = DrawableUtils.getDrawableId(mContext,
+		// ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
+		// } else {
+		idLocal = 0;
+		// }
 
 		localShield.setBackgroundResource(idLocal);
 
 		final int idAway;
-//		if (currentMatch.getAwayId() != null) {
-//			idAway = DrawableUtils.getDrawableId(mContext,
-//					ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
-//		} else {
-			idAway = 0;
-//		}
+		// if (currentMatch.getAwayId() != null) {
+		// idAway = DrawableUtils.getDrawableId(mContext,
+		// ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
+		// } else {
+		idAway = 0;
+		// }
 
 		awayShield.setBackgroundResource(idAway);
 
@@ -850,8 +850,12 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		public View getView(int position, View convertView, ViewGroup parent) {
 
 			Match currentMatch = matches.get(position);
-			Team localTeam = findTeam(currentMatch.getLocalId());
-			Team awayTeam = findTeam(currentMatch.getAwayId());
+			// Team localTeam = findTeam(currentMatch.getLocalId());
+			// Team awayTeam = findTeam(currentMatch.getAwayId());
+			Team localTeam = DatabaseDAO.getInstance(mContext).getTeam(
+					currentMatch.getLocalId());
+			Team awayTeam = DatabaseDAO.getInstance(mContext).getTeam(
+					currentMatch.getAwayId());
 
 			final ViewHolder holder;
 			if (convertView == null) {
@@ -1011,24 +1015,35 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			}
 
 			final int idLocal;
-//			if (currentMatch.getLocalId() != null) {
-//				idLocal = DrawableUtils.getDrawableId(mContext,
-//						ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
-//			} else {
-				idLocal = 0;
-//			}
+			if (localTeam != null && localTeam.getCalendarShield() != null
+					&& !localTeam.getCalendarShield().equalsIgnoreCase("")) {
+				idLocal = DrawableUtils.getDrawableId(mContext,
+						localTeam.getCalendarShield(), 4);
+			} else {
+				idLocal = R.drawable.escudo_generico_size03;
+			}
 
+			// if (idLocal != 0)
 			holder.localShield.setBackgroundResource(idLocal);
+			// else
+			// holder.localShield
+			// .setBackgroundResource(R.drawable.escudo_generico_size03);
 
 			final int idAway;
-//			if (currentMatch.getAwayId() != null) {
-//				idAway = DrawableUtils.getDrawableId(mContext,
-//						ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
-//			} else {
-				idAway = 0;
-//			}
-
+			if (awayTeam != null && awayTeam.getCalendarShield() != null
+					&& !awayTeam.getCalendarShield().equalsIgnoreCase("")) {
+				idAway = DrawableUtils.getDrawableId(mContext,
+						awayTeam.getCalendarShield(), 4);
+			} else {
+				idAway = R.drawable.escudo_generico_size03;
+			}
+			// if (idAway != 0)
 			holder.awayShield.setBackgroundResource(idAway);
+			// else
+			// holder.awayShield
+			// .setBackgroundResource(R.drawable.escudo_generico_size03);
+
+			// holder.awayShield.setBackgroundResource(idAway);
 
 			holder.centerContainer.setTag(currentMatch);
 			convertView.setOnClickListener(new OnClickListener() {

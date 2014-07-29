@@ -286,11 +286,11 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		positionImage.setBackgroundColor(color);
 
 		int idLocal = 0;
-		// team = DatabaseDAO.getInstance(mContext).getTeam(team.getId());
+		team = DatabaseDAO.getInstance(mContext).getTeam(team.getId());
 
-		if (team.getId() != null) {
+		if (team.getCalendarShield() != null) {
 			idLocal = DrawableUtils.getDrawableId(getActivity()
-					.getApplicationContext(), "flag_" + team.getId(), 0);
+					.getApplicationContext(), team.getCalendarShield(), 4);
 			item.setTag(team.getId());
 			item.setOnClickListener(new OnClickListener() {
 
@@ -300,10 +300,14 @@ public class ClasificationSectionFragment extends SectionFragment implements
 				}
 			});
 
+		}else{
+			idLocal = R.drawable.escudo_generico_size02;
 		}
 
 		shieldImage.setBackgroundResource(idLocal);
 
+
+		
 		return item;
 	}
 

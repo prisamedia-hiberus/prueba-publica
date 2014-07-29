@@ -26,9 +26,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    
                     android:contentDescription="@string/defualt" />
-<!--                 android:background="@drawable/sliding_logo_ligabbva" -->
+                <!-- android:background="@drawable/sliding_logo_ligabbva" -->
             </RelativeLayout>
 
             <LinearLayout
@@ -49,9 +48,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        
+                        android:background="@drawable/escudo_generico_size02"
                         android:contentDescription="@string/defualt" />
-<!--                     android:background="@drawable/escudo_generico_size02" -->
 
                     <TextView
                         android:id="@+id/localTeamName"
@@ -75,10 +73,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        
+                        android:background="@drawable/escudo_generico_size02"
                         android:contentDescription="@string/defualt" />
-                    <!-- android:background="@drawable/escudo_generico_size02" -->
-
 
                     <TextView
                         android:id="@+id/awayTeamName"
@@ -256,8 +252,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout

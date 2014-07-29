@@ -501,11 +501,11 @@ public class CalendarRegularFragment extends CalendarFragment {
 						.getApplicationContext(),
 						localTeam.getCalendarShield(), 4);
 			}
-			// if (idLocal != 0)
-			holder.localShield.setBackgroundResource(idLocal);
-			// else
-			// holder.localShield
-			// .setBackgroundResource(R.drawable.escudo_generico_size03);
+			if (idLocal != 0)
+				holder.localShield.setBackgroundResource(idLocal);
+			else
+				holder.localShield
+						.setBackgroundResource(R.drawable.escudo_generico_size03);
 			// holder.localShield.setBackgroundResource(R.drawable.flag_956);
 
 			int idAway = 0;
@@ -515,11 +515,11 @@ public class CalendarRegularFragment extends CalendarFragment {
 						.getApplicationContext(), awayTeam.getCalendarShield(),
 						4);
 			}
-			// if (idAway != 0)
-			holder.awayShield.setBackgroundResource(idAway);
-			// else
-			// holder.awayShield
-			// .setBackgroundResource(R.drawable.escudo_generico_size03);
+			if (idAway != 0)
+				holder.awayShield.setBackgroundResource(idAway);
+			else
+				holder.awayShield
+						.setBackgroundResource(R.drawable.escudo_generico_size03);
 			// holder.awayShield.setBackgroundResource(R.drawable.flag_956);
 
 			return convertView;
