@@ -498,9 +498,9 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Zona Adidas</string>
-			<key>adidasWV</key>
-			<string>http://www.adidas.es</string>
+			<string>adidas</string>
+			<key>urlWV</key>
+			<string>http://www.adidas.es/futbol</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>

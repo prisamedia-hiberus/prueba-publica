@@ -8,7 +8,7 @@
 		<key>available</key>
 		<true/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_del_mundial/patrocinio/img_ford_splash.png</string>
+		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2014_2015/img_adidas_splash.png</string>
 		<key>seconds</key>
 		<integer>1</integer>
 	</dict>
@@ -19,7 +19,7 @@
 		<key>available</key>
 		<true/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_del_mundial/patrocinio/img_ford_splash.png</string>
+		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2014_2015/img_adidas_header.png</string>
 	</dict>
 
     <!-- prefijos -->
