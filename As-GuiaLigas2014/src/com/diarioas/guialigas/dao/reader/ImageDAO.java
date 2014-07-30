@@ -234,9 +234,9 @@ public class ImageDAO {
 
 		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
 				Defines.NAME_CACHE_THUMBS + "gallery");
-		cacheParams.setMemCacheSizePercent(0.20f);
+		cacheParams.setMemCacheSizePercent(0.30f);
 
-		mImageFetcherGallery = new ImageFetcher(mContext, size.y);
+		mImageFetcherGallery = new ImageFetcher(mContext, size.y/2);
 
 		mImageFetcherGallery.addImageCache(
 				((FragmentActivity) this.mContext).getSupportFragmentManager(),
@@ -339,33 +339,39 @@ public class ImageDAO {
 			this.mImageFetcherFourth.clearCache();
 		if (this.mImageFetcherHeader != null)
 			this.mImageFetcherHeader.clearCache();
+		
+		clearPlayerCache();
+		clearGalleryCache();
+		clearNewsCache();
+		clearStadiumsCache();
+		clearImageLoaderCache();
 	}
 
-	public void clearPlayerCache() {
+	private void clearPlayerCache() {
 		if (this.mImageFetcherPlayer != null)
 			this.mImageFetcherPlayer.clearCache();
 		if (this.mImageFetcherSmallPlayer != null)
 			this.mImageFetcherSmallPlayer.clearCache();
 	}
 
-	public void clearGalleryCache() {
+	private void clearGalleryCache() {
 		if (this.mImageFetcherGallery != null)
 			this.mImageFetcherGallery.clearCache();
 	}
 
-	public void clearNewsCache() {
+	private void clearNewsCache() {
 		if (this.mImageFetcherNews != null)
 			this.mImageFetcherNews.clearCache();
 	}
 
-	public void clearStadiumsCache() {
+	private void clearStadiumsCache() {
 		if (this.mImageFetcherStadiums != null)
 			this.mImageFetcherStadiums.clearCache();
 		if (this.mImageFetcherStadiumsDetail != null)
 			this.mImageFetcherStadiumsDetail.clearCache();
 	}
 
-	public void clearImageLoaderCache() {
+	private void clearImageLoaderCache() {
 		if (this.imgL != null)
 			this.imgL.clearCache();
 		imgL.clearCache();

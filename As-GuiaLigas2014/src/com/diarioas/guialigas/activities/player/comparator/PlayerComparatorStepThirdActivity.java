@@ -115,7 +115,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		ImageDAO.getInstance(this).clearPlayerCache();
+		ImageDAO.getInstance(this).clearCache();
 	}
 
 	@Override

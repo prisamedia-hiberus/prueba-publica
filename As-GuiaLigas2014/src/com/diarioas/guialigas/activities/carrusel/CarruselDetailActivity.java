@@ -220,7 +220,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		ImageDAO.getInstance(this).clearPlayerCache();
+		ImageDAO.getInstance(this).clearCache();
 	}
 
 	/**

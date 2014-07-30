@@ -118,7 +118,6 @@ public class HomeActivity extends SlidingFragmentActivity implements
 	public void onLowMemory() {
 		super.onLowMemory();
 		ImageDAO.getInstance(mContext).clearCache();
-		ImageDAO.getInstance(mContext).clearImageLoaderCache();
 	}
 
 	@Override
@@ -233,7 +232,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		 View adsButtonContainer = getSupportActionBar().getCustomView().findViewById(R.id.adsButtonContainer);
 		 adsButtonContainer.setVisibility(View.VISIBLE);
 		 ImageView adsButton = (ImageView) getSupportActionBar().getCustomView().findViewById(R.id.adsButton);
-		 ImageDAO.getInstance(this).displayImage(headerLink, adsButton, 0, R.drawable.mask_foto);
+		 ImageDAO.getInstance(this).displayImage(headerLink, adsButton, 0);
 //		 ImageDAO.getInstance(this).loadActionBarImage(headerLink,adsButton);
 
 		 }

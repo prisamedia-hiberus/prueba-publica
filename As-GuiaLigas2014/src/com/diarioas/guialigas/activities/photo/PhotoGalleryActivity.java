@@ -126,7 +126,7 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		ImageDAO.getInstance(this).clearGalleryCache();
+		ImageDAO.getInstance(this).clearCache();
 	}
 
 	@Override

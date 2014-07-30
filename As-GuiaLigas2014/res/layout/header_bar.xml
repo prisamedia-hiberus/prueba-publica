@@ -25,13 +25,11 @@
 
     <RelativeLayout
         android:id="@+id/adsButtonContainer"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:clickable="true"
-        android:paddingLeft="45dp"
-        android:paddingRight="15dp" >
+        android:clickable="true" >
 
         <ImageView
             android:id="@+id/adsButton"
@@ -39,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:contentDescription="@string/defualt"
-            android:scaleType="center" />
+            android:scaleType="fitCenter" />
     </RelativeLayout>
 
     <ImageView

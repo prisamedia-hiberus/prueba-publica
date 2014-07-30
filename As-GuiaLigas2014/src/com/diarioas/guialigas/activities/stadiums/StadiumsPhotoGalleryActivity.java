@@ -108,7 +108,7 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		ImageDAO.getInstance(this).clearStadiumsCache();
+		ImageDAO.getInstance(this).clearCache();
 	}
 
 	@Override

@@ -73,7 +73,7 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		ImageDAO.getInstance(this).clearNewsCache();
+		ImageDAO.getInstance(this).clearCache();
 	}
 
 	/*
