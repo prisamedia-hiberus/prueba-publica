@@ -27,6 +27,7 @@ import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.model.carrusel.Gol;
 import com.diarioas.guialigas.dao.model.carrusel.Tarjeta;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
@@ -149,7 +150,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 	private void configureIcon() {
 		ImageView title_menuIcon = (ImageView)generalView.findViewById(R.id.title_menuIcon);
 		
-		int iconId = getArguments().getInt("logo");
+		int iconId = DrawableUtils.getDrawableId(mContext, RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCurrentCompetition().getImage().toLowerCase(),4);
 		title_menuIcon.setImageDrawable(getResources().getDrawable(iconId));
 	}
 

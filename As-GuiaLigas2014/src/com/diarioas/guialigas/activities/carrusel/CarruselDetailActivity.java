@@ -621,7 +621,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 					.equalsIgnoreCase(CarruselDetail.CARRUSEL_RESUMEN)) {
 				args.putParcelable("match", match);
 				args.putString("jornadaName",getIntent().getStringExtra("dayName"));
-				args.putInt("logo",getIntent().getIntExtra("logo", 0));
 				fragment = new CarruselResumenFragment();
 			} else if (details.get(i).equalsIgnoreCase(
 					CarruselDetail.CARRUSEL_PICAS)) {

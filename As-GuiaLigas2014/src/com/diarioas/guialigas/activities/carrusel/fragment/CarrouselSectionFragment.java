@@ -776,11 +776,6 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		// intent.putExtra("state", match.getState());
 		intent.putExtra("dataLink", match.getDataLink());
 		intent.putExtra("link", match.getLink());
-		
-//		competition
-		int logo = DrawableUtils.getDrawableId(mContext, RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCurrentCompetition().getImage().toLowerCase(),4);
-		
-		intent.putExtra("logo", logo);
 
 		if (headerText != null)
 			intent.putExtra("dayName", headerText.getText().toString());
