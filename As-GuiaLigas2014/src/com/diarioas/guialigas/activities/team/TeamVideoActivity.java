@@ -59,8 +59,8 @@ public class TeamVideoActivity extends Activity implements PreRollVideoListener 
 		// TODO Auto-generated method stub
 		super.onStart();
 		configVideo();
-//		callToAds();
-		loadVideo();
+		callToAds();
+//		loadVideo();
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import android.widget.RelativeLayout.LayoutParams;
 
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.prisadigital.realmedia.adlib.AdView;
+import com.prisadigital.realmedia.adlib.InterstitialAd;
+import com.prisadigital.realmedia.adlib.PreRollVideo;
 import com.prisadigital.realmedia.adlib.PreRollVideo.PreRollVideoListener;
 
 public class PubliDAO {
@@ -41,26 +43,26 @@ public class PubliDAO {
 	}
 
 	public void displayInterstitial(String adUnitKey) {
-		// // Build adkey
-		// String adurl = NativeAds.AD_KEY + adUnitKey;
-		// String adPosition = "Position2";
-		//
-		// // Create Interstitial
-		// InterstitialAd iad = new InterstitialAd(mContext, adurl, adPosition);
-		// // Show
-		// iad.loadAd();
-		// Log.d("PUBLI", "Mostrando InterstitialAd: " + adurl);
+		 // Build adkey
+		 String adurl = NativeAds.AD_KEY + adUnitKey;
+		 String adPosition = "Position2";
+		
+		 // Create Interstitial
+		 InterstitialAd iad = new InterstitialAd(mContext, adurl, adPosition);
+		 // Show
+		 iad.loadAd();
+		 Log.d("PUBLI", "Mostrando InterstitialAd: " + adurl);
 	}
 
 	public void showPreRoll(String adUnitKey, PreRollVideoListener listener) {
-		// String adurl = NativeAds.AD_KEY + adUnitKey;
-		// String adPosition = "Prerroll";
-		//
-		// Log.d("PUBLI", "PREROLL::URL: " + adurl + " Position: " +
-		// adPosition);
-		//
-		// PreRollVideo.queryForVideo(mContext, adurl, adPosition, listener);
-		// Log.d("PUBLI", "Mostrando PreRollVideo: " + adurl);
+		 String adurl = NativeAds.AD_KEY + adUnitKey;
+		 String adPosition = "Prerroll";
+		
+		 Log.d("PUBLI", "PREROLL::URL: " + adurl + " Position: " +
+		 adPosition);
+		
+		 PreRollVideo.queryForVideo(mContext, adurl, adPosition, listener);
+		 Log.d("PUBLI", "Mostrando PreRollVideo: " + adurl);
 
 	}
 

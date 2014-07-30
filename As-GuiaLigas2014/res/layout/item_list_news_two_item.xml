@@ -28,13 +28,20 @@
                 android:background="@drawable/galeria_imagenrecurso02"
                 android:contentDescription="@string/defualt" />
 
-            <ImageView
+            <!-- <ImageView -->
+            <!-- android:id="@+id/image" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="match_parent" -->
+            <!-- android:layout_centerInParent="true" -->
+            <!-- android:contentDescription="@string/defualt" -->
+            <!-- android:scaleType="centerCrop" /> -->
+
+            <com.diarioas.guialigas.utils.imageutils.ImageViewTopCrop
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/defualt"
-                android:scaleType="centerCrop" />
+                android:contentDescription="@string/defualt" />
 
             <ImageView
                 android:id="@+id/iconVideo"
@@ -109,13 +116,20 @@
                 android:background="@drawable/galeria_imagenrecurso02"
                 android:contentDescription="@string/defualt" />
 
-            <ImageView
+            <!-- <ImageView -->
+            <!-- android:id="@+id/image" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="match_parent" -->
+            <!-- android:layout_centerInParent="true" -->
+            <!-- android:contentDescription="@string/defualt" -->
+            <!-- android:scaleType="centerCrop" /> -->
+
+            <com.diarioas.guialigas.utils.imageutils.ImageViewTopCrop
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/defualt"
-                android:scaleType="centerCrop" />
+                android:contentDescription="@string/defualt" />
 
             <ImageView
                 android:id="@+id/iconVideo"

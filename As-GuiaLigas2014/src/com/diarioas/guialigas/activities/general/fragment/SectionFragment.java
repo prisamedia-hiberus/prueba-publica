@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
+import com.diarioas.guialigas.dao.reader.PubliDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.prisadigital.realmedia.adlib.AdView;
@@ -130,26 +131,26 @@ public abstract class SectionFragment extends Fragment {
 	 * @param section
 	 */
 	protected void callToAds(String name) {
-		// if (section == null)
-		// return;
-		// // Delete old banner
-		// if (banner != null) {
-		// banner.removeBanner();
-		// ((ViewGroup) getActivity().findViewById(R.id.publiContent))
-		// .removeView(banner);
-		// }
-		//
-		// // Create new Banner
-		// banner = PubliDAO.getInstance(getActivity()).getBanner(name);
-		//
-		// // Set the new banner
-		// if (banner != null)
-		// ((ViewGroup) getActivity().findViewById(R.id.publiContent))
-		// .addView(banner);
-		//
-		// // if (inter)
-		// // shows interstitial
-		// PubliDAO.getInstance(getActivity()).displayInterstitial(name);
+		if (section == null)
+			return;
+		// Delete old banner
+		if (banner != null) {
+			banner.removeBanner();
+			((ViewGroup) getActivity().findViewById(R.id.publiContent))
+					.removeView(banner);
+		}
+
+		// Create new Banner
+		banner = PubliDAO.getInstance(getActivity()).getBanner(name);
+
+		// Set the new banner
+		if (banner != null)
+			((ViewGroup) getActivity().findViewById(R.id.publiContent))
+					.addView(banner);
+
+		// if (inter)
+		// shows interstitial
+		PubliDAO.getInstance(getActivity()).displayInterstitial(name);
 	}
 
 	public void setAdsActive() {

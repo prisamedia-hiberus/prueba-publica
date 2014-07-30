@@ -286,6 +286,11 @@ public class Defines {
 		public static final String SUBSECTION_DAY = "jornada";
 		public static final String SUBSECTION_GALLERY = "galeria";
 		public static final String SUBSECTION_NEWSDETAIL = "detalle noticia";
+		public static final String SUBSECTION_TEAM_NEWS = "ver noticias";
+		public static final String SUBSECTION_TEAM_MAP = "ver mapa";
+		public static final String SUBSECTION_TEAM_STATS = "estad’sticas";
+		public static final String SUBSECTION_TEAM_INFO = "informaci—n";
+		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";
 
 		public static final String SUBSUBSECTION_FICHA = "ficha";
 		public static final String SUBSUBSECTION_PLAYERS = "jugadores";

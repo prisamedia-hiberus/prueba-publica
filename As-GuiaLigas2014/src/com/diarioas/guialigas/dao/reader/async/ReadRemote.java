@@ -67,7 +67,14 @@ public class ReadRemote {
 			}
 
 			strFileContents = sb.toString();
-			// strFileContents = strFileContents.replaceAll("\\t", "");
+			if (strFileContents.startsWith("\uFEFF")) {
+				// Log.d("READREMOTE", "Starts withh BOM");
+				strFileContents = strFileContents.replace("\uFEFF", "");
+				// Log.d("READREMOTE",
+				// "Starts withh BOM: "
+				// + strFileContents.startsWith("\uFEFF"));
+			}
+			
 			return strFileContents;
 
 		} catch (ClientProtocolException e) {

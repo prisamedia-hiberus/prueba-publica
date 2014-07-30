@@ -251,11 +251,11 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 		private static final int TYPE_HEADER_ITEM = TYPE_FOUR_ITEM + 1;
 		private static final int TYPE_TOTAL = TYPE_HEADER_ITEM + 1;
 		private int numItems;
-		private final Bitmap placeholderBitmap;
+//		private final Bitmap placeholderBitmap;
 
 		public NewsAdapter() {
-			placeholderBitmap = BitmapFactory.decodeResource(
-					mContext.getResources(), R.drawable.galeria_imagenrecurso);
+//			placeholderBitmap = BitmapFactory.decodeResource(
+//					mContext.getResources(), R.drawable.galeria_imagenrecurso);
 		}
 
 		public void notifyChange() {

@@ -11,11 +11,16 @@ public class DrawableUtils {
 	public static int getDrawableId(Context ctx, String url,
 			int numCharacterExtension) {
 		int idLocal = 0;
-		if (url != null && ctx!=null)
-			idLocal = ctx.getResources().getIdentifier(
-					url.substring(0, url.length() - numCharacterExtension),
-					"drawable", ctx.getPackageName());
-		return idLocal;
+		if (url != null && ctx!=null) {
+			url = url.substring(0, url.length() - numCharacterExtension);
+			idLocal = ctx.getResources().getIdentifier(url,"drawable", ctx.getPackageName());
+			if (url.equalsIgnoreCase(String.valueOf(idLocal))){
+				return 0;
+			}else{
+				return idLocal;
+			}
+		}
+		return 0;
 	}
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)

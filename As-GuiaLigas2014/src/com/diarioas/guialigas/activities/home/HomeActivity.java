@@ -118,6 +118,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 	public void onLowMemory() {
 		super.onLowMemory();
 		ImageDAO.getInstance(mContext).clearCache();
+		ImageDAO.getInstance(mContext).clearImageLoaderCache();
 	}
 
 	@Override
@@ -171,7 +172,9 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			this.menuSections = null;
 		}
 
+		ImageDAO.getInstance(mContext).eraseImageLoader();
 		ImageDAO.removeInstance();
+		
 	}
 
 	@Override
@@ -226,34 +229,14 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 		final String headerLink = DatabaseDAO.getInstance(mContext)
 				.getHeaderInfo();
-		// if (headerLink != null) {
-		// View adsButtonContainer = getSupportActionBar().getCustomView()
-		// .findViewById(R.id.adsButtonContainer);
-		// adsButtonContainer.setVisibility(View.VISIBLE);
-		// ImageView adsButton = (ImageView) getSupportActionBar()
-		// .getCustomView().findViewById(R.id.adsButton);
-		//
-		// ImageCacheParams cacheParams = new ImageCacheParams(this,
-		// Defines.NAME_CACHE_THUMBS+"action");
-		// cacheParams.setMemCacheSizePercent(0.25f);
-		//
-		// ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
-		// .getDimensionPixelSize(R.dimen.image_actionbar_height));
-		// FragmentManager fragmentManager = this.getSupportFragmentManager();
-		// mImageFetcher.addImageCache(fragmentManager, cacheParams);
-		// mImageFetcher.setImageFadeIn(true);
-		// mImageFetcher.loadImageWhitoutCache((String) headerLink,adsButton);
-		//
-		// // ImageDAO.getInstance(this).loadActionBarImage(headerLink,
-		// adsButton);
-		// // adsButtonContainer.setOnClickListener(new OnClickListener() {
-		// //
-		// // @Override
-		// // public void onClick(View v) {
-		// // // openLink(headerLink);
-		// // }
-		// // });
-		// }
+		 if (headerLink != null) {
+		 View adsButtonContainer = getSupportActionBar().getCustomView().findViewById(R.id.adsButtonContainer);
+		 adsButtonContainer.setVisibility(View.VISIBLE);
+		 ImageView adsButton = (ImageView) getSupportActionBar().getCustomView().findViewById(R.id.adsButton);
+		 ImageDAO.getInstance(this).displayImage(headerLink, adsButton, 0, R.drawable.menu_icon_on);
+//		 ImageDAO.getInstance(this).loadActionBarImage(headerLink,adsButton);
+
+		 }
 	}
 
 	private void configSlidingMenu() {
