@@ -127,6 +127,14 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				R.layout.fragment_comparatorplayer_section, container, false);
 		return generalView;
 	}
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		ImageDAO.getInstance(getActivity()).closePlayerCache();
+		ImageDAO.getInstance(getActivity()).erasePlayerCache();
+	}
 
 	/***************************************************************************/
 	/** Configuration methods **/
@@ -445,7 +453,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String url = currentPlayerLeft.getUrlFoto();
 		if (url != null) {
 			ImageDAO.getInstance(mContext)
-					.loadImage(
+					.loadPlayerImage(
 							url,
 							((ImageView) generalView
 									.findViewById(R.id.photoPlayerLeft)),

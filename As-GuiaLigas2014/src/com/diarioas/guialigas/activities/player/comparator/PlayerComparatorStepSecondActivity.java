@@ -64,7 +64,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	private ImageView buttonPrev;
 	private ImageView buttonNext;
 	private boolean headerVisibility;
-	private int currentCompetitionId;
+//	private int currentCompetitionId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -229,7 +229,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		playerComparatorViewPager.setAdapter(new FragmentAdapter(
 				getSupportFragmentManager(), fragments));
 		playerComparatorViewPager.setCurrentItem(0, true);
-		currentCompetitionId = competitions.get(0).getId();
+//		currentCompetitionId = competitions.get(0).getId();
 		playerComparatorViewPager.setOnPageChangeListener(this);
 
 		setButtonsVisibility();
@@ -370,7 +370,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	public void onPageSelected(int pos) {
 
 		countrySroll.setHeaderPosition(pos);
-		currentCompetitionId = competitions.get(pos).getId();
+//		currentCompetitionId = competitions.get(pos).getId();
 		setButtonsVisibility();
 
 	}

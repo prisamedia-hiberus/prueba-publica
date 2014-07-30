@@ -76,6 +76,8 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 			array = null;
 		}
 		newsAdapter = null;
+		ImageDAO.getInstance(getActivity()).closeNewsCache();
+		ImageDAO.getInstance(getActivity()).eraseNewsCache();
 	}
 
 	/***************************************************************************/

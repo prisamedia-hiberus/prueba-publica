@@ -76,12 +76,6 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 		ImageDAO.getInstance(this).clearNewsCache();
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		ImageDAO.getInstance(this).closeNewsCache();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 

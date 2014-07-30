@@ -134,8 +134,8 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ImageDAO.getInstance(this).closePlayerCache();
-		ImageDAO.getInstance(this).erasePlayerCache();
+//		ImageDAO.getInstance(this).closePlayerCache();
+//		ImageDAO.getInstance(this).erasePlayerCache();
 	}
 
 	@Override
