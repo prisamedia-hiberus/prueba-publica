@@ -42,6 +42,7 @@ import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
@@ -115,6 +116,9 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			t.cancel();
 			t = null;
 		}
+		
+		ImageDAO.getInstance(getActivity()).closePlayerCache();
+		ImageDAO.getInstance(getActivity()).erasePlayerCache();
 	}
 
 	/***************************************************************************/
@@ -772,6 +776,11 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		// intent.putExtra("state", match.getState());
 		intent.putExtra("dataLink", match.getDataLink());
 		intent.putExtra("link", match.getLink());
+		
+//		competition
+		int logo = DrawableUtils.getDrawableId(mContext, RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCurrentCompetition().getImage().toLowerCase(),4);
+		
+		intent.putExtra("logo", logo);
 
 		if (headerText != null)
 			intent.putExtra("dayName", headerText.getText().toString());

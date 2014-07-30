@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.content.Intent;
+import android.graphics.Shader.TileMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -140,7 +141,16 @@ public class CarruselResumenFragment extends CarruselFragment {
 		} else {
 			prevMatchButton.setVisibility(View.GONE);
 		}
+		
+		configureIcon();
 
+	}
+
+	private void configureIcon() {
+		ImageView title_menuIcon = (ImageView)generalView.findViewById(R.id.title_menuIcon);
+		
+		int iconId = getArguments().getInt("logo");
+		title_menuIcon.setImageDrawable(getResources().getDrawable(iconId));
 	}
 
 	/**
@@ -165,6 +175,8 @@ public class CarruselResumenFragment extends CarruselFragment {
 		} else {
 			postMatchButton.setVisibility(View.GONE);
 		}
+		
+		configureIcon();
 
 		FontUtils
 				.setCustomfont(mContext,

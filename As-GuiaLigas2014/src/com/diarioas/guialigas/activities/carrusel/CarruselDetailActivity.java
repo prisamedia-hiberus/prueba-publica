@@ -208,7 +208,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			t.cancel();
 			t=null;
 		}
-		ImageDAO.getInstance(this).closePlayerCache();
+
 	}
 
 	/*
@@ -286,6 +286,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	public void updateCarrusel() {
 		String dataLink = getIntent().getExtras().getString("dataLink");
+		dataLink = "http://as.com/apps/datos/directo/a9208f91ca1720d6c27572b7d825053a/regular/a/38/p_2772/marcador.js2";
 		Log.d("CARRUSELUPDATE", "Actualizando CarruselActivityetail: "
 				+ dataLink);
 		if (dataLink != null && !dataLink.equalsIgnoreCase("")) {
@@ -619,8 +620,8 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			if (details.get(i)
 					.equalsIgnoreCase(CarruselDetail.CARRUSEL_RESUMEN)) {
 				args.putParcelable("match", match);
-				args.putString("jornadaName",
-						getIntent().getStringExtra("dayName"));
+				args.putString("jornadaName",getIntent().getStringExtra("dayName"));
+				args.putInt("logo",getIntent().getIntExtra("logo", 0));
 				fragment = new CarruselResumenFragment();
 			} else if (details.get(i).equalsIgnoreCase(
 					CarruselDetail.CARRUSEL_PICAS)) {
@@ -657,6 +658,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 			args.putInt("idShieldLocal", idShieldLocal);
 			args.putInt("idShieldAway", idShieldAway);
+			
 			if (fragment != null) {
 				fragment.setArguments(args);
 				fList.add(fragment);
