@@ -233,7 +233,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		 View adsButtonContainer = getSupportActionBar().getCustomView().findViewById(R.id.adsButtonContainer);
 		 adsButtonContainer.setVisibility(View.VISIBLE);
 		 ImageView adsButton = (ImageView) getSupportActionBar().getCustomView().findViewById(R.id.adsButton);
-		 ImageDAO.getInstance(this).displayImage(headerLink, adsButton, 0, R.drawable.menu_icon_on);
+		 ImageDAO.getInstance(this).displayImage(headerLink, adsButton, 0, R.drawable.mask_foto);
 //		 ImageDAO.getInstance(this).loadActionBarImage(headerLink,adsButton);
 
 		 }
