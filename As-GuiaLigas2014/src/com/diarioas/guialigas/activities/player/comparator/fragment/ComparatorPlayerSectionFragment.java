@@ -1281,6 +1281,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 					.get(currentPRYear));
 			ItemStats itemStatsPR = playerStatPR.getStats(competitionPRArray
 					.get(currentPRCompetition));
+			
 			configureStats(itemStatsPL, itemStatsPR);
 		}
 	}
