@@ -10,12 +10,21 @@
         android:layout_height="wrap_content" >
 
         <com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll
-            android:id="@+id/countrySroll"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:scrollbars="none" >
+        android:id="@+id/countrySroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:scrollbars="none" >
         </com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll>
+
+        <!-- <com.diarioas.guialigas.utils.scroll.CustomHeaderMagneticHorizontalScroll -->
+        <!-- android:id="@+id/countrySroll" -->
+        <!-- android:layout_width="fill_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_centerVertical="true" -->
+        <!-- android:scrollbars="none" > -->
+        <!-- </com.diarioas.guialigas.utils.scroll.CustomHeaderMagneticHorizontalScroll> -->
+
 
         <RelativeLayout
             android:id="@+id/buttonLeft"

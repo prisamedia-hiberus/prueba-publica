@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:contentDescription="@string/defualt"
-            android:scaleType="centerCrop" />
+            android:scaleType="center" />
     </RelativeLayout>
 
     <ImageView

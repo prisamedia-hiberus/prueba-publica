@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,15 +31,18 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
+import com.diarioas.guialigas.utils.scroll.CustomHeaderMagneticHorizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
-public class TeamsSectionFragment extends SectionFragment implements ScrollEndListener, OnPageChangeListener{
+public class TeamsSectionFragment extends SectionFragment implements
+		ScrollEndListener, OnPageChangeListener {
 
 	private static final int SCROLL_WITH = 5;
 
 	private CustomViewPagerLeague leagueViewPager;
+//	private CustomHeaderMagneticHorizontalScroll countrySroll;
 	private CustomHoizontalScroll countrySroll;
 	private ImageView buttonPrev;
 	private ImageView buttonNext;
@@ -192,12 +194,16 @@ public class TeamsSectionFragment extends SectionFragment implements ScrollEndLi
 		boolean manyCompetititons = competitions.size() > 1;
 		TeamSection sectionAux;
 		for (Competition competition : competitions) {
-			sectionAux = (TeamSection) RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCompetition(competition.getId()).getSection(SECTIONS.TEAMS);
+			sectionAux = (TeamSection) RemoteDataDAO.getInstance(mContext)
+					.getGeneralSettings().getCompetition(competition.getId())
+					.getSection(SECTIONS.TEAMS);
 			leagueViewPager.addChildId(competition.getId() * 100);
 			String typeOrder = ((TeamSection) sectionAux).getTypeOrder();
-//			Log.d("GROUPS", "seccion: "+sectionAux.getName()+" Orden: "+typeOrder);
+			// Log.d("GROUPS",
+			// "seccion: "+sectionAux.getName()+" Orden: "+typeOrder);
 			if (typeOrder == null
-					|| typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_ALPHABETIC))
+					|| typeOrder
+							.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_ALPHABETIC))
 				competitionFragment = new CompetitionTeamHomeFragment();
 			else
 				competitionFragment = new CompetitionHomeGroupFragment();
