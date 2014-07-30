@@ -17,6 +17,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.news.fragment.NewsDetailFragment;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -24,14 +25,12 @@ import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 
 public class NewsDetailActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener {
 
 	private ViewPager newsViewPager;
-	private ImageFetcher mImageFetcher;
+//	private ImageFetcher mImageFetcher;
 	private int currentCompetitionId;
 
 	/***************************************************************************/
@@ -49,7 +48,6 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 				.getInstance(getApplicationContext()).getGeneralSettings()
 				.getCurrentCompetition().getId();
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
-		configureImageFetcher();
 		configView();
 
 	}
@@ -58,8 +56,7 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
-
+		ImageDAO.getInstance(this).exitNewsTaskEarly();
 		callToAds(NativeAds.AD_STADIUMS + "/" + NativeAds.AD_DETAIL, false);
 
 	}
@@ -68,21 +65,21 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitNewsTaskEarly();
+		ImageDAO.getInstance(this).flushNewsCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearNewsCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closeNewsCache();
 	}
 
 	/*
@@ -101,7 +98,7 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.actionbar_share_square, menu);
+		inflater.inflate(R.menu.actionbar_share, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -173,25 +170,6 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 		return fList;
 	}
 
-	private void configureImageFetcher() {
-
-		ImageCacheParams cacheParams = new ImageCacheParams(
-				getApplicationContext(), Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(getApplicationContext(),
-				(int) getResources().getDimension(
-						R.dimen.image_news_detail_height));
-		mImageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
-
-	}
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
 
 	/**************** ViewPager Methods *****************************/
 	@Override

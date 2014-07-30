@@ -37,7 +37,7 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
+import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageFetcher;
 
 public class NewsSectionFragment extends FlipSectionFragment implements
 		RemoteNewsDAOListener, ViewFlipListener {

@@ -22,19 +22,17 @@ import com.diarioas.guialigas.activities.stadiums.fragments.SedeFragment;
 import com.diarioas.guialigas.activities.stadiums.fragments.StadiumFragment;
 import com.diarioas.guialigas.dao.model.stadium.Stadium;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteStadiumsDAO;
 import com.diarioas.guialigas.dao.reader.RemoteStadiumsDAO.RemoteStadiumDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerStadium;
 import com.prisadigital.realmedia.adlib.AdView;
 
@@ -47,7 +45,6 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 	private TextView nameStadium;
 	private TextView nameCity;
 
-	public ImageFetcher mImageFetcher;
 	private List<Fragment> fragments;
 	private AdView banner;
 
@@ -57,11 +54,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_stadiums_detail);
-
 		configureView();
-
-		configureImageFetcher();
-
 		startAnimation();
 
 		idStadium = getIntent().getExtras().getInt("id");
@@ -85,7 +78,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitStadiumTaskEarly();
 		if (stadiumViewPager != null) {
 			callToOmniture(stadiumViewPager.getCurrentItem());
 			callToAds("sedes/detalle", false);
@@ -116,21 +109,21 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitStadiumTaskEarly();
+		ImageDAO.getInstance(this).flushStadiumsCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearStadiumsCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closeStadiumsCache();
 	}
 
 	/*
@@ -180,18 +173,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 
 	}
 
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
 
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_thumb_height));
-		mImageFetcher.setLoadingImage(R.drawable.galeria_imagenrecurso);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-
-	}
 
 	private void configViewPager() {
 		stadiumViewPager = (CustomViewPagerStadium) findViewById(R.id.stadiumViewPager);
@@ -387,12 +369,4 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 
 	/**************** ViewPager Methods *****************************/
 
-	/**************** Aux Methods *****************************/
-
-	/**
-	 * @return the mImageFetcher
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
 }

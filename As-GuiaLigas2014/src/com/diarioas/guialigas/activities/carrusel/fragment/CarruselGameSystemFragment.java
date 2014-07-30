@@ -27,6 +27,7 @@ import com.diarioas.guialigas.dao.model.carrusel.PlayerOnField;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOGameSystemListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.CarruselEventos;
 import com.diarioas.guialigas.utils.DimenUtils;
@@ -624,8 +625,7 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		playerDorsal.setText(String.valueOf(player.getDorsal()));
 
 		try {
-			((CarruselDetailActivity) getActivity()).getmImageFetcher()
-					.loadImage(player.getUrlPhoto(),
+			ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(player.getUrlPhoto(),
 							(ImageView) item.findViewById(R.id.playerImage),
 							R.drawable.foto_plantilla_mask);
 		} catch (Exception e) {

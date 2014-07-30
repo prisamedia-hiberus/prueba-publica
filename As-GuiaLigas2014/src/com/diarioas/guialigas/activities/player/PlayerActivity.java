@@ -35,7 +35,6 @@ import com.diarioas.guialigas.dao.reader.RemotePlayerDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
@@ -43,8 +42,6 @@ import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerPlayer;
 
 /**
@@ -79,7 +76,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 	private PlayerInfoFragment infoFragment;
 	private boolean isLoaded;
-	private ImageFetcher mImageFetcher;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +85,6 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 		setContentView(R.layout.activity_player);
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
-		configureImageFetcher();
 	}
 
 	/*
@@ -99,7 +95,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+//		mImageFetcher.setExitTasksEarly(false);
 		if (!isLoaded) {
 			Bundle extras = getIntent().getExtras();
 			int currentPlayerId = extras.getInt("playerId");
@@ -147,15 +143,15 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+//		mImageFetcher.setExitTasksEarly(false);
+//		mImageFetcher.flushCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+//		mImageFetcher.clearCache();
 	}
 
 	/*
@@ -177,7 +173,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		if (currentPlayer != null)
 			currentPlayer = null;
 
-		mImageFetcher.closeCache();
+//		mImageFetcher.closeCache();
 	}
 
 	/*
@@ -269,25 +265,8 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 	}
 
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
 
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height));
-		mImageFetcher.setLoadingImage(R.drawable.foto_generica);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
 
 	private void configViewPager() {
 		playerViewPager = (CustomViewPagerPlayer) findViewById(R.id.playerViewPager);

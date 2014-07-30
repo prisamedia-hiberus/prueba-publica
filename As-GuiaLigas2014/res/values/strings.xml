@@ -132,7 +132,8 @@
     <string name="section_download_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
 
     <!-- Menu Lateral -->
-    <string name="menu_teams">Equipos</string>
+    <!-- <string name="menu_teams">Equipos</string> -->
+    <string name="menu_teams">Competiciones</string>
     <string name="menu_calendario">Calendario</string>
     <string name="menu_clasificacion">Clasificación</string>
     <string name="menu_carrusel">Carrusel</string>

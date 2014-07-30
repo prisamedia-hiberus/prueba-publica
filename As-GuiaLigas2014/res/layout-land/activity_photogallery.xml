@@ -35,14 +35,14 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:background="@drawable/button_icn_share"
+            android:background="@drawable/button_share"
             android:contentDescription="@string/defualt" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/home_icn_logoheader"
+            android:background="@drawable/menu_icn_logo"
             android:contentDescription="@string/defualt" />
     </RelativeLayout>
 

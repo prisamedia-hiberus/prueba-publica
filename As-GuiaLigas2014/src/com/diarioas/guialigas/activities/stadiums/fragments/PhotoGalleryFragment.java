@@ -10,15 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity;
 import com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 
 public class PhotoGalleryFragment extends Fragment {
 
 	private View generalView;
-	private ImageFetcher mImageFetcher;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,8 +24,6 @@ public class PhotoGalleryFragment extends Fragment {
 
 		generalView = inflater.inflate(R.layout.fragment_sede_photo, container,
 				false);
-		mImageFetcher = ((StadiumsDetailActivity) getActivity())
-				.getmImageFetcher();
 
 		configureView();
 
@@ -37,8 +33,7 @@ public class PhotoGalleryFragment extends Fragment {
 	private void configureView() {
 		String url = getArguments().getString("url");
 		// Log.d("PhotoGalleryFragment", "Cargando imagen: " + url);
-		mImageFetcher.loadImage(url,
-				(ImageView) generalView.findViewById(R.id.image));
+		ImageDAO.getInstance(getActivity()).loadStadiumDetailImage(url,(ImageView) generalView.findViewById(R.id.image));
 		generalView.setOnClickListener(new OnClickListener() {
 
 			@Override

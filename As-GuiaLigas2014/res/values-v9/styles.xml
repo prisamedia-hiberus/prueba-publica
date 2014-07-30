@@ -1,0 +1,122 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="Theme.MySherlockDark" parent="Theme.Sherlock">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="Theme.MySherlock" parent="Theme.Sherlock.Light">
+
+        <!-- <item name="homeAsUpIndicator">@drawable/button_back</item> -->
+        <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
+        <item name="actionBarStyle">@style/CustomActionBarStyle</item>
+        <item name="actionBarSize">@dimen/size_actionbar</item>
+        <item name="android:actionMenuTextAppearance">@style/CustomMenuTextApearance</item>
+        <item name="actionMenuTextAppearance">@style/CustomMenuTextApearance</item>
+        <item name="actionMenuTextColor">@color/red</item>
+        <item name="android:actionMenuTextColor">@color/red</item>
+        <item name="android:textAppearance">@style/CustomMenuTextApearance</item>
+        <item name="actionBarItemBackground">@android:color/transparent</item>
+        <item name="android:actionBarItemBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomActionBarStyle" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="displayOptions">showHome|useLogo</item>
+        <item name="background">@drawable/header01</item>
+        <item name="android:background">@drawable/header01</item>
+        <item name="height">@dimen/height_actionBar</item>
+        <item name="android:height">@dimen/height_actionBar</item>
+        <item name="icon">@drawable/home_icn_logoheader</item>
+        <item name="android:icon">@drawable/home_icn_logoheader</item>
+        <item name="titleTextStyle">@style/CustomTitleActionBar</item>
+        <item name="android:titleTextStyle">@style/CustomTitleActionBar</item>
+        <item name="actionMenuTextColor">@color/red</item>
+        <item name="android:textSize">@dimen/size_item_actionbar</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">@style/CustomMenuTextApearance</item>
+        <item name="android:textAppearance">@style/CustomMenuTextApearance</item>
+        <item name="android:itemPadding">20dip</item>
+        <item name="android:itemTextAppearance">@style/CustomMenuTextApearance</item>
+        <item name="itemTextAppearance">@style/CustomMenuTextApearance</item>
+    </style>
+
+    <style name="CustomTitleActionBar" parent="TextAppearance.Sherlock.Widget.ActionMode.Title.Inverse">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textColorHint">@color/red</item>
+        <item name="android:textColorHighlight">@color/red</item>
+        <item name="android:textColorLink">@color/red</item>
+        <item name="android:textSize">@dimen/size_actionbar</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
+
+    <style name="CustomMenuTextApearance" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/size_item_actionbar</item>
+    </style>
+
+    <style name="team_gap_bar_dark">
+        <item name="android:background">@color/dark_gray</item>
+        <item name="android:layout_marginBottom">10dip</item>
+        <!-- <item name="android:layout_marginLeft">10dp</item> -->
+        <!-- <item name="android:layout_marginRight">10dp</item> -->
+        <item name="android:layout_marginTop">10dip</item>
+    </style>
+
+    <style name="team_gap_bar_light">
+        <item name="android:background">@color/clear_gray</item>
+        <item name="android:layout_marginBottom">8dip</item>
+        <!-- <item name="android:layout_marginLeft">15dp</item> -->
+        <!-- <item name="android:layout_marginRight">15dp</item> -->
+        <item name="android:layout_marginTop">8dip</item>
+    </style>
+
+    <style name="subtitleStyle" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:layout_marginBottom">10dip</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_subtitle</item>
+    </style>
+
+    <style name="subtitleStyleGray" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:layout_marginBottom">10dip</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:textColor">@color/medium_gray</item>
+        <item name="android:textSize">@dimen/size_subtitle</item>
+    </style>
+
+    <!-- Notifications -->
+
+    <style name="notificationName" parent="android:TextAppearance.StatusBar.EventContent.Title">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NotificationMessage" parent="android:TextAppearance.StatusBar.EventContent">
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

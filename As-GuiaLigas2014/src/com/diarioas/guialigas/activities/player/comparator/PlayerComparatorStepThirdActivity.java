@@ -22,16 +22,13 @@ import com.diarioas.guialigas.activities.team.fragment.TeamPlayersFragment;
 import com.diarioas.guialigas.dao.model.player.Player;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
-import com.diarioas.guialigas.utils.bitmapfun.ImageWorker;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
 /**
@@ -52,8 +49,6 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	//
 	private boolean resultOk;
 
-	private ImageFetcher mImageFetcher;
-
 	// Third Step
 
 	@Override
@@ -69,7 +64,6 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 		teamId = getIntent().getExtras().getString("teamId");
 		int competitionId = getIntent().getExtras().getInt("competitionId");
 
-		configureImageFetcher();
 		configActionBar();
 		startAnimation();
 		RemoteTeamDAO.getInstance(this).addListener(this);
@@ -106,28 +100,28 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 						+ " " + Omniture.SUBSECTION_COUNTRIES + " "
 						// TODO: Falta el nombre del equipo
 						+ Omniture.SUBSUBSECTION_PLAYERS, null);
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 	}
 
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
+		ImageDAO.getInstance(this).flushCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearPlayerCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closeCache();
 	}
 
 	/*
@@ -265,21 +259,6 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 
 	/************************************ SECOND STEP ******************************************/
 
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height_small));
-		mImageFetcher.setLoadingImage(R.drawable.foto_plantilla_generica);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-	}
-
-	public ImageWorker getmImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcher;
-	}
 
 	/*********************************** Metodos de RemoteTeam *****************************************/
 	/*

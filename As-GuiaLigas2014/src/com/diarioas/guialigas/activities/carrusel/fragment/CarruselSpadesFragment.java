@@ -24,6 +24,7 @@ import com.diarioas.guialigas.dao.model.carrusel.SpadeInfo;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOSpadesListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -139,8 +140,7 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 		});
 
 		try {
-			((CarruselDetailActivity) getActivity()).getmImageFetcher()
-					.loadImage(spade.getUrlPhoto(),
+			ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(spade.getUrlPhoto(),
 							(ImageView) item.findViewById(R.id.playerImage),
 							R.drawable.foto_plantilla_mask);
 		} catch (Exception e) {

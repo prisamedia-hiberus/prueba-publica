@@ -11,14 +11,13 @@ import android.view.ViewGroup;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.photo.PhotoGalleryActivity;
 import com.diarioas.guialigas.dao.model.news.PhotoMediaItem;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.imageutils.TouchImageView;
 
 public class PhotoSectionGalleryFragment extends Fragment implements
 		OnTouchListener {
 
 	private View generalView;
-	private ImageFetcher mImageFetcher;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,8 +26,6 @@ public class PhotoSectionGalleryFragment extends Fragment implements
 		generalView = inflater.inflate(R.layout.fragment_photo_fs, container,
 				false);
 
-		mImageFetcher = ((PhotoGalleryActivity) getActivity())
-				.getmImageFetcher();
 
 		configureView();
 
@@ -42,7 +39,7 @@ public class PhotoSectionGalleryFragment extends Fragment implements
 		TouchImageView touchImageView = (TouchImageView) generalView
 				.findViewById(R.id.image);
 		touchImageView.setCustomTouchListener(this);
-		mImageFetcher.loadImage(photoItem.getUrl(), touchImageView);
+		ImageDAO.getInstance(getActivity()).loadGalleryImage(photoItem.getUrl(), touchImageView);
 
 		// generalView.setOnClickListener(new OnClickListener() {
 		//

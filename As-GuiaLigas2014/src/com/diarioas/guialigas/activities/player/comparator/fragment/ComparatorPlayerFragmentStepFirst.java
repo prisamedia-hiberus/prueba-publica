@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepFirstActivity;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 
 /**
@@ -87,12 +88,7 @@ public class ComparatorPlayerFragmentStepFirst extends Fragment {
 	private void configurePlayerLeft() {
 		String url = getArguments().getString("fotoPL");
 		if (url != null) {
-			((PlayerComparatorStepFirstActivity) getActivity())
-					.getmImageFetcher().loadImage(
-							url,
-							((ImageView) generalView
-									.findViewById(R.id.photoPlayerLeft)),
-							R.drawable.mask_foto);
+			ImageDAO.getInstance(getActivity()).loadPlayerImage(url,((ImageView) generalView.findViewById(R.id.photoPlayerLeft)),R.drawable.mask_foto);
 		}
 
 		TextView namePlayerLeft = (TextView) generalView

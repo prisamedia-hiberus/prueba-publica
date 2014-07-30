@@ -43,8 +43,8 @@ import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAODetailListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.CarruselDetail;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -54,8 +54,6 @@ import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.comparator.CarruselComparator;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
@@ -109,7 +107,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	private ImageView awayShield;
 
-	private ImageFetcher mImageFetcher;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +125,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 		timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_NO_ACTIVE;
 		timeToUpdateOld = timeToUpdate;
 
-		configureImageFetcher();
 
 		configActionBar();
 		configureView();
@@ -168,7 +164,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 		callToAds(NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_DETAIL, false);
 	}
 
@@ -176,8 +172,8 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
+		ImageDAO.getInstance(this).flushPlayerCache();
 	}
 
 	/*
@@ -212,7 +208,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			t.cancel();
 			t=null;
 		}
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closePlayerCache();
 	}
 
 	/*
@@ -224,7 +220,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearPlayerCache();
 	}
 
 	/**
@@ -266,25 +262,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	}
 
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height_small));
-		mImageFetcher.setLoadingImage(R.drawable.foto_plantilla_generica);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
-	}
 
 	/**
 	 * 

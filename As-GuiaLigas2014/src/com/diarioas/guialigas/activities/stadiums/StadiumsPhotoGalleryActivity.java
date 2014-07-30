@@ -20,19 +20,19 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.stadiums.fragments.PhotoGalleryFSFragment;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
+
 
 public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 		implements OnPageChangeListener {
 
 	private static final int CIRCLE_ID = 8000;
-	private ImageFetcher mImageFetcher;
+
 	private ViewPager photoGalleryViewPager;
 	private ArrayList<String> urls;
 	private LinearLayout circleIndicator;
@@ -60,7 +60,6 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 							Defines.STADIUM_IMAGE_TYPE.TYPE_CITY);
 
 		if (urls != null && urls.size() > 0) {
-			configureImageFetcher();
 			configureView();
 		} else {
 			onBackPressed();
@@ -87,7 +86,7 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitStadiumTaskEarly();
 		String name = getIntent().getExtras().getString("name");
 		if (name != null && name.length() > 0)
 			StatisticsDAO.getInstance(this).sendStatisticsState(
@@ -101,21 +100,21 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitStadiumTaskEarly();
+		ImageDAO.getInstance(this).flushStadiumsCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearStadiumsCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closeStadiumsCache();
 		if (photoGalleryViewPager != null) {
 			photoGalleryViewPager.removeAllViews();
 			photoGalleryViewPager = null;
@@ -124,21 +123,6 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 			urls.clear();
 			urls = null;
 		}
-	}
-
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_image_height));
-		// mImageFetcher
-		// .setLoadingImage(R.drawable.galeria_imagenrecurso_fullscreen);
-
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-
 	}
 
 	private void configureView() {
@@ -226,9 +210,4 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 	}
 
 	/**************** ViewPager Methods *****************************/
-
-	public ImageFetcher getmImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcher;
-	}
 }

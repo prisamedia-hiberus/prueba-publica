@@ -25,22 +25,19 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.photo.fragment.PhotoSectionGalleryFragment;
 import com.diarioas.guialigas.dao.model.news.GalleryMediaItem;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO.RemotePhotosDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 
 public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener, RemotePhotosDetailDAOListener {
 
-	private ImageFetcher mImageFetcher;
 	private ViewPager photoGalleryViewPager;
 	private GalleryMediaItem gallery;
 	private View upperBar;
@@ -63,7 +60,6 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 
 		int position = getIntent().getExtras().getInt("gallery");
 
-		configureImageFetcher();
 		configureView();
 
 		if (RemoteGalleryDAO.getInstance(getApplicationContext())
@@ -113,7 +109,7 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitGalleryTaskEarly();
 		callToAds(NativeAds.AD_PHOTOS + "/" + NativeAds.AD_DETAIL, false);
 
 	}
@@ -122,21 +118,22 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitGalleryTaskEarly();
+		ImageDAO.getInstance(this).flushGalleryCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearGalleryCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closeGalleryCache();
+		ImageDAO.getInstance(this).eraseGalleryCache();
 		if (photoGalleryViewPager != null) {
 			photoGalleryViewPager.removeAllViews();
 			photoGalleryViewPager = null;
@@ -148,20 +145,6 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	/***************************************************************************/
 	/** Activity lifecycle methods **/
 	/***************************************************************************/
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_image_height));
-		// mImageFetcher
-		// .setLoadingImage(R.drawable.galeria_imagenrecurso_fullscreen);
-
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-
-	}
 
 	private void configureView() {
 
@@ -268,10 +251,6 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 		return fList;
 	}
 
-	public ImageFetcher getmImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcher;
-	}
 
 	public void toogleBarsVisibility() {
 		if (upperBar.getVisibility() == View.VISIBLE) {

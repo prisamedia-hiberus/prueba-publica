@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.DimenUtils;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
+import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageCache.ImageCacheParams;
+import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageFetcher;
 
 public class ImageDAO {
 
@@ -26,6 +26,11 @@ public class ImageDAO {
 	// private ImageFetcher mImageFetcherActionBar = null;
 	private ImageFetcher mImageFetcherPlayer;
 	private ImageFetcher mImageFetcherSmallPlayer;
+	
+	private ImageFetcher mImageFetcherGallery;
+	private ImageFetcher mImageFetcherNews;
+	private ImageFetcher mImageFetcherStadiums;
+	private ImageFetcher mImageFetcherStadiumsDetail;
 
 	public static ImageDAO getInstance(Context ctx) {
 		if (sInstance == null) {
@@ -213,7 +218,60 @@ public class ImageDAO {
 				((FragmentActivity) this.mContext).getSupportFragmentManager(),
 				cacheParams3);
 	}
+	
+	private void configureImageFetcherGallery() {
+		WindowManager windowManager = (WindowManager) mContext
+				.getSystemService(Context.WINDOW_SERVICE);
 
+		Point size = DimenUtils.getSize(windowManager);
+		
+		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+				Defines.NAME_CACHE_THUMBS + "gallery");
+		cacheParams.setMemCacheSizePercent(0.20f);
+
+		mImageFetcherGallery = new ImageFetcher(mContext, size.y);
+
+		mImageFetcherGallery.addImageCache(((FragmentActivity) this.mContext).getSupportFragmentManager(),
+				cacheParams);
+	}
+
+	
+	private void configureImageFetcherNews() {
+
+		ImageCacheParams cacheParams = new ImageCacheParams(
+				mContext, Defines.NAME_CACHE_THUMBS+"news");
+		cacheParams.setMemCacheSizePercent(0.25f);
+
+		mImageFetcherNews = new ImageFetcher(mContext,
+				(int) mContext.getResources().getDimension(
+						R.dimen.image_news_detail_height));
+		mImageFetcherNews.addImageCache(((FragmentActivity) this.mContext).getSupportFragmentManager(), cacheParams);
+
+	}
+	
+	private void configureImageFetcherStadium() {
+		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+				Defines.NAME_CACHE_THUMBS+"stadiums");
+		cacheParams.setMemCacheSizePercent(0.25f);
+
+		mImageFetcherStadiums = new ImageFetcher(mContext, mContext.getResources()
+				.getDimensionPixelSize(R.dimen.image_thumb_height));
+		mImageFetcherStadiums.setLoadingImage(R.drawable.galeria_imagenrecurso);
+		mImageFetcherStadiums.addImageCache(((FragmentActivity) this.mContext).getSupportFragmentManager(), cacheParams);
+
+	}
+	
+	private void configureImageFetcherStadiumDetail() {
+		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
+				Defines.NAME_CACHE_THUMBS+"stadiumDetail");
+		cacheParams.setMemCacheSizePercent(0.25f);
+
+		mImageFetcherStadiumsDetail = new ImageFetcher(mContext, mContext.getResources()
+				.getDimensionPixelSize(R.dimen.image_image_height));
+//		mImageFetcherStadiumsDetail.setLoadingImage(R.drawable.galeria_imagenrecurso);
+		mImageFetcherStadiumsDetail.addImageCache(((FragmentActivity) this.mContext).getSupportFragmentManager(), cacheParams);
+
+	}
 	/***************************************************************************/
 	/** Public methods **/
 	/***************************************************************************/
@@ -235,7 +293,24 @@ public class ImageDAO {
 		if (this.mImageFetcherSmallPlayer != null)
 			this.mImageFetcherSmallPlayer.setExitTasksEarly(false);
 	}
+	
+	public void exitGalleryTaskEarly() {
+		if (this.mImageFetcherGallery != null)
+			this.mImageFetcherGallery.setExitTasksEarly(false);
+	}
 
+	public void exitNewsTaskEarly() {
+		if (this.mImageFetcherNews != null)
+			this.mImageFetcherNews.setExitTasksEarly(false);		
+	}
+	
+	public void exitStadiumTaskEarly() {
+		if (this.mImageFetcherStadiums != null)
+			this.mImageFetcherStadiums.setExitTasksEarly(false);
+		if (this.mImageFetcherStadiumsDetail != null)
+			this.mImageFetcherStadiumsDetail.setExitTasksEarly(false);
+	}
+	
 	public void clearCache() {
 		this.mImageFetcher.clearCache();
 		this.mImageFetcherOne.clearCache();
@@ -254,7 +329,24 @@ public class ImageDAO {
 		if (this.mImageFetcherSmallPlayer != null)
 			this.mImageFetcherSmallPlayer.clearCache();
 	}
+	
+	public void clearGalleryCache() {
+		if (this.mImageFetcherGallery != null)
+			this.mImageFetcherGallery.clearCache();
+	}
+	
 
+	public void clearNewsCache() {
+		if (this.mImageFetcherNews != null)
+			this.mImageFetcherNews.clearCache();		
+	}
+
+	public void clearStadiumsCache() {
+		if (this.mImageFetcherStadiums != null)
+			this.mImageFetcherStadiums.clearCache();
+		if (this.mImageFetcherStadiumsDetail != null)
+			this.mImageFetcherStadiumsDetail.clearCache();
+	}
 	public void flushCache() {
 		this.mImageFetcher.flushCache();
 		this.mImageFetcherOne.flushCache();
@@ -272,7 +364,25 @@ public class ImageDAO {
 		if (this.mImageFetcherSmallPlayer != null)
 			this.mImageFetcherSmallPlayer.flushCache();
 	}
+	
+	public void flushGalleryCache() {
+		if (this.mImageFetcherGallery != null)
+			this.mImageFetcherGallery.flushCache();
+	}
 
+	public void flushNewsCache() {
+		if (this.mImageFetcherNews != null)
+			this.mImageFetcherNews.flushCache();
+	}
+	
+	public void flushStadiumsCache() {
+		if (this.mImageFetcherStadiums != null)
+			this.mImageFetcherStadiums.flushCache();
+		if (this.mImageFetcherStadiumsDetail != null)
+			this.mImageFetcherStadiumsDetail.flushCache();
+	}
+
+	
 	public void closeCache() {
 		this.mImageFetcher.closeCache();
 		this.mImageFetcherOne.closeCache();
@@ -285,6 +395,8 @@ public class ImageDAO {
 
 	}
 
+
+
 	public void closePlayerCache() {
 		if (this.mImageFetcherPlayer != null)
 			this.mImageFetcherPlayer.closeCache();
@@ -292,6 +404,24 @@ public class ImageDAO {
 			this.mImageFetcherSmallPlayer.closeCache();
 	}
 
+	
+	public void closeGalleryCache() {
+		if (this.mImageFetcherGallery != null)
+			this.mImageFetcherGallery.closeCache();
+	}
+	
+	public void closeNewsCache() {
+		if (this.mImageFetcherNews != null)
+			this.mImageFetcherNews.closeCache();		
+	}
+
+	public void closeStadiumsCache() {
+		if (this.mImageFetcherStadiums != null)
+			this.mImageFetcherStadiums.closeCache();
+		if (this.mImageFetcherStadiumsDetail != null)
+			this.mImageFetcherStadiumsDetail.closeCache();
+	}
+	
 	public void pauseWork(boolean pause) {
 		this.mImageFetcher.setPauseWork(pause);
 		this.mImageFetcherOne.setPauseWork(pause);
@@ -310,11 +440,30 @@ public class ImageDAO {
 			this.mImageFetcherSmallPlayer.setPauseWork(pause);
 	}
 
+	public void pauseStadiumsWork(boolean pause) {
+		if (this.mImageFetcherStadiums != null)
+			this.mImageFetcherStadiums.setPauseWork(pause);
+		if (this.mImageFetcherStadiumsDetail != null)
+			this.mImageFetcherStadiumsDetail.setPauseWork(pause);
+	}
+	
+	
 	public void erasePlayerCache() {
 		sInstance.mImageFetcherPlayer = null;
 		sInstance.mImageFetcherSmallPlayer = null;
 	}
 
+	public void eraseGalleryCache() {
+		sInstance.mImageFetcherGallery = null;
+	}
+	
+	public void eraseNewsCache() {
+		sInstance.mImageFetcherNews = null;
+	}
+	
+	public void eraseStadiumsCache() {
+		sInstance.mImageFetcherStadiums = null;
+	}
 	/***************************************************************************/
 	/** Image methods **/
 	/***************************************************************************/
@@ -455,13 +604,84 @@ public class ImageDAO {
 		return mImageFetcherSmallPlayer;
 	}
 
-	public void loadASmallPlayerImage(String imageUrl, ImageView imageView) {
+	public void loadSmallPlayerImage(String imageUrl, ImageView imageView) {
 		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView);
 	}
 
 	public void loadSmallPlayerImage(String imageUrl, ImageView imageView,
 			int loadingResId) {
 		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
+	}
+	
+	/*****************************************************************************/
+	public ImageFetcher getGalleryImageFetcher() {
+		if (mImageFetcherGallery == null) {
+			configureImageFetcherGallery();
+		}
+		return mImageFetcherGallery;
+	}
+
+	public void loadGalleryImage(String imageUrl, ImageView imageView) {
+		this.getGalleryImageFetcher().loadImage(imageUrl, imageView);
+	}
+
+	public void loadGalleryImage(String imageUrl, ImageView imageView,
+			int loadingResId) {
+		this.getGalleryImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
+	}
+	
+	
+	/*****************************************************************************/
+	public ImageFetcher getNewsImageFetcher() {
+		if (mImageFetcherNews == null) {
+			configureImageFetcherNews();
+		}
+		return mImageFetcherNews;
+	}
+
+	public void loadNewsImage(String imageUrl, ImageView imageView) {
+		this.getNewsImageFetcher().loadImage(imageUrl, imageView);
+	}
+
+	public void loadNewsImage(String imageUrl, ImageView imageView,
+			int loadingResId) {
+		this.getNewsImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
+	}
+	
+	/*****************************************************************************/
+	public ImageFetcher getStadiumImageFetcher() {
+		if (mImageFetcherStadiums == null) {
+			configureImageFetcherStadium();
+		}
+		return mImageFetcherStadiums;
+	}
+
+	public void loadStadiumImage(String imageUrl, ImageView imageView) {
+		this.getStadiumImageFetcher().loadImage(imageUrl, imageView);
+	}
+
+	public void loadStadiumImage(String imageUrl, ImageView imageView,
+			int loadingResId) {
+		this.getStadiumImageFetcher().loadImage(imageUrl, imageView,
+				loadingResId);
+	}
+	public ImageFetcher getStadiumDetailImageFetcher() {
+		if (mImageFetcherStadiums == null) {
+			configureImageFetcherStadiumDetail();
+		}
+		return mImageFetcherStadiumsDetail;
+	}
+
+	public void loadStadiumDetailImage(String imageUrl, ImageView imageView) {
+		this.getStadiumDetailImageFetcher().loadImage(imageUrl, imageView);
+	}
+
+	public void loadStadiumDetailImage(String imageUrl, ImageView imageView,
+			int loadingResId) {
+		this.getStadiumDetailImageFetcher().loadImage(imageUrl, imageView,
 				loadingResId);
 	}
 

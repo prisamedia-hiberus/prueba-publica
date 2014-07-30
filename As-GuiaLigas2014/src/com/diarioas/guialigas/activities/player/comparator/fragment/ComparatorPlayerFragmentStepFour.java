@@ -33,6 +33,7 @@ import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepF
 import com.diarioas.guialigas.dao.model.player.ItemStats;
 import com.diarioas.guialigas.dao.model.player.PlayerStats;
 import com.diarioas.guialigas.dao.model.player.TituloPlayer;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
@@ -386,8 +387,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		ImageView imagePL = (ImageView) generalView
 				.findViewById(R.id.photoPlayerLeft);
 		if (url != null) {
-			((PlayerComparatorStepFirstActivity) getActivity())
-					.getmImageFetcher().loadImage(url, imagePL,
+			ImageDAO.getInstance(getActivity()).loadPlayerImage(url, imagePL,
 							R.drawable.mask_foto);
 		}
 
@@ -839,8 +839,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		ImageView imagePR = (ImageView) generalView
 				.findViewById(R.id.photoPlayerRight);
 		if (url != null) {
-			((PlayerComparatorStepFirstActivity) getActivity())
-					.getmImageFetcher().loadImage(url, imagePR,
+			ImageDAO.getInstance(getActivity()).loadPlayerImage(url, imagePR,
 							R.drawable.mask_foto);
 		}
 		imagePR.setOnLongClickListener(new OnLongClickListener() {

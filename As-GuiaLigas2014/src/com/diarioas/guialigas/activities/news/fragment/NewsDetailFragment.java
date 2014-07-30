@@ -22,6 +22,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.news.NewsDetailActivity;
 import com.diarioas.guialigas.activities.team.TeamVideoActivity;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
@@ -146,8 +147,7 @@ public class NewsDetailFragment extends Fragment
 		imageView.setLayoutParams(imageParams);
 		String urlphoto = getUrl();
 		if (urlphoto != null && !urlphoto.equalsIgnoreCase("")) {
-			((NewsDetailActivity) getActivity()).getmImageFetcher().loadImage(
-					urlphoto, imageView);
+			ImageDAO.getInstance(getActivity()).loadNewsImage(urlphoto, imageView);
 		} else {
 			header.setVisibility(View.GONE);
 			imageView.setVisibility(View.GONE);

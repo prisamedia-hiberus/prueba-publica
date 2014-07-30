@@ -28,16 +28,14 @@ import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPl
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerFragmentStepZero;
 import com.diarioas.guialigas.dao.model.player.Player;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
 /**
@@ -70,7 +68,6 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	private Fragment playerCompFragment;
 	private String teamPRName;
 	private int currentPlayerRightId;
-	private ImageFetcher mImageFetcher;
 
 	// Third Step
 
@@ -91,7 +88,6 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 					.getInstance(getApplicationContext()).getPlayer(
 							currentPlayerLeftId);
 		}
-		configureImageFetcher();
 		configViewPager();
 		configActionBar();
 
@@ -106,7 +102,7 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mImageFetcher.setExitTasksEarly(false);
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 		StatisticsDAO.getInstance(this)
 				.sendStatisticsState(
 						getApplication(),
@@ -124,21 +120,22 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mImageFetcher.setExitTasksEarly(false);
-		mImageFetcher.flushCache();
+		ImageDAO.getInstance(this).exitPlayerTaskEarly();
+		ImageDAO.getInstance(this).flushPlayerCache();
 	}
 
 	@Override
 	public void onLowMemory() {
 		// TODO Auto-generated method stub
 		super.onLowMemory();
-		mImageFetcher.clearCache();
+		ImageDAO.getInstance(this).clearPlayerCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mImageFetcher.closeCache();
+		ImageDAO.getInstance(this).closePlayerCache();
+		ImageDAO.getInstance(this).erasePlayerCache();
 	}
 
 	@Override
@@ -439,26 +436,6 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 			fList.add(playerCompFragment);
 		}
 		return fList;
-	}
-
-	private void configureImageFetcher() {
-		ImageCacheParams cacheParams = new ImageCacheParams(this,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(this, getResources()
-				.getDimensionPixelSize(R.dimen.image_player_height));
-		mImageFetcher.setLoadingImage(R.drawable.foto_generica);
-		mImageFetcher.addImageCache(this.getSupportFragmentManager(),
-				cacheParams);
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public ImageFetcher getmImageFetcher() {
-		return mImageFetcher;
 	}
 
 	/************************************ THIRD STEP ******************************************/
