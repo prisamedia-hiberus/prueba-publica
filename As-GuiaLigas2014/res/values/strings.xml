@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Guía de las Ligas</string>
-    <string name="app_name_normalize" translatable="false">GUIA-LIGAS-2014</string>
+    <string name="app_name_normalize" translatable="false">guia liga as</string>
 
     <!-- PLAYER -->
     <string name="player_comparator_message_versus">Escoge una Competición y una Temporada para iniciar la Comparativa</string>

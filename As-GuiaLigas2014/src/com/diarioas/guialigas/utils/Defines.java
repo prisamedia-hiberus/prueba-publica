@@ -67,6 +67,7 @@ public class Defines {
 	public static final int NUM_MAX_TVS = 4;
 
 	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
+//	public static String URL_REMOTE_CONFIG_FILE = "https://8117540c1a01790bafbf7d7c0119ea1f0b0db507.googledrive.com/host/0B57LzJ1pIeo2eFhrZmRLemtqZGc/conf-guia.plist";
 
 
 
@@ -259,7 +260,7 @@ public class Defines {
 		public static final String DOMINIO = "as.com";
 		public static final String UNIDAD_NEGOCIO = "noticias";
 		public static final String TEMATICA = "deportes";
-		public static final String NOMBRE_APP = "guia del mundial android";
+		public static final String NOMBRE_APP = "guia liga as";
 
 		public static final String TYPE_PORTADA = "portada";
 		public static final String TYPE_ARTICLE = "articulo";
@@ -281,7 +282,7 @@ public class Defines {
 		public static final String SUBSECTION_PLANTILLA = "plantilla";
 		public static final String SUBSECTION_IDEALTEAM = "once ideal";
 		public static final String SUBSECTION_MUNDIALES = "mundiales";
-		public static final String SUBSECTION_COUNTRIES = "paises";
+		public static final String SUBSECTION_COUNTRIES = "equipos";
 		public static final String SUBSECTION_RESULT = "resultado";
 		public static final String SUBSECTION_DAY = "jornada";
 		public static final String SUBSECTION_GALLERY = "galeria";
@@ -317,7 +318,7 @@ public class Defines {
 
 	public static interface NativeAds {
 
-		public static final String AD_KEY = "7811748/as_mundial_app/android/";
+		public static final String AD_KEY = "7811748/as_guialiga_app/android/";
 		public static final String AD_PORTADA = "portada";
 		public static final String AD_CALENDAR = "calendario";
 		public static final String AD_COUNTRY = "pais/";

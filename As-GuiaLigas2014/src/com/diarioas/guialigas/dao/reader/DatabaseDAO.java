@@ -69,7 +69,6 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	private static final String KEY_SPLASH_URL = "image";
 	private static final String KEY_SPLASH_SECONDS = "seconds";
 	private static final String KEY_SPLASH_TYPE = "type";
-	
 
 	private static final String TABLE_CLASIFICATION_LABELS = "clasificationLabels";
 	private static final String KEY_CLASIFICATION_LABELS_CODE = "code";
@@ -153,7 +152,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	private static final String KEY_TEAM_ARTICLE_BODY = "body";
 	private static final String KEY_TEAM_ARTICLE_VIDEO = "video";
 	private static final String KEY_TEAM_ARTICLE_VIDEOIMAGE = "videoImage";
-	
+
 	// Estadio Table Column names
 	private static final String KEY_TEAM_ESTADIO_NAME = "estadio_name";
 	private static final String KEY_TEAM_ESTADIO_PAIS = "estadio_country";
@@ -548,17 +547,20 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		values.put(KEY_SPLASH_TYPE, SplashTypes.TYPE_SPLASH);
 		try {
 			String whereClause = KEY_SPLASH_TYPE + " like ? ";
-			db.delete(TABLE_SPLASH, whereClause, new String[] { SplashTypes.TYPE_SPLASH });
+			db.delete(TABLE_SPLASH, whereClause,
+					new String[] { SplashTypes.TYPE_SPLASH });
 			db.insert(TABLE_SPLASH, null, values);
 		} catch (SQLiteException e) {
-			throw new Exception("Error al actualizar db splash : " + e.getMessage());
+			throw new Exception("Error al actualizar db splash : "
+					+ e.getMessage());
 		}
 	}
 
 	public ArrayList<Object> getSplashInfo() {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
 		String selectQuery = "SELECT * FROM " + TABLE_SPLASH + " where "
-				+ KEY_SPLASH_AVAILABLE + " = 1 and "+KEY_SPLASH_TYPE +" like '"+SplashTypes.TYPE_SPLASH+"'";
+				+ KEY_SPLASH_AVAILABLE + " = 1 and " + KEY_SPLASH_TYPE
+				+ " like '" + SplashTypes.TYPE_SPLASH + "'";
 
 		Cursor cursor = null;
 		ArrayList<Object> splash = new ArrayList<Object>();
@@ -621,17 +623,20 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		values.put(KEY_SPLASH_TYPE, SplashTypes.TYPE_HEADER);
 		try {
 			String whereClause = KEY_SPLASH_TYPE + " like ? ";
-			db.delete(TABLE_SPLASH, whereClause, new String[] { SplashTypes.TYPE_HEADER });
+			db.delete(TABLE_SPLASH, whereClause,
+					new String[] { SplashTypes.TYPE_HEADER });
 			db.insert(TABLE_SPLASH, null, values);
 		} catch (SQLiteException e) {
-			throw new Exception("Error al actualizar db Splash header: " + e.getMessage());
+			throw new Exception("Error al actualizar db Splash header: "
+					+ e.getMessage());
 		}
 	}
 
 	public String getHeaderInfo() {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
 		String selectQuery = "SELECT * FROM " + TABLE_SPLASH + " where "
-				+ KEY_SPLASH_AVAILABLE + " = 1 and "+KEY_SPLASH_TYPE +" like '"+SplashTypes.TYPE_HEADER+"'";
+				+ KEY_SPLASH_AVAILABLE + " = 1 and " + KEY_SPLASH_TYPE
+				+ " like '" + SplashTypes.TYPE_HEADER + "'";
 
 		Cursor cursor = null;
 		String header = null;
@@ -641,7 +646,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 
 			// Article article;
 			if (cursor.moveToFirst()) {
-				header = cursor.getString(cursor.getColumnIndex(KEY_SPLASH_URL));
+				header = cursor
+						.getString(cursor.getColumnIndex(KEY_SPLASH_URL));
 			}
 
 		} catch (Exception e) {
@@ -658,7 +664,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		return header;
 	}
 
-	/****************************************** HEADER *****************************************************/	
+	/****************************************** HEADER *****************************************************/
 
 	/****************************************** PREFIX *****************************************************/
 	public void updateStaticPrefix(HashMap<String, String> prefixes) {
@@ -2403,12 +2409,12 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				+ competition.getId() + "\"";
 		if (ids.length > 0) {
 			sql += " and ";
-			for (String id : ids) {
-				sql += KEY_COMPETITION_TEAM_TEAM_ID + " not like \"" + id
-						+ "\" and ";
+			for (String id : ids) {			
+				sql += KEY_COMPETITION_TEAM_TEAM_ID + " != " + id + " and ";
 			}
 			sql = sql.substring(0, sql.length() - 4);
-			db.rawQuery(sql, null);
+			Cursor a = db.rawQuery(sql, null);
+			a.getCount();
 		}
 
 	}
@@ -2492,12 +2498,12 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 						article = new Article();
 						article.setAuthor(cursor.getString(cursor
 								.getColumnIndex(KEY_TEAM_ARTICLE_AUTHOR)));
-						 article.setCharge(cursor.getString(cursor
-						 .getColumnIndex(KEY_TEAM_ARTICLE_CHARGE)));
-						 article.setTitle(cursor.getString(cursor
-						 .getColumnIndex(KEY_TEAM_ARTICLE_TITLE)));
-						 article.setSubTitle(cursor.getString(cursor
-						 .getColumnIndex(KEY_TEAM_ARTICLE_SUBTITLE)));
+						article.setCharge(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ARTICLE_CHARGE)));
+						article.setTitle(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ARTICLE_TITLE)));
+						article.setSubTitle(cursor.getString(cursor
+								.getColumnIndex(KEY_TEAM_ARTICLE_SUBTITLE)));
 						article.setBody(cursor.getString(cursor
 								.getColumnIndex(KEY_TEAM_ARTICLE_BODY)));
 						article.setUrlVideo(cursor.getString(cursor
@@ -2507,7 +2513,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 
 						team.setArticle(article);
 					}
-					
+
 					if (cursor.getColumnIndex(KEY_TEAM_ESTADIO_NAME) > 0) {
 						estadio = new Estadio();
 						estadio.setName(cursor.getString(cursor
@@ -2530,7 +2536,6 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 								.getColumnIndex(KEY_TEAM_ESTADIO_LON)));
 						team.setEstadio(estadio);
 					}
-
 
 					// Se recupera el staff
 					team.setTeamStaff(getStaff(currentTeamId, db));
@@ -2865,8 +2870,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			values.put(KEY_STAFF_NAME, staff.getName());
 			values.put(KEY_STAFF_CHARGE, staff.getCharge());
 			values.put(KEY_STAFF_HISTORY, staff.getHistory());
-			// values.put(KEY_STAFF_BORN, staff.getBorn());
-			// values.put(KEY_STAFF_CONTRACT, staff.getContract());
+			values.put(KEY_STAFF_BORN, staff.getBorn());
+			values.put(KEY_STAFF_CONTRACT, staff.getContract());
 			values.put(KEY_STAFF_PHOTO, staff.getPhoto());
 			if (staff instanceof Star) {
 				values.put(KEY_STAFF_POSITION, ((Star) staff).getPosition());
@@ -2923,36 +2928,36 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					String charge = cursor2.getString(cursor2
 							.getColumnIndex(KEY_STAFF_CHARGE));
 
-//					if (charge.equalsIgnoreCase(Defines.StaffCharge.STAR)) {
-//						staff = new Star();
-//						((Star) staff).setPosition(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_POSITION)));
-//						((Star) staff)
-//								.setNumInternational(cursor2.getString(cursor2
-//										.getColumnIndex(KEY_STAFF_NUMINTERNATIONAL)));
-//						((Star) staff).setAge(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_AGE)));
-//						((Star) staff).setStature(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_STATURE)));
-//						((Star) staff).setWeight(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_WEIGHT)));
-//						((Star) staff).setClubName(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_CLUBNAME)));
-//						((Star) staff).setClubShield(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_CLUBSHIELD)));
-//						((Star) staff).setUrl(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_URL)));
-//						((Star) staff).setPlayerId(cursor2.getString(cursor2
-//								.getColumnIndex(KEY_STAFF_PLAYERID)));
-//						if (((Star) staff).getUrl() == null) {
-//							String id = ((Star) staff).getPlayerId();
-//							Player play = getPlayer(Integer.valueOf(id));
-//							((Star) staff).setUrl(play.getUrl());
-//						}
-//
-//					} else {
-						staff = new Staff();
-//					}
+					// if (charge.equalsIgnoreCase(Defines.StaffCharge.STAR)) {
+					// staff = new Star();
+					// ((Star) staff).setPosition(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_POSITION)));
+					// ((Star) staff)
+					// .setNumInternational(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_NUMINTERNATIONAL)));
+					// ((Star) staff).setAge(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_AGE)));
+					// ((Star) staff).setStature(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_STATURE)));
+					// ((Star) staff).setWeight(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_WEIGHT)));
+					// ((Star) staff).setClubName(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_CLUBNAME)));
+					// ((Star) staff).setClubShield(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_CLUBSHIELD)));
+					// ((Star) staff).setUrl(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_URL)));
+					// ((Star) staff).setPlayerId(cursor2.getString(cursor2
+					// .getColumnIndex(KEY_STAFF_PLAYERID)));
+					// if (((Star) staff).getUrl() == null) {
+					// String id = ((Star) staff).getPlayerId();
+					// Player play = getPlayer(Integer.valueOf(id));
+					// ((Star) staff).setUrl(play.getUrl());
+					// }
+					//
+					// } else {
+					staff = new Staff();
+					// }
 					staff.setName(cursor2.getString(cursor2
 							.getColumnIndex(KEY_STAFF_NAME)));
 					staff.setCharge(charge);
@@ -2960,8 +2965,10 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 							.getColumnIndex(KEY_STAFF_HISTORY)));
 					staff.setPhoto(cursor2.getString(cursor2
 							.getColumnIndex(KEY_STAFF_PHOTO)));
-					// staff.setBorn(cursor2.getString(cursor2.getColumnIndex(KEY_STAFF_BORN)));
-					// staff.setContract(cursor2.getString(cursor2.getColumnIndex(KEY_STAFF_CONTRACT)));
+					staff.setBorn(cursor2.getString(cursor2
+							.getColumnIndex(KEY_STAFF_BORN)));
+					staff.setContract(cursor2.getString(cursor2
+							.getColumnIndex(KEY_STAFF_CONTRACT)));
 					personalStaff.put(staff.getCharge(), staff);
 				} while (cursor2.moveToNext());
 			}

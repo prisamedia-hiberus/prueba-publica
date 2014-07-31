@@ -234,7 +234,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		}
 		teamViewPager.setCurrentItem(currentPos, true);
 
-		// callToOmniture(1);
+		callToOmniture(currentPos);
 		teamViewPager.setOnPageChangeListener(this);
 	}
 

@@ -270,7 +270,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 	@Override
 	public void onItemClicked(int position) {
-
+		leagueViewPager.setCurrentItem(position, true);
 	}
 
 	/***************************************************************************/

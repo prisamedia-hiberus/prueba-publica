@@ -62,7 +62,7 @@ public class AsyncLoadRemoteFeedXML extends
 
 				// Se actualiza la info del Header
 				header = parse.parsePlistHeader();
-				DatabaseDAO.getInstance(appContext).updateStaticHeader(splash);
+				DatabaseDAO.getInstance(appContext).updateStaticHeader(header);
 				generalSettings.setHeader(header);
 
 				// Se obtiene la informacion de los prefijos
