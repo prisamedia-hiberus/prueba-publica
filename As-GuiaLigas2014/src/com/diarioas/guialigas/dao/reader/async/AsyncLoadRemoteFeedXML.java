@@ -14,6 +14,7 @@ import com.diarioas.guialigas.dao.reader.parser.ParsePlistCompetition;
 import com.diarioas.guialigas.dao.reader.parser.ParsePlistLoad;
 import com.diarioas.guialigas.utils.Defines.DATABASE;
 import com.diarioas.guialigas.utils.Defines.Prefix;
+import com.diarioas.guialigas.utils.Defines.RequestSectionTypes;
 
 public class AsyncLoadRemoteFeedXML extends
 		AsyncTask<String, Void, GeneralSettings> {
@@ -239,6 +240,11 @@ public class AsyncLoadRemoteFeedXML extends
 								// Se obtiene la info del link
 								competition.addSection(parse.parsePlistLink(i,
 										offset));
+							} else if (((String) menu.get(i).get("viewType"))
+									.equalsIgnoreCase(RequestSectionTypes.EXTERNAL_VIEW)) {
+								// Se obtiene la info del link
+								competition.addSection(parse.parsePlistExternalLink(i,
+										offset));								
 							} else if (((String) menu.get(i).get("name"))
 									.equalsIgnoreCase("photoGallery")) {
 								// Se obtiene la info de las fotos

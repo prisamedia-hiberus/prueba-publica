@@ -6,7 +6,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,59 +84,55 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                    android:id="@+id/estadioContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/nameTeam"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/webContent"
-                    android:clickable="true"
-                    android:onClick="buttonClick"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:tag="102" >
+                        android:id="@+id/estadioContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/nameTeam"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/webContent"
+                        android:clickable="true"
+                        android:onClick="buttonClick"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:tag="102" >
 
+                        <TextView
+                            android:id="@+id/estadioTeam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:maxLines="5"
+                            android:textColor="@color/medium_gray"
+                            android:textSize="@dimen/size_fragment_team_15" />
 
-                    <TextView
-                    android:id="@+id/estadioTeam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:maxLines="5"
-                    android:textColor="@color/medium_gray"
-                    android:textSize="@dimen/size_fragment_team_15" />
+                        <TextView
+                            android:id="@+id/estadioAddressTeam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/estadioTeam"
+                            android:maxLines="5"
+                            android:textColor="@color/medium_gray"
+                            android:textSize="@dimen/size_fragment_team_15" />
 
+                        <ImageView
+                            android:id="@+id/iconMap"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/estadioAddressTeam"
+                            android:layout_marginRight="15dip"
+                            android:background="@drawable/icn_map"
+                            android:contentDescription="@string/defualt" />
 
-                    <TextView
-                    android:id="@+id/estadioAddressTeam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/estadioTeam"
-                    android:maxLines="5"
-                    android:textColor="@color/medium_gray"
-                    android:textSize="@dimen/size_fragment_team_15" />
-
-
-                    <ImageView
-                    android:id="@+id/iconMap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/estadioAddressTeam"
-                    android:layout_marginRight="15dip"
-                    android:background="@drawable/icn_map"
-                    android:contentDescription="@string/defualt" />
-
-
-                    <TextView
-                    android:id="@+id/mapTeam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/iconMap"
-                    android:layout_toRightOf="@+id/iconMap"
-                    android:text="@string/team_ver_mapa"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/size_fragment_team_14" />
+                        <TextView
+                            android:id="@+id/mapTeam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/iconMap"
+                            android:layout_toRightOf="@+id/iconMap"
+                            android:text="@string/team_ver_mapa"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/size_fragment_team_14" />
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
@@ -536,7 +533,6 @@
                 android:layout_marginRight="20dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/size_fragment_team_15" />
-
         </LinearLayout>
     </ScrollView>
 

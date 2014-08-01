@@ -1366,22 +1366,13 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			String typesActivos = "";
 
 			insertOrUpdateStaticCompetition(db, competition);
+			deleteOldSections(db, competition);
 			for (Section section : competition.getSections()) {
-				// if (section.getType().equalsIgnoreCase(SECTIONS.CALENDAR)
-				// || section.getType().equalsIgnoreCase(
-				// SECTIONS.CARROUSEL)
-				// || section.getType()
-				// .equalsIgnoreCase(SECTIONS.STADIUMS)
-				// || section.getType()
-				// .equalsIgnoreCase(SECTIONS.PALMARES)
-				// || section.getType()
-				// .equalsIgnoreCase(SECTIONS.SEARCHER)) {
 				insertStaticSection(db, competition.getId(), section);
 				typesActivos += section.getType() + ",";
-				// }
 			}
 
-			deleteOldSections(db, typesActivos, competition);
+//			deleteOldSections(db, typesActivos, competition);
 
 			String idsActivos = "";
 			Team team;
@@ -1510,6 +1501,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	 */
 	private void insertStaticSection(SQLiteDatabase db, int competitionId,
 			Section section) throws Exception {
+		Log.d(TAG, "Insertando secci—n "+section.getName()+" de Competicion: "+competitionId);
 		ContentValues values = new ContentValues();
 		values.put(KEY_COMPETITION_SECTION_COMPETITION_ID, competitionId);
 		values.put(KEY_COMPETITION_SECTION_NAME, section.getName());
@@ -1550,8 +1542,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					+ " = " + competitionId + " and "
 					+ KEY_COMPETITION_SECTION_TYPE + " like '"
 					+ section.getType()
-					// + "' and "+ KEY_COMPETITION_SECTION_NAME + " like '"+
-					// section.getName()
+					// + "' and "+ KEY_COMPETITION_SECTION_NAME + " like '"+ section.getName()
 					+ "'";
 
 			cursor = db.rawQuery(selectQuery, null);
@@ -1559,7 +1550,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				String whereClause = KEY_COMPETITION_SECTION_COMPETITION_ID
 						+ " = ? and " + KEY_COMPETITION_SECTION_TYPE
 						+ " like ?"
-				// +" and "+ KEY_COMPETITION_SECTION_NAME + " like ?"
+//				 +" and "+ KEY_COMPETITION_SECTION_TYPE + " not like ?"
 				;
 				Log.d("SECTIONS", "Actualizando Section: " + section.getType());
 				db.update(
@@ -1571,7 +1562,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 						// ,section.getName()
 						});
 			} else {
-				Log.d("SECTIONS", "Insertando Section: " + section.getType());
+				Log.d(TAG, "Insertando Section: " + section.getType());
 				db.insert(TABLE_COMPETITION_SECTION, null, values);
 			}
 
@@ -1588,40 +1579,42 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 
 	}
 
+	private void deleteOldSections(SQLiteDatabase db,Competition competition) {
+
+		String whereClause = KEY_COMPETITION_SECTION_COMPETITION_ID
+				+ " = ? ";
+
+		int delete = db.delete(TABLE_COMPETITION_SECTION, whereClause,	new String[] { String.valueOf(competition.getId()) });
+		Log.d(TAG, "Competition: "+competition.getId()+" Sections Deleted: " + delete);
+
+	}
+	
 	private void deleteOldSections(SQLiteDatabase db, String typesActivos,
 			Competition competition) {
 		String[] ids = typesActivos.split(",");
-		// String sql = "delete from " + TABLE_COMPETITION_SECTION + " where "
-		// + KEY_COMPETITION_SECTION_COMPETITION_ID + " = \""
-		// + competition.getId() + "\"";
 		String whereClause = KEY_COMPETITION_SECTION_COMPETITION_ID
 				+ " = ? and ";
 		String[] whereArgs = new String[ids.length + 1];
 		whereArgs[0] = String.valueOf(competition.getId());
 
 		if (ids.length > 0) {
-			// sql += " and ";
 			for (int i = 0; i < ids.length; i++) {
 				whereClause += KEY_COMPETITION_SECTION_TYPE
 						+ " not like ? and ";
 				whereArgs[i + 1] = ids[i];
-				// sql += KEY_COMPETITION_SECTION_TYPE + " not like \"" + id
-				// + "\" and ";
 			}
 			whereClause = whereClause.substring(0, whereClause.length() - 4);
-			// sql = sql.substring(0, sql.length() - 4);
 
 			int delete = db.delete(TABLE_COMPETITION_SECTION, whereClause,
 					whereArgs);
-			Log.d("SECTIONS", "Sections Deleted: " + delete);
-			// db.rawQuery(sql, null);
+			Log.d(TAG, "Competition: "+competition.getId()+" Sections Deleted: " + delete);
 		}
 
 	}
 
 	public ArrayList<Section> getSectionsCompetition(int competitionId) {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
-
+		
 		String selectQuery = "SELECT * FROM " + TABLE_COMPETITION_SECTION
 				+ " where " + KEY_COMPETITION_SECTION_COMPETITION_ID + " = "
 				+ competitionId + " order by " + KEY_COMPETITION_SECTION_ORDER
@@ -1638,8 +1631,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				do {
 					type = cursor.getString(cursor
 							.getColumnIndex(KEY_COMPETITION_SECTION_TYPE));
-					Log.d("SECTIONS",
-							"Obteniendo Section: "
+					Log.d(TAG,"Competicion: "+competitionId+
+							" Obteniendo Section: "
 									+ type
 									+ " Orden: "
 									+ cursor.getInt(cursor
@@ -1990,19 +1983,27 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		values.put(KEY_TEAM_NUMCLUBS, team.getNumClubs());
 		values.put(KEY_TEAM_NUMREFEREES, team.getNumReferees());
 
+
 		if (team.getArticle() != null) {
 			values.put(KEY_TEAM_ARTICLE_AUTHOR, team.getArticle().getAuthor());
-			// values.put(KEY_TEAM_ARTICLE_CHARGE,
-			// team.getArticle().getCharge());
-			// values.put(KEY_TEAM_ARTICLE_TITLE, team.getArticle().getTitle());
-			// values.put(KEY_TEAM_ARTICLE_SUBTITLE,
-			// team.getArticle().getSubTitle());
+			values.put(KEY_TEAM_ARTICLE_CHARGE, team.getArticle().getCharge());
+			values.put(KEY_TEAM_ARTICLE_TITLE, team.getArticle().getTitle());
+			values.put(KEY_TEAM_ARTICLE_SUBTITLE, team.getArticle()
+					.getSubTitle());
 			values.put(KEY_TEAM_ARTICLE_BODY, team.getArticle().getBody());
-			values.put(KEY_TEAM_ARTICLE_VIDEO, team.getArticle().getUrlVideo());
-			values.put(KEY_TEAM_ARTICLE_VIDEOIMAGE, team.getArticle()
-					.getUrlVideoImage());
 		}
-
+		if (team.getEstadio() != null) {
+			values.put(KEY_TEAM_ESTADIO_NAME, team.getEstadio().getName());
+			values.put(KEY_TEAM_ESTADIO_PAIS, team.getEstadio().getCountry());
+			values.put(KEY_TEAM_ESTADIO_CIUDAD, team.getEstadio().getCity());
+			values.put(KEY_TEAM_ESTADIO_DIRECCION, team.getEstadio()
+					.getAddress());
+			values.put(KEY_TEAM_ESTADIO_AFORO, team.getEstadio().getCapacity());
+			values.put(KEY_TEAM_ESTADIO_DIMX, team.getEstadio().getDimX());
+			values.put(KEY_TEAM_ESTADIO_DIMY, team.getEstadio().getDimY());
+			values.put(KEY_TEAM_ESTADIO_LAT, team.getEstadio().getLat());
+			values.put(KEY_TEAM_ESTADIO_LON, team.getEstadio().getLon());
+		}
 		try {
 			db.update(TABLE_TEAM, values, KEY_TEAM_ID + " like ?",
 					new String[] { String.valueOf(team.getId()) });
