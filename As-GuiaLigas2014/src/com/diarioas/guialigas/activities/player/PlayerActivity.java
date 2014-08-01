@@ -412,9 +412,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		}
 		configViewPager();
 		if (player.getShortName() != null) {
-			String section = NativeAds.AD_PLAYER
-			// + StringUtils.getNormalizeText(player.getShortName())
-			;
+			String section = NativeAds.AD_PLAYER+"/"+StringUtils.getNormalizeText(player.getNameTeam()+"/"+ player.getShortName());
 			callToAds(section, true);
 		}
 
