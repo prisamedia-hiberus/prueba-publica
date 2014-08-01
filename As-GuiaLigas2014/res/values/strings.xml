@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Guía de las Ligas</string>
+    <string name="app_name">Guía de la Liga</string>
     <string name="app_name_normalize" translatable="false">guia liga as</string>
 
     <!-- PLAYER -->
