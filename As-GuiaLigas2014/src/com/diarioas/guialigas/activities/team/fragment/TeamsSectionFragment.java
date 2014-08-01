@@ -31,7 +31,6 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.scroll.CustomHeaderMagneticHorizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
@@ -42,7 +41,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 	private static final int SCROLL_WITH = 5;
 
 	private CustomViewPagerLeague leagueViewPager;
-//	private CustomHeaderMagneticHorizontalScroll countrySroll;
+	// private CustomHeaderMagneticHorizontalScroll countrySroll;
 	private CustomHoizontalScroll countrySroll;
 	private ImageView buttonPrev;
 	private ImageView buttonNext;
