@@ -323,7 +323,7 @@ public class Defines {
 		public static final String AD_KEY = "7811748/as_guialiga_app/android/";
 		public static final String AD_PORTADA = "portada";
 		public static final String AD_CALENDAR = "calendario";
-		public static final String AD_COUNTRY = "pais/";
+		public static final String AD_COUNTRY = "equipos/";
 		public static final String AD_PLAYER = "jugador";
 		public static final String AD_CLASIFICATION = "clasificacion";
 		public static final String AD_CARROUSEL = "carrusel";
