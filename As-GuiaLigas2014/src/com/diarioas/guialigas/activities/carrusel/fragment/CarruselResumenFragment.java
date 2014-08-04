@@ -304,13 +304,13 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 		View localContent = generalView.findViewById(R.id.localContent);
 		localContent.setTag(match.getLocalId());
-		localContent.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				goToTeam(String.valueOf(v.getTag()));
-			}
-		});
+//		localContent.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				goToTeam(String.valueOf(v.getTag()));
+//			}
+//		});
 
 		TextView awayTeamName = (TextView) generalView
 				.findViewById(R.id.awayTeamName);
@@ -325,14 +325,14 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 		View awayContent = generalView.findViewById(R.id.awayContent);
 		awayContent.setTag(match.getAwayId());
-		awayContent.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				goToTeam(String.valueOf(v.getTag()));
-
-			}
-		});
+//		awayContent.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				goToTeam(String.valueOf(v.getTag()));
+//
+//			}
+//		});
 
 		SimpleDateFormat sdformat = new SimpleDateFormat(
 				DateFormat.CARRUSEL_FORMAT, Locale.getDefault());
@@ -368,14 +368,14 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 	}
 
-	public void goToTeam(String tag) {
+//	public void goToTeam(String tag) {
 		// Intent intent = new Intent(getActivity().getApplicationContext(),
 		// TeamActivity.class);
 		// intent.putExtra("teamId", tag);
 		// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
 		// getActivity().overridePendingTransition(R.anim.grow_from_middle,
 		// R.anim.shrink_to_middle);
-	}
+//	}
 
 	protected void paintTVs(Match currentMatch, RelativeLayout tvContainerAll) {
 		tvContainerAll.removeAllViews();

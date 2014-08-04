@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.GeneralFragmentActivity;
@@ -155,15 +157,22 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.actionbar_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			onBackPressed();
 			return false;
-			// case R.id.share:
-			// shareTeam();
-			// break;
+		case R.id.share:
+			shareTeam();
+			break;
 		}
 		return true;
 	}
@@ -171,30 +180,30 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	/**
 	 * 
 	 */
-	// private void shareTeam() {
-	// if (currentTeam != null && currentTeam.getName() != null) {
-	// Intent i = new Intent(Intent.ACTION_SEND);
-	// i.setType("text/plain");
-	//
-	// i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-	// String body = getString(R.string.mens_share_part1_1)
-	// + currentTeam.getName()
-	// + getString(R.string.mens_share_part2)
-	// // + getString(R.string.share_mens_url_long)
-	// // + getString(R.string.share_mens_part2)
-	// // + getString(R.string.share_mens_url_short)
-	// // + getString(R.string.share_mens_part4)
-	// ;
-	//
-	// i.putExtra(Intent.EXTRA_TEXT, body);
-	// // i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
-	// startActivity(Intent.createChooser(i,
-	// getString(R.string.share_mens_title)
-	// + getString(R.string.app_name)));
-	//
-	// }
-	//
-	// }
+	private void shareTeam() {
+		if (currentTeam != null && currentTeam.getName() != null) {
+			Intent i = new Intent(Intent.ACTION_SEND);
+			i.setType("text/plain");
+
+			i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+			String body = getString(R.string.mens_share_part1_1)
+					+ currentTeam.getName()
+					+ getString(R.string.mens_share_part2)
+			// + getString(R.string.share_mens_url_long)
+			// + getString(R.string.share_mens_part2)
+			// + getString(R.string.share_mens_url_short)
+			// + getString(R.string.share_mens_part4)
+			;
+
+			i.putExtra(Intent.EXTRA_TEXT, body);
+			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+			startActivity(Intent.createChooser(i,
+					getString(R.string.share_mens_title)
+							+ getString(R.string.app_name)));
+
+		}
+
+	}
 
 	private void configView() {
 		statsButton = ((Button) findViewById(R.id.statsButton));
@@ -212,7 +221,9 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		currentTeam = team;
 		configViewPager();
 		if (currentTeam.getShortName() != null) {
-			String section = NativeAds.AD_COUNTRY
+			String competitionName = getIntent().getExtras().getString(
+					"competitionName");
+			String section = NativeAds.AD_COUNTRY + StringUtils.getNormalizeText(competitionName) + "/"
 					+ StringUtils.getNormalizeText(currentTeam.getShortName());
 			callToAds(section, true);
 		}
@@ -420,15 +431,16 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	private void callToOmniture(final int pos) {
 
-//		String subsection = headerNames.get(pos);
-//		if (subsection.startsWith("la") || subsection.startsWith("La")
-//				|| subsection.startsWith("El") || subsection.startsWith("el"))
-//			subsection = subsection.substring(3, subsection.length());
-//		if (subsection.startsWith("en los") || subsection.startsWith("En los"))
-//			subsection = subsection.substring(7, subsection.length());
+		// String subsection = headerNames.get(pos);
+		// if (subsection.startsWith("la") || subsection.startsWith("La")
+		// || subsection.startsWith("El") || subsection.startsWith("el"))
+		// subsection = subsection.substring(3, subsection.length());
+		// if (subsection.startsWith("en los") ||
+		// subsection.startsWith("En los"))
+		// subsection = subsection.substring(7, subsection.length());
 
-//		subsection = StringUtils
-//				.getNormalizeText(subsection, true, false, true);
+		// subsection = StringUtils
+		// .getNormalizeText(subsection, true, false, true);
 		String subsection = null;
 		switch (pos) {
 		case 0:
@@ -444,7 +456,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		default:
 			break;
 		}
-		
 
 		String section = "";
 		if (currentTeam.getShortName() != null)
@@ -678,7 +689,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		// }
 		// });
 		// headerSroll.setHeaderPosition(pos);
-		 callToOmniture(pos);
+		callToOmniture(pos);
 
 		// ((TeamFragment) fragments.get(pos)).onShown();
 

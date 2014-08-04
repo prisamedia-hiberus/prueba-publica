@@ -17,7 +17,7 @@
 	<key>header</key>
 	<dict>
 		<key>available</key>
-		<false/>
+		<true/>
 		<key>imageURL</key>
 		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2014_2015/img_adidas_header.png</string>
 	</dict>
@@ -151,12 +151,12 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_LigaBBVA.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-07-23T14:00:00Z</date>
+			<date>2015-07-23T16:13:00Z</date>
 		</dict>
 		<key>7</key>
 		<dict>
 			<key>order</key>
-			<string>3</string>
+			<string>2</string>
 			<key>description</key>
 			<string>Liga Adelante</string>
 			<key>confFileURL</key>
@@ -164,7 +164,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_ligaadelante.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T12:00:00Z</date>
+			<date>2014-07-23T15:33:00Z</date>
 		</dict>
 		<!--<key>13</key>
 		<dict>
@@ -208,7 +208,7 @@
 		<key>9</key>
 		<dict>
 			<key>order</key>
-			<string>7</string>
+			<string>3</string>
 			<key>description</key>
 			<string>Serie A</string>
 			<key>confFileURL</key>
@@ -216,7 +216,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-22T00:00:00Z</date>
+			<date>2014-07-22T01:00:00Z</date>
 		</dict>
 		<key>8</key>
 		<dict>
@@ -229,7 +229,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-22T00:00:00Z</date>
+			<date>2014-07-22T01:10:00Z</date>
 		</dict>
 		<key>5</key>
 		<dict>
@@ -242,7 +242,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-22T00:00:00Z</date>
+			<date>2014-07-22T01:00:00Z</date>
 		</dict>
 		<key>6</key>
 		<dict>
@@ -255,22 +255,8 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_francia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-22T10:00:00Z</date>
+			<date>2014-07-22T11:00:00Z</date>
 		</dict>
-		<key>17</key>
-		<dict>
-			<key>order</key>
-			<string>2</string>
-			<key>description</key>
-			<string>mundial</string>
-			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_del_mundial/config/v1.x/v1.2/conf-guia-mundial.xml</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_ligaadelante.png</string>
-			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:00Z</date>
-		</dict>
-
 	</dict>
 
 </dict>

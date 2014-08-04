@@ -420,25 +420,25 @@ public class CalendarRegularFragment extends CalendarFragment {
 			});
 			// }
 			holder.localShieldContainer.setTag(currentMatch.getLocalId());
-			holder.localShieldContainer
-					.setOnClickListener(new OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							goToTeam(v);
-
-						}
-					});
+//			holder.localShieldContainer
+//					.setOnClickListener(new OnClickListener() {
+//
+//						@Override
+//						public void onClick(View v) {
+//							goToTeam(v);
+//
+//						}
+//					});
 			holder.awayShieldContainer.setTag(currentMatch.getAwayId());
-			holder.awayShieldContainer
-					.setOnClickListener(new OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							goToTeam(v);
-
-						}
-					});
+//			holder.awayShieldContainer
+//					.setOnClickListener(new OnClickListener() {
+//
+//						@Override
+//						public void onClick(View v) {
+//							goToTeam(v);
+//
+//						}
+//					});
 
 			holder.leftTeamText.setText(currentMatch.getLocalTeamName());
 			holder.rightTeamText.setText(currentMatch.getAwayTeamName());

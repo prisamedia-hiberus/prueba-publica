@@ -355,38 +355,38 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	}
 
-	public void goToTeam(String tag) {
+//	public void goToTeam(String tag) {
 		// Intent intent = new Intent(getApplicationContext(),
 		// TeamActivity.class);
 		// intent.putExtra("teamId", tag);
 		// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
 		// overridePendingTransition(R.anim.grow_from_middle,
 		// R.anim.shrink_to_middle);
-	}
+//	}
 
 	private void loadData() {
 		findViewById(R.id.gapBar).setVisibility(View.VISIBLE);
 		findViewById(R.id.gapBar2).setVisibility(View.VISIBLE);
 		View localContainer = findViewById(R.id.localContainer);
-		localContainer.setTag(match.getLocalId());
-		localContainer.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				goToTeam(String.valueOf(v.getTag()));
-
-			}
-		});
+//		localContainer.setTag(match.getLocalId());
+//		localContainer.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				goToTeam(String.valueOf(v.getTag()));
+//
+//			}
+//		});
 		View awayContainer = findViewById(R.id.awayContainer);
 		awayContainer.setTag(match.getAwayId());
-		awayContainer.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				goToTeam(String.valueOf(v.getTag()));
-
-			}
-		});
+//		awayContainer.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				goToTeam(String.valueOf(v.getTag()));
+//
+//			}
+//		});
 		localShield.setBackgroundResource(idShieldLocal);
 		awayShield.setBackgroundResource(idShieldAway);
 

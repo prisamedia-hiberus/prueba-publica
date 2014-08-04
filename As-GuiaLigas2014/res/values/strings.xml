@@ -52,9 +52,9 @@
 
     <!-- TEAM -->
     <string name="team_fragmentname_resumen">La Selección</string>
-    <string name="team_fragmentname_plantilla">La Plantilla</string>
-    <string name="team_fragmentname_elonce">El Once tipo</string>
-    <string name="team_fragmentname_palmares">En los mundiales</string>
+    <!-- <string name="team_fragmentname_plantilla">La Plantilla</string> -->
+    <!-- <string name="team_fragmentname_elonce">El Once tipo</string> -->
+    <!-- <string name="team_fragmentname_palmares">En los mundiales</string> -->
     <string name="team_estadisticas_min">Estadísticas</string>
     <string name="team_palmares">Palmarés</string>
     <string name="team_portero">Portero</string>
@@ -158,12 +158,10 @@
     <string name="connection_error_message">Lo sentimos pero no es posible ver esta sección sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
     <string name="mens_share_part1_1">Te recomiendo leer al \"</string>
     <string name="mens_share_part1_2">Te recomiendo leer a \"</string>
-    <string name="share_title">AS Mundial 2014 - Vía Diario AS</string>
-    <string name="mens_share_part2">\" en la app de As Mundial.</string>
-    <!-- <string name="mens_share_part2">\" en la app de As Mundial. Descarga la app aquí&#160;</string> -->
+    <string name="share_title">Guía de la Liga 2014 - Vía Diario AS</string>
+    <string name="mens_share_part2">\" en la app de As Guía de La Liga 2014.</string>
     <string name="mens_share_part3_1">Sigue el partido&#160;</string>
-    <string name="mens_share_part3_2">&#160;en la app del Mundial.</string>
-    <!-- <string name="mens_share_part3_2">&#160;en la app del Mundial. Descarga la app aquí&#160;</string> -->
+    <string name="mens_share_part3_2">&#160;en la app del Guía de La Liga 2014.</string>
     <!-- <string name="share_mens_url_long">http://www.laguiadelaliga.com</string> -->
 
 

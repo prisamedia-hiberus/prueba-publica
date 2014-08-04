@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.team.TeamActivity;
+import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.team.Team;
+import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
@@ -150,6 +152,9 @@ public abstract class CompetitionHomeFragment extends Fragment {
 		Intent intent = new Intent(mContext, TeamActivity.class);
 		intent.putExtra("teamId", teamId);
 		intent.putExtra("competitionId", String.valueOf(competitionId));
+		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
+		if (comp!=null)
+			intent.putExtra("competitionName", comp.getName());
 
 		getActivity().startActivityForResult(intent,
 				ReturnRequestCodes.PUBLI_BACK);

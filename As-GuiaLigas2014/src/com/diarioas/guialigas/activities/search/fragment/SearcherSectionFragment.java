@@ -168,6 +168,7 @@ public class SearcherSectionFragment extends SectionFragment implements
 			intent = new Intent(mContext, TeamActivity.class);
 			intent.putExtra("teamId", id);
 			intent.putExtra("teamUrl", url);
+			intent.putExtra("competitionName", NativeAds.AD_SEARCHER);
 
 		} else {
 			Integer playerId = Integer.valueOf(id);

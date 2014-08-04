@@ -31,6 +31,7 @@ import com.diarioas.guialigas.dao.model.calendar.Fase;
 import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.clasificacion.ClasificacionInfo;
 import com.diarioas.guialigas.dao.model.clasificacion.LeyendaInfo;
+import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.ClasificacionSection;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
@@ -318,6 +319,9 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		Intent intent = new Intent(mContext, TeamActivity.class);
 		intent.putExtra("teamId", teamId);
 		intent.putExtra("competitionId", String.valueOf(competitionId));
+		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
+		if (comp!=null)
+			intent.putExtra("competitionName", comp.getName());
 
 		getActivity().startActivityForResult(intent,
 				ReturnRequestCodes.PUBLI_BACK);
