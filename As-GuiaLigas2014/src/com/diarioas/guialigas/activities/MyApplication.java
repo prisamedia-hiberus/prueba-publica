@@ -46,8 +46,8 @@ public class MyApplication extends Application {
 
 		super.onCreate();
 //		COMSCORE
-		comScore.setAppName(getString(R.string.app_name_normalize));
-		comScore.setAppContext(getApplicationContext());
+//		comScore.setAppName(getString(R.string.app_name_normalize));
+//		comScore.setAppContext(getApplicationContext());
 		
 		//URBAN
 		AirshipConfigOptions options = AirshipConfigOptions

@@ -127,7 +127,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				R.layout.fragment_comparatorplayer_section, container, false);
 		return generalView;
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
@@ -437,8 +437,18 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				generalView.findViewById(R.id.noDataPlayersScroll)
 						.setVisibility(View.GONE);
 				loadLeftVSRight();
-
+				StatisticsDAO.getInstance(mContext).sendStatisticsState(
+						getActivity().getApplication(),
+						Omniture.SECTION_COMPARATOR,
+						null,
+						null,
+						null,
+						Omniture.DETAILPAGE_RESULTADO,
+						Omniture.DETAILPAGE_RESULTADO + ":"
+								+ Omniture.DETAILPAGE_RESULTADO + " "
+								+ Omniture.SECTION_COMPARATOR, null);
 			} else {
+				callToOmniture();
 				generalView.findViewById(R.id.noDataPlayersScroll)
 						.setVisibility(View.VISIBLE);
 				generalView.findViewById(R.id.dataPlayersScroll).setVisibility(
@@ -450,17 +460,16 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 	/*********************************** General Data Methods ****************************************/
 	private void loadLeftPlayer() {
-		ImageView imageView = (ImageView) generalView.findViewById(R.id.photoPlayerLeft);
+		ImageView imageView = (ImageView) generalView
+				.findViewById(R.id.photoPlayerLeft);
 		String url = currentPlayerLeft.getUrlFoto();
 		if (url != null) {
-			
-			ImageDAO.getInstance(mContext)
-					.loadPlayerImage(
-							url,
-							imageView,
-							R.drawable.mask_foto);
-		}else{
-			imageView.setImageDrawable(getResources().getDrawable(R.drawable.foto_generica));
+
+			ImageDAO.getInstance(mContext).loadPlayerImage(url, imageView,
+					R.drawable.mask_foto);
+		} else {
+			imageView.setImageDrawable(getResources().getDrawable(
+					R.drawable.foto_generica));
 		}
 
 		generalView.findViewById(R.id.playerDataContentLeft).setVisibility(
@@ -504,29 +513,29 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String positionPL = currentPlayerLeft.getDemarcation();
 		if (positionPL != null)
 			positionPlayerLeft.setText(positionPL.toUpperCase());
-		int dorsal = currentPlayerLeft.getDorsal();		
-		if (dorsal>0){
+		int dorsal = currentPlayerLeft.getDorsal();
+		if (dorsal > 0) {
 			playerDorsalLeft.setText(String.valueOf(dorsal));
 			playerDorsalLeft.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			playerDorsalLeft.setVisibility(View.INVISIBLE);
 		}
 
 	}
 
 	private void loadRightPlayer() {
-		ImageView imageView = (ImageView) generalView.findViewById(R.id.photoPlayerRight);
+		ImageView imageView = (ImageView) generalView
+				.findViewById(R.id.photoPlayerRight);
 		String url = currentPlayerRight.getUrlFoto();
 		if (url != null) {
-			
-			ImageDAO.getInstance(mContext).loadImage(
-					url,
-					imageView,
+
+			ImageDAO.getInstance(mContext).loadImage(url, imageView,
 					R.drawable.mask_foto);
-		}else{
-			imageView.setImageDrawable(getResources().getDrawable(R.drawable.foto_generica));
+		} else {
+			imageView.setImageDrawable(getResources().getDrawable(
+					R.drawable.foto_generica));
 		}
-		
+
 		generalView.findViewById(R.id.playerImagesContentRight).setVisibility(
 				View.VISIBLE);
 		generalView.findViewById(R.id.dorsalContentRight).setVisibility(
@@ -571,10 +580,10 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		if (positionPR != null)
 			positionPlayerRight.setText(positionPR.toUpperCase());
 		int dorsal = currentPlayerRight.getDorsal();
-		if (dorsal>0){
+		if (dorsal > 0) {
 			playerDorsalRight.setText(String.valueOf(dorsal));
 			playerDorsalRight.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			playerDorsalRight.setVisibility(View.INVISIBLE);
 		}
 	}
@@ -583,9 +592,11 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 		yearsPLArray = new ArrayList<String>(currentPlayerLeft.getStats()
 				.keySet());
+		currentPLYear=0;
 
 		yearsPRArray = new ArrayList<String>(currentPlayerRight.getStats()
 				.keySet());
+		currentPRYear=0;
 
 		setPalmaresPL();
 		setPalmaresPR();
@@ -596,6 +607,24 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 			Collections.sort(yearsPRArray, new YearComparator());
 			configureYearsPRScroll(yearsPRArray);
+		}else{
+			yearPLLinear.removeAllViews();
+			buttonYearPLPrev.setVisibility(View.GONE);
+			buttonYearPLNext.setVisibility(View.GONE);
+			
+			competitionPLLinear.removeAllViews();
+			buttonCompPLPrev.setVisibility(View.GONE);
+			buttonCompPLNext.setVisibility(View.GONE);
+			
+			yearPRLinear.removeAllViews();
+			buttonYearPRPrev.setVisibility(View.GONE);
+			buttonYearPRNext.setVisibility(View.GONE);
+			
+			competitionPRLinear.removeAllViews();
+			buttonCompPRPrev.setVisibility(View.GONE);
+			buttonCompPRNext.setVisibility(View.GONE);
+			
+			statsLinear.removeAllViews();
 		}
 
 	}
@@ -1290,17 +1319,29 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	private void configureStats() {
 		if (currentPLCompetition != -1 && currentPRCompetition != -1) {
 			statsLinear.removeAllViews();
-			PlayerStats playerStatPL = currentPlayerLeft.getStats(yearsPLArray
-					.get(currentPLYear));
-			ItemStats itemStatsPL = playerStatPL.getStats(competitionPLArray
-					.get(currentPLCompetition));
+			ItemStats itemStatsPL = null, itemStatsPR = null;
 
-			PlayerStats playerStatPR = currentPlayerRight.getStats(yearsPRArray
-					.get(currentPRYear));
-			ItemStats itemStatsPR = playerStatPR.getStats(competitionPRArray
-					.get(currentPRCompetition));
-			
-			configureStats(itemStatsPL, itemStatsPR);
+			String currentYear = yearsPLArray.get(currentPLYear);
+			String currentComp = competitionPLArray.get(currentPLCompetition);
+			if (currentYear != null && !currentYear.equalsIgnoreCase("")
+					&& currentComp != null && !currentComp.equalsIgnoreCase("")) {
+				PlayerStats playerStatPL = currentPlayerLeft
+						.getStats(currentYear);
+				if (playerStatPL != null)
+					itemStatsPL = playerStatPL.getStats(currentComp);
+			}
+
+			currentYear = yearsPRArray.get(currentPRYear);
+			currentComp = competitionPRArray.get(currentPRCompetition);
+			if (currentYear != null && !currentYear.equalsIgnoreCase("")
+					&& currentComp != null && !currentComp.equalsIgnoreCase("")) {
+				PlayerStats playerStatPR = currentPlayerRight
+						.getStats(currentYear);
+				if (playerStatPR != null)
+					itemStatsPR = playerStatPR.getStats(currentComp);
+			}
+			if (itemStatsPL != null && itemStatsPR != null)
+				configureStats(itemStatsPL, itemStatsPR);
 		}
 	}
 

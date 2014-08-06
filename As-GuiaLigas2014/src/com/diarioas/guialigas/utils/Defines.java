@@ -313,6 +313,7 @@ public class Defines {
 		public static final String DETAILPAGE_INFORMACION = "informacion";
 		public static final String DETAILPAGE_FOTOGALERIA = "fotogaleria";
 		public static final String DETAILPAGE_DETALLE = "detalle";
+		public static final String DETAILPAGE_RESULTADO = "resultado";
 		public static final String SECTION_PHOTOS = "fotos";
 		public static final String SECTION_LINK = "triviaAS";
 

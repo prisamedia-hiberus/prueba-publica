@@ -92,7 +92,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 				.getCompetitions();
 		countrySroll = (CustomHoizontalScroll) generalView
 				.findViewById(R.id.countrySroll);
-		callToOmniture();
+		
 	}
 
 	private void configureHeader(final ArrayList<Competition> competitions) {
@@ -178,10 +178,10 @@ public class TeamsSectionFragment extends SectionFragment implements
 		leagueViewPager.setAdapter(new FragmentAdapter(
 				getChildFragmentManager(), fragments));
 		leagueViewPager.setCurrentItem(0, true);
+		
 		leagueViewPager.setOnPageChangeListener(this);
-
 		setButtonsVisibility();
-
+		callToOmniture();
 		((HomeActivity) getActivity()).stopAnimation();
 	}
 
@@ -247,8 +247,9 @@ public class TeamsSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
+		String competitionName = competitions.get(leagueViewPager.getCurrentItem()).getName();
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_PORTADA, null,
+				getActivity().getApplication(), competitionName,Omniture.SECTION_PORTADA,
 				null, null, Omniture.TYPE_PORTADA, Omniture.DETAILPAGE_PORTADA,
 				null);
 	}
@@ -290,6 +291,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 	@Override
 	public void onPageSelected(int pos) {
 		((HomeActivity) getActivity()).setCurrentcompetition(pos);
+		callToOmniture();
 
 	}
 
