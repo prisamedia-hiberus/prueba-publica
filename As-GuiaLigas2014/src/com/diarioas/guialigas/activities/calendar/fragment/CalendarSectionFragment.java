@@ -28,9 +28,11 @@ import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.dao.model.calendar.Day;
 import com.diarioas.guialigas.dao.model.calendar.Fase;
 import com.diarioas.guialigas.dao.model.calendar.Grupo;
+import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.reader.CalendarDAO;
 import com.diarioas.guialigas.dao.reader.CalendarDAO.CalendarDAOListener;
+import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -349,11 +351,13 @@ public class CalendarSectionFragment extends SectionFragment implements
 	}
 
 	private void callToOmniture(int pos) {
+		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(
+				Integer.valueOf(competitionId));
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
+				comp.getName().toLowerCase(),
 				Omniture.SECTION_CALENDAR,
 				"jornada " + (pos + 1),
-				null,
 				null,
 				Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CALENDAR

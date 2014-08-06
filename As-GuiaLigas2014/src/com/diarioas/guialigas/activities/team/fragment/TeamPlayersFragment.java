@@ -206,7 +206,7 @@ public class TeamPlayersFragment extends TeamFragment {
 			if (players.get(i).get("url") != null) {
 				item.setTag(players.get(i).get("id"));
 			} else {
-				item.setTag(-1);
+				item.setTag("-1");
 			}
 			if (url != null) {
 				ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(url,

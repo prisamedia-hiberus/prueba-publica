@@ -62,10 +62,10 @@ public class MainActivity extends FragmentActivity implements
 		
 //		configureLoadingView();
 		// COMSCORE
-		comScore.setAppName(getString(R.string.app_name_normalize));
-		com.comscore.analytics.Census.getInstance().notifyStart(
-				getApplicationContext(), ComscoreCode.CUSTOMERID,
-				ComscoreCode.PUBLISEHSECRETCODE);
+
+		//		com.comscore.analytics.Census.getInstance().notifyStart(
+//				getApplicationContext(), ComscoreCode.CUSTOMERID,
+//				ComscoreCode.PUBLISEHSECRETCODE);
 
 		this.mContext = this.getApplicationContext();
 

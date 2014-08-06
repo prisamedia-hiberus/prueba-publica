@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -223,7 +224,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		if (currentTeam.getShortName() != null) {
 			String competitionName = getIntent().getExtras().getString(
 					"competitionName");
-			String section = NativeAds.AD_COUNTRY + StringUtils.getNormalizeText(competitionName) + "/"
+			String section = NativeAds.AD_COUNTRY
+					+ StringUtils.getNormalizeText(competitionName) + "/"
 					+ StringUtils.getNormalizeText(currentTeam.getShortName());
 			callToAds(section, true);
 		}
@@ -408,26 +410,26 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				overridePendingTransition(R.anim.grow_from_middle,
 						R.anim.shrink_to_middle);
 			} else {
-				// showNoPlayerAlert();
+				showNoPlayerAlert();
 			}
 		} else {
-			// showNoPlayerAlert();
+			showNoPlayerAlert();
 		}
 	}
 
-	// private void showNoPlayerAlert() {
-	// AlertManager.showAlertOkDialog(this,
-	// getResources()
-	// .getString(R.string.player_comparator_not_content),
-	// getResources().getString(R.string.connection_atention_title),
-	//
-	// new OnClickListener() {
-	// @Override
-	// public void onClick(DialogInterface dialog, int which) {
-	// dialog.dismiss();
-	// }
-	// });
-	// }
+	private void showNoPlayerAlert() {
+		AlertManager.showAlertOkDialog(this,
+				getResources()
+						.getString(R.string.error_player_message_noplayer),
+				getResources().getString(R.string.connection_atention_title),
+
+				new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+	}
 
 	private void callToOmniture(final int pos) {
 

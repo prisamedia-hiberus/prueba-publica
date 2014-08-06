@@ -121,7 +121,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-//		ImageDAO.getInstance(this).closeCache();
+		// ImageDAO.getInstance(this).closeCache();
 	}
 
 	/*
@@ -241,24 +241,23 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 			resultOk = true;
 			onBackPressed();
 		} else {
-			// AlertManager.showAlertOkDialog(
-			// this,
-			// getResources().getString(
-			// R.string.player_comparator_not_content),
-			// getResources()
-			// .getString(R.string.connection_atention_title),
-			//
-			// new OnClickListener() {
-			// @Override
-			// public void onClick(DialogInterface dialog, int which) {
-			// dialog.dismiss();
-			// }
-			// });
+			AlertManager.showAlertOkDialog(
+					this,
+					getResources().getString(
+							R.string.player_comparator_not_content),
+					getResources()
+							.getString(R.string.connection_atention_title),
+
+					new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
 		}
 	}
 
 	/************************************ SECOND STEP ******************************************/
-
 
 	/*********************************** Metodos de RemoteTeam *****************************************/
 	/*

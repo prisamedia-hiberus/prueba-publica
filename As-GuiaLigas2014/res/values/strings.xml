@@ -1,13 +1,14 @@
 <resources>
 
     <string name="app_name">Guía de la Liga</string>
-    <string name="app_name_normalize" translatable="false">guia liga as</string>
+    <string name="app_name_normalize" translatable="false">Guia-Liga</string>
 
     <!-- PLAYER -->
     <string name="player_comparator_message_versus">Escoge una Competición y una Temporada para iniciar la Comparativa</string>
     <string name="player_detail_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
     <string name="player_detail_not_updated">Sin conexión a Internet no podrá consultar los datos actualizados de este jugador.</string>
     <string name="player_comparator_not_content">No existen datos para ese jugador y no es posible seleccionarlo para la comparativa. Por favor, seleccione otro jugador</string>
+    <string name="error_player_message_noplayer">Lo sentimos pero no es posible recuperar la información de este jugador.</string>
     <string name="error_player_message">Lo sentimos pero no es posible recuperar la información de este jugador sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
     <string name="player_comparator_back">Atrás</string>
     <string name="player_comparator_cancel">Cancelar</string>

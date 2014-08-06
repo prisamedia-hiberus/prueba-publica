@@ -450,14 +450,17 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 	/*********************************** General Data Methods ****************************************/
 	private void loadLeftPlayer() {
+		ImageView imageView = (ImageView) generalView.findViewById(R.id.photoPlayerLeft);
 		String url = currentPlayerLeft.getUrlFoto();
 		if (url != null) {
+			
 			ImageDAO.getInstance(mContext)
 					.loadPlayerImage(
 							url,
-							((ImageView) generalView
-									.findViewById(R.id.photoPlayerLeft)),
+							imageView,
 							R.drawable.mask_foto);
+		}else{
+			imageView.setImageDrawable(getResources().getDrawable(R.drawable.foto_generica));
 		}
 
 		generalView.findViewById(R.id.playerDataContentLeft).setVisibility(
@@ -501,19 +504,29 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String positionPL = currentPlayerLeft.getDemarcation();
 		if (positionPL != null)
 			positionPlayerLeft.setText(positionPL.toUpperCase());
-		playerDorsalLeft.setText(String.valueOf(currentPlayerLeft.getDorsal()));
+		int dorsal = currentPlayerLeft.getDorsal();		
+		if (dorsal>0){
+			playerDorsalLeft.setText(String.valueOf(dorsal));
+			playerDorsalLeft.setVisibility(View.VISIBLE);
+		}else{
+			playerDorsalLeft.setVisibility(View.INVISIBLE);
+		}
 
 	}
 
 	private void loadRightPlayer() {
+		ImageView imageView = (ImageView) generalView.findViewById(R.id.photoPlayerRight);
 		String url = currentPlayerRight.getUrlFoto();
 		if (url != null) {
+			
 			ImageDAO.getInstance(mContext).loadImage(
 					url,
-					((ImageView) generalView
-							.findViewById(R.id.photoPlayerRight)),
+					imageView,
 					R.drawable.mask_foto);
+		}else{
+			imageView.setImageDrawable(getResources().getDrawable(R.drawable.foto_generica));
 		}
+		
 		generalView.findViewById(R.id.playerImagesContentRight).setVisibility(
 				View.VISIBLE);
 		generalView.findViewById(R.id.dorsalContentRight).setVisibility(
@@ -557,8 +570,13 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String positionPR = currentPlayerRight.getDemarcation();
 		if (positionPR != null)
 			positionPlayerRight.setText(positionPR.toUpperCase());
-		playerDorsalRight
-				.setText(String.valueOf(currentPlayerRight.getDorsal()));
+		int dorsal = currentPlayerRight.getDorsal();
+		if (dorsal>0){
+			playerDorsalRight.setText(String.valueOf(dorsal));
+			playerDorsalRight.setVisibility(View.VISIBLE);
+		}else{
+			playerDorsalRight.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	private void loadLeftVSRight() {

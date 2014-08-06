@@ -36,6 +36,7 @@ import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.model.carrusel.Gol;
 import com.diarioas.guialigas.dao.model.carrusel.Tarjeta;
+import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.competition.Group;
 import com.diarioas.guialigas.dao.model.general.TeamSection;
 import com.diarioas.guialigas.dao.model.team.Team;
@@ -116,7 +117,7 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			t.cancel();
 			t = null;
 		}
-		
+
 		ImageDAO.getInstance(getActivity()).closePlayerCache();
 		ImageDAO.getInstance(getActivity()).erasePlayerCache();
 	}
@@ -666,9 +667,11 @@ public class CarrouselSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
+		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(
+				Integer.valueOf(competitionId));
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_CARROUSEL,
-				null, null, null, Omniture.TYPE_PORTADA,
+				getActivity().getApplication(), comp.getName().toLowerCase(),
+				Omniture.SECTION_CARROUSEL, null, null, Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_CARROUSEL,
 				null);
 	}

@@ -132,8 +132,10 @@ public class ComparatorPlayerFragmentStepFirst extends Fragment {
 				.findViewById(R.id.playerDorsalLeft);
 		FontUtils.setCustomfont(mContext, playerDorsalLeft,
 				FontUtils.FontTypes.HELVETICANEUE);
-		playerDorsalLeft.setText(String.valueOf(getArguments().getInt(
-				"dorsalPL")));
+		int dorsalPL = getArguments().getInt(
+				"dorsalPL");
+		if (dorsalPL>0)
+			playerDorsalLeft.setText(String.valueOf(dorsalPL));
 
 	}
 

@@ -431,10 +431,12 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
+		
+		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
+				comp.getName().toLowerCase(),
 				Omniture.SECTION_CLASIFICATION,
-				null,
 				null,
 				null,
 				Omniture.TYPE_PORTADA,

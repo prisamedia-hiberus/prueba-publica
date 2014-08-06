@@ -1,6 +1,7 @@
 package com.diarioas.guialigas.activities.home;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -46,6 +47,8 @@ import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
+import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestSectionTypes;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
@@ -272,7 +275,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 					if (selectedSection.isActive()) {
 						if (selectedSection.getViewType().equalsIgnoreCase(
 								RequestSectionTypes.EXTERNAL_VIEW)) {
-							openLink(selectedSection.getUrl());
+							openLink(selectedSection.getUrl(), selectedSection.getName());
 						} else {
 							if (!selectedSection.getType().equalsIgnoreCase(
 									SECTIONS.SEARCHER))
@@ -425,7 +428,15 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		}
 	}
 
-	private void openLink(String url) {
+	private void openLink(String url, String name) {
+		String competitionName = RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase();
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("event16", name);
+		StatisticsDAO.getInstance(getApplicationContext())
+				.sendStatisticsAction(getApplication(),
+						competitionName, Omniture.SECTION_PORTADA, null,
+						null, null, null, info);
+		
 		if (!url.startsWith("http://") && !url.startsWith("https://"))
 			url = "http://" + url;
 		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
