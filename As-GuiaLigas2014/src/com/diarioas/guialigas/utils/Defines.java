@@ -51,7 +51,7 @@ public class Defines {
 		public static String DB_NAME = "ligas_2014_.sqlite";
 		public static final int VERSION = 1;
 		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
-		public static String DATABASE_NAME = "2014_mundial.db";
+		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
 	public static interface URL_DATA {
@@ -67,12 +67,6 @@ public class Defines {
 	public static final int NUM_MAX_TVS = 4;
 
 	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
-//	public static String URL_REMOTE_CONFIG_FILE = "https://8117540c1a01790bafbf7d7c0119ea1f0b0db507.googledrive.com/host/0B57LzJ1pIeo2eFhrZmRLemtqZGc/conf-guia.plist";
-
-
-
-	// public static String URL_REMOTE_CONFIG_FILE =
-	// "https://googledrive.com/host/0B57LzJ1pIeo2eFhrZmRLemtqZGc/conf-guia-mundial.plist";
 
 	public static interface MatchStats {
 		public static final String POS_GOLES_ENCAJADOS = "GolesEnc";

@@ -2,7 +2,7 @@ package com.diarioas.guialigas.activities.team.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
@@ -52,6 +51,8 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 	private ArrayList<Competition> competitions;
 
+	private int currentComp;
+
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
@@ -71,6 +72,16 @@ public class TeamsSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void buildView() {
+		 currentComp=0;
+		if (competitionId !=null) {
+//			 for (Competition competition : competitions) {
+			 for (int i = 0; i < competitions.size(); i++) {
+				if (competitionId.equalsIgnoreCase(String.valueOf(competitions.get(i).getId()))){
+					currentComp = i;
+					break;
+				}
+			}
+		 }
 		if (competitions != null && competitions.size() > 1) {
 			configureHeader(competitions);
 			headerVisibility = true;
@@ -109,7 +120,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 				.getColor(R.color.medium_gray));
 		countrySroll.addScrollEndListener(this);
 		countrySroll.addViews(strings);
-
+		
 		buttonPrev = (ImageView) generalView.findViewById(R.id.buttonPrev);
 		((View) buttonPrev.getParent())
 				.setOnClickListener(new OnClickListener() {
@@ -162,6 +173,8 @@ public class TeamsSectionFragment extends SectionFragment implements
 						paramsRight.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 						generalView.findViewById(R.id.buttonRight)
 								.setLayoutParams(paramsRight);
+						
+
 					}
 				});
 	}
@@ -171,13 +184,29 @@ public class TeamsSectionFragment extends SectionFragment implements
 				.findViewById(R.id.leagueViewPager);
 
 		List<Fragment> fragments = getFragments();
-		// if (competitions.get(0).getId() != 0) {
-		// currentCompetition = competitions.get(0);
-		// }
+
 
 		leagueViewPager.setAdapter(new FragmentAdapter(
 				getChildFragmentManager(), fragments));
-		leagueViewPager.setCurrentItem(0, true);
+		
+		
+		leagueViewPager.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			
+			@SuppressLint("NewApi")
+			@Override
+			public void onGlobalLayout() {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+					leagueViewPager.getViewTreeObserver()
+							.removeOnGlobalLayoutListener(this);
+				} else {
+					leagueViewPager.getViewTreeObserver()
+							.removeGlobalOnLayoutListener(this);
+				}
+				leagueViewPager.setCurrentItem(currentComp, true);
+			}
+		}
+		);
+		
 		
 		leagueViewPager.setOnPageChangeListener(this);
 		setButtonsVisibility();

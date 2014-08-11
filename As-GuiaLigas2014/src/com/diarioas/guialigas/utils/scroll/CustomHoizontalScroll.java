@@ -51,6 +51,8 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 
 	private int initPosition;
 
+	private int currentX;
+
 	public CustomHoizontalScroll(Context context) {
 		super(context);
 		mContext = context;
@@ -213,6 +215,8 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 				}
 				// Center in the screen
 				w -= (width - widths.get(position)) / 2;
+				Log.d("SCROLL", "Position: "+position+" With: "+w);
+				this.currentX = w;
 				this.scrollTo(w, this.getScrollY());
 
 			}
@@ -220,7 +224,12 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 			// this.smoothScrollTo(w, this.getScrollY());
 		}
 	}
-
+@Override
+public void scrollTo(int x, int y) {
+	// TODO Auto-generated method stub
+	super.scrollTo(currentX, y);
+	Log.d("SCROLL", " With: "+x);
+}
 	public void addScrollEndListener(ScrollEndListener scrollEndListener) {
 		this.scrollEndListener = scrollEndListener;
 	}
