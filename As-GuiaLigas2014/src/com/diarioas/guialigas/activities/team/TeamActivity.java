@@ -112,8 +112,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			if (requestCode == ReturnRequestCodes.PUBLI_BACK) {
 				if (currentTeam != null && currentTeam.getShortName() != null) {
 					String section = NativeAds.AD_COUNTRY
-							+ StringUtils.getNormalizeText(currentTeam
-									.getShortName());
+							+ StringUtils.getNormalizeText(currentTeam.getShortName(), false, true, true).replaceAll("_", "");
 					callToAds(section, true);
 					callToOmniture(teamViewPager.getCurrentItem());
 				}
@@ -225,8 +224,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			String competitionName = getIntent().getExtras().getString(
 					"competitionName");
 			String section = NativeAds.AD_COUNTRY
-					+ StringUtils.getNormalizeText(competitionName) + "/"
-					+ StringUtils.getNormalizeText(currentTeam.getShortName());
+					+ StringUtils.getNormalizeText(competitionName + "/"
+					+ currentTeam.getShortName(),false, true, true).replaceAll("_", "");
 			callToAds(section, true);
 		}
 

@@ -44,6 +44,7 @@ import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAODetailListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.CarruselDetail;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
@@ -51,6 +52,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestTimes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
@@ -582,13 +584,14 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
+		String competitionName=RemoteDataDAO.getInstance(getApplicationContext()).getGeneralSettings().getCurrentCompetition().getName();
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
+				competitionName,
 				Omniture.SECTION_CARROUSEL,
 				getIntent().getExtras().getString("dayName"),
-				match.getLocalTeamName() + match.getAwayTeamName(),
 				details.get(pos),
-				Omniture.TYPE_ARTICLE,
+				Omniture.TYPE_ARTICLE,competitionName+" "+
 				Omniture.SECTION_CARROUSEL + " "
 						+ getIntent().getExtras().getString("dayName") + " "
 						+ match.getLocalTeamName() + match.getAwayTeamName()

@@ -31,6 +31,7 @@ import android.util.Log;
 import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.notifications.IntentReceiver;
+import com.diarioas.guialigas.utils.Defines.ComscoreCode;
 import com.urbanairship.AirshipConfigOptions;
 import com.urbanairship.Logger;
 import com.urbanairship.UAirship;
@@ -46,9 +47,9 @@ public class MyApplication extends Application {
 
 		super.onCreate();
 //		COMSCORE
-//		comScore.setAppName(getString(R.string.app_name_normalize));
-//		comScore.setAppContext(getApplicationContext());
-		
+		comScore.setAppContext(getApplicationContext());
+		comScore.setAppName(getString(R.string.app_name_normalize));
+
 		//URBAN
 		AirshipConfigOptions options = AirshipConfigOptions
 				.loadDefaultOptions(this);
