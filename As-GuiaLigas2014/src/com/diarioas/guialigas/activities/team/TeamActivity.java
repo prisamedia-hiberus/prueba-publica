@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -188,15 +189,15 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
 			String body = getString(R.string.mens_share_part1_1)
 					+ currentTeam.getName()
-					+ getString(R.string.mens_share_part2)
-			// + getString(R.string.share_mens_url_long)
+					+ getString(R.string.mens_share_part2)+"<a href=\""
+			 + getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
 			// + getString(R.string.share_mens_part2)
-			// + getString(R.string.share_mens_url_short)
-			// + getString(R.string.share_mens_part4)
+//			 + getString(R.string.share_mens_url_short_1)
+//			 + getString(R.string.share_mens_part4)
 			;
 
-			i.putExtra(Intent.EXTRA_TEXT, body);
-			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+//			i.putExtra(Intent.EXTRA_TEXT, body);
+			i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(i,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));

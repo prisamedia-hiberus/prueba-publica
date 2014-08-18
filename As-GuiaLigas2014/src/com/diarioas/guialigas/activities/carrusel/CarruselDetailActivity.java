@@ -338,10 +338,10 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			intent.setType("text/plain");
 			String link = getIntent().getExtras().getString("link");
 
-			String body = getString(R.string.mens_share_part3_1) + " <a href="
+			String body = getString(R.string.mens_share_part4_1) + " <a href="
 					+ link + ">" + match.getLocalTeamName() + " - "
 					+ match.getAwayTeamName() + " </a>"
-					+ getString(R.string.mens_share_part3_2)
+					+ getString(R.string.mens_share_part4_2)
 			// + getString(R.string.share_mens_url_long)
 			;
 

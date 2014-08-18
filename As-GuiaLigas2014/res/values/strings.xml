@@ -153,18 +153,18 @@
 
     <!-- AlertManager -->
     <string name="accept">OK</string>
-    <string name="share_mens_title">"Compartir "</string>
+    <string name="share_mens_title">Compartir&#160;</string>
     <string name="connection_error_title">Error de Conexion</string>
     <string name="connection_atention_title">Atención</string>
     <string name="connection_error_message">Lo sentimos pero no es posible ver esta sección sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
     <string name="mens_share_part1_1">Te recomiendo leer al \"</string>
     <string name="mens_share_part1_2">Te recomiendo leer a \"</string>
     <string name="share_title">Guía de la Liga 2014 - Vía Diario AS</string>
-    <string name="mens_share_part2">\" en la app de As Guía de La Liga 2014.</string>
-    <string name="mens_share_part3_1">Sigue el partido&#160;</string>
-    <string name="mens_share_part3_2">&#160;en la app del Guía de La Liga 2014.</string>
-    <!-- <string name="share_mens_url_long">http://www.laguiadelaliga.com</string> -->
-
+    <string name="mens_share_part2">\" en la app de As&#160;</string>
+    <string name="mens_share_part3">Guía de La Liga 2014.</string>
+    <string name="mens_share_part4_1">Sigue el partido&#160;</string>
+    <string name="mens_share_part4_2">&#160;en la app del Guía de La Liga 2014.</string>
+    <string name="share_mens_url_long_1">https://play.google.com/store/apps/details?id=</string>
 
     <!-- Calendario -->
     <string name="calendar_day_not_active">Esta jornada no está activa</string>
