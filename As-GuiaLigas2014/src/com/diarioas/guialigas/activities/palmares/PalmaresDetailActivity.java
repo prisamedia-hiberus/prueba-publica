@@ -51,7 +51,7 @@ public class PalmaresDetailActivity extends GeneralFragmentActivity {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		callToAds("palmares/detalle", false);

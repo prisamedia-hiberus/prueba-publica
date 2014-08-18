@@ -27,6 +27,7 @@ import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
+import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.reader.PubliDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -68,6 +69,7 @@ public class TeamVideoActivity extends Activity implements PreRollVideoListener 
 		// TODO Auto-generated method stub
 		super.onPause();
 		currentVideo.pause();
+		comScore.onExitForeground();
 
 	}
 
@@ -76,7 +78,9 @@ public class TeamVideoActivity extends Activity implements PreRollVideoListener 
 		// TODO Auto-generated method stub
 		super.onResume();
 		currentVideo.start();
+		comScore.onEnterForeground();
 	}
+	
 
 	@Override
 	protected void onStop() {

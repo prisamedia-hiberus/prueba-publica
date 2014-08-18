@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.reader.PubliDAO;
 import com.diarioas.guialigas.utils.imageutils.MemoryReleaseUtils;
@@ -35,6 +36,30 @@ public class GeneralFragmentActivity extends SherlockFragmentActivity {
 			R.drawable.spinner_guia0009 };
 	protected RelativeLayout spinner;
 
+	
+	
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+
+		comScore.onEnterForeground();
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		comScore.onExitForeground();
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		banner = null;
+	}
+	
+	
 	protected void configActionBar() {
 		getSupportActionBar().setIcon(R.drawable.home_icn_logoheader);
 
@@ -114,12 +139,7 @@ public class GeneralFragmentActivity extends SherlockFragmentActivity {
 
 	/***********************************************************************************/
 
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		banner = null;
-	}
+
 
 	/**
 	 * Call To publi

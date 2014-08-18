@@ -53,7 +53,7 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		ImageDAO.getInstance(this).exitNewsTaskEarly();
@@ -62,7 +62,7 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		ImageDAO.getInstance(this).exitNewsTaskEarly();

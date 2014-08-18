@@ -117,7 +117,7 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		ImageDAO.getInstance(this).exitPlayerTaskEarly();

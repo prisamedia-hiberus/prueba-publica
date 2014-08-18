@@ -93,7 +93,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	 * @see android.app.Activity#onResume()
 	 */
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 //		mImageFetcher.setExitTasksEarly(false);
 		if (!isLoaded) {
@@ -140,7 +140,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 //		mImageFetcher.setExitTasksEarly(false);

@@ -47,7 +47,7 @@ public class MyApplication extends Application {
 
 		super.onCreate();
 //		COMSCORE
-		comScore.setAppContext(getApplicationContext());
+		comScore.setAppContext(this.getApplicationContext());
 		comScore.setAppName(getString(R.string.app_name_normalize));
 
 		//URBAN

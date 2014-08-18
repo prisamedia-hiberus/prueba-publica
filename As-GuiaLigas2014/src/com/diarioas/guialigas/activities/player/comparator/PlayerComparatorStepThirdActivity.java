@@ -85,7 +85,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 
@@ -104,7 +104,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		ImageDAO.getInstance(this).exitPlayerTaskEarly();

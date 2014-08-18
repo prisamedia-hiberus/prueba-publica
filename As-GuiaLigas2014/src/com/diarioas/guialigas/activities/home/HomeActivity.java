@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.MainActivity;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.calendar.fragment.CalendarSectionFragment;
@@ -143,7 +144,10 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		super.onResume();
 
 		ImageDAO.getInstance(mContext).exitTaskEarly();
+		comScore.onEnterForeground();
 	}
+	
+	
 
 	@Override
 	protected void onStart() {
@@ -161,6 +165,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		super.onPause();
 		ImageDAO.getInstance(mContext).exitTaskEarly();
 		ImageDAO.getInstance(mContext).flushCache();
+		comScore.onExitForeground();
 
 	}
 

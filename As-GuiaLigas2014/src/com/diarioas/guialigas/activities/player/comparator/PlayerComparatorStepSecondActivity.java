@@ -86,7 +86,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		StatisticsDAO.getInstance(this).sendStatisticsState(
