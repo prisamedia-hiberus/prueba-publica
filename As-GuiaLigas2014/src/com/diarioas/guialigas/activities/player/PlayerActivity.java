@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -214,14 +215,14 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			// getString(R.string.app_name));
 			String body = getString(R.string.mens_share_part1_2)
 					+ currentPlayer.getName()
-					+ getString(R.string.mens_share_part2)
+					+ getString(R.string.mens_share_part2)+"<a href=\""+ getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
 			// + getString(R.string.share_mens_url_long)
 			// + getString(R.string.share_mens_part2)
 			// + getString(R.string.share_mens_url_short)
 			// + getString(R.string.share_mens_part4)
 			;
-			intent.putExtra(Intent.EXTRA_TEXT, body);
-			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+//			intent.putExtra(Intent.EXTRA_TEXT, body);
+			intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(intent,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));

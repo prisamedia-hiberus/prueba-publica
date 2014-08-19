@@ -16,12 +16,13 @@
 
 package com.diarioas.guialigas.utils.imageutils.bitmapfun;
 
+import com.diarioas.guialigas.BuildConfig;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
-import com.comscore.android.BuildConfig;
 
 /**
  * A BitmapDrawable that keeps track of whether it is being displayed or cached.

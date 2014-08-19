@@ -218,7 +218,8 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 				bundlePlayer.putString("url", player.getUrl());
 			bundlePlayer.putString("demarcacion", player.getDemarcation());
 
-			bundlePlant.putBundle(player.getShortName(), bundlePlayer);
+//			bundlePlant.putBundle(player.getShortName(), bundlePlayer);
+			bundlePlant.putBundle(nf.format(player.getDorsal()), bundlePlayer);
 		}
 		args.putBundle("plantilla", bundlePlant);
 		playerFragment.setArguments(args);

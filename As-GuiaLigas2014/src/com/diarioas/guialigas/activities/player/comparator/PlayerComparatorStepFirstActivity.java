@@ -12,6 +12,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -178,11 +179,11 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 
 			String body = getString(R.string.mens_share_part1_2)
 					+ currentPlayerLeft.getName()
-					+ getString(R.string.mens_share_part2)
+					+ getString(R.string.mens_share_part2)+"<a href=\""+ getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
 			// + getString(R.string.share_mens_url_long)
 			;
 
-			intent.putExtra(Intent.EXTRA_TEXT, body);
+			intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(intent,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));

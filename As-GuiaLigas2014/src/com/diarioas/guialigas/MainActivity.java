@@ -59,9 +59,6 @@ public class MainActivity extends FragmentActivity implements
 
 		setContentView(R.layout.activity_main);
 
-		// COMSCORE
-//		com.comscore.analytics.Census.getInstance().notifyStart(getApplicationContext(), ComscoreCode.CUSTOMERID,ComscoreCode.PUBLISEHSECRETCODE);
-
 		this.mContext = this.getApplicationContext();
 
 		ArrayList<Object> splash = DatabaseDAO.getInstance(mContext)
