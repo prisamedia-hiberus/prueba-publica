@@ -6,19 +6,19 @@ public class StringUtils {
 
 	private static final HashMap<Character, Character> accents = new HashMap<Character, Character>() {
 		{
-			put('‡', 'a');
-			put('', 'e');
-			put('’', 'i');
-			put('—', 'o');
-			put('œ', 'u');
-			put('–', 'n');
+			put('Ã¡', 'a');
+			put('Ã©', 'e');
+			put('Ã­', 'i');
+			put('Ã³', 'o');
+			put('Ãº', 'u');
+			put('Ã±', 'n');
 
-			put('ç', 'A');
-			put('ƒ', 'E');
-			put('ê', 'I');
-			put('î', 'O');
-			put('ò', 'U');
-			put('„', 'N');
+			put('Ã', 'A');
+			put('Ã‰', 'E');
+			put('Ã', 'I');
+			put('Ã“', 'O');
+			put('Ãš', 'U');
+			put('Ã‘', 'N');
 
 			// put('Ä„', 'A');
 			// put('Ä˜', 'E');

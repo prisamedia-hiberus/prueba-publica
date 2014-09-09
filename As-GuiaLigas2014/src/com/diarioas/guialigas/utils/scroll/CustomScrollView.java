@@ -67,7 +67,7 @@ public class CustomScrollView extends ScrollView {
 			// Puede parar, va hacia abajo y debe pararse
 			this.scrollTo(0, getHeightTotal() - heightBottom + 1);
 		} else
-			// Ejecuci—n normal
+			// EjecuciÃ³n normal
 			super.onScrollChanged(x, y, oldX, oldY);
 
 		// Se ha parado-> permitimos acceder a las vistas ocultas

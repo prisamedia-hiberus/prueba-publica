@@ -19,7 +19,6 @@ import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO.RemoteDataDAOListener;
 import com.diarioas.guialigas.utils.Defines;
-import com.diarioas.guialigas.utils.Defines.ComscoreCode;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageCache.ImageCacheParams;
 import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageFetcher;
@@ -32,9 +31,9 @@ public class MainActivity extends FragmentActivity implements
 	private static long splashTime = DEFAULT_SPLASHTIME;
 	// private static final long SPLASHTIME = 3000;
 
-//	private FrameLayout fragmentContainerLoading;
-//	private LoadingSplashFragment loadingFragment;
-	
+	// private FrameLayout fragmentContainerLoading;
+	// private LoadingSplashFragment loadingFragment;
+
 	private Handler splashHandler = new Handler() {
 
 		@Override
@@ -67,7 +66,7 @@ public class MainActivity extends FragmentActivity implements
 			splashTime = ((Integer) splash.get(1)) * 1000;
 
 			ImageCacheParams cacheParams = new ImageCacheParams(this,
-					Defines.NAME_CACHE_THUMBS+"splash");
+					Defines.NAME_CACHE_THUMBS + "splash");
 			cacheParams.setMemCacheSizePercent(0.25f);
 
 			ImageFetcher mImageFetcher = new ImageFetcher(this, getResources()
@@ -77,8 +76,9 @@ public class MainActivity extends FragmentActivity implements
 			mImageFetcher.setImageFadeIn(true);
 			mImageFetcher.loadImage((String) splash.get(0),
 					((ImageView) findViewById(R.id.publi_splash)));
-			
-//			ImageDAO.getInstance(this).loadSplashImage((String) splash.get(0),((ImageView) findViewById(R.id.publi_splash)));
+
+			// ImageDAO.getInstance(this).loadSplashImage((String)
+			// splash.get(0),((ImageView) findViewById(R.id.publi_splash)));
 
 		}
 
@@ -92,7 +92,7 @@ public class MainActivity extends FragmentActivity implements
 		RemoteDataDAO.getInstance(mContext).addListener(this);
 		RemoteDataDAO.getInstance(mContext).refreshDatabaseWithNewResults();
 	}
-	
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -163,44 +163,45 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	/************************** TIMER ****************************************/
-//	/************************************* Configuration methods *************************************************/
-//	private void configureLoadingView() {
-//		Log.d("LOADING", "configureLoadingView");
-//
-//		// Create the database
-//		DatabaseDAO.getInstance(getApplicationContext());
-//
-//		fragmentContainerLoading = (FrameLayout) findViewById(R.id.spinner_fragment);
-//
-//		FragmentManager fragmentManager = getSupportFragmentManager();
-//		FragmentTransaction fragmentTransaction = fragmentManager
-//				.beginTransaction();
-//
-//		loadingFragment = new LoadingSplashFragment();
-//		fragmentTransaction.add(R.id.spinner_fragment, loadingFragment);
-//		fragmentTransaction.commit();
-//	}
-//
-//	/***************************************************************************/
-//	/** Loading methods **/
-//	/***************************************************************************/
-//
-//	public void startAnimation() {
-//		Log.d("LOADING", "startAnimation");
-//		fragmentContainerLoading.setVisibility(View.VISIBLE);
-//		if (!loadingFragment.isLoadingAnimation())
-//			loadingFragment.startAnimation();
-//	}
-//
-//	public void stopAnimation() {
-//		Log.d("LOADING", "stopAnimation");
-//		fragmentContainerLoading.setVisibility(View.GONE);
-//		if (loadingFragment.isLoadingAnimation())
-//			loadingFragment.stopAnimation();
-//	}
+	// /************************************* Configuration methods
+	// *************************************************/
+	// private void configureLoadingView() {
+	// Log.d("LOADING", "configureLoadingView");
+	//
+	// // Create the database
+	// DatabaseDAO.getInstance(getApplicationContext());
+	//
+	// fragmentContainerLoading = (FrameLayout)
+	// findViewById(R.id.spinner_fragment);
+	//
+	// FragmentManager fragmentManager = getSupportFragmentManager();
+	// FragmentTransaction fragmentTransaction = fragmentManager
+	// .beginTransaction();
+	//
+	// loadingFragment = new LoadingSplashFragment();
+	// fragmentTransaction.add(R.id.spinner_fragment, loadingFragment);
+	// fragmentTransaction.commit();
+	// }
+	//
+	// /***************************************************************************/
+	// /** Loading methods **/
+	// /***************************************************************************/
+	//
+	// public void startAnimation() {
+	// Log.d("LOADING", "startAnimation");
+	// fragmentContainerLoading.setVisibility(View.VISIBLE);
+	// if (!loadingFragment.isLoadingAnimation())
+	// loadingFragment.startAnimation();
+	// }
+	//
+	// public void stopAnimation() {
+	// Log.d("LOADING", "stopAnimation");
+	// fragmentContainerLoading.setVisibility(View.GONE);
+	// if (loadingFragment.isLoadingAnimation())
+	// loadingFragment.stopAnimation();
+	// }
 
 	/************************************* Configuration methods *************************************************/
-	
 
 	@Override
 	public void onSuccessRemoteconfig() {

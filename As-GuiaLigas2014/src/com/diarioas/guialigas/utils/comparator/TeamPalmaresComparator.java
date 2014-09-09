@@ -11,9 +11,9 @@ import java.util.Comparator;
  */
 public class TeamPalmaresComparator implements Comparator<String> {
 	static enum Competitions {
-		primeradivision(1), primeradivisión(1), ligadecampeones(2), copadeeuropa(
+		primeradivision(1), primeradivisi√≥n(1), ligadecampeones(2), copadeeuropa(
 				3), mundialdeclubes(4), copaintercontinental(5), supercopadeeuropa(
-				6), europaleague(7), recopadeeuropa(8), copadelrey(9), supercopadeespaña(
+				6), europaleague(7), recopadeeuropa(8), copadelrey(9), supercopadeespa√±a(
 				10);
 
 		private final int order;

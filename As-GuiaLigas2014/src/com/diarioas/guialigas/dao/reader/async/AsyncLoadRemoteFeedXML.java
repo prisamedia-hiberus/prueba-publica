@@ -285,7 +285,7 @@ public class AsyncLoadRemoteFeedXML extends
 	}
 
 	/**
-	 * Recorta la url hasta quedarse con el nombre, quita el xml y añade un
+	 * Recorta la url hasta quedarse con el nombre, quita el xml y a√±ade un
 	 * plist
 	 * 
 	 * @param urlCompetition

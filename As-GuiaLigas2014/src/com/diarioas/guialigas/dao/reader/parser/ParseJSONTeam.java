@@ -134,7 +134,7 @@ public class ParseJSONTeam {
 					try {
 
 						comp = it.next();
-						// Log.d("Parser", "A–o: " + year + "Competicion: " +
+						// Log.d("Parser", "AÃ±o: " + year + "Competicion: " +
 						// comp);
 						competicion = (JSONObject) temporada.get(comp);
 						if (competicion.has("Goles a favor"))

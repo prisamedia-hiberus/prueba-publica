@@ -27,7 +27,7 @@ public class Team implements Serializable {
 	private Estadio estadio;
 	private ArrayList<String> shirts;
 	private ArrayList<TituloTeam> palmares;
-	private HashMap<String, TeamStats> stats;// A–o, Estadistica
+	private HashMap<String, TeamStats> stats;// AÃ±o, Estadistica
 	private HashMap<String, Staff> teamStaff;// Puesto, Persona
 	private ArrayList<Player> plantilla;
 	private ArrayList<PlayerOnField> idealPlayers;

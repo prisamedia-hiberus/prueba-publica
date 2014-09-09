@@ -21,7 +21,7 @@ import com.diarioas.guialigas.dao.model.Titulo;
 public class TituloPlayer extends Titulo {
 
 	private int numTitle = -1;
-	private HashMap<String, ArrayList<String>> years;// Equipo - Array A–os
+	private HashMap<String, ArrayList<String>> years;// Equipo - Array AÃ±os
 
 	public TituloPlayer(Parcel in) {
 		super(in);

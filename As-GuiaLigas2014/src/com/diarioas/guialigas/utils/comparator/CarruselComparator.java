@@ -28,7 +28,7 @@ public class CarruselComparator implements Comparator<String> {
 	}
 
 	static enum DirectOrder {
-		resumen(1), retransmision(2), endirecto(2), estadisticas(3), estadísticas(
+		resumen(1), retransmision(2), endirecto(2), estadisticas(3), estad√≠sticas(
 				3), plantilla(4);
 
 		private final int order;
@@ -44,7 +44,7 @@ public class CarruselComparator implements Comparator<String> {
 	}
 
 	static enum PostOrder {
-		resumen(1), picas(2), retransmision(3), endirecto(3), estadisticas(4), estadísticas(
+		resumen(1), picas(2), retransmision(3), endirecto(3), estadisticas(4), estad√≠sticas(
 				4), plantilla(5);
 
 		private final int order;

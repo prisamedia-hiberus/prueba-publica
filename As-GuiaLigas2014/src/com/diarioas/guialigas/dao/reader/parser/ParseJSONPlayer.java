@@ -59,7 +59,7 @@ public class ParseJSONPlayer {
 				comp = comp.substring(1, comp.length() - 1);// Se quitan los
 															// corchetes
 				comp = comp.replace("\"", "");// Se quiten las comillas
-				comp = comp.replace(",", ", ");// Se añade un espacio entre
+				comp = comp.replace(",", ", ");// Se a√±ade un espacio entre
 												// competiciones
 				player.setCompeticiones(comp + ".");
 			}

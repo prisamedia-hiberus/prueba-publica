@@ -135,7 +135,7 @@ public class Defines {
 		public static final String CARRUSEL_RESUMEN = "Resumen";
 		public static final String CARRUSEL_DIRECTO = "En Directo";
 		public static final String CARRUSEL_PLANTILLA = "Plantilla";
-		public static final String CARRUSEL_ESTADISTICAS = "Estadísticas";
+		public static final String CARRUSEL_ESTADISTICAS = "Estad√≠sticas";
 		// public static final String CARRUSEL_REMATES = "Remates";
 		public static final String CARRUSEL_PICAS = "Picas";
 	}
@@ -218,11 +218,11 @@ public class Defines {
 
 	public static interface ReturnComparator {
 
-		public static final String POSESION = "POSESIÓN";
+		public static final String POSESION = "POSESI√ìN";
 		public static final String REMATES_TOTALES = "REMATES TOTALES";
 		public static final String REMATES_FUERA = "FUERA";
 		public static final String REMATES_POSTE = "AL POSTE";
-		public static final String REMATES_PORTERIA = "A PORTERÍA";
+		public static final String REMATES_PORTERIA = "A PORTER√çA";
 		public static final String REMATES_OTROS = "OTROS";
 		public static final String ASISTENCIAS = "ASISTENCIAS";
 		public static final String PARADAS = "PARADAS";
@@ -249,7 +249,7 @@ public class Defines {
 		public static final String TRACKING_RSID = "prisacommovilidadas,prisacommovilidadprisacom";
 		public static final String TRACKING_SERVER = "prisacom.112.2o7.net";
 
-		public static final String PAIS = "españa";
+		public static final String PAIS = "espa√±a";
 		public static final String CANAL = "aplicacion_android";
 		public static final String ORGANIZACION = "prisa";
 		public static final String PRODUCTO = "as";
@@ -285,8 +285,8 @@ public class Defines {
 		public static final String SUBSECTION_NEWSDETAIL = "detalle noticia";
 		public static final String SUBSECTION_TEAM_NEWS = "ver noticias";
 		public static final String SUBSECTION_TEAM_MAP = "ver mapa";
-		public static final String SUBSECTION_TEAM_STATS = "estadísticas";
-		public static final String SUBSECTION_TEAM_INFO = "información";
+		public static final String SUBSECTION_TEAM_STATS = "estad√≠sticas";
+		public static final String SUBSECTION_TEAM_INFO = "informaci√≥n";
 		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";
 
 		public static final String SUBSUBSECTION_FICHA = "ficha";

@@ -361,7 +361,7 @@ public class ParsePlistCompetition {
 		for (Iterator<String> iterator = groupKeys.iterator(); iterator
 				.hasNext();) {
 			id = iterator.next();
-			// Lee la informacion básica del equipo
+			// Lee la informacion b√°sica del equipo
 			team = new Team();
 			team.setId(id);
 			team.setShortName((String) groupPlist.get(id).get("name"));
@@ -402,7 +402,7 @@ public class ParsePlistCompetition {
 			group.setName(groupKey);
 
 			for (HashMap<?, ?> t : groupMap) {
-				// Lee la informacion básica del equipo
+				// Lee la informacion b√°sica del equipo
 				team = new Team();
 				team.setId((String) t.get("id"));
 				team.setUrl(dataPrefix + ((String) t.get("teamWS")));

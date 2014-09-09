@@ -154,7 +154,7 @@ public class StatisticsDAO {
 
 		s.channel = section;
 
-		s.pageName = ""; // Descripcion de la p‡gina que se visualiza
+		s.pageName = ""; // Descripcion de la pÃ¡gina que se visualiza
 		s.pageURL = "";
 
 		if (section != null && !section.equalsIgnoreCase("")) {
@@ -195,7 +195,7 @@ public class StatisticsDAO {
 
 		s.prop14 = Omniture.PAIS; // Pais del Medio
 		s.prop15 = Omniture.PAIS; // Zona
-		s.prop16 = ""; // KeyWord Interna, (para bœsquedas)
+		s.prop16 = ""; // KeyWord Interna, (para bÃºsquedas)
 		s.prop17 = Omniture.CANAL; // Canal
 		s.prop18 = Omniture.ORGANIZACION; // Organizacion
 		s.prop19 = Omniture.PRODUCTO; // Producto
@@ -290,7 +290,7 @@ public class StatisticsDAO {
 		if (s.prop32 != null)
 			s.eVar13 = "D=c32"; // Nombre app
 		if (s.prop39 != null)
-			s.eVar39 = "D=c39"; // Titulo p‡gina
+			s.eVar39 = "D=c39"; // Titulo pÃ¡gina
 		if (s.prop40 != null)// * Autor del articulo */
 			s.eVar40 = "D=c40";
 		if (s.prop44 != null) /* Fecha del articulo */
@@ -298,7 +298,7 @@ public class StatisticsDAO {
 		if (s.prop56 != null) /* Xref: Identificador unico de articulo */
 			s.eVar56 = "D=c56";
 
-		if (s.prop60 != null) /* Días desde ultima visita */
+		if (s.prop60 != null) /* DÃ­as desde ultima visita */
 			s.eVar60 = "D=c60";
 
 		/* Send page view event */
@@ -521,7 +521,7 @@ public class StatisticsDAO {
 	// if (map.get("prop32") != null)/* Nombre APP */
 	// map.put("evar13", "D=c32");
 	//
-	// if (map.get("prop39") != null) /* Titulo página */
+	// if (map.get("prop39") != null) /* Titulo pÃ¡gina */
 	// map.put("evar39", "D=c39");
 	//
 	// if (map.get("prop40") != null)// * Autor del articulo */
@@ -534,7 +534,7 @@ public class StatisticsDAO {
 	// */
 	// map.put("evar56", "D=c56");
 	//
-	// if (map.get("prop60") != null) /* Días desde ultima visita */
+	// if (map.get("prop60") != null) /* DÃ­as desde ultima visita */
 	// map.put("evar60", "D=c60");
 	//
 	// map.remove("appState");

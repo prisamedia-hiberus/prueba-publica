@@ -1501,7 +1501,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	 */
 	private void insertStaticSection(SQLiteDatabase db, int competitionId,
 			Section section) throws Exception {
-		Log.d(TAG, "Insertando sección "+section.getName()+" de Competicion: "+competitionId);
+		Log.d(TAG, "Insertando secci√≥n "+section.getName()+" de Competicion: "+competitionId);
 		ContentValues values = new ContentValues();
 		values.put(KEY_COMPETITION_SECTION_COMPETITION_ID, competitionId);
 		values.put(KEY_COMPETITION_SECTION_NAME, section.getName());
@@ -3465,7 +3465,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 
 					year = cursor2.getString(cursor2
 							.getColumnIndex(KEY_TEAM_ESTADISTICAS_YEAR));
-					// Se crea una nueva stat cuando cambia el año
+					// Se crea una nueva stat cuando cambia el a√±o
 					if (first) {
 						stat = new TeamStats();
 						yearold = year;
