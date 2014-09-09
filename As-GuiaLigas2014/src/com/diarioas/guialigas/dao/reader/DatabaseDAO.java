@@ -2410,8 +2410,9 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				+ competition.getId() + "\"";
 		if (ids.length > 0) {
 			sql += " and ";
-			for (String id : ids) {			
-				sql += KEY_COMPETITION_TEAM_TEAM_ID + " != " + id + " and ";
+			for (String id : ids) {		
+				if (id!=null && !id.equalsIgnoreCase(""))
+					sql += KEY_COMPETITION_TEAM_TEAM_ID + " != " + id + " and ";
 			}
 			sql = sql.substring(0, sql.length() - 4);
 			Cursor a = db.rawQuery(sql, null);

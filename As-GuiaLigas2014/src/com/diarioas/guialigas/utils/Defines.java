@@ -50,7 +50,8 @@ public class Defines {
 	public static interface DATABASE {
 		public static String DB_NAME = "ligas_2014_.sqlite";
 		public static final int VERSION = 1;
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
+//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
@@ -66,7 +67,9 @@ public class Defines {
 
 	public static final int NUM_MAX_TVS = 4;
 
-	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
+//	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
+	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-test.xml";
+	
 
 	public static interface MatchStats {
 		public static final String POS_GOLES_ENCAJADOS = "GolesEnc";
