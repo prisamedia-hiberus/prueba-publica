@@ -30,6 +30,7 @@ import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.model.search.SearchItem;
+import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.SearchDAO;
 import com.diarioas.guialigas.dao.reader.SearchDAO.SearchDAOListener;
@@ -164,25 +165,34 @@ public class SearcherSectionFragment extends SectionFragment implements
 
 	protected void goToDetail(boolean isTeam, String id, String url) {
 		Intent intent;
-		if (isTeam) {
-			intent = new Intent(mContext, TeamActivity.class);
-			intent.putExtra("teamId", id);
-			intent.putExtra("teamUrl", url);
-			intent.putExtra("competitionName", NativeAds.AD_SEARCHER);
+		if (id != null && !id.equalsIgnoreCase("") && url != null
+				&& !url.equalsIgnoreCase("")) {
+			if (isTeam) {
+				Team team = DatabaseDAO.getInstance(mContext).getTeam(id);
+//				if (team != null && team.getUrlInfo() != null&& !team.getUrlInfo().equalsIgnoreCase("")) {
+					intent = new Intent(mContext, TeamActivity.class);
+					intent.putExtra("teamId", id);
+					intent.putExtra("teamUrl", url);
+					intent.putExtra("competitionName", NativeAds.AD_SEARCHER);
+					getActivity().startActivityForResult(intent,
+							ReturnRequestCodes.PUBLI_BACK);
+					getActivity().overridePendingTransition(R.anim.grow_from_middle,
+							R.anim.shrink_to_middle);
+//				}
 
-		} else {
-			Integer playerId = Integer.valueOf(id);
-			DatabaseDAO.getInstance(mContext).getTeamNameFromPlayer(playerId);
-			intent = new Intent(mContext, PlayerActivity.class);
-			intent.putExtra("playerId", playerId);
-			// intent.putExtra("teamName", team);
-			intent.putExtra("playerUrl", url);
+			} else {
+				Integer playerId = Integer.valueOf(id);
+				intent = new Intent(mContext, PlayerActivity.class);
+				intent.putExtra("playerId", playerId);
+				// intent.putExtra("teamName", team);
+				intent.putExtra("playerUrl", url);
+				getActivity().startActivityForResult(intent,
+						ReturnRequestCodes.PUBLI_BACK);
+				getActivity().overridePendingTransition(R.anim.grow_from_middle,
+						R.anim.shrink_to_middle);
+			}
+
 		}
-		getActivity().startActivityForResult(intent,
-				ReturnRequestCodes.PUBLI_BACK);
-		getActivity().overridePendingTransition(R.anim.grow_from_middle,
-				R.anim.shrink_to_middle);
-
 	}
 
 	@Override

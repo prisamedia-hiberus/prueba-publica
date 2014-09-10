@@ -42,14 +42,14 @@
 					</dict>
 				</dict>
 
-				<key></key>
+				<key>99999</key>
 		  		<dict>
 					<key>name</key>
 					<string>Malmö</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo///equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/3955.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>

@@ -316,17 +316,21 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	}
 
 	protected void selectedTeam(String teamId) {
-		Intent intent = new Intent(mContext, TeamActivity.class);
-		intent.putExtra("teamId", teamId);
-		intent.putExtra("competitionId", String.valueOf(competitionId));
-		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
-		if (comp!=null)
-			intent.putExtra("competitionName", comp.getName());
+		Team team = DatabaseDAO.getInstance(mContext).getTeam(teamId);
+		if (team != null && team.getUrlInfo() != null&& !team.getUrlInfo().equalsIgnoreCase("")) {
+			Intent intent = new Intent(mContext, TeamActivity.class);
+			intent.putExtra("teamId", teamId);
+			intent.putExtra("competitionId", String.valueOf(competitionId));
+			Competition comp = DatabaseDAO.getInstance(mContext)
+					.getCompetition(Integer.valueOf(competitionId));
+			if (comp != null)
+				intent.putExtra("competitionName", comp.getName());
 
-		getActivity().startActivityForResult(intent,
-				ReturnRequestCodes.PUBLI_BACK);
-		getActivity().overridePendingTransition(R.anim.grow_from_middle,
-				R.anim.shrink_to_middle);
+			getActivity().startActivityForResult(intent,
+					ReturnRequestCodes.PUBLI_BACK);
+			getActivity().overridePendingTransition(R.anim.grow_from_middle,
+					R.anim.shrink_to_middle);
+		}
 	}
 
 	/**

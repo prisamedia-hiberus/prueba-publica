@@ -149,17 +149,23 @@ public abstract class CompetitionHomeFragment extends Fragment {
 	}
 
 	protected void selectedTeam(String teamId) {
-		Intent intent = new Intent(mContext, TeamActivity.class);
-		intent.putExtra("teamId", teamId);
-		intent.putExtra("competitionId", String.valueOf(competitionId));
-		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
-		if (comp!=null)
-			intent.putExtra("competitionName", comp.getName());
 
-		getActivity().startActivityForResult(intent,
-				ReturnRequestCodes.PUBLI_BACK);
-		getActivity().overridePendingTransition(R.anim.grow_from_middle,
-				R.anim.shrink_to_middle);
+		Team team = DatabaseDAO.getInstance(mContext).getTeam(teamId);
+		if (team != null && team.getUrl() != null&& !team.getUrl().equalsIgnoreCase("")) {
+
+			Intent intent = new Intent(mContext, TeamActivity.class);
+			intent.putExtra("teamId", teamId);
+			intent.putExtra("competitionId", String.valueOf(competitionId));
+			Competition comp = DatabaseDAO.getInstance(mContext)
+					.getCompetition(Integer.valueOf(competitionId));
+			if (comp != null)
+				intent.putExtra("competitionName", comp.getName());
+
+			getActivity().startActivityForResult(intent,
+					ReturnRequestCodes.PUBLI_BACK);
+			getActivity().overridePendingTransition(R.anim.grow_from_middle,
+					R.anim.shrink_to_middle);
+		}
 	}
 
 }
