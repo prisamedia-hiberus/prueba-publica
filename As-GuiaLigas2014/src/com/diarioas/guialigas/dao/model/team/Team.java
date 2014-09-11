@@ -607,8 +607,8 @@ public class Team implements Serializable {
 	 *            the web to set
 	 */
 	public void setWeb(String web) {
-		if (web != null && !web.startsWith("http://")
-				&& !web.startsWith("https://"))
+		if (web != null && !web.equalsIgnoreCase("")
+				&& !web.startsWith("http://") && !web.startsWith("https://"))
 			web = "http://" + web;
 		this.web = web;
 	}
