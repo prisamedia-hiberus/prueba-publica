@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines.STADIUM_IMAGE_TYPE;
+import com.diarioas.guialigas.utils.imageutils.TouchImageView;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 
 public class PhotoGalleryFSFragment extends Fragment {
 
@@ -31,6 +33,22 @@ public class PhotoGalleryFSFragment extends Fragment {
 		configureView();
 
 		return generalView;
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+
+		if (generalView != null) {
+			
+		    TouchImageView image = (TouchImageView)generalView.findViewById(R.id.image);
+		    if((image!=null)&&(image.getBackground()!=null))
+		    {
+		    	image.setImageDrawable(null);
+		    	image.getBackground().setCallback(null);
+		    }			
+			MemoryReleaseUtils.unbindDrawables(generalView);
+		}
 	}
 
 	private void configureView() {

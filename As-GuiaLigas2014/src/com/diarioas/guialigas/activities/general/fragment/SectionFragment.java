@@ -19,6 +19,7 @@ import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.reader.PubliDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 import com.prisadigital.realmedia.adlib.AdView;
 
 public abstract class SectionFragment extends Fragment {
@@ -85,6 +86,11 @@ public abstract class SectionFragment extends Fragment {
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		
+		if (generalView != null) {
+			MemoryReleaseUtils.unbindDrawables(generalView);
+		}
+		
 		mContext = null;
 		generalView = null;
 		section = null;

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.utils.imageutils.MemoryReleaseUtils;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 
 @SuppressLint("NewApi")
 public class GeneralFragment extends Fragment {

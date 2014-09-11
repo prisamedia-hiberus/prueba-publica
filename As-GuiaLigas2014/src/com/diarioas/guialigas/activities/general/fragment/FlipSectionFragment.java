@@ -20,7 +20,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.diarioas.guialigas.utils.imageutils.MemoryReleaseUtils;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 
 public abstract class FlipSectionFragment extends SectionFragment implements
 		ViewFlipListener {

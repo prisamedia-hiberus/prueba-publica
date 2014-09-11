@@ -16,7 +16,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.reader.PubliDAO;
-import com.diarioas.guialigas.utils.imageutils.MemoryReleaseUtils;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 import com.prisadigital.realmedia.adlib.AdView;
 
 /**

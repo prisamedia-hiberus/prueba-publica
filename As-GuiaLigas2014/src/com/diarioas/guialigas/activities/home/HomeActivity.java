@@ -56,7 +56,7 @@ import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.diarioas.guialigas.utils.imageutils.MemoryReleaseUtils;
+import com.diarioas.guialigas.utils.imageutils.imageloader.MemoryReleaseUtils;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
