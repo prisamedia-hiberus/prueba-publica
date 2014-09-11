@@ -74,9 +74,11 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	private CustomViewPagerPlayer playerViewPager;
 	private Player currentPlayer;
 	private String teamName;
+	private String teamShortName;
 
 	private PlayerInfoFragment infoFragment;
 	private boolean isLoaded;
+	
 
 
 	@Override
@@ -102,6 +104,9 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			int currentPlayerId = extras.getInt("playerId");
 			if (extras.containsKey("teamName"))
 				teamName = extras.getString("teamName");
+			if (extras.containsKey("teamShortName"))
+				teamShortName = extras.getString("teamShortName");
+			
 
 			configActionBar();
 			configView();
@@ -289,13 +294,13 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
-		String normalize = StringUtils.getNormalizeText(teamName);
+		
 		String playerName = StringUtils.getNormalizeText(currentPlayer
 				.getShortName());
 		switch (pos) {
 		case 0:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(), teamShortName,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_PALMARES, Omniture.TYPE_ARTICLE,
@@ -303,7 +308,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			break;
 		case 1:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(), teamShortName,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_INFORMATION, Omniture.TYPE_ARTICLE,
@@ -311,7 +316,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			break;
 		case 2:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(), teamShortName,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_TRAYECTORIA, Omniture.TYPE_ARTICLE,

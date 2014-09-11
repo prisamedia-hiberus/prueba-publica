@@ -406,6 +406,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 					intent.putExtra("teamName", currentTeam.getName());
 				else
 					intent.putExtra("teamName", currentTeam.getShortName());
+				
+				intent.putExtra("teamShortName", currentTeam.getShortName());
 				startActivity(intent);
 				overridePendingTransition(R.anim.grow_from_middle,
 						R.anim.shrink_to_middle);

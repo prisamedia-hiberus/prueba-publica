@@ -150,7 +150,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 				calendarAdapter = new CalendarAdapter(fragments);
 				daysViewPager.setAdapter(calendarAdapter);
 				daysViewPager.setOnPageChangeListener(this);
-				callToOmniture();
+
 			} else {
 				calendarAdapter.setNewFragments(fragments);
 			}
