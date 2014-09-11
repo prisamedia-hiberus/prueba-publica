@@ -1554,7 +1554,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 	@Override
 	public void callToAds() {
-		callToAds(NativeAds.AD_COMPARATOR);
+		callToAds(NativeAds.AD_COMPARATOR+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/

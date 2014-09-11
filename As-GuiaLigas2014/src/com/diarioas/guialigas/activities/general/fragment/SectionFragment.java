@@ -136,8 +136,7 @@ public abstract class SectionFragment extends Fragment {
 		// Delete old banner
 		if (banner != null) {
 			banner.removeBanner();
-			((ViewGroup) getActivity().findViewById(R.id.publiContent))
-					.removeView(banner);
+			((ViewGroup) getActivity().findViewById(R.id.publiContent)).removeAllViews();
 		}
 
 		// Create new Banner

@@ -220,7 +220,7 @@ public class SearcherSectionFragment extends SectionFragment implements
 
 	@Override
 	public void callToAds() {
-		callToAds(NativeAds.AD_SEARCHER);
+		callToAds(NativeAds.AD_SEARCHER+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/

@@ -450,7 +450,7 @@ public class ClasificationSectionFragment extends SectionFragment implements
 
 	@Override
 	public void callToAds() {
-		callToAds(NativeAds.AD_CLASIFICATION);
+		callToAds(NativeAds.AD_CLASIFICATION+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/

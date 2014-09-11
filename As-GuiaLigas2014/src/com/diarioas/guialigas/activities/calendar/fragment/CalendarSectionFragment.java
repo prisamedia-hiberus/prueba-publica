@@ -366,7 +366,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 
 	@Override
 	public void callToAds() {
-		callToAds(NativeAds.AD_CALENDAR);
+		callToAds(NativeAds.AD_CALENDAR+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
