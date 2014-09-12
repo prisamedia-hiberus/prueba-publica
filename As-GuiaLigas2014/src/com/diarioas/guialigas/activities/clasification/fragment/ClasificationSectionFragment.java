@@ -481,22 +481,22 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	@Override
 	public void onFailureRemoteconfig() {
 		RemoteClasificacionDAO.getInstance(mContext).removeListener(this);
-		AlertManager.showAlertOkDialog(getActivity(),
-				getResources().getString(R.string.clasificacion_error),
-				getResources().getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+//		AlertManager.showAlertOkDialog(getActivity(),
+//				getResources().getString(R.string.clasificacion_error),
+//				getResources().getString(R.string.connection_error_title),
+//				new android.content.DialogInterface.OnClickListener() {
+//
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.dismiss();
 						container.removeAllViews();
 						container.addView(getErrorContainer());
 						pullToRefresh.setPullToRefreshEnabled(true);
 						pullToRefresh.setPullToRefreshOverScrollEnabled(true);
-
-					}
-
-				});
+//
+//					}
+//
+//				});
 
 		stopAnimation();
 	}
@@ -510,21 +510,21 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	@Override
 	public void onFailureNotConnection() {
 		RemoteClasificacionDAO.getInstance(mContext).removeListener(this);
-		AlertManager.showAlertOkDialog(getActivity(),
-				getResources().getString(R.string.section_not_conection),
-				getResources().getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+//		AlertManager.showAlertOkDialog(getActivity(),
+//				getResources().getString(R.string.section_not_conection),
+//				getResources().getString(R.string.connection_error_title),
+//				new android.content.DialogInterface.OnClickListener() {
+//
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.dismiss();
 						container.removeAllViews();
 						container.addView(getErrorContainer());
 						pullToRefresh.setPullToRefreshEnabled(true);
 						pullToRefresh.setPullToRefreshOverScrollEnabled(true);
-					}
-
-				});
+//					}
+//
+//				});
 
 		stopAnimation();
 	}

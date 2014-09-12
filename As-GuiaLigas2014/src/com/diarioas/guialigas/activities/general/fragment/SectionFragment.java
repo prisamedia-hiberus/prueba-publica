@@ -141,8 +141,8 @@ public abstract class SectionFragment extends Fragment {
 			return;
 		// Delete old banner
 		if (banner != null) {
-			banner.removeBanner();
 			((ViewGroup) getActivity().findViewById(R.id.publiContent)).removeAllViews();
+			banner.removeBanner();
 		}
 
 		// Create new Banner
@@ -150,8 +150,7 @@ public abstract class SectionFragment extends Fragment {
 
 		// Set the new banner
 		if (banner != null)
-			((ViewGroup) getActivity().findViewById(R.id.publiContent))
-					.addView(banner);
+			((ViewGroup) getActivity().findViewById(R.id.publiContent)).addView(banner);
 
 		// if (inter)
 		// shows interstitial

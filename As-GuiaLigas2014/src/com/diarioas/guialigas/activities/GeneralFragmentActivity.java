@@ -151,14 +151,12 @@ public class GeneralFragmentActivity extends SherlockFragmentActivity {
 			return;
 		// Delete old banner
 		if (banner != null) {
+			((ViewGroup) this.findViewById(R.id.publiContent)).removeAllViews();
 			banner.removeBanner();
-			((ViewGroup) this.findViewById(R.id.publiContent))
-					.removeView(banner);
 		}
 
 		// Create new Banner
-		banner = PubliDAO.getInstance(getApplicationContext()).getBanner(
-				section);
+		banner = PubliDAO.getInstance(getApplicationContext()).getBanner(section);
 
 		// Set the new banner
 		if (banner != null)
