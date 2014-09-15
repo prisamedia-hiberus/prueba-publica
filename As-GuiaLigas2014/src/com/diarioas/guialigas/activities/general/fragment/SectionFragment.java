@@ -91,6 +91,16 @@ public abstract class SectionFragment extends Fragment {
 			MemoryReleaseUtils.unbindDrawables(generalView);
 		}
 		
+		ViewGroup publiContent = (ViewGroup) getActivity().findViewById(
+				R.id.publiContent);
+		if (publiContent != null) {
+			// Delete old banner
+			if (banner != null) {
+				banner.removeBanner();
+				publiContent.removeView(banner);
+			}
+		}
+		
 		mContext = null;
 		generalView = null;
 		section = null;
