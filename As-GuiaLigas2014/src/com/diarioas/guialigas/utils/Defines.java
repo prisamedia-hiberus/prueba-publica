@@ -49,9 +49,10 @@ public class Defines {
 
 	public static interface DATABASE {
 		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 2;
+		public static final int VERSION = 3;
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
+//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.3.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
@@ -137,7 +138,7 @@ public class Defines {
 	public static interface CarruselDetail {
 		public static final String CARRUSEL_RESUMEN = "Resumen";
 		public static final String CARRUSEL_DIRECTO = "En Directo";
-		public static final String CARRUSEL_PLANTILLA = "Plantilla";
+		public static final String CARRUSEL_PLANTILLA = "Alineaciones";
 		public static final String CARRUSEL_ESTADISTICAS = "Estadísticas";
 		// public static final String CARRUSEL_REMATES = "Remates";
 		public static final String CARRUSEL_PICAS = "Picas";
