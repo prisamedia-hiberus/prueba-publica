@@ -42,14 +42,14 @@
 					</dict>
 				</dict>
 
-				<key>99999</key>
+				<key>1053</key>
 		  		<dict>
 					<key>name</key>
 					<string>Malmö</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo///equipo.js2</string>
+					<string>/fichas/equipo/055/1053/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/3955.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/1053.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -83,7 +83,7 @@
 				<key>3955</key>
 		  		<dict>
 					<key>name</key>
-					<string>L. Razgrad</string>
+					<string>Ludogorets</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo/462/3955/equipo.js2</string>
 					<key>teamInfo</key>

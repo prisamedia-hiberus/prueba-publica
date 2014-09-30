@@ -58,12 +58,12 @@
 					</dict>
 				</dict>
 
-				<key>2203</key>
+				<key>295</key>
 		  		<dict>
 					<key>name</key>
 					<string>Zürich</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/207/2203/equipo.js2</string>
+					<string>/fichas/equipo/295/295/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -179,12 +179,12 @@
 					</dict>
 				</dict>
 
-				<key>1503</key>
+				<key>3607</key>
 		  		<dict>
 					<key>name</key>
 					<string>Asteras Tripolis</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/114/3607/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -196,12 +196,12 @@
 					</dict>
 				</dict>
 
-				<key>966</key>
+				<key>3263</key>
 		  		<dict>
 					<key>name</key>
 					<string>FK Qarabag</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/269/3263/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -213,12 +213,12 @@
 					</dict>
 				</dict>
 
-				<key>1111</key>
+				<key>1266</key>
 		  		<dict>
 					<key>name</key>
 					<string>HJK</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/268/1266/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -230,12 +230,12 @@
 					</dict>
 				</dict>
 
-				<key>1682</key>
+				<key>166</key>
 		  		<dict>
 					<key>name</key>
 					<string>D. Moscú</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/166/166/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -247,12 +247,12 @@
 					</dict>
 				</dict>
 
-				<key>3075</key>
+				<key>4169</key>
 		  		<dict>
 					<key>name</key>
 					<string>Astra Giurgiu</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/177/4169/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -349,12 +349,12 @@
 					</dict>
 				</dict>
 
-				<key>3620</key>
+				<key>531</key>
 		  		<dict>
 					<key>name</key>
 					<string>D. Minsk</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/032/531/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -383,12 +383,12 @@
 					</dict>
 				</dict>
 
-				<key>469</key>
+				<key>1244</key>
 		  		<dict>
 					<key>name</key>
 					<string>Lokeren</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/246/1244/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -451,12 +451,12 @@
 					</dict>
 				</dict>
 
-				<key>248</key>
+				<key>4171</key>
 		  		<dict>
 					<key>name</key>
 					<string>FC Krasnodar</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/179/4171/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -468,12 +468,12 @@
 					</dict>
 				</dict>
 
-				<key>543</key>
+				<key>249</key>
 		  		<dict>
 					<key>name</key>
 					<string>Besiktas</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/249/249/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -555,12 +555,12 @@
 					</dict>
 				</dict>
 
-				<key>544</key>
+				<key>223</key>
 		  		<dict>
 					<key>name</key>
 					<string>Feyenoord</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/223/223/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -761,12 +761,12 @@
 					</dict>
 				</dict>
 
-				<key>28</key>
+				<key>461</key>
 		  		<dict>
 					<key>name</key>
 					<string>Sl. Bratislava</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/461/461/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -778,12 +778,12 @@
 					</dict>
 				</dict>
 
-				<key>28</key>
+				<key>293</key>
 		  		<dict>
 					<key>name</key>
-					<string>Aalborg</string>
+					<string>Aalborg BK</string>
 					<key>teamWS</key>
-					<string></string>
+					<string>/fichas/equipo/293/293/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>

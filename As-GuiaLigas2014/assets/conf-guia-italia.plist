@@ -175,37 +175,37 @@
 					</dict>
 				</dict>
 
-				<key>1261</key>
+				<key>964</key>
 		  		<dict>
 					<key>name</key>
-					<string>Livorno</string>
+					<string>Cesena</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/263/1261/equipo.js2</string>
+					<string>/fichas/equipo/465/964/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_livorno_size02.png</string>
+						<string>escudo_cesena_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_livorno_size03.png</string>
+						<string>escudo_cesena_size03.png</string>
 						<key>detail</key>
-						<string>escudo_livorno_size01.png</string>
+						<string>escudo_cesena_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>36</key>
+				<key>980</key>
 		  		<dict>
 					<key>name</key>
-					<string>Bolonia</string>
+					<string>Empoli</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/036/36/equipo.js2</string>
+					<string>/fichas/equipo/481/980/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_bolonia_size02.png</string>
+						<string>escudo_empoli_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_bolonia_size03.png</string>
+						<string>escudo_empoli_size03.png</string>
 						<key>detail</key>
-						<string>escudo_bolonia_size01.png</string>
+						<string>escudo_empoli_size01.png</string>
 					</dict>
 				</dict>
 
@@ -243,20 +243,20 @@
 					</dict>
 				</dict>
 
-				<key>1368</key>
+				<key>1331</key>
 		  		<dict>
 					<key>name</key>
-					<string>Catania</string>
+					<string>Palermo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/370/1368/equipo.js2</string>
+					<string>/fichas/equipo/333/1331/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_catania_size02.png</string>
+						<string>escudo_palermo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_catania_size03.png</string>
+						<string>escudo_palermo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_catania_size01.png</string>
+						<string>escudo_palermo_size01.png</string>
 					</dict>
 				</dict>
 
