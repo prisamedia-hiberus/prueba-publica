@@ -52,7 +52,8 @@ public class Defines {
 		public static final int VERSION = 3;
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.3.plist";
+//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.3.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.4.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
