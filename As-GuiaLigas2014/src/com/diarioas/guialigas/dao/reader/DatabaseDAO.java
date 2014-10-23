@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,12 +50,15 @@ import com.diarioas.guialigas.dao.model.team.Star;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.model.team.TeamStats;
 import com.diarioas.guialigas.dao.model.team.TituloTeam;
+import com.diarioas.guialigas.utils.StringUtils;
 import com.diarioas.guialigas.utils.Defines.DATABASE;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.MEDIA_TYPE;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.Defines.STADIUM_IMAGE_TYPE;
 import com.diarioas.guialigas.utils.Defines.SplashTypes;
+import com.diarioas.guialigas.utils.comparator.StringComparator;
+import com.diarioas.guialigas.utils.comparator.TeamComparator;
 
 public class DatabaseDAO extends SQLiteOpenHelper {
 
@@ -2393,6 +2398,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				cursor = null;
 			}
 		}
+		
+		Collections.sort(teams, new TeamComparator());
 		return teams;
 	}
 

@@ -49,7 +49,7 @@ public class Defines {
 
 	public static interface DATABASE {
 		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 3;
+		public static final int VERSION = 4;
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
 //		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.3.plist";

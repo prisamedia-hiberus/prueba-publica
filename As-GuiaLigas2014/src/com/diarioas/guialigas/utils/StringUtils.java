@@ -43,14 +43,17 @@ public class StringUtils {
 	};
 
 	public static String removeAccents(String string) {
-
-		char[] result = string.toCharArray();
-		for (int i = 0; i < result.length; i++) {
-			Character replacement = accents.get(result[i]);
-			if (replacement != null)
-				result[i] = replacement;
+		if (string != null) {
+			char[] result = string.toCharArray();
+			for (int i = 0; i < result.length; i++) {
+				Character replacement = accents.get(result[i]);
+				if (replacement != null)
+					result[i] = replacement;
+			}
+			return new String(result);
+		} else {
+			return null;
 		}
-		return new String(result);
 	}
 
 	public static String getNormalizeText(String string) {
