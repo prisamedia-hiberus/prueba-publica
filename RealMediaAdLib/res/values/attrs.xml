@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="AdView">
+		<attr name="adType" format="integer">
+            <enum name="banner_smartphone" value="0" />
+        </attr>
+		<attr name="adKey" format="string" />
+		<attr name="adPosition" format="string" />
+	</declare-styleable>
+</resources>
