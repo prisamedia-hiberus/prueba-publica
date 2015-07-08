@@ -102,6 +102,18 @@ public abstract class CalendarFragment extends Fragment implements
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.support.v4.app.Fragment#onLowMemory()
+	 */
+	@Override
+	public void onLowMemory() {
+		// TODO Auto-generated method stub
+		super.onLowMemory();
+
+	}
+
 	/**
 	 * 
 	 */
@@ -113,6 +125,8 @@ public abstract class CalendarFragment extends Fragment implements
 						competitionId + "_calendar.json",
 						getArguments().getInt("faseId"),
 						getArguments().getInt("jornadaId"));
+		// CalendarDAO.getInstance(getActivity().getApplicationContext()).refreshCalendarDay(getArguments().getString("urlCalendar"),competitionId
+		// + "_calendar.json", day.getNumDay() - 1);
 
 	}
 
@@ -170,14 +184,14 @@ public abstract class CalendarFragment extends Fragment implements
 		return convertView;
 	}
 
-//	public void goToTeam(View view) {
+	public void goToTeam(View view) {
 		// Intent intent = new Intent(getActivity().getApplicationContext(),
 		// TeamActivity.class);
 		// intent.putExtra("teamId", String.valueOf(view.getTag()));
 		// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
 		// getActivity().overridePendingTransition(R.anim.grow_from_middle,
 		// R.anim.shrink_to_middle);
-//	}
+	}
 
 	public void goToResult(View view) {
 		Match match = (Match) view.getTag();

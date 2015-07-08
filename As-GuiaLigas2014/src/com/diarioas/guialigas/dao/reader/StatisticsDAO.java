@@ -78,43 +78,32 @@ public class StatisticsDAO {
 		String evento = "";
 
 		if (info != null && info.size() > 0) {
-
-			if (info.containsKey("event16")) {// event31 -- links
-				evento = "event16";
-				
-				s.events = evento;
-				s.eVar1 = s.prop1;
-				s.eVar17 = s.prop17;
-				s.eVar13 = s.prop32;
-				s.eVar20= s.prop20;
-				s.eVar30= s.prop30;
-				s.eVar31 = info.get("event16");
-				
-				s.linkTrackVars = "events,channel,pageName,prop1,prop2,prop17,prop32,eVar1,eVar17,eVar13,eVar31,eVar20,eVar30";
-			} else {
-				if (info.containsKey("event11")) {// event11 -- video starts
-					evento = "event11";
-					s.eVar8 = info.get("event11");
-				}
-
-				if (info.containsKey("event12")) {// event12 -- video ends
-					evento = "event12";
-					s.eVar8 = info.get("event12");
-
-				}
-
-				s.events = evento;
-				s.eVar1 = s.prop1;
-				s.eVar17 = s.prop17;
-				s.eVar13 = s.prop32;
-				s.linkTrackVars = "events,eVar8,channel,pageName,prop1,prop2,prop17,prop32,eVar1,eVar17,eVar13";
+			if (info.containsKey("event11")) {// event11 -- video starts
+				evento = "event11";
+				s.eVar8 = info.get("event11");
 			}
+
+			if (info.containsKey("event12")) {// event12 -- video ends
+				evento = "event12";
+				s.eVar8 = info.get("event12");
+
+			}
+			s.events = evento;
+			s.eVar1 = s.prop1;
+			s.eVar3 = s.pageName;
+			s.eVar13 = s.prop32;
+			s.eVar17 = s.prop17;
+			s.eVar20 = s.prop20;
+			s.eVar30 = s.prop30;
+			s.linkTrackVars = "events,channel,eVar3,eVar8,eVar13,eVar17,eVar20,eVar30";
 
 		}
 		if (evento != null && !evento.equalsIgnoreCase("")) {
-			Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> "
-					+ s.prop1 + " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
-					+ " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
+			Log.d("OMMNITURE", "CHANNEL--> " + s.channel
+					+ " PAGENAME--> " + s.pageName
+					+ " eVar1--> "+ s.eVar1 + " eVar3--> " + s.eVar3 + " eVar13--> " + s.eVar13
+					+ " eVar17--> "+ s.eVar17 + " eVar20--> " + s.eVar20 + " eVar30--> " + s.eVar30
+					);
 
 			s.trackLink(null, "o", evento);
 		}
@@ -154,7 +143,7 @@ public class StatisticsDAO {
 
 		s.channel = section;
 
-		s.pageName = ""; // Descripcion de la página que se visualiza
+		s.pageName = ""; // Descripcion de la p�gina que se visualiza
 		s.pageURL = "";
 
 		if (section != null && !section.equalsIgnoreCase("")) {
@@ -195,7 +184,7 @@ public class StatisticsDAO {
 
 		s.prop14 = Omniture.PAIS; // Pais del Medio
 		s.prop15 = Omniture.PAIS; // Zona
-		s.prop16 = ""; // KeyWord Interna, (para búsquedas)
+		s.prop16 = ""; // KeyWord Interna, (para b�squedas)
 		s.prop17 = Omniture.CANAL; // Canal
 		s.prop18 = Omniture.ORGANIZACION; // Organizacion
 		s.prop19 = Omniture.PRODUCTO; // Producto
@@ -290,7 +279,7 @@ public class StatisticsDAO {
 		if (s.prop32 != null)
 			s.eVar13 = "D=c32"; // Nombre app
 		if (s.prop39 != null)
-			s.eVar39 = "D=c39"; // Titulo página
+			s.eVar39 = "D=c39"; // Titulo p�gina
 		if (s.prop40 != null)// * Autor del articulo */
 			s.eVar40 = "D=c40";
 		if (s.prop44 != null) /* Fecha del articulo */
@@ -298,7 +287,7 @@ public class StatisticsDAO {
 		if (s.prop56 != null) /* Xref: Identificador unico de articulo */
 			s.eVar56 = "D=c56";
 
-		if (s.prop60 != null) /* Días desde ultima visita */
+		if (s.prop60 != null) /* D�as desde ultima visita */
 			s.eVar60 = "D=c60";
 
 		/* Send page view event */
@@ -521,7 +510,7 @@ public class StatisticsDAO {
 	// if (map.get("prop32") != null)/* Nombre APP */
 	// map.put("evar13", "D=c32");
 	//
-	// if (map.get("prop39") != null) /* Titulo página */
+	// if (map.get("prop39") != null) /* Titulo p�gina */
 	// map.put("evar39", "D=c39");
 	//
 	// if (map.get("prop40") != null)// * Autor del articulo */
@@ -534,7 +523,7 @@ public class StatisticsDAO {
 	// */
 	// map.put("evar56", "D=c56");
 	//
-	// if (map.get("prop60") != null) /* Días desde ultima visita */
+	// if (map.get("prop60") != null) /* D�as desde ultima visita */
 	// map.put("evar60", "D=c60");
 	//
 	// map.remove("appState");

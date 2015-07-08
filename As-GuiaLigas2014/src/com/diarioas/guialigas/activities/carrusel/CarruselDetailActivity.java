@@ -21,29 +21,28 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselDirectoFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselGameSystemFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselResumenFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselSpadesFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarruselStatsFragment;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAODetailListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
-import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.CarruselDetail;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
@@ -59,10 +58,6 @@ import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
-/**
- * @author robertosanchez
- * 
- */
 public class CarruselDetailActivity extends GeneralFragmentActivity implements
 		ViewPager.OnPageChangeListener, ScrollEndListener,
 		CarruselDAODetailListener {
@@ -127,30 +122,16 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 		configActionBar();
 		configureView();
 		startAnimation();
-		// getData();
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onStart()
-	 */
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		startTimer();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onStop()
-	 */
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		if (t != null) {
 			t.cancel();
@@ -160,28 +141,12 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-		callToAds(NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_DETAIL, false);
+		callToAds(NativeAds.AD_CARROUSEL +  NativeAds.AD_DETAIL, false);
 	}
 
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-		ImageDAO.getInstance(this).flushPlayerCache();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onDestroy()
-	 */
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		CarruselDAO.getInstance(getApplicationContext()).clean();
 
@@ -202,28 +167,13 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			fragments.clear();
 			fragments = null;
 		}
-		if (t != null) {
+		if (t!=null){
 			t.cancel();
-			t = null;
+			t=null;
 		}
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onLowMemory()
-	 */
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
 
-	/**
-	 * 
-	 */
 	private void configureView() {
 
 		// Imagen Local
@@ -237,32 +187,28 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 		// Nombre Local
 		leftTeamText = (TextView) findViewById(R.id.leftTeamText);
 		FontUtils.setCustomfont(getApplicationContext(), leftTeamText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		// Nombre Visitante
 		rightTeamText = (TextView) findViewById(R.id.rightTeamText);
 		FontUtils.setCustomfont(getApplicationContext(), rightTeamText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		resultContainer = (RelativeLayout) findViewById(R.id.resultContainer);
 
 		resultText = (TextView) findViewById(R.id.resultText);
 		FontUtils.setCustomfont(getApplicationContext(), resultText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		stateTeamText = (TextView) findViewById(R.id.stateTeamText);
 		FontUtils.setCustomfont(getApplicationContext(), stateTeamText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		stateTeamMinText = (TextView) findViewById(R.id.stateTeamMinText);
 		FontUtils.setCustomfont(getApplicationContext(), stateTeamMinText,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 
 	}
-
-	/**
-	 * 
-	 */
 
 	private void startTimer() {
 		if (t == null || timeToUpdate != timeToUpdateOld) {
@@ -283,7 +229,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	public void updateCarrusel() {
 		String dataLink = getIntent().getExtras().getString("dataLink");
-
 		Log.d("CARRUSELUPDATE", "Actualizando CarruselActivityetail: "
 				+ dataLink);
 		if (dataLink != null && !dataLink.equalsIgnoreCase("")) {
@@ -300,7 +245,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
+		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.actionbar_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -333,57 +278,58 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void sharePlayer() {
-		if (match != null) {
-			Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-			intent.setType("text/plain");
-			String link = getIntent().getExtras().getString("link");
 
-			String body = getString(R.string.mens_share_part4_1) + " <a href="
-					+ link + ">" + match.getLocalTeamName() + " - "
-					+ match.getAwayTeamName() + " </a>"
-					+ getString(R.string.mens_share_part4_2)
-			// + getString(R.string.share_mens_url_long)
-			;
+		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		String link = getIntent().getExtras().getString("link");
 
-			intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
-			startActivity(Intent.createChooser(intent,
-					getString(R.string.share_mens_title)
-							+ getString(R.string.app_name)));
-		}
+//		String body = getString(R.string.mens_share_part3_1) + " <a href="
+//				+ link + ">" + match.getLocalTeamName() + " - "
+//				+ match.getAwayTeamName() + " </a>"
+//				+ getString(R.string.mens_share_part3_2)
+		// + getString(R.string.share_mens_url_long)
+		String body ="TODO";
+		;
+
+		intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+		startActivity(Intent.createChooser(intent,
+				getString(R.string.share_mens_title)
+						+ getString(R.string.app_name)));
+
 	}
 
-	// public void goToTeam(String tag) {
-	// Intent intent = new Intent(getApplicationContext(),
-	// TeamActivity.class);
-	// intent.putExtra("teamId", tag);
-	// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
-	// overridePendingTransition(R.anim.grow_from_middle,
-	// R.anim.shrink_to_middle);
-	// }
+	public void goToTeam(String tag) {
+		// Intent intent = new Intent(getApplicationContext(),
+		// TeamActivity.class);
+		// intent.putExtra("teamId", tag);
+		// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
+		// overridePendingTransition(R.anim.grow_from_middle,
+		// R.anim.shrink_to_middle);
+	}
 
 	private void loadData() {
 		findViewById(R.id.gapBar).setVisibility(View.VISIBLE);
 		findViewById(R.id.gapBar2).setVisibility(View.VISIBLE);
 		View localContainer = findViewById(R.id.localContainer);
-		// localContainer.setTag(match.getLocalId());
-		// localContainer.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// goToTeam(String.valueOf(v.getTag()));
-		//
-		// }
-		// });
+		localContainer.setTag(match.getLocalId());
+		localContainer.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				goToTeam(String.valueOf(v.getTag()));
+
+			}
+		});
 		View awayContainer = findViewById(R.id.awayContainer);
 		awayContainer.setTag(match.getAwayId());
-		// awayContainer.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// goToTeam(String.valueOf(v.getTag()));
-		//
-		// }
-		// });
+		awayContainer.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				goToTeam(String.valueOf(v.getTag()));
+
+			}
+		});
 		localShield.setBackgroundResource(idShieldLocal);
 		awayShield.setBackgroundResource(idShieldAway);
 
@@ -579,17 +525,14 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
-		String competitionName = RemoteDataDAO
-				.getInstance(getApplicationContext()).getGeneralSettings()
-				.getCurrentCompetition().getName();
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
-				competitionName,
 				Omniture.SECTION_CARROUSEL,
 				getIntent().getExtras().getString("dayName"),
+				match.getLocalTeamName() + match.getAwayTeamName(),
 				details.get(pos),
 				Omniture.TYPE_ARTICLE,
-				competitionName + " " + Omniture.SECTION_CARROUSEL + " "
+				Omniture.SECTION_CARROUSEL + " "
 						+ getIntent().getExtras().getString("dayName") + " "
 						+ match.getLocalTeamName() + match.getAwayTeamName()
 						+ " " + details.get(pos), null);
@@ -606,8 +549,8 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			try {
 				((CarruselFragment) fragment).updateData();
 			} catch (Exception e) {
-				Log.e("UPDATE", "Fallo al actualizar: " + e.getMessage());
-				// e.printStackTrace();
+				Log.e("UPDATE", "Fallo al actualizar: "+e.getMessage());
+//				e.printStackTrace();
 			}
 		}
 	}
@@ -658,7 +601,6 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 			args.putInt("idShieldLocal", idShieldLocal);
 			args.putInt("idShieldAway", idShieldAway);
-
 			if (fragment != null) {
 				fragment.setArguments(args);
 				fList.add(fragment);
@@ -731,7 +673,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll.ScrollEndListener
+	 * com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener
 	 * #onScrollEnd(int, int, int, int, int)
 	 */
 	@Override
@@ -743,7 +685,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll.ScrollEndListener
+	 * com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener
 	 * #onItemClicked(int)
 	 */
 	@Override

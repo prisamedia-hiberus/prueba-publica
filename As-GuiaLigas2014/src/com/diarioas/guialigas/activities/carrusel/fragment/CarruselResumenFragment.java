@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.content.Intent;
-import android.graphics.Shader.TileMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -129,7 +128,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 				.findViewById(R.id.prevMatchButton);
 		if (urlPrevia != null && !urlPrevia.equalsIgnoreCase("")) {
 			FontUtils.setCustomfont(mContext, prevMatchButton,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			prevMatchButton.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -142,17 +141,16 @@ public class CarruselResumenFragment extends CarruselFragment {
 		} else {
 			prevMatchButton.setVisibility(View.GONE);
 		}
-		
 		configureIcon();
-
 	}
-
+	
 	private void configureIcon() {
 		ImageView title_menuIcon = (ImageView)generalView.findViewById(R.id.title_menuIcon);
 		
 		int iconId = DrawableUtils.getDrawableId(mContext, RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCurrentCompetition().getImage().toLowerCase(),4);
 		title_menuIcon.setImageDrawable(getResources().getDrawable(iconId));
 	}
+
 
 	/**
 	 * 
@@ -163,7 +161,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 				.findViewById(R.id.postMatchButton);
 		if (urlCronica != null && !urlCronica.equalsIgnoreCase("")) {
 			FontUtils.setCustomfont(mContext, postMatchButton,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			postMatchButton.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -182,13 +180,13 @@ public class CarruselResumenFragment extends CarruselFragment {
 		FontUtils
 				.setCustomfont(mContext,
 						generalView.findViewById(R.id.golText),
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
 				generalView.findViewById(R.id.tarjetaAmText),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
 				generalView.findViewById(R.id.tarjetaRoText),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		LinearLayout golesContainer = (LinearLayout) generalView
 				.findViewById(R.id.golesContainer2);
@@ -213,7 +211,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 							R.layout.item_list_carrusel_resumen_right, null);
 				text = (TextView) rel.findViewById(R.id.text);
 				FontUtils
-						.setCustomfont(mContext, text, FontTypes.HELVETICANEUE);
+						.setCustomfont(mContext, text, FontTypes.ROBOTO_REGULAR);
 				text.setText(gol.getMin() + "'" + gol.getPlayer());
 				golesContainer.addView(rel);
 			}
@@ -234,7 +232,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 							R.layout.item_list_carrusel_resumen_right, null);
 				text = (TextView) rel.findViewById(R.id.text);
 				FontUtils
-						.setCustomfont(mContext, text, FontTypes.HELVETICANEUE);
+						.setCustomfont(mContext, text, FontTypes.ROBOTO_REGULAR);
 				text.setText(tarjeta.getMin() + "'" + tarjeta.getPlayer());
 				tarjetasAmarillasContainer.addView(rel);
 			}
@@ -255,7 +253,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 							R.layout.item_list_carrusel_resumen_right, null);
 				text = (TextView) rel.findViewById(R.id.text);
 				FontUtils
-						.setCustomfont(mContext, text, FontTypes.HELVETICANEUE);
+						.setCustomfont(mContext, text, FontTypes.ROBOTO_REGULAR);
 				text.setText(tarjeta.getMin() + "'" + tarjeta.getPlayer());
 				tarjetasRojasContainer.addView(rel);
 			}
@@ -293,7 +291,7 @@ public class CarruselResumenFragment extends CarruselFragment {
 		TextView localTeamName = (TextView) generalView
 				.findViewById(R.id.localTeamName);
 		FontUtils.setCustomfont(mContext, localTeamName,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		localTeamName.setText(match.getLocalTeamName());
 
 		ImageView localShield = (ImageView) generalView
@@ -304,18 +302,18 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 		View localContent = generalView.findViewById(R.id.localContent);
 		localContent.setTag(match.getLocalId());
-//		localContent.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				goToTeam(String.valueOf(v.getTag()));
-//			}
-//		});
+		localContent.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				goToTeam(String.valueOf(v.getTag()));
+			}
+		});
 
 		TextView awayTeamName = (TextView) generalView
 				.findViewById(R.id.awayTeamName);
 		FontUtils
-				.setCustomfont(mContext, awayTeamName, FontTypes.HELVETICANEUE);
+				.setCustomfont(mContext, awayTeamName, FontTypes.ROBOTO_REGULAR);
 		awayTeamName.setText(match.getAwayTeamName());
 		ImageView awayShield = (ImageView) generalView
 				.findViewById(R.id.awayShield);
@@ -325,20 +323,20 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 		View awayContent = generalView.findViewById(R.id.awayContent);
 		awayContent.setTag(match.getAwayId());
-//		awayContent.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				goToTeam(String.valueOf(v.getTag()));
-//
-//			}
-//		});
+		awayContent.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				goToTeam(String.valueOf(v.getTag()));
+
+			}
+		});
 
 		SimpleDateFormat sdformat = new SimpleDateFormat(
 				DateFormat.CARRUSEL_FORMAT, Locale.getDefault());
 		TextView dateText = (TextView) generalView.findViewById(R.id.dateText);
 		FontUtils
-				.setCustomfont(mContext, dateText, FontTypes.HELVETICANEUEBOLD);
+				.setCustomfont(mContext, dateText, FontTypes.ROBOTO_BOLD);
 		if (match.getDate() != null) {
 			Date date = new Date(Long.valueOf(match.getDate()) * 1000);
 			String dateString = sdformat.format(date) + " h.";
@@ -353,29 +351,29 @@ public class CarruselResumenFragment extends CarruselFragment {
 
 		TextView jornadaName = (TextView) generalView
 				.findViewById(R.id.jornadaName);
-		FontUtils.setCustomfont(mContext, jornadaName, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, jornadaName, FontTypes.ROBOTO_REGULAR);
 		jornadaName.setText(getArguments().getString("jornadaName"));
 
 		TextView placeName = (TextView) generalView
 				.findViewById(R.id.placeName);
-		FontUtils.setCustomfont(mContext, placeName, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, placeName, FontTypes.ROBOTO_REGULAR);
 		placeName.setText(match.getPlace());
 
 		TextView refereeName = (TextView) generalView
 				.findViewById(R.id.refereeName);
-		FontUtils.setCustomfont(mContext, refereeName, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, refereeName, FontTypes.ROBOTO_REGULAR);
 		refereeName.setText(match.getReferee());
 
 	}
 
-//	public void goToTeam(String tag) {
+	public void goToTeam(String tag) {
 		// Intent intent = new Intent(getActivity().getApplicationContext(),
 		// TeamActivity.class);
 		// intent.putExtra("teamId", tag);
 		// startActivityForResult((intent, ReturnRequestCodes.PUBLI_BACK);
 		// getActivity().overridePendingTransition(R.anim.grow_from_middle,
 		// R.anim.shrink_to_middle);
-//	}
+	}
 
 	protected void paintTVs(Match currentMatch, RelativeLayout tvContainerAll) {
 		tvContainerAll.removeAllViews();

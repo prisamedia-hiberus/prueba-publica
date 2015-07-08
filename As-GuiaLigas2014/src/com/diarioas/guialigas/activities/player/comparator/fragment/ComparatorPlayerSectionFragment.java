@@ -7,6 +7,7 @@ import java.util.Iterator;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -116,6 +117,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_COMPARATOR;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,23 +135,15 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		return generalView;
 	}
 
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		ImageDAO.getInstance(getActivity()).closePlayerCache();
-		ImageDAO.getInstance(getActivity()).erasePlayerCache();
-	}
-
 	/***************************************************************************/
 	/** Configuration methods **/
 	/***************************************************************************/
 	@Override
-	protected void buildView() {
-
-		widthScroll = (((HomeActivity) getActivity()).getWidth() / 2);
+	protected void loadInformation() {
+		
+		Point size = DimenUtils.getSize(getActivity().getWindowManager());
+		widthScroll = size.x/2;
 		widthButton = widthScroll / 2;
-
 	}
 
 	@Override
@@ -188,32 +187,32 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		namePlayerLeft = (TextView) generalView
 				.findViewById(R.id.namePlayerLeft);
 		FontUtils.setCustomfont(mContext, namePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		teamPlayerLeft = (TextView) generalView
 				.findViewById(R.id.teamPlayerLeft);
 		FontUtils.setCustomfont(mContext, teamPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		datePlayerLeft = (TextView) generalView
 				.findViewById(R.id.datePlayerLeft);
 		FontUtils.setCustomfont(mContext, datePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		paisPlayerLeft = (TextView) generalView
 				.findViewById(R.id.paisPlayerLeft);
 		FontUtils.setCustomfont(mContext, paisPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		positionPlayerLeft = (TextView) generalView
 				.findViewById(R.id.positionPlayerLeft);
 		FontUtils.setCustomfont(mContext, positionPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		playerDorsalLeft = (TextView) generalView
 				.findViewById(R.id.playerDorsalLeft);
 		FontUtils.setCustomfont(mContext, playerDorsalLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 	}
 
@@ -246,32 +245,32 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		namePlayerRight = (TextView) generalView
 				.findViewById(R.id.namePlayerRight);
 		FontUtils.setCustomfont(mContext, namePlayerRight,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		teamPlayerRight = (TextView) generalView
 				.findViewById(R.id.teamPlayerRight);
 		FontUtils.setCustomfont(mContext, teamPlayerRight,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		datePlayerRight = (TextView) generalView
 				.findViewById(R.id.datePlayerRight);
 		FontUtils.setCustomfont(mContext, datePlayerRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		paisPlayerRight = (TextView) generalView
 				.findViewById(R.id.paisPlayerRight);
 		FontUtils.setCustomfont(mContext, paisPlayerRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		positionPlayerRight = (TextView) generalView
 				.findViewById(R.id.positionPlayerRight);
 		FontUtils.setCustomfont(mContext, positionPlayerRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		playerDorsalRight = (TextView) generalView
 				.findViewById(R.id.playerDorsalRight);
 		FontUtils.setCustomfont(mContext, playerDorsalRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 	}
 
 	private void configureVS() {
@@ -437,18 +436,8 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				generalView.findViewById(R.id.noDataPlayersScroll)
 						.setVisibility(View.GONE);
 				loadLeftVSRight();
-				StatisticsDAO.getInstance(mContext).sendStatisticsState(
-						getActivity().getApplication(),
-						Omniture.SECTION_COMPARATOR,
-						null,
-						null,
-						null,
-						Omniture.DETAILPAGE_RESULTADO,
-						Omniture.DETAILPAGE_RESULTADO + ":"
-								+ Omniture.DETAILPAGE_RESULTADO + " "
-								+ Omniture.SECTION_COMPARATOR, null);
+
 			} else {
-				callToOmniture();
 				generalView.findViewById(R.id.noDataPlayersScroll)
 						.setVisibility(View.VISIBLE);
 				generalView.findViewById(R.id.dataPlayersScroll).setVisibility(
@@ -460,16 +449,11 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 	/*********************************** General Data Methods ****************************************/
 	private void loadLeftPlayer() {
-		ImageView imageView = (ImageView) generalView
-				.findViewById(R.id.photoPlayerLeft);
 		String url = currentPlayerLeft.getUrlFoto();
 		if (url != null) {
-
-			ImageDAO.getInstance(mContext).loadPlayerImage(url, imageView,
-					R.drawable.mask_foto);
-		} else {
-			imageView.setImageDrawable(getResources().getDrawable(
-					R.drawable.foto_generica));
+			ImageDAO.getInstance(mContext).loadRegularImage(url,
+					(ImageView) generalView.findViewById(R.id.photoPlayerLeft),
+					-1, R.drawable.mask_foto,true);
 		}
 
 		generalView.findViewById(R.id.playerDataContentLeft).setVisibility(
@@ -513,29 +497,17 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String positionPL = currentPlayerLeft.getDemarcation();
 		if (positionPL != null)
 			positionPlayerLeft.setText(positionPL.toUpperCase());
-		int dorsal = currentPlayerLeft.getDorsal();
-		if (dorsal > 0) {
-			playerDorsalLeft.setText(String.valueOf(dorsal));
-			playerDorsalLeft.setVisibility(View.VISIBLE);
-		} else {
-			playerDorsalLeft.setVisibility(View.INVISIBLE);
-		}
+		playerDorsalLeft.setText(String.valueOf(currentPlayerLeft.getDorsal()));
 
 	}
 
 	private void loadRightPlayer() {
-		ImageView imageView = (ImageView) generalView
-				.findViewById(R.id.photoPlayerRight);
 		String url = currentPlayerRight.getUrlFoto();
 		if (url != null) {
-
-			ImageDAO.getInstance(mContext).loadImage(url, imageView,
-					R.drawable.mask_foto);
-		} else {
-			imageView.setImageDrawable(getResources().getDrawable(
-					R.drawable.foto_generica));
+			ImageDAO.getInstance(mContext).loadRegularImage(url,
+					(ImageView) generalView.findViewById(R.id.photoPlayerRight),
+					-1, R.drawable.mask_foto, true);
 		}
-
 		generalView.findViewById(R.id.playerImagesContentRight).setVisibility(
 				View.VISIBLE);
 		generalView.findViewById(R.id.dorsalContentRight).setVisibility(
@@ -579,24 +551,17 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		String positionPR = currentPlayerRight.getDemarcation();
 		if (positionPR != null)
 			positionPlayerRight.setText(positionPR.toUpperCase());
-		int dorsal = currentPlayerRight.getDorsal();
-		if (dorsal > 0) {
-			playerDorsalRight.setText(String.valueOf(dorsal));
-			playerDorsalRight.setVisibility(View.VISIBLE);
-		} else {
-			playerDorsalRight.setVisibility(View.INVISIBLE);
-		}
+		playerDorsalRight
+				.setText(String.valueOf(currentPlayerRight.getDorsal()));
 	}
 
 	private void loadLeftVSRight() {
 
 		yearsPLArray = new ArrayList<String>(currentPlayerLeft.getStats()
 				.keySet());
-		currentPLYear=0;
 
 		yearsPRArray = new ArrayList<String>(currentPlayerRight.getStats()
 				.keySet());
-		currentPRYear=0;
 
 		setPalmaresPL();
 		setPalmaresPR();
@@ -607,24 +572,6 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 			Collections.sort(yearsPRArray, new YearComparator());
 			configureYearsPRScroll(yearsPRArray);
-		}else{
-			yearPLLinear.removeAllViews();
-			buttonYearPLPrev.setVisibility(View.GONE);
-			buttonYearPLNext.setVisibility(View.GONE);
-			
-			competitionPLLinear.removeAllViews();
-			buttonCompPLPrev.setVisibility(View.GONE);
-			buttonCompPLNext.setVisibility(View.GONE);
-			
-			yearPRLinear.removeAllViews();
-			buttonYearPRPrev.setVisibility(View.GONE);
-			buttonYearPRNext.setVisibility(View.GONE);
-			
-			competitionPRLinear.removeAllViews();
-			buttonCompPRPrev.setVisibility(View.GONE);
-			buttonCompPRNext.setVisibility(View.GONE);
-			
-			statsLinear.removeAllViews();
 		}
 
 	}
@@ -646,11 +593,11 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 					R.layout.item_comparator_palmares, null);
 			numTitles = (TextView) relativeLeft.findViewById(R.id.numTitle);
 			FontUtils.setCustomfont(mContext, numTitles,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			numTitles.setText(String.valueOf(palm.getNumTitle()));
 			nomTitle = (TextView) relativeLeft.findViewById(R.id.nameTitle);
 			FontUtils
-					.setCustomfont(mContext, nomTitle, FontTypes.HELVETICANEUE);
+					.setCustomfont(mContext, nomTitle, FontTypes.ROBOTO_REGULAR);
 			nomTitle.setText(palm.getName());
 
 			palmaresLinearPL.addView(relativeLeft);
@@ -670,11 +617,11 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 					R.layout.item_comparator_palmares, null);
 			numTitles = (TextView) relativeRight.findViewById(R.id.numTitle);
 			FontUtils.setCustomfont(mContext, numTitles,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			numTitles.setText(String.valueOf(palm.getNumTitle()));
 			nomTitle = (TextView) relativeRight.findViewById(R.id.nameTitle);
 			FontUtils
-					.setCustomfont(mContext, nomTitle, FontTypes.HELVETICANEUE);
+					.setCustomfont(mContext, nomTitle, FontTypes.ROBOTO_REGULAR);
 			nomTitle.setText(palm.getName());
 
 			palmaresLinearPR.addView(relativeRight);
@@ -751,7 +698,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -914,7 +861,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -1060,7 +1007,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -1227,7 +1174,7 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -1319,29 +1266,16 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	private void configureStats() {
 		if (currentPLCompetition != -1 && currentPRCompetition != -1) {
 			statsLinear.removeAllViews();
-			ItemStats itemStatsPL = null, itemStatsPR = null;
+			PlayerStats playerStatPL = currentPlayerLeft.getStats(yearsPLArray
+					.get(currentPLYear));
+			ItemStats itemStatsPL = playerStatPL.getStats(competitionPLArray
+					.get(currentPLCompetition));
 
-			String currentYear = yearsPLArray.get(currentPLYear);
-			String currentComp = competitionPLArray.get(currentPLCompetition);
-			if (currentYear != null && !currentYear.equalsIgnoreCase("")
-					&& currentComp != null && !currentComp.equalsIgnoreCase("")) {
-				PlayerStats playerStatPL = currentPlayerLeft
-						.getStats(currentYear);
-				if (playerStatPL != null)
-					itemStatsPL = playerStatPL.getStats(currentComp);
-			}
-
-			currentYear = yearsPRArray.get(currentPRYear);
-			currentComp = competitionPRArray.get(currentPRCompetition);
-			if (currentYear != null && !currentYear.equalsIgnoreCase("")
-					&& currentComp != null && !currentComp.equalsIgnoreCase("")) {
-				PlayerStats playerStatPR = currentPlayerRight
-						.getStats(currentYear);
-				if (playerStatPR != null)
-					itemStatsPR = playerStatPR.getStats(currentComp);
-			}
-			if (itemStatsPL != null && itemStatsPR != null)
-				configureStats(itemStatsPL, itemStatsPR);
+			PlayerStats playerStatPR = currentPlayerRight.getStats(yearsPRArray
+					.get(currentPRYear));
+			ItemStats itemStatsPR = playerStatPR.getStats(competitionPRArray
+					.get(currentPRCompetition));
+			configureStats(itemStatsPL, itemStatsPR);
 		}
 	}
 
@@ -1349,34 +1283,38 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 		String team;
 		int pjPL = 0, mjPL = 0, taPL = 0, trPL = 0, gmPL = 0, gePL = 0, asPL = 0, paPL = 0;
-		for (Iterator<String> iterator = itemStatsPL.getData().keySet()
-				.iterator(); iterator.hasNext();) {
-			team = iterator.next();
-			pjPL += itemStatsPL.getPartidosJugados(team);
-			mjPL += itemStatsPL.getMinutos(team);
-			taPL += itemStatsPL.getTarjetasAmarillas(team);
-			trPL += itemStatsPL.getTarjetasRojas(team);
-			gmPL += itemStatsPL.getGolesMarcados(team);
-			gePL += itemStatsPL.getGolesEncajados(team);
-			paPL += itemStatsPL.getParadas(team);
-			asPL += itemStatsPL.getAsistencias(team);
-
+		if (itemStatsPL!=null && itemStatsPL.getData()!=null) {
+			for (Iterator<String> iterator = itemStatsPL.getData().keySet()
+					.iterator(); iterator.hasNext();) {
+				team = iterator.next();
+				pjPL += itemStatsPL.getPartidosJugados(team);
+				mjPL += itemStatsPL.getMinutos(team);
+				taPL += itemStatsPL.getTarjetasAmarillas(team);
+				trPL += itemStatsPL.getTarjetasRojas(team);
+				gmPL += itemStatsPL.getGolesMarcados(team);
+				gePL += itemStatsPL.getGolesEncajados(team);
+				paPL += itemStatsPL.getParadas(team);
+				asPL += itemStatsPL.getAsistencias(team);
+	
+			}
 		}
 
 		int pjPR = 0, mjPR = 0, taPR = 0, trPR = 0, gmPR = 0, gePR = 0, asPR = 0, paPR = 0;
-		for (Iterator<String> iterator = itemStatsPR.getData().keySet()
-				.iterator(); iterator.hasNext();) {
-			team = iterator.next();
-
-			pjPR += itemStatsPR.getPartidosJugados(team);
-			mjPR += itemStatsPR.getMinutos(team);
-			taPR += itemStatsPR.getTarjetasAmarillas(team);
-			trPR += itemStatsPR.getTarjetasRojas(team);
-			gmPR += itemStatsPR.getGolesMarcados(team);
-			gePR += itemStatsPR.getGolesEncajados(team);
-			paPR += itemStatsPR.getParadas(team);
-			asPR += itemStatsPR.getAsistencias(team);
-
+		if (itemStatsPR!=null && itemStatsPR.getData()!=null) {
+			for (Iterator<String> iterator = itemStatsPR.getData().keySet()
+					.iterator(); iterator.hasNext();) {
+				team = iterator.next();
+	
+				pjPR += itemStatsPR.getPartidosJugados(team);
+				mjPR += itemStatsPR.getMinutos(team);
+				taPR += itemStatsPR.getTarjetasAmarillas(team);
+				trPR += itemStatsPR.getTarjetasRojas(team);
+				gmPR += itemStatsPR.getGolesMarcados(team);
+				gePR += itemStatsPR.getGolesEncajados(team);
+				paPR += itemStatsPR.getParadas(team);
+				asPR += itemStatsPR.getAsistencias(team);
+	
+			}
 		}
 
 		if (currentPlayerLeft.getDemarcation().equalsIgnoreCase("portero")
@@ -1484,15 +1422,15 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		TextView textComparatorImage = (TextView) cell
 				.findViewById(R.id.textComparatorImage);
 		FontUtils.setCustomfont(mContext, textComparatorImage,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		textComparatorImage.setText(getActivity().getString(text));
 
 		TextView statsTextPL = ((TextView) cell.findViewById(R.id.statsTextPL));
-		FontUtils.setCustomfont(mContext, statsTextPL, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, statsTextPL, FontTypes.ROBOTO_REGULAR);
 		statsTextPL.setText(String.valueOf(playerLeft));
 
 		TextView statsTextPR = ((TextView) cell.findViewById(R.id.statsTextPR));
-		FontUtils.setCustomfont(mContext, statsTextPR, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, statsTextPR, FontTypes.ROBOTO_REGULAR);
 		statsTextPR.setText(String.valueOf(playerRight));
 
 		View stasOffPL = cell.findViewById(R.id.stasOffPL);
@@ -1550,11 +1488,6 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				Omniture.TYPE_PORTADA,
 				Omniture.TYPE_PORTADA + ":" + Omniture.DETAILPAGE_DETALLE + " "
 						+ Omniture.SECTION_COMPARATOR, null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_COMPARATOR+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/

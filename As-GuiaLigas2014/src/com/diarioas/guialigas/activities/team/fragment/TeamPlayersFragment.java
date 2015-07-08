@@ -7,9 +7,11 @@ import java.util.Iterator;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,19 +19,18 @@ import android.widget.TableLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
+import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepThirdActivity;
+import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
+import com.diarioas.guialigas.utils.Defines.Demarcation;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.comparator.DorsalComparator;
 
 public class TeamPlayersFragment extends TeamFragment {
 
-	/**
-	 * 
-	 */
 	private static final int NUM_VIEWS_ROW = 4;
 
-	private LayoutInflater inflater;
 	private Bundle plantilla;
 
 	@Override
@@ -55,6 +56,7 @@ public class TeamPlayersFragment extends TeamFragment {
 		super.onDestroy();
 
 		inflater = null;
+
 	}
 
 	@Override
@@ -64,7 +66,7 @@ public class TeamPlayersFragment extends TeamFragment {
 		String shield = (String) getArguments().get("shield");
 		TextView name = (TextView) generalView.findViewById(R.id.nameTeam);
 
-		name.setText((String) getArguments().get("name"));
+		name.setText((String) getArguments().get("teamName"));
 
 		FontUtils.setCustomfont(mContext, name,
 				FontUtils.FontTypes.ROBOTO_LIGHT);
@@ -98,50 +100,54 @@ public class TeamPlayersFragment extends TeamFragment {
 		plantilla = getArguments().getBundle("plantilla");
 
 		if (plantilla.keySet().size() > 0) {
-			// generalView.findViewById(R.id.porteroGap).setVisibility(
-			// View.VISIBLE);
-			// generalView.findViewById(R.id.defensaGap).setVisibility(
-			// View.VISIBLE);
-			// generalView.findViewById(R.id.medioGap).setVisibility(View.VISIBLE);
-			// porterosText.setVisibility(View.VISIBLE);
-			// defensaText.setVisibility(View.VISIBLE);
-			// medioText.setVisibility(View.VISIBLE);
-			// delanteroText.setVisibility(View.VISIBLE);
 
-			String dorsalPlayer, data;
+			String shortNamePlayer, data;
 			ArrayList<HashMap<String, String>> porteros = new ArrayList<HashMap<String, String>>();
 			ArrayList<HashMap<String, String>> defensas = new ArrayList<HashMap<String, String>>();
 			ArrayList<HashMap<String, String>> medios = new ArrayList<HashMap<String, String>>();
 			ArrayList<HashMap<String, String>> delanteros = new ArrayList<HashMap<String, String>>();
+			ArrayList<HashMap<String, String>> generic = new ArrayList<HashMap<String, String>>();
 
 			ArrayList<String> dorsalArray = new ArrayList<String>(
 					plantilla.keySet());
+			// if (plantilla.getBundle(dorsalArray.get(0)).getString(
+			// Demarcation.DEMARCATION) == null) {
+			//
+			// } else {
 			Collections.sort(dorsalArray, new DorsalComparator());
+			// }
 
 			HashMap<String, String> jugador;
 			Bundle player;
 			for (Iterator<String> iterator = dorsalArray.iterator(); iterator
 					.hasNext();) {
 				jugador = new HashMap<String, String>();
-				dorsalPlayer = iterator.next();
-				player = plantilla.getBundle(dorsalPlayer);
+				shortNamePlayer = iterator.next();
+				player = plantilla.getBundle(shortNamePlayer);
 				for (Iterator<String> iterator2 = player.keySet().iterator(); iterator2
 						.hasNext();) {
 					data = iterator2.next();
 					jugador.put(data, player.getString(data));
 
 				}
-				if (player.getString("demarcacion").equalsIgnoreCase("portero"))
+				if (player.getString(Demarcation.DEMARCATION) == null
+						|| player.getString(Demarcation.DEMARCATION)
+								.equalsIgnoreCase(""))
+					generic.add(jugador);
+				else if (player.getString(Demarcation.DEMARCATION)
+						.equalsIgnoreCase(Demarcation.GOALKEEPER))
 					porteros.add(jugador);
-				else if (player.getString("demarcacion").equalsIgnoreCase(
-						"defensa"))
+				else if (player.getString(Demarcation.DEMARCATION)
+						.equalsIgnoreCase(Demarcation.DEFENDER))
 					defensas.add(jugador);
-				else if (player.getString("demarcacion").equalsIgnoreCase(
-						"centrocampista"))
+				else if (player.getString(Demarcation.DEMARCATION)
+						.equalsIgnoreCase(Demarcation.MIDFIELD))
 					medios.add(jugador);
-				else if (player.getString("demarcacion").equalsIgnoreCase(
-						"delantero"))
+				else if (player.getString(Demarcation.DEMARCATION)
+						.equalsIgnoreCase(Demarcation.SCORER))
 					delanteros.add(jugador);
+				else
+					generic.add(jugador);
 
 			}
 
@@ -154,23 +160,63 @@ public class TeamPlayersFragment extends TeamFragment {
 					.findViewById(R.id.medioTable);
 			LinearLayout delanteroTable = (LinearLayout) generalView
 					.findViewById(R.id.delanteroTable);
+			LinearLayout genericTable = (LinearLayout) generalView
+					.findViewById(R.id.genericTable);
 			Point size = DimenUtils.getSize(getActivity().getWindowManager());
 			int width = (size.x) / 4;
 
-			setTableLinear(porteroTable, porteros, width);
-			setTableLinear(defensaTable, defensas, width);
-			setTableLinear(medioTable, medios, width);
-			setTableLinear(delanteroTable, delanteros, width);
-			// } else {
-			// generalView.findViewById(R.id.porteroGap).setVisibility(View.GONE);
-			// generalView.findViewById(R.id.defensaGap).setVisibility(View.GONE);
-			// generalView.findViewById(R.id.medioGap).setVisibility(View.GONE);
-			//
-			// porterosText.setVisibility(View.GONE);
-			// defensaText.setVisibility(View.INVISIBLE);
-			// medioText.setVisibility(View.INVISIBLE);
-			// delanteroText.setVisibility(View.GONE);
+			if (porteros.size() > 0) {
+				setTableLinear(porteroTable, porteros, width);
+				porteroTable.setVisibility(View.VISIBLE);
+			} else {
+				porteroTable.setVisibility(View.GONE);
+				porterosText.setVisibility(View.GONE);
+				generalView.findViewById(R.id.porteroGap).setVisibility(
+						View.GONE);
+			}
+
+			if (defensas.size() > 0) {
+				setTableLinear(defensaTable, defensas, width);
+				defensaTable.setVisibility(View.VISIBLE);
+			} else {
+				defensaTable.setVisibility(View.GONE);
+				defensaText.setVisibility(View.GONE);
+				generalView.findViewById(R.id.defensaGap).setVisibility(
+						View.GONE);
+			}
+
+			if (medios.size() > 0) {
+				setTableLinear(medioTable, medios, width);
+				medioTable.setVisibility(View.VISIBLE);
+			} else {
+				medioTable.setVisibility(View.GONE);
+				medioText.setVisibility(View.GONE);
+				generalView.findViewById(R.id.medioGap)
+						.setVisibility(View.GONE);
+			}
+
+			if (delanteros.size() > 0) {
+				setTableLinear(delanteroTable, delanteros, width);
+				delanteroTable.setVisibility(View.VISIBLE);
+			} else {
+				delanteroTable.setVisibility(View.GONE);
+				delanteroText.setVisibility(View.GONE);
+			}
+
+			if (generic.size() > 0) {
+				setTableLinear(genericTable, generic, width);
+				genericTable.setVisibility(View.VISIBLE);
+			} else {
+				genericTable.setVisibility(View.GONE);
+			}
+
 		}
+	}
+
+	@Override
+	protected void startFirstShow() {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -198,9 +244,12 @@ public class TeamPlayersFragment extends TeamFragment {
 			((TextView) item.findViewById(R.id.playerName)).setText(players
 					.get(i).get("shortName"));
 
-			if (Integer.parseInt(players.get(i).get("dorsal")) >= 0)
+			if (players.get(i).get("dorsal") != null
+					&& Integer.parseInt(players.get(i).get("dorsal")) > 0)
 				((TextView) item.findViewById(R.id.playerDorsal))
 						.setText(players.get(i).get("dorsal"));
+			else
+				item.findViewById(R.id.dorsalContent).setVisibility(View.GONE);
 
 			url = players.get(i).get("photo");
 			if (players.get(i).get("url") != null) {
@@ -208,10 +257,32 @@ public class TeamPlayersFragment extends TeamFragment {
 			} else {
 				item.setTag("-1");
 			}
-			if (url != null) {
-				ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(url,
-						((ImageView) item.findViewById(R.id.playerImage)),
-						R.drawable.foto_plantilla_mask);
+			if (url != null && url.length() > 0) {
+				FragmentActivity act = getActivity();
+				if (getActivity() instanceof TeamActivity) {
+
+					ImageDAO.getInstance(mContext).loadRegularImage(url,
+							(ImageView) item.findViewById(R.id.playerImage),
+							R.drawable.foto_plantilla_generica, R.drawable.foto_plantilla_generica, true);
+					
+				} else {
+
+					ImageDAO.getInstance(mContext).loadRegularImage(url,
+							(ImageView) item.findViewById(R.id.playerImage),
+							R.drawable.foto_plantilla_generica,R.drawable.foto_plantilla_generica, true);
+				}
+
+			}
+
+			if (!(players.get(i).get("url") != null && players.get(i)
+					.get("url").length() > 0)) {
+				AlphaAnimation alpha = new AlphaAnimation(1, 0.5F);
+				alpha.setDuration(0); // Make animation instant
+				alpha.setFillAfter(true); // Tell it to persist after the
+											// animation
+											// ends
+				item.startAnimation(alpha);
+
 			}
 
 			linear.addView(item, paramsItem);

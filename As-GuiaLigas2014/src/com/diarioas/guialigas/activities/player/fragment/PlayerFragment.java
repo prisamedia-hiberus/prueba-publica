@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
@@ -127,9 +126,9 @@ public abstract class PlayerFragment extends Fragment {
 		String url = getArguments().getString("foto");
 
 		if (url != null) {
-			ImageDAO.getInstance(getActivity()).loadPlayerImage(url,
+			ImageDAO.getInstance(mContext).loadRegularImage(url,
 					((ImageView) generalView.findViewById(R.id.photoPlayer)),
-					R.drawable.mask_foto);
+					-1, R.drawable.mask_foto, true);
 		}
 
 		if (!getArguments().getBoolean("isTag")) {

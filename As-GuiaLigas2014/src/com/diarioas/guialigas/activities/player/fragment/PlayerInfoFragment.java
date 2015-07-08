@@ -65,8 +65,6 @@ public class PlayerInfoFragment extends PlayerFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		this.inflater = inflater;
 		stats = getArguments().getBundle("stats");
 		this.inflater = inflater;
 		generalView = inflater.inflate(R.layout.fragment_player_info,
@@ -159,11 +157,40 @@ public class PlayerInfoFragment extends PlayerFragment {
 
 		LinearLayout.LayoutParams paramsGeneralTab = new LinearLayout.LayoutParams(
 				width / NUMYEARSINVIEW, LayoutParams.MATCH_PARENT);
+		RelativeLayout.LayoutParams paramsButton = new RelativeLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		paramsGeneralTab.topMargin = DimenUtils.getRegularPixelFromDp(mContext,
+				10);
+		paramsGeneralTab.bottomMargin = DimenUtils.getRegularPixelFromDp(
+				mContext, 10);
+		int pad = DimenUtils.getRegularPixelFromDp(mContext, 5);
 		for (int i = 0; i < yearsArray.size(); i++) {
-			RelativeLayout generalTab = (RelativeLayout) inflater.inflate(R.layout.item_year, null);
+
+			RelativeLayout generalTab = new RelativeLayout(getActivity()
+					.getApplicationContext());
 			generalTab.setId(800 + i);
 			generalTab.setLayoutParams(paramsGeneralTab);
+
+			Button tabButton = new Button(mContext);
+			tabButton.setId(90);
+			tabButton.setBackgroundColor(getResources().getColor(
+					android.R.color.transparent));
+			tabButton.setLayoutParams(paramsButton);
+
+			tabButton.setTextSize(TypedValue.COMPLEX_UNIT_PT, getActivity()
+					.getResources().getDimension(R.dimen.size_10_px));
+			// tabButton.setTextSize(getResources().getDimension(R.dimen.size_10));
+			tabButton.setMaxLines(1);
+			tabButton.setPadding(pad, 0, pad, 0);
+			tabButton.setGravity(Gravity.CENTER);
+			tabButton
+					.setTextColor(getResources().getColor(R.color.medium_gray));
+
+			tabButton.setLayoutParams(paramsButton);
+			generalTab.addView(tabButton);
+
 			yearLinear.addView(generalTab);
+
 			setUpYearButton(generalTab, yearsArray.get(i), i);
 		}
 	}
@@ -171,11 +198,11 @@ public class PlayerInfoFragment extends PlayerFragment {
 	private void setUpYearButton(final RelativeLayout tab, String text,
 			final int position) {
 
-		((Button) tab.findViewById(R.id.button)).setText(text);
-		FontUtils.setCustomfont(mContext, (tab.findViewById(R.id.button)),
+		((Button) tab.findViewById(90)).setText(text);
+		FontUtils.setCustomfont(mContext, (tab.findViewById(90)),
 				FontUtils.FontTypes.ROBOTO_LIGHT);
 
-		((Button) tab.findViewById(R.id.button))
+		((Button) tab.findViewById(90))
 				.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -189,11 +216,11 @@ public class PlayerInfoFragment extends PlayerFragment {
 		for (int i = 0; i < yearsArray.size(); i++) {
 			generalTab = (RelativeLayout) generalView.findViewById(800 + i);
 			if (position != i)
-				((TextView) generalTab.findViewById(R.id.button))
+				((TextView) generalTab.findViewById(90))
 						.setTextColor(getResources().getColor(
 								R.color.medium_gray));
 			else
-				((TextView) generalTab.findViewById(R.id.button))
+				((TextView) generalTab.findViewById(90))
 						.setTextColor(getResources().getColor(R.color.red));
 		}
 	}
@@ -275,10 +302,19 @@ public class PlayerInfoFragment extends PlayerFragment {
 
 	private void configureCompetitionScroll() {
 		currentCompetition = 0;
+		// Log.d("SCROLL", "configureCompetitionScroll");
 
 		LinearLayout.LayoutParams paramsGeneral = new LinearLayout.LayoutParams(
 				(width / NUMCOMPINVIEW), LayoutParams.MATCH_PARENT);
 
+		RelativeLayout.LayoutParams paramsButton = new RelativeLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		paramsGeneral.topMargin = DimenUtils
+				.getRegularPixelFromDp(mContext, 10);
+		paramsGeneral.bottomMargin = DimenUtils.getRegularPixelFromDp(mContext,
+				10);
+		LayoutInflater inf = LayoutInflater.from(getActivity()
+				.getApplicationContext());
 
 		LinearLayout teamLinear;
 		ItemStats itemStats;
@@ -288,14 +324,30 @@ public class PlayerInfoFragment extends PlayerFragment {
 				.get(currentYear));
 		ArrayList<String> teamsArray;
 		for (int i = 0; i < competitionArray.size(); i++) {
+
 			itemStats = playerStat.getStats(competitionArray.get(i));
-			
-			
-			RelativeLayout generalTab = (RelativeLayout) inflater.inflate(R.layout.item_year, null);
+			Button tabButton = new Button(mContext);
+			tabButton.setId(40);
+			tabButton.setBackgroundColor(getResources().getColor(
+					android.R.color.transparent));
+			tabButton.setLayoutParams(paramsButton);
+			tabButton.setTextSize(TypedValue.COMPLEX_UNIT_PT, getActivity()
+					.getResources().getDimension(R.dimen.size_10_px));
+			// tabButton.setTextSize(getResources().getDimension(R.dimen.size_10));
+			tabButton.setGravity(Gravity.CENTER);
+			tabButton.setMaxLines(2);
+			tabButton
+					.setTextColor(getResources().getColor(R.color.medium_gray));
+
+			tabButton.setLayoutParams(paramsButton);
+
+			RelativeLayout generalTab = new RelativeLayout(getActivity()
+					.getApplicationContext());
 			generalTab.setId(300 + i);
 			generalTab.setLayoutParams(paramsGeneral);
+			generalTab.addView(tabButton);
 
-			RelativeLayout teamLayout = (RelativeLayout) inflater.inflate(
+			RelativeLayout teamLayout = (RelativeLayout) inf.inflate(
 					R.layout.item_player_team, null);
 			RelativeLayout.LayoutParams paramsData = new RelativeLayout.LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -311,9 +363,10 @@ public class PlayerInfoFragment extends PlayerFragment {
 			paramsData.addRule(RelativeLayout.BELOW, teamScroll.getId());
 
 			for (int j = 0; j < teamsArray.size(); j++) {
-				data = (RelativeLayout) inflater.inflate(
+				data = (RelativeLayout) inf.inflate(
 						R.layout.item_player_statistics, null);
 				data.setId(800 + i * 10 + j);
+				// data.setVisibility(View.INVISIBLE);
 				teamLayout.addView(data, paramsData);
 
 				loadData(itemStats, teamsArray.get(j), data);
@@ -419,11 +472,11 @@ public class PlayerInfoFragment extends PlayerFragment {
 	private void setUpCompetitionButton(final RelativeLayout tab, String text,
 			final int position) {
 
-		((Button) tab.findViewById(R.id.button)).setText(text);
-		FontUtils.setCustomfont(mContext, (tab.findViewById(R.id.button)),
+		((Button) tab.findViewById(40)).setText(text);
+		FontUtils.setCustomfont(mContext, (tab.findViewById(40)),
 				FontUtils.FontTypes.ROBOTO_LIGHT);
 
-		((Button) tab.findViewById(R.id.button))
+		((Button) tab.findViewById(40))
 				.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -437,11 +490,11 @@ public class PlayerInfoFragment extends PlayerFragment {
 		for (int i = 0; i < competitionArray.size(); i++) {
 			generalTab = (RelativeLayout) generalView.findViewById(300 + i);
 			if (position != i)
-				((TextView) generalTab.findViewById(R.id.button))
+				((TextView) generalTab.findViewById(40))
 						.setTextColor(getResources().getColor(
 								R.color.medium_gray));
 			else
-				((TextView) generalTab.findViewById(R.id.button))
+				((TextView) generalTab.findViewById(40))
 						.setTextColor(getResources().getColor(R.color.red));
 		}
 	}

@@ -152,6 +152,16 @@ public class ParsePlistCompetition {
 			return null;
 		}
 	}
+	
+	public Section parsePlistNewsTags(int order, int offset) {
+		if (menu != null) {
+			return readSection(menu.get(order), SECTIONS.NEWS_TAG, "noticiasWS",
+					dataRSSPrefix, order + offset);
+
+		} else {
+			return null;
+		}
+	}
 
 	public Section parsePlistVideos(int order, int offset) {
 		if (menu != null) {
@@ -223,7 +233,7 @@ public class ParsePlistCompetition {
 				if (sectionJSON.containsKey("default")) {
 					section.setStart((Boolean) sectionJSON.get("default"));
 				}
-				section.setUrl((String) sectionJSON.get("triviaWV"));
+				section.setUrl((String) sectionJSON.get("urlWV"));
 				section.setViewType((String) sectionJSON.get("viewType"));
 
 				return section;

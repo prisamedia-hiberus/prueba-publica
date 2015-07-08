@@ -11,11 +11,12 @@ import android.widget.ImageView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity;
+import com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 
 public class PhotoGalleryFragment extends Fragment {
-
 	private View generalView;
 
 	@Override
@@ -32,8 +33,10 @@ public class PhotoGalleryFragment extends Fragment {
 
 	private void configureView() {
 		String url = getArguments().getString("url");
-		// Log.d("PhotoGalleryFragment", "Cargando imagen: " + url);
-		ImageDAO.getInstance(getActivity()).loadStadiumDetailImage(url,(ImageView) generalView.findViewById(R.id.image));
+		
+		ImageDAO.getInstance(getActivity()).loadRegularImage(url,
+				(ImageView) generalView.findViewById(R.id.image));
+		
 		generalView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -41,12 +44,10 @@ public class PhotoGalleryFragment extends Fragment {
 				goToPhotoViewPager();
 			}
 		});
-
 	}
 
 	protected void goToPhotoViewPager() {
-		Intent intent = new Intent(getActivity(),
-				StadiumsPhotoGalleryActivity.class);
+		Intent intent = new Intent(getActivity(), StadiumsPhotoGalleryActivity.class);
 		intent.putExtra("idStadium", getArguments().getInt("idStadium"));
 		intent.putExtra("name", getArguments().getString("name"));
 		intent.putExtra("pos", getArguments().getInt("pos"));

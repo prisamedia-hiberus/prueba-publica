@@ -32,43 +32,48 @@
 
     <!-- <ListView -->
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/carruselContent"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container_carousel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gapBar"
-        android:clickable="false"
-        android:dividerHeight="0dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:listSelector="@android:color/transparent"
-        android:orientation="vertical"
-        ptr:ptrHeaderSubTextColor="@color/black"
-        ptr:ptrHeaderTextColor="@color/black" >
-    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        android:layout_below="@+id/gapBar" >
+
+        <ListView
+            android:id="@+id/carruselContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
     <!-- </ListView> -->
 
 
     <!-- <com.emilsjolander.components.StickyScrollViewItems.StickyScrollView -->
 
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/carruselContentGroup"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_group_carousel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gapBar"
-        ptr:ptrHeaderSubTextColor="@color/black"
-        ptr:ptrHeaderTextColor="@color/black" >
+        android:layout_below="@+id/gapBar" >
 
-        <LinearLayout
-            android:id="@+id/itemsLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-        </LinearLayout>
-    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
-    <!-- </com.emilsjolander.components.StickyScrollViewItems.StickyScrollView> -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/itemsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
         android:id="@+id/errorContent"

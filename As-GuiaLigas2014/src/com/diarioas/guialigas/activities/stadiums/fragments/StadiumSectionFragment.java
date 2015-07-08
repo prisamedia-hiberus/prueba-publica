@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
@@ -30,7 +31,6 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class StadiumSectionFragment extends ListViewSectionFragment implements
 		RemoteStadiumsDAOListener {
@@ -39,6 +39,12 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_STADIUMS + "/" + NativeAds.AD_PORTADA;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -62,7 +68,7 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 	/** Configuration methods **/
 	/***************************************************************************/
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 		if (RemoteStadiumsDAO.getInstance(mContext).isStadiumsPreLoaded(
 				competitionId)) {
 			array = RemoteStadiumsDAO.getInstance(mContext)
@@ -82,7 +88,7 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 
 		array = new ArrayList<Stadium>();
 		adapter = new StadiumAdapter();
-		pullToRefresh = (PullToRefreshListView) generalView
+		contentListView = (ListView) generalView
 				.findViewById(R.id.stadiumsContent);
 		configureListView();
 
@@ -113,11 +119,6 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 				Omniture.TYPE_PORTADA,
 				Omniture.TYPE_PORTADA + ":" + Omniture.SECTION_SEDES + " "
 						+ Omniture.TYPE_PORTADA, null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_STADIUMS + "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
@@ -262,11 +263,11 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 					holder.cityText = (TextView) convertView
 							.findViewById(R.id.city);
 					FontUtils.setCustomfont(mContext, holder.cityText,
-							FontTypes.HELVETICANEUE);
+							FontTypes.ROBOTO_REGULAR);
 					holder.nameText = (TextView) convertView
 							.findViewById(R.id.name);
 					FontUtils.setCustomfont(mContext, holder.nameText,
-							FontTypes.HELVETICANEUEBOLD);
+							FontTypes.ROBOTO_BOLD);
 
 					holder.image = (ImageView) convertView
 							.findViewById(R.id.image);

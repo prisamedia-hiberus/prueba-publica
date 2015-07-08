@@ -12,9 +12,9 @@ import com.diarioas.guialigas.dao.model.general.GeneralSettings;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.parser.ParsePlistCompetition;
 import com.diarioas.guialigas.dao.reader.parser.ParsePlistLoad;
-import com.diarioas.guialigas.utils.Defines.DATABASE;
 import com.diarioas.guialigas.utils.Defines.Prefix;
-import com.diarioas.guialigas.utils.Defines.RequestSectionTypes;
+import com.diarioas.guialigas.utils.Defines.ReturnDataDatabases;
+import com.diarioas.guialigas.utils.Defines.SECTIONS;
 
 public class AsyncLoadRemoteFeedXML extends
 		AsyncTask<String, Void, GeneralSettings> {
@@ -47,7 +47,6 @@ public class AsyncLoadRemoteFeedXML extends
 		try {
 
 			HashMap<?, ?> splash;
-			HashMap<?, ?> header;
 			HashMap<String, String> prefix;
 			// String strFileContents = readRemoteFile(urls[0]);
 			String strFileContents = ReadRemote.readRemoteFile(urls[0], false);
@@ -61,20 +60,10 @@ public class AsyncLoadRemoteFeedXML extends
 				DatabaseDAO.getInstance(appContext).updateStaticSplash(splash);
 				generalSettings.setSplash(splash);
 
-				// Se actualiza la info del Header
-				header = parse.parsePlistHeader();
-				DatabaseDAO.getInstance(appContext).updateStaticHeader(header);
-				generalSettings.setHeader(header);
-
 				// Se obtiene la informacion de los prefijos
 				prefix = parse.parsePlistPrefix();
 				DatabaseDAO.getInstance(appContext).updateStaticPrefix(prefix);
 				generalSettings.setPrefix(prefix);
-
-				// Se obtiene la informacion de la busqueda
-				// String search = parse.parsePlistSearch();
-				// DatabaseDAO.getInstance(appContext).updateSearch(search);
-				// generalSettings.setSearch(search);
 
 				// Se obtiene la informacion de los estados de los partidos
 				HashMap<String, String> status = parse.parsePlistStatus();
@@ -103,8 +92,13 @@ public class AsyncLoadRemoteFeedXML extends
 						.parsePlistCompetitions();
 				readCompetitions(competitions);
 				generalSettings.setCompetitions(competitions);
+
+				HashMap<String, String> cookies = parse.parsePlistCookies();
+				generalSettings.setCookies(cookies);
+
 				// Se copia el fichero en local
-				ReadRemote.copyFile(appContext, DATABASE.DB_SETTINGS_FILE_NAME,
+				ReadRemote.copyFile(appContext,
+						ReturnDataDatabases.DB_SETTINGS_FILE_NAME,
 						strFileContents);
 			}
 		} catch (Exception e) {
@@ -149,21 +143,23 @@ public class AsyncLoadRemoteFeedXML extends
 						ArrayList<HashMap<String, ?>> menu = parse
 								.parsePlistMenu();
 						int offset = 1;
+						String nameSection;
 						for (int i = 0; i < menu.size(); i++) {
-							if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("grid")) {
+							nameSection = ((String) menu.get(i).get("name"));
+							if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_TEAM)) {
 								// Se actualiza la info de los equipos
 								competition.addSection(parse.parsePlistGrid(i,
 										offset));
 								// competition.addSection(parse.parsePlistGroups(1,
 								// true));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("calendar")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_CALENDAR)) {
 								// Se actualiza la info del Calendario
 								competition.addSection(parse
 										.parsePlistCalendar(i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("palmares")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_PALMARES)) {
 								// Se actualiza la info del Palmares
 								competition.addSection(parse
 										.parsePlistPalmares(i, offset));
@@ -200,56 +196,54 @@ public class AsyncLoadRemoteFeedXML extends
 													competition.getId());
 								}
 
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("stadiums")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_STADIUMS)) {
 								// Se actualiza la info del Estadio
 								competition.addSection(parse.parsePlistStadium(
 										i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("comparador")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_COMPARATOR)) {
 								// Se actualiza la info del Comparador ??
 								competition.addSection(parse
 										.parsePlistComparator(i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("search")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_SEARCH)) {
 								// Se actualiza la info del Buscador
 								competition.addSection(parse.parsePlistSearch(
 										i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("clasification")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_CLASIFICATION)) {
 								// Se actualiza la info de la clasificacion
 								competition.addSection(parse
 										.parsePlistClasificacion(i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("carrusel")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_CARRUSEL)) {
 								// Se obtiene la info del Carrusel
 								competition.addSection(parse
 										.parsePlistCarrusel(i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("noticias")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_NEWS)) {
 								// Se obtiene la info de las noticias
-								competition.addSection(parse.parsePlistNews(i,
+								competition.addSection(parse.parsePlistNews(i, offset));								
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_NEWS_TAGS)) {
+								// Se obtiene la info de las noticias
+								competition.addSection(parse.parsePlistNewsTags(i,
 										offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("videos")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_VIDEOS)) {
 								// Se obtiene la info de los videos
 								competition.addSection(parse.parsePlistVideos(
 										i, offset));
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("triviaAS")) {
-								// Se obtiene la info del link
-								competition.addSection(parse.parsePlistLink(i,
-										offset));
-							} else if (((String) menu.get(i).get("viewType"))
-									.equalsIgnoreCase(RequestSectionTypes.EXTERNAL_VIEW)) {
-								// Se obtiene la info del link
-								competition.addSection(parse.parsePlistExternalLink(i,
-										offset));								
-							} else if (((String) menu.get(i).get("name"))
-									.equalsIgnoreCase("photoGallery")) {
+							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_PHOTOGALLERY)) {
 								// Se obtiene la info de las fotos
 								competition.addSection(parse.parsePlistPhotos(
 										i, offset));
+							}else if (((String) menu.get(i).get("viewType")).equalsIgnoreCase(SECTIONS.LINK_VIEW_OUTSIDE)) {
+								// Se obtiene la info del link
+								competition.addSection(parse.parsePlistLink(i,
+										offset));
 							}
 						}
 
@@ -285,7 +279,7 @@ public class AsyncLoadRemoteFeedXML extends
 	}
 
 	/**
-	 * Recorta la url hasta quedarse con el nombre, quita el xml y añade un
+	 * Recorta la url hasta quedarse con el nombre, quita el xml y a�ade un
 	 * plist
 	 * 
 	 * @param urlCompetition

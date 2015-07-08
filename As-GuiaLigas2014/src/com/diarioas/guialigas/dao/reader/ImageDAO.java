@@ -1,732 +1,286 @@
 package com.diarioas.guialigas.dao.reader;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
-import android.support.v4.app.FragmentActivity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.utils.Defines;
-import com.diarioas.guialigas.utils.DimenUtils;
-import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageFetcher;
-import com.diarioas.guialigas.utils.imageutils.imageloader.ImageLoader;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 public class ImageDAO {
 
 	private static ImageDAO sInstance = null;
 	private Context mContext = null;
-	private ImageFetcher mImageFetcher = null;
-	private ImageFetcher mImageFetcherOne = null;
-	private ImageFetcher mImageFetcherHalf = null;
-	private ImageFetcher mImageFetcherThird = null;
-	private ImageFetcher mImageFetcherFourth = null;
-	private ImageFetcher mImageFetcherHeader = null;
-	// private ImageFetcher mImageFetcherSplash = null;
-	// private ImageFetcher mImageFetcherActionBar = null;
-	private ImageFetcher mImageFetcherPlayer;
-	private ImageFetcher mImageFetcherSmallPlayer;
-
-	private ImageFetcher mImageFetcherGallery;
-	private ImageFetcher mImageFetcherNews;
-	private ImageFetcher mImageFetcherStadiums;
-	private ImageFetcher mImageFetcherStadiumsDetail;
-	private ImageLoader imgL;
+	private int maskResource = -1;
 
 	public static ImageDAO getInstance(Context ctx) {
 		if (sInstance == null) {
 			sInstance = new ImageDAO();
 			sInstance.mContext = ctx;
-			sInstance.init();
 		}
 		return sInstance;
 	}
 
-	public static void removeInstance() {
-		sInstance.mImageFetcher = null;
-		sInstance.mImageFetcherOne = null;
-		sInstance.mImageFetcherHalf = null;
-		sInstance.mImageFetcherThird = null;
-		sInstance.mImageFetcherFourth = null;
-		sInstance.mImageFetcherHeader = null;
-		// sInstance.mImageFetcherSplash = null;
-		// sInstance.mImageFetcherActionBar = null;
-
-		sInstance = null;
-
-	}
-
-	private void init() {
-
-		WindowManager windowManager = (WindowManager) mContext
-				.getSystemService(Context.WINDOW_SERVICE);
-
-		Point size = DimenUtils.getSize(windowManager);
-
-		configureImageFetcher(size.x / 2, size.y / 2);
-		configureImageFetcherOne(size.x, size.y);
-		configureImageFetcherTwo(size.x, size.y / 2);
-		configureImageFetcherThree(size.x, size.y / 3);
-		configureImageFetcherFourth(size.x, size.y / 4);
-		configureImageFetcherHeader(size.x / 2, size.y / 4);
-		// configurSplashImageFetcher();
-		// configurActionBarImageFetcher();
-
-		configureImageLoader();
-	}
-
-	private void configureImageLoader() {
-		imgL = new ImageLoader(mContext);
-	}
-
-	/**
-	 * Configure the image manager
-	 */
-	private void configureImageFetcher(int width, int height) {
-
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS);
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcher = new ImageFetcher(mContext, width, height);
-		mImageFetcher.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		this.mImageFetcher.setImageFadeIn(true);
-
-	}
-
-	private void configureImageFetcherOne(int width, int height) {
-		ImageCacheParams cacheParamsOne = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "1");
-		cacheParamsOne.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherOne = new ImageFetcher(mContext, width, height);
-		mImageFetcherOne.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParamsOne);
-		this.mImageFetcherOne.setImageFadeIn(true);
-	}
-
-	private void configureImageFetcherTwo(int width, int height) {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParams.setMemCacheSizePercent(0.20f);
-
-		mImageFetcherHalf = new ImageFetcher(mContext, width, height);
-		mImageFetcherHalf.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		this.mImageFetcherHalf.setImageFadeIn(true);
-	}
-
-	private void configureImageFetcherThree(int width, int height) {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "3");
-		cacheParams.setMemCacheSizePercent(0.20f);
-
-		mImageFetcherThird = new ImageFetcher(mContext, width, height);
-		mImageFetcherThird.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		this.mImageFetcherThird.setImageFadeIn(true);
-	}
-
-	private void configureImageFetcherFourth(int width, int height) {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "4");
-		cacheParams.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherFourth = new ImageFetcher(mContext, width, height);
-		mImageFetcherFourth.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		this.mImageFetcherFourth.setImageFadeIn(true);
-	}
-
-	private void configureImageFetcherHeader(int width, int height) {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "1");
-		cacheParams.setMemCacheSizePercent(0.15f);
-
-		mImageFetcherHeader = new ImageFetcher(mContext, width, height);
-		mImageFetcherHeader.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-		this.mImageFetcherHeader.setImageFadeIn(true);
-	}
-
-	// private void configurSplashImageFetcher() {
-	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-	// Defines.NAME_CACHE_THUMBS + "splash");
-	// cacheParams.setMemCacheSizePercent(0.25f);
-	//
-	// mImageFetcherSplash = new ImageFetcher(mContext, mContext
-	// .getResources().getDimensionPixelSize(
-	// R.dimen.image_thumb_height));
-	// // mImageFetcherSplash.setLoadingImage(R.drawable.galeria_imagenrecurso);
-	// mImageFetcherSplash.addImageCache(
-	// ((FragmentActivity) this.mContext).getSupportFragmentManager(),
-	// cacheParams);
-	// mImageFetcherSplash.setImageFadeIn(true);
-	// }
-	//
-	// private void configurActionBarImageFetcher() {
-	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-	// Defines.NAME_CACHE_THUMBS + "actionbar");
-	// cacheParams.setMemCacheSizePercent(0.10f);
-	//
-	// mImageFetcherActionBar = new ImageFetcher(mContext, mContext
-	// .getResources().getDimensionPixelSize(
-	// R.dimen.image_actionbar_height));
-	// mImageFetcherActionBar.addImageCache(
-	// ((FragmentActivity) this.mContext).getSupportFragmentManager(),
-	// cacheParams);
-	// mImageFetcherActionBar.setImageFadeIn(true);
-	// }
-
-	// private void configureImageFetcherPlantilla() {
-	// ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-	// Defines.NAME_CACHE_THUMBS);
-	// cacheParams.setMemCacheSizePercent(0.25f);
-	//
-	// mImageFetcher = new ImageFetcher(mContext, mContext.getResources()
-	// .getDimensionPixelSize(R.dimen.image_thumb_height));
-	// mImageFetcher.setLoadingImage(R.drawable.galeria_imagenrecurso);
-	// mImageFetcher.addImageCache(((FragmentActivity)
-	// this.mContext).getSupportFragmentManager(),
-	// cacheParams);
-	// }
-	private void configureImageFetcherPlayer() {
-		ImageCacheParams cacheParams2 = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "2");
-		cacheParams2.setMemCacheSizePercent(0.25f);
-
-		mImageFetcherPlayer = new ImageFetcher(mContext, mContext
-				.getResources().getDimensionPixelSize(
-						R.dimen.image_player_height));
-		mImageFetcherPlayer.setLoadingImage(R.drawable.foto_generica);
-		mImageFetcherPlayer.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams2);
-	}
-
-	private void configureImageFetcherSmallPlayer() {
-		ImageCacheParams cacheParams3 = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "3");
-		cacheParams3.setMemCacheSizePercent(0.25f);
-		mImageFetcherSmallPlayer = new ImageFetcher(mContext, mContext
-				.getResources().getDimensionPixelSize(
-						R.dimen.image_player_height_small));
-		mImageFetcherSmallPlayer
-				.setLoadingImage(R.drawable.foto_plantilla_generica);
-		mImageFetcherSmallPlayer.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams3);
-	}
-
-	private void configureImageFetcherGallery() {
-		WindowManager windowManager = (WindowManager) mContext
-				.getSystemService(Context.WINDOW_SERVICE);
-
-		Point size = DimenUtils.getSize(windowManager);
-
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "gallery");
-		cacheParams.setMemCacheSizePercent(0.30f);
-
-		mImageFetcherGallery = new ImageFetcher(mContext, size.y/2);
-
-		mImageFetcherGallery.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-	}
-
-	private void configureImageFetcherNews() {
-
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "news");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcherNews = new ImageFetcher(mContext, (int) mContext
-				.getResources().getDimension(R.dimen.image_news_detail_height));
-		mImageFetcherNews.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-
-	}
-
-	private void configureImageFetcherStadium() {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "stadiums");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcherStadiums = new ImageFetcher(mContext, mContext
-				.getResources().getDimensionPixelSize(
-						R.dimen.image_thumb_height));
-		mImageFetcherStadiums.setLoadingImage(R.drawable.galeria_imagenrecurso);
-		mImageFetcherStadiums.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-
-	}
-
-	private void configureImageFetcherStadiumDetail() {
-		ImageCacheParams cacheParams = new ImageCacheParams(mContext,
-				Defines.NAME_CACHE_THUMBS + "stadiumDetail");
-		cacheParams.setMemCacheSizePercent(0.25f);
-
-		mImageFetcherStadiumsDetail = new ImageFetcher(mContext, mContext
-				.getResources().getDimensionPixelSize(
-						R.dimen.image_image_height));
-		// mImageFetcherStadiumsDetail.setLoadingImage(R.drawable.galeria_imagenrecurso);
-		mImageFetcherStadiumsDetail.addImageCache(
-				((FragmentActivity) this.mContext).getSupportFragmentManager(),
-				cacheParams);
-
-	}
-
-	/***************************************************************************/
-	/** Public methods **/
-	/***************************************************************************/
-
-	public void exitTaskEarly() {
-		this.mImageFetcher.setExitTasksEarly(false);
-		this.mImageFetcherOne.setExitTasksEarly(false);
-		this.mImageFetcherHalf.setExitTasksEarly(false);
-		this.mImageFetcherThird.setExitTasksEarly(false);
-		this.mImageFetcherFourth.setExitTasksEarly(false);
-		this.mImageFetcherHeader.setExitTasksEarly(false);
-		// this.mImageFetcherSplash.setExitTasksEarly(false);
-		// this.mImageFetcherActionBar.setExitTasksEarly(false);
-	}
-
-	public void exitPlayerTaskEarly() {
-		if (this.mImageFetcherPlayer != null)
-			this.mImageFetcherPlayer.setExitTasksEarly(false);
-		if (this.mImageFetcherSmallPlayer != null)
-			this.mImageFetcherSmallPlayer.setExitTasksEarly(false);
-	}
-
-	public void exitGalleryTaskEarly() {
-		if (this.mImageFetcherGallery != null)
-			this.mImageFetcherGallery.setExitTasksEarly(false);
-	}
-
-	public void exitNewsTaskEarly() {
-		if (this.mImageFetcherNews != null)
-			this.mImageFetcherNews.setExitTasksEarly(false);
-	}
-
-	public void exitStadiumTaskEarly() {
-		if (this.mImageFetcherStadiums != null)
-			this.mImageFetcherStadiums.setExitTasksEarly(false);
-		if (this.mImageFetcherStadiumsDetail != null)
-			this.mImageFetcherStadiumsDetail.setExitTasksEarly(false);
-	}
-
-	public void clearCache() {
-		if (this.mImageFetcher != null)
-			this.mImageFetcher.clearCache();
-		if (this.mImageFetcherOne != null)
-			this.mImageFetcherOne.clearCache();
-		if (this.mImageFetcherHalf != null)
-			this.mImageFetcherHalf.clearCache();
-		if (this.mImageFetcherThird != null)
-			this.mImageFetcherThird.clearCache();
-		if (this.mImageFetcherFourth != null)
-			this.mImageFetcherFourth.clearCache();
-		if (this.mImageFetcherHeader != null)
-			this.mImageFetcherHeader.clearCache();
-		
-		clearPlayerCache();
-		clearGalleryCache();
-		clearNewsCache();
-		clearStadiumsCache();
-		clearImageLoaderCache();
-	}
-
-	private void clearPlayerCache() {
-		if (this.mImageFetcherPlayer != null)
-			this.mImageFetcherPlayer.clearCache();
-		if (this.mImageFetcherSmallPlayer != null)
-			this.mImageFetcherSmallPlayer.clearCache();
-	}
-
-	private void clearGalleryCache() {
-		if (this.mImageFetcherGallery != null)
-			this.mImageFetcherGallery.clearCache();
-	}
-
-	private void clearNewsCache() {
-		if (this.mImageFetcherNews != null)
-			this.mImageFetcherNews.clearCache();
-	}
-
-	private void clearStadiumsCache() {
-		if (this.mImageFetcherStadiums != null)
-			this.mImageFetcherStadiums.clearCache();
-		if (this.mImageFetcherStadiumsDetail != null)
-			this.mImageFetcherStadiumsDetail.clearCache();
-	}
-
-	private void clearImageLoaderCache() {
-		if (this.imgL != null)
-			this.imgL.clearCache();
-		imgL.clearCache();
-	}
-
-	public void flushCache() {
-		this.mImageFetcher.flushCache();
-		this.mImageFetcherOne.flushCache();
-		this.mImageFetcherHalf.flushCache();
-		this.mImageFetcherThird.flushCache();
-		this.mImageFetcherFourth.flushCache();
-		this.mImageFetcherHeader.flushCache();
-		// this.mImageFetcherSplash.flushCache();
-		// this.mImageFetcherActionBar.flushCache();
-	}
-
-	public void flushPlayerCache() {
-		if (this.mImageFetcherPlayer != null)
-			this.mImageFetcherPlayer.flushCache();
-		if (this.mImageFetcherSmallPlayer != null)
-			this.mImageFetcherSmallPlayer.flushCache();
-	}
-
-	public void flushGalleryCache() {
-		if (this.mImageFetcherGallery != null)
-			this.mImageFetcherGallery.flushCache();
-	}
-
-	public void flushNewsCache() {
-		if (this.mImageFetcherNews != null)
-			this.mImageFetcherNews.flushCache();
-	}
-
-	public void flushStadiumsCache() {
-		if (this.mImageFetcherStadiums != null)
-			this.mImageFetcherStadiums.flushCache();
-		if (this.mImageFetcherStadiumsDetail != null)
-			this.mImageFetcherStadiumsDetail.flushCache();
-	}
-
-	public void closeCache() {
-		this.mImageFetcher.closeCache();
-		this.mImageFetcherOne.closeCache();
-		this.mImageFetcherHalf.closeCache();
-		this.mImageFetcherThird.closeCache();
-		this.mImageFetcherFourth.closeCache();
-		this.mImageFetcherHeader.closeCache();
-		// this.mImageFetcherSplash.closeCache();
-		// this.mImageFetcherActionBar.closeCache();
-
-	}
-
-	public void closePlayerCache() {
-		if (this.mImageFetcherPlayer != null)
-			this.mImageFetcherPlayer.closeCache();
-		if (this.mImageFetcherSmallPlayer != null)
-			this.mImageFetcherSmallPlayer.closeCache();
-	}
-
-	public void closeGalleryCache() {
-		if (this.mImageFetcherGallery != null)
-			this.mImageFetcherGallery.closeCache();
-	}
-
-	public void closeNewsCache() {
-		if (this.mImageFetcherNews != null)
-			this.mImageFetcherNews.closeCache();
-	}
-
-	public void closeStadiumsCache() {
-		if (this.mImageFetcherStadiums != null)
-			this.mImageFetcherStadiums.closeCache();
-		if (this.mImageFetcherStadiumsDetail != null)
-			this.mImageFetcherStadiumsDetail.closeCache();
-	}
-
-	public void pauseWork(boolean pause) {
-		this.mImageFetcher.setPauseWork(pause);
-		this.mImageFetcherOne.setPauseWork(pause);
-		this.mImageFetcherHalf.setPauseWork(pause);
-		this.mImageFetcherThird.setPauseWork(pause);
-		this.mImageFetcherFourth.setPauseWork(pause);
-		this.mImageFetcherHeader.setPauseWork(pause);
-		// this.mImageFetcherSplash.setPauseWork(pause);
-		// this.mImageFetcherActionBar.setPauseWork(pause);
-	}
-
-	public void pausePlayerWork(boolean pause) {
-		if (this.mImageFetcherPlayer != null)
-			this.mImageFetcherPlayer.setPauseWork(pause);
-		if (this.mImageFetcherSmallPlayer != null)
-			this.mImageFetcherSmallPlayer.setPauseWork(pause);
-	}
-
-	public void pauseStadiumsWork(boolean pause) {
-		if (this.mImageFetcherStadiums != null)
-			this.mImageFetcherStadiums.setPauseWork(pause);
-		if (this.mImageFetcherStadiumsDetail != null)
-			this.mImageFetcherStadiumsDetail.setPauseWork(pause);
-	}
-
-	public void erasePlayerCache() {
-		sInstance.mImageFetcherPlayer = null;
-		sInstance.mImageFetcherSmallPlayer = null;
-	}
-
-	public void eraseGalleryCache() {
-		sInstance.mImageFetcherGallery = null;
-	}
-
-	public void eraseNewsCache() {
-		sInstance.mImageFetcherNews = null;
-	}
-
-	public void eraseStadiumsCache() {
-		sInstance.mImageFetcherStadiums = null;
-	}
-
-	public void eraseImageLoader() {
-		sInstance.imgL = null;
-	}
-
-	/***************************************************************************/
-	/** Image methods **/
-	/***************************************************************************/
-
-	public ImageFetcher getImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcher;
-	}
-
-	public void loadImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcher.loadImage(imageUrl, imageView);
-	}
-
-	public void loadImage(String imageUrl, ImageView imageView, int loadingResId) {
-		this.mImageFetcher.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	public ImageFetcher getOneImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherOne;
-	}
-
-	public void loadOneImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherOne.loadImage(imageUrl, imageView);
-	}
-
-	public void loadOneImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.mImageFetcherOne.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	public ImageFetcher getHalfImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherHalf;
-	}
-
-	public void loadHalfImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherHalf.loadImage(imageUrl, imageView);
-	}
-
-	public void loadHalfImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.mImageFetcherHalf.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	public ImageFetcher getThirdImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherThird;
-	}
-
-	public void loadThirdImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherThird.loadImage(imageUrl, imageView);
-	}
-
-	public void loadThirdImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.mImageFetcherThird.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	public ImageFetcher getFourthImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherFourth;
-	}
-
-	public void loadFourthImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherFourth.loadImage(imageUrl, imageView);
-	}
-
-	public void loadFourthImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.mImageFetcherFourth.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	public ImageFetcher getHeaderImageFetcher() {
-		// TODO Auto-generated method stub
-		return mImageFetcherHeader;
-	}
-
-	public void loadHeaderImage(String imageUrl, ImageView imageView) {
-		this.mImageFetcherHeader.loadImage(imageUrl, imageView);
-	}
-
-	public void loadHeaderImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.mImageFetcherHeader.loadImage(imageUrl, imageView, loadingResId);
-	}
-
-	// public ImageFetcher getSplashImageFetcher() {
-	// // TODO Auto-generated method stub
-	// return mImageFetcherSplash;
-	// }
-	//
-	// public void loadSplashImage(String imageUrl, ImageView imageView) {
-	// this.mImageFetcherSplash.loadImage(imageUrl, imageView);
-	// }
-	//
-	// public void loadSplashImage(String imageUrl, ImageView imageView,
-	// int loadingResId) {
-	// this.mImageFetcherSplash.loadImage(imageUrl, imageView, loadingResId);
-	// }
-	//
-	// public ImageFetcher getActionBarImageFetcher() {
-	// // TODO Auto-generated method stub
-	// return mImageFetcherActionBar;
-	// }
-	//
-	// public void loadActionBarImage(String imageUrl, ImageView imageView) {
-	// this.mImageFetcherActionBar.loadImage(imageUrl, imageView);
-	// }
-	//
-	// public void loadActionBarImage(String imageUrl, ImageView imageView,
-	// int loadingResId) {
-	// this.mImageFetcherActionBar
-	// .loadImage(imageUrl, imageView, loadingResId);
-	// }
-
-	public ImageFetcher getPlayerImageFetcher() {
-		if (mImageFetcherPlayer == null) {
-			configureImageFetcherPlayer();
+	@SuppressLint("NewApi")
+	private Point getDisplaySize(final Display display) {
+		final Point point = new Point();
+		try {
+			display.getSize(point);
+		} catch (java.lang.NoSuchMethodError ignore) { // Older device
+			point.x = display.getWidth();
+			point.y = display.getHeight();
 		}
-		return mImageFetcherPlayer;
+		return point;
 	}
 
-	public void loadPlayerImage(String imageUrl, ImageView imageView) {
-		this.getPlayerImageFetcher().loadImage(imageUrl, imageView);
+	private Point getPointScreen() {
+		Display display = ((WindowManager) mContext
+				.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		Point size = getDisplaySize(display);
+		return size;
 	}
 
-	public void loadPlayerImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getPlayerImageFetcher().loadImage(imageUrl, imageView,
-				loadingResId);
+	public void loadImageNoResize(String url, ImageView imageView) {
+		Picasso.with(mContext).load(url).into(imageView);
 	}
 
-	public ImageFetcher getSmallPlayerImageFetcher() {
-		if (mImageFetcherSmallPlayer == null) {
-			configureImageFetcherSmallPlayer();
+	public void loadRegularImage(String url, ImageView imageView) {
+		loadRegularImage(url, imageView, -1, -1);
+	}
+
+	public void loadHeaderSectionImage(String url, ImageView imageView) {
+		Picasso.with(mContext).load(url).into(imageView);
+	}
+
+	public void loadRegularImage(String url, ImageView imageView,
+			int resourceLoading, int mask) {
+		loadRegularImage(url, imageView, resourceLoading, mask, false);
+	}
+
+	public void loadRegularImage(String url, ImageView imageView,
+			int resourceLoading, int mask, boolean needToReload) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y * 0.25);
+		int width = (int) (size.x * 0.83);
+
+		if (resourceLoading != -1) {
+			if (mask != -1) {
+				this.maskResource = mask;
+
+				if (needToReload) {
+					Picasso.with(mContext).load(url)
+							.memoryPolicy(MemoryPolicy.NO_STORE)
+							.networkPolicy(NetworkPolicy.NO_STORE)
+							.placeholder(resourceLoading).resize(width, height)
+							.transform(new MaskImageTransformation())
+							.centerInside().into(imageView);
+				} else {
+					Picasso.with(mContext).load(url)
+							.placeholder(resourceLoading).resize(width, height)
+							.transform(new MaskImageTransformation())
+							.centerInside().into(imageView);
+				}
+			} else {
+				if (needToReload) {
+					Picasso.with(mContext).load(url)
+							.placeholder(resourceLoading)
+							.memoryPolicy(MemoryPolicy.NO_STORE)
+							.networkPolicy(NetworkPolicy.NO_STORE)
+							.resize(width, height).centerInside()
+							.into(imageView);
+				} else {
+					Picasso.with(mContext).load(url)
+							.placeholder(resourceLoading).resize(width, height)
+							.centerInside().into(imageView);
+				}
+			}
+
+		} else {
+			if (mask != -1) {
+				this.maskResource = mask;
+
+				if (needToReload) {
+					Picasso.with(mContext).load(url).resize(width, height)
+							.memoryPolicy(MemoryPolicy.NO_STORE)
+							.networkPolicy(NetworkPolicy.NO_STORE)
+							.transform(new MaskImageTransformation())
+							.centerInside().into(imageView);
+				} else {
+					Picasso.with(mContext).load(url).resize(width, height)
+							.transform(new MaskImageTransformation())
+							.centerInside().into(imageView);
+				}
+
+			} else {
+				if (needToReload) {
+					Picasso.with(mContext).load(url).resize(width, height)
+							.memoryPolicy(MemoryPolicy.NO_STORE)
+							.networkPolicy(NetworkPolicy.NO_STORE)
+							.centerInside().into(imageView);
+				} else {
+
+					Picasso.with(mContext).load(url).resize(width, height)
+							.centerInside().into(imageView);
+				}
+			}
 		}
-		return mImageFetcherSmallPlayer;
 	}
 
-	public void loadSmallPlayerImage(String imageUrl, ImageView imageView) {
-		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView);
+	public void loadPhotoImage(String url, ImageView imageView) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y * 0.2);
+		int width = (int) (size.x * 0.5);
+
+		Picasso.with(mContext).load(url).resize(width, height).centerInside()
+				.into(imageView);
 	}
 
-	public void loadSmallPlayerImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getSmallPlayerImageFetcher().loadImage(imageUrl, imageView,
-				loadingResId);
+	public void loadFullScreenImage(String url, ImageView imageView) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y * 0.8);
+		int width = (int) (size.x);
+
+		Picasso.with(mContext).load(url)
+				.transform(new BitmapTransform(width, height))
+				.skipMemoryCache().resize(width, height).centerInside()
+				.into(imageView);
 	}
 
-	/*****************************************************************************/
-	public ImageFetcher getGalleryImageFetcher() {
-		if (mImageFetcherGallery == null) {
-			configureImageFetcherGallery();
+	public void loadTwoPartScreenImage(String url, ImageView imageView) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y * 0.4);
+		int width = (int) (size.x);
+
+		Picasso.with(mContext).load(url).resize(width, height).centerInside()
+				.into(imageView);
+	}
+
+	public void loadThreePartScreenImage(String url, ImageView imageView) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y / 4);
+		int width = (int) (size.x);
+
+		Picasso.with(mContext).load(url).resize(width, height).centerInside()
+				.into(imageView);
+	}
+
+	public void loadFourthPartScreenImage(String url, ImageView imageView) {
+		Point size = getPointScreen();
+
+		int height = (int) (size.y / 5);
+		int width = (int) (size.x);
+
+		Picasso.with(mContext).load(url).resize(width, height).centerInside()
+				.into(imageView);
+	}
+
+	public void loadPlayerTeamDetailImage(String url, int resourceLoading,
+			ImageView imageView, int mask) {
+
+		int height = mContext.getResources().getDimensionPixelSize(
+				R.dimen.image_player_height_small);
+		int width = mContext.getResources().getDimensionPixelSize(
+				R.dimen.image_player_height_small);
+
+		this.maskResource = mask;
+		Picasso.with(mContext).load(url).skipMemoryCache()
+				.placeholder(resourceLoading)
+				.transform(new MaskImageTransformation()).resize(width, height)
+				.centerInside().into(imageView);
+	}
+
+	/********************** Image Transformation ***********************/
+
+	public class MaskImageTransformation implements Transformation {
+		@Override
+		public Bitmap transform(Bitmap source) {
+
+			if (maskResource != -1) {
+				Bitmap mask = BitmapFactory.decodeResource(
+						mContext.getResources(), maskResource);
+				Bitmap originalBitmapScaled = Bitmap.createScaledBitmap(source,
+						mask.getWidth(), mask.getHeight(), false);
+				Bitmap bitmap = Bitmap.createBitmap(mask.getWidth(),
+						mask.getHeight(), Config.ARGB_8888);
+				Canvas mCanvas = new Canvas(bitmap);
+				Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+				paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+				mCanvas.drawBitmap(originalBitmapScaled, 0, 0, null);
+				mCanvas.drawBitmap(mask, 0, 0, paint);
+				paint.setXfermode(null);
+
+				source.recycle();
+
+				return bitmap;
+			} else {
+				return null;
+			}
 		}
-		return mImageFetcherGallery;
-	}
 
-	public void loadGalleryImage(String imageUrl, ImageView imageView) {
-		this.getGalleryImageFetcher().loadImage(imageUrl, imageView);
-	}
-
-	public void loadGalleryImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getGalleryImageFetcher().loadImage(imageUrl, imageView,
-				loadingResId);
-	}
-
-	/*****************************************************************************/
-	public ImageFetcher getNewsImageFetcher() {
-		if (mImageFetcherNews == null) {
-			configureImageFetcherNews();
+		@Override
+		public String key() {
+			return "mask()";
 		}
-		return mImageFetcherNews;
 	}
 
-	public void loadNewsImage(String imageUrl, ImageView imageView) {
-		this.getNewsImageFetcher().loadImage(imageUrl, imageView);
-	}
+	public class BitmapTransform implements Transformation {
 
-	public void loadNewsImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getNewsImageFetcher().loadImage(imageUrl, imageView, loadingResId);
-	}
+		int maxWidth;
+		int maxHeight;
 
-	/*****************************************************************************/
-	public ImageFetcher getStadiumImageFetcher() {
-		if (mImageFetcherStadiums == null) {
-			configureImageFetcherStadium();
+		public BitmapTransform(int maxWidth, int maxHeight) {
+			this.maxWidth = maxWidth;
+			this.maxHeight = maxHeight;
 		}
-		return mImageFetcherStadiums;
-	}
 
-	public void loadStadiumImage(String imageUrl, ImageView imageView) {
-		this.getStadiumImageFetcher().loadImage(imageUrl, imageView);
-	}
+		@Override
+		public Bitmap transform(Bitmap source) {
+			int targetWidth, targetHeight;
+			double aspectRatio;
 
-	public void loadStadiumImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getStadiumImageFetcher().loadImage(imageUrl, imageView,
-				loadingResId);
-	}
+			if (source.getWidth() > source.getHeight()) {
+				targetWidth = maxWidth;
+				aspectRatio = (double) source.getHeight()
+						/ (double) source.getWidth();
+				targetHeight = (int) (targetWidth * aspectRatio);
+			} else {
+				targetHeight = maxHeight;
+				aspectRatio = (double) source.getWidth()
+						/ (double) source.getHeight();
+				targetWidth = (int) (targetHeight * aspectRatio);
+			}
 
-	public ImageFetcher getStadiumDetailImageFetcher() {
-		if (mImageFetcherStadiums == null) {
-			configureImageFetcherStadiumDetail();
+			Bitmap result = Bitmap.createScaledBitmap(source, targetWidth,
+					targetHeight, false);
+			if (result != source) {
+				source.recycle();
+			}
+			return result;
 		}
-		return mImageFetcherStadiumsDetail;
-	}
 
-	public void loadStadiumDetailImage(String imageUrl, ImageView imageView) {
-		this.getStadiumDetailImageFetcher().loadImage(imageUrl, imageView);
-	}
+		@Override
+		public String key() {
+			return maxWidth + "x" + maxHeight;
+		}
 
-	public void loadStadiumDetailImage(String imageUrl, ImageView imageView,
-			int loadingResId) {
-		this.getStadiumDetailImageFetcher().loadImage(imageUrl, imageView,
-				loadingResId);
-	}
+	};
 
-	/*****************************************************************************/
-
-	public void displayImage(String url, ImageView imageView, int auxResource) {
-		imgL.DisplayImage(url, imageView, auxResource);
-	}
-
-	public void displayImageNotCache(String url, ImageView imageView,
-			int auxResource) {
-		imgL.DisplayImageNotCache(url, imageView, auxResource);
-	}
-
-	public void displayImage(String url, ImageView imageView, int auxResource,
-			int maskResource) {
-		imgL.DisplayImageWithMask(url, imageView, auxResource, maskResource);
-	}
 }

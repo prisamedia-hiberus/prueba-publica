@@ -1,41 +1,58 @@
 package com.diarioas.guialigas.dao.reader;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.model.news.SectionNewsTagSections;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadNewsXML;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadNewsXML.AsyncLoadNewsXMLListener;
-import com.diarioas.guialigas.utils.Defines.DateFormat;
-import com.diarioas.guialigas.utils.Defines.ReturnSharedPreferences;
+import com.diarioas.guialigas.dao.reader.async.AsyncTagReader;
+import com.diarioas.guialigas.dao.reader.async.AsyncTagReader.AsyncTagReaderListener;
+import com.diarioas.guialigas.utils.Defines.Prefix;
 import com.diarioas.guialigas.utils.Reachability;
 
-public class RemoteNewsDAO implements AsyncLoadNewsXMLListener {
+public class RemoteNewsDAO implements AsyncTagReaderListener, AsyncLoadNewsXMLListener {
 
+	public static interface NewsTag {
+		public static final String urlTags = "http://as.com/tag/listado/G3n3r4_json_qu3ry.pl?tag=";
+		public static final String first_string = "http://as.com/tag/";
+		public static final String second_string = "/";
+		public static final String as_domain = "as.com/";
+		public static final String as_domain_mobile = "as.com/m/";
+	}
+
+	
 	public interface RemoteNewsDAOListener {
-
-		void onSuccessRemoteconfig(ArrayList<NewsItem> videos);
+		void onSuccessRemoteconfig(ArrayList<NewsItem> news);
 
 		void onFailureRemoteconfig();
 
-		void onFailureNotConnection();
+		void onFailureNotConnectionRemoteconfig();
+	}
+	
+	public interface RemoteNewsTagDAOListener {
+		void onSuccessTagRemoteconfig(SectionNewsTagSections results);
 
+		void onFailureTagRemoteconfig();
+
+		void onFailureTagNotConnectionRemoteconfig();
 	}
 
-	private static RemoteNewsDAO sInstance;
-	private Context mContext;
+	private static RemoteNewsDAO sInstance = null;
+	private Context mContext = null;
+	private AsyncTagReader asynSettingsReader;
+	private AsyncLoadNewsXML asyncNewsReader;
 	private ArrayList<RemoteNewsDAOListener> listeners;
-	private AsyncLoadNewsXML mainStaticLoadVideosXMLReader;
-	private static ArrayList<NewsItem> news;
+	private ArrayList<RemoteNewsTagDAOListener> tagListeners;
+	private ArrayList<NewsItem> news;
 
 	public static RemoteNewsDAO getInstance(Context ctx) {
 		if (sInstance == null) {
 			sInstance = new RemoteNewsDAO();
 			sInstance.mContext = ctx;
+			sInstance.tagListeners = new ArrayList<RemoteNewsTagDAOListener>();
 			sInstance.listeners = new ArrayList<RemoteNewsDAOListener>();
 
 		}
@@ -47,6 +64,29 @@ public class RemoteNewsDAO implements AsyncLoadNewsXMLListener {
 	 * 
 	 * @param listener
 	 */
+	public void addTagListener(RemoteNewsTagDAOListener listener) {
+		if (this.tagListeners != null) {
+			this.tagListeners.clear();
+			this.tagListeners.add(listener);
+		}
+	}
+
+	public void removeTagListener(RemoteNewsTagDAOListener listener) {
+		if (this.tagListeners != null) {
+			if (sInstance.tagListeners.contains(listener)) {
+				sInstance.tagListeners.remove(listener);
+			}
+		}
+	}
+
+	private void responseNotConnectionRemoteConfigForTag() {
+		if (this.tagListeners != null) {
+			for (int i = 0; i < this.tagListeners.size(); i++) {
+				this.tagListeners.get(i).onFailureTagNotConnectionRemoteconfig();
+			}
+		}
+	}
+	
 	public void addListener(RemoteNewsDAOListener listener) {
 		if (this.listeners != null) {
 			this.listeners.clear();
@@ -56,104 +96,124 @@ public class RemoteNewsDAO implements AsyncLoadNewsXMLListener {
 
 	public void removeListener(RemoteNewsDAOListener listener) {
 		if (this.listeners != null) {
-			if (sInstance.listeners.contains(listener)) {
-				sInstance.listeners.remove(listener);
+			if (this.listeners.contains(listener)) {
+				this.listeners.remove(listener);
 			}
 		}
 	}
 
-	private void responseFailureRemoteConfig() {
+	private void responseNotConnectionRemoteConfig() {
 		if (this.listeners != null) {
 			for (int i = 0; i < this.listeners.size(); i++) {
-				this.listeners.get(i).onFailureRemoteconfig();
+				this.listeners.get(i).onFailureNotConnectionRemoteconfig();
 			}
 		}
 	}
 
-	private void responseNotConnection() {
-		if (this.listeners != null) {
-			for (int i = 0; i < this.listeners.size(); i++) {
-				this.listeners.get(i).onFailureNotConnection();
+	/******************************************************************************/
+
+	public void loadTagData(String url) {
+		if (Reachability.isOnline(mContext) == true) {
+			if (!url.startsWith("http://") && !url.startsWith("https://")) {
+
+				if (RemoteDataDAO.getInstance(mContext) != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix()
+								.get(Prefix.PREFIX_DATA_RSS) != null)
+					url = RemoteDataDAO.getInstance(mContext)
+							.getGeneralSettings().getPrefix()
+							.get(Prefix.PREFIX_DATA_RSS)
+							+ url;
+
 			}
-		}
-	}
-
-	private void responseSuccessRemoteConfig(ArrayList<NewsItem> videos) {
-		if (this.listeners != null) {
-			for (int i = 0; i < this.listeners.size(); i++) {
-				this.listeners.get(i).onSuccessRemoteconfig(videos);
-			}
-		}
-	}
-
-	/*****************************************************************/
-
-	public void getNewsInfo(String url) {
-
-		if (Reachability.isOnline(this.mContext)) {
-			loadMainSettings(url);
+			this.asynSettingsReader = new AsyncTagReader(this, mContext);
+			this.asynSettingsReader.execute(url);
 		} else {
-			responseNotConnection();
-		}
-	}
-
-	private void loadMainSettings(String url) {
-		if (mainStaticLoadVideosXMLReader != null) {
-			mainStaticLoadVideosXMLReader.cancel(true);
-			mainStaticLoadVideosXMLReader = null;
-		}
-		this.mainStaticLoadVideosXMLReader = new AsyncLoadNewsXML(this,
-				mContext);
-		this.mainStaticLoadVideosXMLReader.execute(url);
-
-	}
-
-	public boolean isNewsLoaded(int idCompetition) {
-
-		if (getNewsPreloaded(idCompetition) != null
-				&& getNewsPreloaded(idCompetition).size() > 0) {
-			return true;
-		} else {
-			return false;
+			responseNotConnectionRemoteConfigForTag();
 		}
 
 	}
 
-	public ArrayList<NewsItem> getNewsPreloaded(int idCompetition) {
-		if (news == null || news.size() == 0) {
-			news = DatabaseDAO.getInstance(mContext).getNews(idCompetition);
-		}
-		return news;
-	}
+	/********* AsyncSettingsReaderListener methods ************/
 
-	public NewsItem getNewsPreloaded(int idCompetition, int position) {
-		return getNewsPreloaded(idCompetition).get(position);
-
-	}
-
-	public String getNewsDate() {
-		SharedPreferences sp = mContext.getSharedPreferences(
-				ReturnSharedPreferences.SP_NAME, Context.MODE_PRIVATE);
-		SimpleDateFormat dateFormatPull = new SimpleDateFormat(
-				DateFormat.PULL_FORMAT, Locale.getDefault());
-		float date = sp.getFloat(ReturnSharedPreferences.SP_NEWSDATE, 0);
-
-		return dateFormatPull.format(date * 1000);
-
-	}
-
-	/**************** Metodos de AsyncLoadStadiumXMLListener *****************************/
 	@Override
-	public void onSuccessfulExecute(ArrayList<NewsItem> videos) {
-		news = videos;
-		responseSuccessRemoteConfig(videos);
+	public void onSuccessfulTagExecute(SectionNewsTagSections results) {
+		if (this.tagListeners != null) {
+			for (int i = 0; i < this.tagListeners.size(); i++) {
+				this.tagListeners.get(i).onSuccessTagRemoteconfig(results);
+			}
+		}
+	}
+
+	@Override
+	public void onFailureTagExecute() {
+		if (this.tagListeners != null) {
+			for (int i = 0; i < this.tagListeners.size(); i++) {
+				this.tagListeners.get(i).onFailureTagRemoteconfig();
+			}
+		}
+	}
+	/******************************************************************************/
+
+	public void loadData(String url) {
+		if (Reachability.isOnline(mContext) == true) {
+			if (!url.startsWith("http://") && !url.startsWith("https://")) {
+
+				if (RemoteDataDAO.getInstance(mContext) != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix()
+								.get(Prefix.PREFIX_DATA_RSS) != null)
+					url = RemoteDataDAO.getInstance(mContext)
+							.getGeneralSettings().getPrefix()
+							.get(Prefix.PREFIX_DATA_RSS)
+							+ url;
+
+			}
+			this.asyncNewsReader = new AsyncLoadNewsXML(this, mContext);
+			this.asyncNewsReader.execute(url);
+		} else {
+			responseNotConnectionRemoteConfigForTag();
+		}
+
+	}
+	
+
+	public boolean isURLNeedOut(String urlOut) {
+		if (urlOut == null || urlOut.length() <= 0) {
+			return true;
+		}
+
+		if (urlOut.contains(NewsTag.as_domain)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public void onSuccessfulExecute(ArrayList<NewsItem> news) {
+		this.news = news;
+		if (this.listeners != null) {
+			for (int i = 0; i < this.listeners.size(); i++) {
+				this.listeners.get(i).onSuccessRemoteconfig(news);
+			}
+		}
 	}
 
 	@Override
 	public void onFailureExecute() {
-		responseFailureRemoteConfig();
+		if (this.listeners != null) {
+			for (int i = 0; i < this.listeners.size(); i++) {
+				this.listeners.get(i).onFailureRemoteconfig();
+			}
+		}		
 	}
-
-	/**************** Metodos de AsyncLoadStadiumXMLListener *****************************/
-
 }

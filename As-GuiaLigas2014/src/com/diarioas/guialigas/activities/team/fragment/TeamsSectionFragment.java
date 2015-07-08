@@ -2,8 +2,9 @@ package com.diarioas.guialigas.activities.team.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.annotation.SuppressLint;
+
 import android.annotation.TargetApi;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
@@ -28,6 +30,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
+import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
@@ -40,7 +43,6 @@ public class TeamsSectionFragment extends SectionFragment implements
 	private static final int SCROLL_WITH = 5;
 
 	private CustomViewPagerLeague leagueViewPager;
-	// private CustomHeaderMagneticHorizontalScroll countrySroll;
 	private CustomHoizontalScroll countrySroll;
 	private ImageView buttonPrev;
 	private ImageView buttonNext;
@@ -51,17 +53,20 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 	private ArrayList<Competition> competitions;
 
-	private int currentComp;
-
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_PORTADA;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		this.inflater = inflater;
-		// Inflating layout
 		generalView = inflater.inflate(R.layout.fragment_teams_section,
 				container, false);
 		return generalView;
@@ -71,17 +76,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 	/** Configuration methods **/
 	/***************************************************************************/
 	@Override
-	protected void buildView() {
-		 currentComp=0;
-		if (competitionId !=null) {
-//			 for (Competition competition : competitions) {
-			 for (int i = 0; i < competitions.size(); i++) {
-				if (competitionId.equalsIgnoreCase(String.valueOf(competitions.get(i).getId()))){
-					currentComp = i;
-					break;
-				}
-			}
-		 }
+	protected void loadInformation() {
 		if (competitions != null && competitions.size() > 1) {
 			configureHeader(competitions);
 			headerVisibility = true;
@@ -90,20 +85,20 @@ public class TeamsSectionFragment extends SectionFragment implements
 			headerVisibility = false;
 		}
 		configViewPager();
-
 	}
 
 	@Override
 	protected void configureView() {
-
-		width = ((HomeActivity) getActivity()).getWidth();
+		Point size = DimenUtils.getSize(getActivity().getWindowManager());
+		width = size.x;
+		
 		widthButton = width / SCROLL_WITH;
 
 		competitions = RemoteDataDAO.getInstance(mContext).getGeneralSettings()
 				.getCompetitions();
 		countrySroll = (CustomHoizontalScroll) generalView
 				.findViewById(R.id.countrySroll);
-		
+		callToOmniture();
 	}
 
 	private void configureHeader(final ArrayList<Competition> competitions) {
@@ -113,14 +108,14 @@ public class TeamsSectionFragment extends SectionFragment implements
 		}
 
 		countrySroll.setScreenWidth(width);
-		countrySroll.setFont(FontTypes.HELVETICANEUE);
+		countrySroll.setFont(FontTypes.ROBOTO_REGULAR);
 		countrySroll.setMainColor(getResources().getColor(
 				R.color.red_comparator));
 		countrySroll.setSecondColor(getResources()
 				.getColor(R.color.medium_gray));
 		countrySroll.addScrollEndListener(this);
 		countrySroll.addViews(strings);
-		
+
 		buttonPrev = (ImageView) generalView.findViewById(R.id.buttonPrev);
 		((View) buttonPrev.getParent())
 				.setOnClickListener(new OnClickListener() {
@@ -173,8 +168,6 @@ public class TeamsSectionFragment extends SectionFragment implements
 						paramsRight.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 						generalView.findViewById(R.id.buttonRight)
 								.setLayoutParams(paramsRight);
-						
-
 					}
 				});
 	}
@@ -184,33 +177,17 @@ public class TeamsSectionFragment extends SectionFragment implements
 				.findViewById(R.id.leagueViewPager);
 
 		List<Fragment> fragments = getFragments();
-
+		// if (competitions.get(0).getId() != 0) {
+		// currentCompetition = competitions.get(0);
+		// }
 
 		leagueViewPager.setAdapter(new FragmentAdapter(
 				getChildFragmentManager(), fragments));
-		
-		
-		leagueViewPager.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-			
-			@SuppressLint("NewApi")
-			@Override
-			public void onGlobalLayout() {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-					leagueViewPager.getViewTreeObserver()
-							.removeOnGlobalLayoutListener(this);
-				} else {
-					leagueViewPager.getViewTreeObserver()
-							.removeGlobalOnLayoutListener(this);
-				}
-				leagueViewPager.setCurrentItem(currentComp, true);
-			}
-		}
-		);
-		
-		
+		leagueViewPager.setCurrentItem(0, true);
 		leagueViewPager.setOnPageChangeListener(this);
+
 		setButtonsVisibility();
-		callToOmniture();
+
 		((HomeActivity) getActivity()).stopAnimation();
 	}
 
@@ -220,21 +197,14 @@ public class TeamsSectionFragment extends SectionFragment implements
 		CompetitionHomeFragment competitionFragment;
 		Bundle args;
 		boolean manyCompetititons = competitions.size() > 1;
-		TeamSection sectionAux;
 		for (Competition competition : competitions) {
-			sectionAux = (TeamSection) RemoteDataDAO.getInstance(mContext)
-					.getGeneralSettings().getCompetition(competition.getId())
-					.getSection(SECTIONS.TEAMS);
 			leagueViewPager.addChildId(competition.getId() * 100);
-			String typeOrder = ((TeamSection) sectionAux).getTypeOrder();
-			// Log.d("GROUPS",
-			// "seccion: "+sectionAux.getName()+" Orden: "+typeOrder);
+			String typeOrder = ((TeamSection) section).getTypeOrder();
 			if (typeOrder == null
-					|| typeOrder
-							.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_ALPHABETIC))
-				competitionFragment = new CompetitionTeamHomeFragment();
-			else
+					|| typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_GROUP))
 				competitionFragment = new CompetitionHomeGroupFragment();
+			else
+				competitionFragment = new CompetitionTeamHomeFragment();
 
 			args = new Bundle();
 			args.putInt("competitionId", competition.getId());
@@ -276,16 +246,10 @@ public class TeamsSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
-		String competitionName = competitions.get(leagueViewPager.getCurrentItem()).getName();
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), competitionName,Omniture.SECTION_PORTADA,
+				getActivity().getApplication(), Omniture.SECTION_PORTADA, null,
 				null, null, Omniture.TYPE_PORTADA, Omniture.DETAILPAGE_PORTADA,
 				null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
@@ -299,7 +263,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 	@Override
 	public void onItemClicked(int position) {
-		leagueViewPager.setCurrentItem(position, true);
+
 	}
 
 	/***************************************************************************/
@@ -320,7 +284,6 @@ public class TeamsSectionFragment extends SectionFragment implements
 	@Override
 	public void onPageSelected(int pos) {
 		((HomeActivity) getActivity()).setCurrentcompetition(pos);
-		callToOmniture();
 
 	}
 

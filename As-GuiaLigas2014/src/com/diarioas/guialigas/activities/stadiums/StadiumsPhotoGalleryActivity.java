@@ -17,22 +17,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.stadiums.fragments.PhotoGalleryFSFragment;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 
-
-public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
-		implements OnPageChangeListener {
+public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity implements
+		OnPageChangeListener {
 
 	private static final int CIRCLE_ID = 8000;
-
 	private ViewPager photoGalleryViewPager;
 	private ArrayList<String> urls;
 	private LinearLayout circleIndicator;
@@ -84,9 +81,7 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		ImageDAO.getInstance(this).exitStadiumTaskEarly();
 		String name = getIntent().getExtras().getString("name");
 		if (name != null && name.length() > 0)
 			StatisticsDAO.getInstance(this).sendStatisticsState(
@@ -97,24 +92,8 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitStadiumTaskEarly();
-		ImageDAO.getInstance(this).flushStadiumsCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
-
-	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ImageDAO.getInstance(this).closeStadiumsCache();
 		if (photoGalleryViewPager != null) {
 			photoGalleryViewPager.removeAllViews();
 			photoGalleryViewPager = null;

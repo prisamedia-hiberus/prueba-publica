@@ -2,10 +2,11 @@ package com.diarioas.guialigas.activities.general.fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +21,15 @@ import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.DimenUtils;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public abstract class ListViewSectionFragment extends SectionFragment {
 
 	// private ArrayList<Stadium> stadiums;
 	protected BaseAdapter adapter;
 	protected ArrayList<?> array;
-	protected PullToRefreshListView pullToRefresh;
+
+	protected ListView contentListView;
+	private SwipeRefreshLayout swipeRefreshLayout = null;
 
 	protected Section section;
 	protected String competitionId;
@@ -69,37 +69,36 @@ public abstract class ListViewSectionFragment extends SectionFragment {
 	}
 
 	protected void configureListView() {
+		configureSwipeLoader();
 
-		pullToRefresh.setClickable(false);
-		pullToRefresh.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		pullToRefresh.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		pullToRefresh
-				.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		pullToRefresh.setOnRefreshListener(new OnRefreshListener<ListView>() {
-
-			@Override
-			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-				buildView();
-			}
-		});
-
-		ListView listView = pullToRefresh.getRefreshableView();
-		listView.setDivider(null);
-		listView.setClickable(false);
-		listView.setCacheColorHint(0);
+		contentListView.setClickable(false);
+		contentListView.setDivider(null);
+		contentListView.setClickable(false);
+		contentListView.setCacheColorHint(0);
 		int regularPixelFromDp = DimenUtils.getRegularPixelFromDp(mContext, 8);
-		listView.addFooterView(getGapView(regularPixelFromDp));
-		listView.addHeaderView(getGapView(regularPixelFromDp));
-		listView.setAdapter(adapter);
+		contentListView.addFooterView(getGapView(regularPixelFromDp));
+		contentListView.addHeaderView(getGapView(regularPixelFromDp));
+		contentListView.setAdapter(adapter);
+	}
+
+	private void configureSwipeLoader() {
+//		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+//				.findViewById(R.id.swipe_stadiumsContent);
+//		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+//
+//			@Override
+//			public void onRefresh() {
+//				loadInformation();
+//			}
+//		});
+//		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+//				R.color.red, R.color.white);
 	}
 
 	protected void stopAnimation() {
 		((HomeActivity) getActivity()).stopAnimation();
-		if (pullToRefresh != null) {
-			pullToRefresh.onRefreshComplete();
-			pullToRefresh
-					.setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-							+ dateFormatPull.format(new Date()));
+		if (swipeRefreshLayout != null) {
+			swipeRefreshLayout.setRefreshing(false);
 		}
 	}
 
@@ -123,8 +122,9 @@ public abstract class ListViewSectionFragment extends SectionFragment {
 	}
 
 	private void loadData(boolean pullEnabled) {
-		pullToRefresh.setPullToRefreshEnabled(pullEnabled);
-		pullToRefresh.setPullToRefreshOverScrollEnabled(pullEnabled);
+		if (swipeRefreshLayout != null) {
+			swipeRefreshLayout.setRefreshing(false);
+		}
 		adapter.notifyDataSetChanged();
 		stopAnimation();
 	}

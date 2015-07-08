@@ -14,7 +14,6 @@ import com.diarioas.guialigas.dao.reader.async.AsyncLoadLocalFeedXML.AsyncLocalF
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadRemoteFeedXML;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadRemoteFeedXML.AsyncRemoteFeedXMLListener;
 import com.diarioas.guialigas.utils.Defines;
-import com.diarioas.guialigas.utils.Defines.DATABASE;
 import com.diarioas.guialigas.utils.Reachability;
 import com.diarioas.guialigas.utils.comparator.SectionComparator;
 
@@ -45,16 +44,11 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		void onSuccessRemoteconfig();
 
 		void onFailureRemoteconfig();
-
-		void onFailureNotConnection();
 	}
 
 	/********************** Gestion de Listeners ****************************/
+	/************************************************************************/
 
-	/**
-	 * 
-	 * @param listener
-	 */
 	public void addListener(RemoteDataDAOListener listener) {
 		if (this.listeners != null) {
 			this.listeners.add(listener);
@@ -88,15 +82,6 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		}
 	}
 
-	private void responseNotConnection() {
-		if (this.listeners != null) {
-			for (int i = 0; i < this.listeners.size(); i++) {
-				this.listeners.get(i).onFailureNotConnection();
-			}
-		}
-
-	}
-
 	private void responseUpdateDabase() {
 
 		if (this.listeners != null) {
@@ -114,7 +99,7 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		this.mainStaticLoadFeedXMLReader = new AsyncLoadLocalFeedXML(this,
 				mContext);
 		this.mainStaticLoadFeedXMLReader
-				.execute(DATABASE.DB_SETTINGS_FILE_NAME);
+				.execute(Defines.ReturnDataDatabases.DB_SETTINGS_FILE_NAME);
 	}
 
 	public void loadRemoteSettings() {
@@ -174,12 +159,15 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 	public void onRemoteSuccessfulExecute(GeneralSettings generalSettings) {
 		this.mainStaticRemoteFeedXMLReader = null;
 		if (generalSettings == null) {
-			// responseFailureRemoteConfig();
-			return;
+			responseFailureRemoteConfig();
 		} else {
-			// this.generalSettings = generalSettings;
+			if (this.mainStaticRemoteFeedXMLReader != null) {
+				this.mainStaticRemoteFeedXMLReader.removeListener(this);
+				this.mainStaticRemoteFeedXMLReader = null;
+			}
+			this.generalSettings = generalSettings;
 			// He leido el plist y lo he cargardo en la DDBB
-			// responseUpdateDabase();
+			responseUpdateDabase();
 		}
 	}
 

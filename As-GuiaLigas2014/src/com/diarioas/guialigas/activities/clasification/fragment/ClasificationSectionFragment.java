@@ -6,10 +6,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
+import android.R.drawable;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.TextUtils.TruncateAt;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -21,17 +23,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.model.calendar.Fase;
 import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.clasificacion.ClasificacionInfo;
 import com.diarioas.guialigas.dao.model.clasificacion.LeyendaInfo;
-import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.ClasificacionSection;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
@@ -41,16 +42,11 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
-import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.comparator.GroupComparator;
-import com.emilsjolander.components.StickyScrollViewItems.StickyScrollView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshStickyScrollView;
 
 public class ClasificationSectionFragment extends SectionFragment implements
 		RemoteClasificacionDAOListener {
@@ -59,13 +55,20 @@ public class ClasificationSectionFragment extends SectionFragment implements
 
 	private Fase fase;
 
-	private PullToRefreshStickyScrollView pullToRefresh;
+	private ScrollView pullToRefresh;
+	private SwipeRefreshLayout swipeRefreshLayout = null;
 
 	private RelativeLayout container;
 
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_CLASIFICATION;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,7 +93,7 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 		reloadData();
 
 	}
@@ -108,25 +111,26 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	@Override
 	protected void configureView() {
 
-		pullToRefresh = (PullToRefreshStickyScrollView) generalView
+		configureSwipeLoader();
+		pullToRefresh = (ScrollView) generalView
 				.findViewById(R.id.teamPullContent);
 		pullToRefresh.setClickable(false);
-		pullToRefresh.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		pullToRefresh.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		pullToRefresh
-				.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		pullToRefresh
-				.setOnRefreshListener(new OnRefreshListener<StickyScrollView>() {
-
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<StickyScrollView> refreshView) {
-						reloadData();
-					}
-				});
-
 		container = (RelativeLayout) generalView.findViewById(R.id.container);
 		callToOmniture();
+	}
+
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_teamPullContent);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {
+				reloadData();
+			}
+		});
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
 	}
 
 	private LinearLayout getTeamContent() {
@@ -143,8 +147,9 @@ public class ClasificationSectionFragment extends SectionFragment implements
 
 	private void loadData() {
 
-		pullToRefresh.setPullToRefreshEnabled(false);
-		pullToRefresh.setPullToRefreshOverScrollEnabled(false);
+		if (swipeRefreshLayout != null) {
+			swipeRefreshLayout.setRefreshing(false);
+		}
 
 		LinearLayout teamHeaderContent = (LinearLayout) generalView
 				.findViewById(R.id.teamHeaderContent);
@@ -199,34 +204,33 @@ public class ClasificationSectionFragment extends SectionFragment implements
 				null);
 
 		if (showTitle) {
-			header.setTag(StickyScrollView.STICKY_TAG);
 			header.findViewById(R.id.groupNameContent).setVisibility(
 					View.VISIBLE);
 			TextView groupName = (TextView) header
 					.findViewById(R.id.groupNameText);
 			FontUtils.setCustomfont(mContext, groupName,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			groupName.setText(nameGroup);
 		}
 		FontUtils.setCustomfont(mContext, header.findViewById(R.id.teamText),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext, header.findViewById(R.id.puntosText),
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		FontUtils.setCustomfont(mContext,
-				header.findViewById(R.id.partJugText), FontTypes.HELVETICANEUE);
+				header.findViewById(R.id.partJugText), FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
-				header.findViewById(R.id.partGanText), FontTypes.HELVETICANEUE);
+				header.findViewById(R.id.partGanText), FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
-				header.findViewById(R.id.partEmpText), FontTypes.HELVETICANEUE);
+				header.findViewById(R.id.partEmpText), FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
-				header.findViewById(R.id.partPerText), FontTypes.HELVETICANEUE);
+				header.findViewById(R.id.partPerText), FontTypes.ROBOTO_REGULAR);
 		FontUtils
 				.setCustomfont(mContext,
 						header.findViewById(R.id.golesFavText),
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 		FontUtils.setCustomfont(mContext,
 				header.findViewById(R.id.golesContText),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		return header;
 	}
@@ -243,45 +247,45 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		View item = inflater.inflate(R.layout.item_list_clasificacion, null);
 
 		TextView teamText = (TextView) item.findViewById(R.id.teamText);
-		FontUtils.setCustomfont(mContext, teamText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, teamText, FontTypes.ROBOTO_REGULAR);
 		teamText.setText(team.getShortName().toUpperCase());
 
 		TextView teamPositionText = (TextView) item
 				.findViewById(R.id.teamPositionText);
 		FontUtils.setCustomfont(mContext, teamPositionText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		teamPositionText.setText(String.valueOf(position));
 
 		TextView puntosText = (TextView) item.findViewById(R.id.puntosText);
 		FontUtils.setCustomfont(mContext, puntosText,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		puntosText.setText(String.valueOf(teamClasificacion.getPts()));
 
 		TextView partJugText = (TextView) item.findViewById(R.id.partJugText);
-		FontUtils.setCustomfont(mContext, partJugText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, partJugText, FontTypes.ROBOTO_REGULAR);
 		partJugText.setText(String.valueOf(teamClasificacion.getPj()));
 
 		TextView partGanText = (TextView) item.findViewById(R.id.partGanText);
-		FontUtils.setCustomfont(mContext, partGanText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, partGanText, FontTypes.ROBOTO_REGULAR);
 		partGanText.setText(String.valueOf(teamClasificacion.getPg()));
 
 		TextView partEmpText = (TextView) item.findViewById(R.id.partEmpText);
-		FontUtils.setCustomfont(mContext, partEmpText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, partEmpText, FontTypes.ROBOTO_REGULAR);
 		partEmpText.setText(String.valueOf(teamClasificacion.getPe()));
 
 		TextView partPerText = (TextView) item.findViewById(R.id.partPerText);
-		FontUtils.setCustomfont(mContext, partPerText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, partPerText, FontTypes.ROBOTO_REGULAR);
 		partPerText.setText(String.valueOf(teamClasificacion.getPp()));
 
 		TextView golesFavText = (TextView) item.findViewById(R.id.golesFavText);
 		FontUtils
-				.setCustomfont(mContext, golesFavText, FontTypes.HELVETICANEUE);
+				.setCustomfont(mContext, golesFavText, FontTypes.ROBOTO_REGULAR);
 		golesFavText.setText(String.valueOf(teamClasificacion.getGf()));
 
 		TextView golesContText = (TextView) item
 				.findViewById(R.id.golesContText);
 		FontUtils.setCustomfont(mContext, golesContText,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		golesContText.setText(String.valueOf(teamClasificacion.getGc()));
 
 		ImageView shieldImage = (ImageView) item.findViewById(R.id.shieldImage);
@@ -290,47 +294,27 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		positionImage.setBackgroundColor(color);
 
 		int idLocal = 0;
-		team = DatabaseDAO.getInstance(mContext).getTeam(team.getId());
+		String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(team.getId());
 
-		if (team.getCalendarShield() != null) {
-			idLocal = DrawableUtils.getDrawableId(getActivity()
-					.getApplicationContext(), team.getCalendarShield(), 4);
+		if (shield != null) {
+			idLocal = DrawableUtils.getDrawableId(getActivity().getApplicationContext(), shield, 4);
 			item.setTag(team.getId());
 			item.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					 selectedTeam((String)v.getTag());
+//					 selectedTeam((String)v.getTag());
 				}
 			});
-
-		}else{
-			idLocal = R.drawable.escudo_generico_size02;
+		}
+		
+		if (idLocal==0) {
+			idLocal = R.drawable.escudo_generico_size03;
 		}
 
 		shieldImage.setBackgroundResource(idLocal);
 
-
-		
 		return item;
-	}
-
-	protected void selectedTeam(String teamId) {
-		Team team = DatabaseDAO.getInstance(mContext).getTeam(teamId);
-		if (team != null && team.getUrlInfo() != null&& !team.getUrlInfo().equalsIgnoreCase("")) {
-			Intent intent = new Intent(mContext, TeamActivity.class);
-			intent.putExtra("teamId", teamId);
-			intent.putExtra("competitionId", String.valueOf(competitionId));
-			Competition comp = DatabaseDAO.getInstance(mContext)
-					.getCompetition(Integer.valueOf(competitionId));
-			if (comp != null)
-				intent.putExtra("competitionName", comp.getName());
-
-			getActivity().startActivityForResult(intent,
-					ReturnRequestCodes.PUBLI_BACK);
-			getActivity().overridePendingTransition(R.anim.grow_from_middle,
-					R.anim.shrink_to_middle);
-		}
 	}
 
 	/**
@@ -395,7 +379,7 @@ public class ClasificationSectionFragment extends SectionFragment implements
 				// TextView
 				texto = new TextView(mContext);
 				FontUtils.setCustomfont(mContext, texto,
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 				texto.setGravity(Gravity.LEFT);
 				texto.setMaxLines(3);
 				texto.setEllipsize(TruncateAt.END);
@@ -422,11 +406,8 @@ public class ClasificationSectionFragment extends SectionFragment implements
 
 	private void stopAnimation() {
 		((HomeActivity) getActivity()).stopAnimation();
-		if (pullToRefresh != null) {
-			pullToRefresh.onRefreshComplete();
-			// pullToRefresh
-			// .setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-			// + dateFormatPull.format(new Date()));
+		if (swipeRefreshLayout != null) {
+			swipeRefreshLayout.setRefreshing(false);
 		}
 	}
 
@@ -435,22 +416,15 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
-		
-		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(Integer.valueOf(competitionId));
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				comp.getName().toLowerCase(),
 				Omniture.SECTION_CLASIFICATION,
+				null,
 				null,
 				null,
 				Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_DETALLE + " "
 						+ Omniture.SECTION_CLASIFICATION, null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_CLASIFICATION+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
@@ -481,22 +455,20 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	@Override
 	public void onFailureRemoteconfig() {
 		RemoteClasificacionDAO.getInstance(mContext).removeListener(this);
-//		AlertManager.showAlertOkDialog(getActivity(),
-//				getResources().getString(R.string.clasificacion_error),
-//				getResources().getString(R.string.connection_error_title),
-//				new android.content.DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dialog.dismiss();
+		AlertManager.showAlertOkDialog(getActivity(),
+				getResources().getString(R.string.clasificacion_error),
+				getResources().getString(R.string.connection_error_title),
+				new android.content.DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
 						container.removeAllViews();
 						container.addView(getErrorContainer());
-						pullToRefresh.setPullToRefreshEnabled(true);
-						pullToRefresh.setPullToRefreshOverScrollEnabled(true);
-//
-//					}
-//
-//				});
+
+					}
+
+				});
 
 		stopAnimation();
 	}
@@ -510,21 +482,19 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	@Override
 	public void onFailureNotConnection() {
 		RemoteClasificacionDAO.getInstance(mContext).removeListener(this);
-//		AlertManager.showAlertOkDialog(getActivity(),
-//				getResources().getString(R.string.section_not_conection),
-//				getResources().getString(R.string.connection_error_title),
-//				new android.content.DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dialog.dismiss();
+		AlertManager.showAlertOkDialog(getActivity(),
+				getResources().getString(R.string.section_not_conection),
+				getResources().getString(R.string.connection_error_title),
+				new android.content.DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
 						container.removeAllViews();
 						container.addView(getErrorContainer());
-						pullToRefresh.setPullToRefreshEnabled(true);
-						pullToRefresh.setPullToRefreshOverScrollEnabled(true);
-//					}
-//
-//				});
+					}
+
+				});
 
 		stopAnimation();
 	}

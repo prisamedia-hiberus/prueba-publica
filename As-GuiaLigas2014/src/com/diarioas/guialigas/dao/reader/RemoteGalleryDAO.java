@@ -11,6 +11,7 @@ import com.diarioas.guialigas.dao.reader.async.AsyncLoadDetailGalleryXML.AsyncLo
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadGalleryXML;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadGalleryXML.AsyncLoadGalleryXMLListener;
 import com.diarioas.guialigas.utils.Reachability;
+import com.diarioas.guialigas.utils.Defines.Prefix;
 
 public class RemoteGalleryDAO implements AsyncLoadGalleryXMLListener,
 		AsyncLoadDetailGalleryXMLListener {
@@ -145,6 +146,24 @@ public class RemoteGalleryDAO implements AsyncLoadGalleryXMLListener,
 	public void getGalleries(String url) {
 
 		if (Reachability.isOnline(this.mContext)) {
+
+			if (!url.startsWith("http://") && !url.startsWith("https://")) {
+
+				if (RemoteDataDAO.getInstance(mContext) != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix() != null
+						&& RemoteDataDAO.getInstance(mContext)
+								.getGeneralSettings().getPrefix()
+								.get(Prefix.PREFIX_DATA_RSS) != null)
+					url = RemoteDataDAO.getInstance(mContext)
+							.getGeneralSettings().getPrefix()
+							.get(Prefix.PREFIX_DATA_RSS)
+							+ url;
+
+			}
+
 			loadMainSettings(url);
 		} else {
 			responseNotConnection();

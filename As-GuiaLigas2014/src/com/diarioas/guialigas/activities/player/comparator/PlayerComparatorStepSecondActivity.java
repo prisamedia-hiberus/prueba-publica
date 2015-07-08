@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.home.fragment.CompetitionHomeFragment;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerSelectTeam;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerSelectTeamGroup;
@@ -64,7 +64,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	private ImageView buttonPrev;
 	private ImageView buttonNext;
 	private boolean headerVisibility;
-//	private int currentCompetitionId;
+	private int currentCompetitionId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,6 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
@@ -229,7 +228,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		playerComparatorViewPager.setAdapter(new FragmentAdapter(
 				getSupportFragmentManager(), fragments));
 		playerComparatorViewPager.setCurrentItem(0, true);
-//		currentCompetitionId = competitions.get(0).getId();
+		currentCompetitionId = competitions.get(0).getId();
 		playerComparatorViewPager.setOnPageChangeListener(this);
 
 		setButtonsVisibility();
@@ -244,21 +243,20 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		String typeOrder;
 		for (Competition competition : competitions) {
 			playerComparatorViewPager.addChildId(competition.getId() * 100);
-			section = (TeamSection) RemoteDataDAO
-					.getInstance(getApplicationContext()).getGeneralSettings()
-					.getCompetition(competition.getId())
-					.getSection(SECTIONS.TEAMS);
-			typeOrder = section.getTypeOrder();
-			if (typeOrder == null
-					|| typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_GROUP))
-				competitionFragment = new ComparatorPlayerSelectTeamGroup();
-			else
-				competitionFragment = new ComparatorPlayerSelectTeam();
-			args = new Bundle();
-			args.putInt("competitionId", competition.getId());
-			args.putString("competitionName", competition.getName());
-			competitionFragment.setArguments(args);
-			fList.add(competitionFragment);
+			section = (TeamSection) RemoteDataDAO.getInstance(getApplicationContext()).getGeneralSettings().getCompetition(competition.getId()).getSection(SECTIONS.TEAMS);
+			if (section!=null) {
+				typeOrder = section.getTypeOrder();
+				if (typeOrder == null
+						|| typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_GROUP))
+					competitionFragment = new ComparatorPlayerSelectTeamGroup();
+				else
+					competitionFragment = new ComparatorPlayerSelectTeam();
+				args = new Bundle();
+				args.putInt("competitionId", competition.getId());
+				args.putString("competitionName", competition.getName());
+				competitionFragment.setArguments(args);
+				fList.add(competitionFragment);
+			}
 		}
 
 		return fList;
@@ -370,7 +368,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	public void onPageSelected(int pos) {
 
 		countrySroll.setHeaderPosition(pos);
-//		currentCompetitionId = competitions.get(pos).getId();
+		currentCompetitionId = competitions.get(pos).getId();
 		setButtonsVisibility();
 
 	}
@@ -379,7 +377,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll.ScrollEndListener
+	 * com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener
 	 * #onScrollEnd(int, int, int, int, int)
 	 */
 	@Override
@@ -392,7 +390,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.diarioas.guiamundial.utils.scroll.CustomHoizontalScroll.ScrollEndListener
+	 * com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener
 	 * #onItemClicked(int)
 	 */
 	@Override

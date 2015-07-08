@@ -12,37 +12,35 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerFragmentStepFirst;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerFragmentStepFour;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerFragmentStepZero;
 import com.diarioas.guialigas.dao.model.player.Player;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
+import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
+import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
+import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
-/**
- * @author robertosanchez
- * 
- */
+
 public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 		implements RemotePlayerDAOListener {
 
@@ -74,7 +72,6 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_player_comparator);
@@ -101,9 +98,7 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	 */
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 		StatisticsDAO.getInstance(this)
 				.sendStatisticsState(
 						getApplication(),
@@ -117,43 +112,17 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 
 	}
 
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-		ImageDAO.getInstance(this).flushPlayerCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-//		ImageDAO.getInstance(this).closePlayerCache();
-//		ImageDAO.getInstance(this).erasePlayerCache();
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
+		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.actionbar_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
+
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.null_anim, R.anim.slide_out_left);
 	}
@@ -179,11 +148,11 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 
 			String body = getString(R.string.mens_share_part1_2)
 					+ currentPlayerLeft.getName()
-					+ getString(R.string.mens_share_part2)+"<a href=\""+ getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
+					+ getString(R.string.mens_share_part2)
 			// + getString(R.string.share_mens_url_long)
 			;
 
-			intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+			intent.putExtra(Intent.EXTRA_TEXT, body);
 			startActivity(Intent.createChooser(intent,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));
@@ -211,10 +180,7 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 
 	}
 
-	/**
-	 * @param result
-	 * 
-	 */
+
 	public void selectCompetition(int result) {
 		Intent intent = new Intent(PlayerComparatorStepFirstActivity.this,
 				PlayerComparatorStepSecondActivity.class);
@@ -333,17 +299,13 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	}
 
 	private void configViewPager() {
-
 		List<Fragment> fragments = getFragments();
-
 		playerComparatorViewPager.setAdapter(new FragmentAdapter(
 				getSupportFragmentManager(), fragments));
 		playerComparatorViewPager.setCurrentItem(0, true);
 	}
 
-	/**
-	 * @return
-	 */
+
 	private List<Fragment> getFragments() {
 		ArrayList<Fragment> fList = new ArrayList<Fragment>();
 		if (currentPlayerLeft != null && currentPlayerRight != null) {
@@ -440,14 +402,8 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 	}
 
 	/************************************ THIRD STEP ******************************************/
-
 	/********************************** Metodos de RemotePlayer ****************************************/
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.prisacom.as.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener#
-	 * onSuccessPlayerRemoteconfig(es.prisacom.as.dao.model.database.Player)
-	 */
+
 	@Override
 	public void onSuccessPlayerRemoteconfig(Player player) {
 		RemotePlayerDAO.getInstance(this).removeListener(this);

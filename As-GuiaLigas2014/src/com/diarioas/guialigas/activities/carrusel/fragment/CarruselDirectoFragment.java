@@ -5,10 +5,11 @@ package com.diarioas.guialigas.activities.carrusel.fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -29,9 +30,6 @@ import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.MatchEvents;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * @author robertosanchez
@@ -42,11 +40,13 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 
 	private Match match;
 	private ArrayList<ItemDirecto> directos;
-	private PullToRefreshListView directosListView;
+	private ListView directosListView;
 	private DirectosAdapter directosAdapter;
 	private SimpleDateFormat dateFormatPull;
 	private int idShieldLocal;
 	private int idShieldAway;
+
+	private SwipeRefreshLayout swipeRefreshLayout = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,40 +81,33 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 	 */
 	@Override
 	protected void configureView() {
-
 		super.configureView();
 
-		directosListView = (PullToRefreshListView) generalView
+		configureSwipeLoader();
+
+		directosListView = (ListView) generalView
 				.findViewById(R.id.directosListView);
-		directosListView.setDisableScrollingWhileRefreshing(true);
-		ListView inner = directosListView.getRefreshableView();
-		inner.setDivider(null);
-		inner.setDividerHeight(0);
-		inner.setCacheColorHint(0);
+		directosListView.setDivider(null);
+		directosListView.setDividerHeight(0);
+		directosListView.setCacheColorHint(0);
 		directosListView.setClickable(false);
-		directosListView.setPullLabel(mContext
-				.getString(R.string.ptr_pull_to_refresh));
-		directosListView.setRefreshingLabel(mContext
-				.getString(R.string.ptr_refreshing));
-		directosListView.setReleaseLabel(mContext
-				.getString(R.string.ptr_release_to_refresh));
-
-		directosListView
-				.setOnRefreshListener(new OnRefreshListener<ListView>() {
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ListView> refreshView) {
-						((CarruselDetailActivity) getActivity())
-								.updateCarrusel();
-						// updateData();
-
-					}
-
-				});
 
 		directosAdapter = new DirectosAdapter();
 		directosListView.setAdapter(directosAdapter);
+	}
 
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container_directos);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {
+				((CarruselDetailActivity) getActivity()).updateCarrusel();
+			}
+		});
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
 	}
 
 	public void updateInfo() {
@@ -150,11 +143,8 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 	}
 
 	private void closePullToRefresh() {
-		if (directosListView != null) {
-			directosListView.onRefreshComplete();
-			directosListView.setLastUpdatedLabel(mContext
-					.getString(R.string.ptr_last_updated)
-					+ dateFormatPull.format(new Date()));
+		if (this.swipeRefreshLayout != null) {
+			this.swipeRefreshLayout.setRefreshing(false);
 		}
 	}
 
@@ -307,7 +297,7 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 					holder.minText = (TextView) convertView
 							.findViewById(R.id.minText);
 					FontUtils.setCustomfont(mContext, holder.minText,
-							FontTypes.HELVETICANEUE);
+							FontTypes.ROBOTO_REGULAR);
 					holder.icon = (ImageView) convertView
 							.findViewById(R.id.icon);
 
@@ -322,21 +312,21 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 					holder.minText = (TextView) convertView
 							.findViewById(R.id.minText);
 					FontUtils.setCustomfont(mContext, holder.minText,
-							FontTypes.HELVETICANEUE);
+							FontTypes.ROBOTO_REGULAR);
 					holder.icon = (ImageView) convertView
 							.findViewById(R.id.icon);
 					holder.resultTextLeft = (TextView) convertView
 							.findViewById(R.id.resultTextLeft);
 					FontUtils.setCustomfont(mContext, holder.resultTextLeft,
-							FontTypes.HELVETICANEUEBOLD);
+							FontTypes.ROBOTO_BOLD);
 					holder.resultText = (TextView) convertView
 							.findViewById(R.id.resultText);
 					FontUtils.setCustomfont(mContext, holder.resultText,
-							FontTypes.HELVETICANEUE);
+							FontTypes.ROBOTO_REGULAR);
 					holder.resultTextRight = (TextView) convertView
 							.findViewById(R.id.resultTextRight);
 					FontUtils.setCustomfont(mContext, holder.resultTextRight,
-							FontTypes.HELVETICANEUEBOLD);
+							FontTypes.ROBOTO_BOLD);
 
 					holder.localShield = (ImageView) convertView
 							.findViewById(R.id.localShield);
@@ -354,7 +344,7 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 				holder.text = (TextView) convertView
 						.findViewById(R.id.textText);
 				FontUtils.setCustomfont(mContext, holder.text,
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 				holder.text.setMovementMethod(LinkMovementMethod.getInstance());
 
 				convertView.setTag(holder);

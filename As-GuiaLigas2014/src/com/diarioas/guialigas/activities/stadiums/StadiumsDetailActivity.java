@@ -9,24 +9,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.stadiums.fragments.CityFragment;
 import com.diarioas.guialigas.activities.stadiums.fragments.SedeFragment;
 import com.diarioas.guialigas.activities.stadiums.fragments.StadiumFragment;
 import com.diarioas.guialigas.dao.model.stadium.Stadium;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteStadiumsDAO;
 import com.diarioas.guialigas.dao.reader.RemoteStadiumsDAO.RemoteStadiumDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
+import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
@@ -34,7 +34,6 @@ import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerStadium;
-import com.prisadigital.realmedia.adlib.AdView;
 
 public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		RemoteStadiumDetailDAOListener, OnPageChangeListener {
@@ -46,19 +45,14 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 	private TextView nameCity;
 
 	private List<Fragment> fragments;
-	private AdView banner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_stadiums_detail);
 		configureView();
 		startAnimation();
-
 		idStadium = getIntent().getExtras().getInt("id");
-
 		RemoteStadiumsDAO.getInstance(this).addDetailListener(this);
 		RemoteStadiumsDAO.getInstance(this).getStadiumData(idStadium);
 	}
@@ -76,12 +70,10 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		ImageDAO.getInstance(this).exitStadiumTaskEarly();
 		if (stadiumViewPager != null) {
 			callToOmniture(stadiumViewPager.getCurrentItem());
-			callToAds("sedes/detalle", false);
+			callToAds(NativeAds.AD_STADIUMS+NativeAds.AD_DETAIL, false);
 		}
 	}
 
@@ -106,42 +98,12 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitStadiumTaskEarly();
-		ImageDAO.getInstance(this).flushStadiumsCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		ImageDAO.getInstance(this).closeStadiumsCache();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
-	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		setResult(RESULT_OK);
 		super.onBackPressed();
 		overridePendingTransition(R.anim.null_anim, R.anim.slide_out_left);
 	}
 
-	/**
-	 * 
-	 */
 	private void configureView() {
 
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
@@ -149,7 +111,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 
 		nameStadium = (TextView) findViewById(R.id.nameStadium);
 		FontUtils.setCustomfont(getApplicationContext(), nameStadium,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		nameStadium.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -161,7 +123,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 
 		nameCity = (TextView) findViewById(R.id.nameCity);
 		FontUtils.setCustomfont(getApplicationContext(), nameStadium,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		nameCity.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -172,8 +134,6 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		});
 
 	}
-
-
 
 	private void configViewPager() {
 		stadiumViewPager = (CustomViewPagerStadium) findViewById(R.id.stadiumViewPager);
@@ -251,7 +211,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		nameCity.setText(stad.getCityName());
 		findViewById(R.id.headerLinear).setVisibility(View.VISIBLE);
 		configViewPager();
-		callToAds("sedes/detalle", false);
+		callToAds(NativeAds.AD_STADIUMS+NativeAds.AD_DETAIL, false);
 
 	}
 
@@ -260,7 +220,7 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		if (requestCode == ReturnRequestCodes.GALLERY_BACK) {
 			if (resultCode == RESULT_OK) {
 				Log.d("StadiumsDetailActivity", "BACK");
-				callToAds("sedes/detalle", false);
+				callToAds(NativeAds.AD_STADIUMS+NativeAds.AD_DETAIL, false);
 				try {
 					if (data != null && data.getExtras() != null
 							&& data.getExtras().containsKey("fragmentPos")) {

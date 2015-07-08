@@ -33,6 +33,13 @@ public class TeamInfoFragment extends TeamFragment {
 		return generalView;
 	}
 
+	
+	@Override
+	protected void startFirstShow() {
+		// TODO Auto-generated method stub
+
+	}
+	
 	@Override
 	protected void configureView() {
 

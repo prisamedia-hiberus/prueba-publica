@@ -45,29 +45,13 @@ public class AsyncLoadTeamJSON extends AsyncTask<String, Void, Team> {
 				String strFileContents;
 				if (!currentTeam.isStaticInfo()) {
 					try {
-						Log.d("LOADTEAM",
-								"Carga Estatica: " + currentTeam.getShortName()
-										+ " ::  " + currentTeam.getUrlInfo());
-						strFileContents = ReadRemote.readRemoteFile(
-								currentTeam.getUrlInfo(), true);
-						// String videoPrefix = DatabaseDAO
-						// .getInstance(appContext).getPrefix(
-						// Prefix.PREFIX_VIDEO);
-						// String imagePrefix = DatabaseDAO
-						// .getInstance(appContext).getPrefix(
-						// Prefix.PREFIX_IMAGE);
-						// String dataPrefix =
-						// DatabaseDAO.getInstance(appContext)
-						// .getPrefix(Prefix.PREFIX_DATA);
-						ParsePlistTeamStatic parseStatic = new ParsePlistTeamStatic(
-								strFileContents);
-						// parseStatic.parsePlistTeam(currentTeam,
-						// dataPrefix,imagePrefix, videoPrefix);
+						Log.d("LOADTEAM","Carga Estatica: " + currentTeam.getShortName()+ " ::  " + currentTeam.getUrlInfo());
+						strFileContents = ReadRemote.readRemoteFile(currentTeam.getUrlInfo(), true);
+						ParsePlistTeamStatic parseStatic = new ParsePlistTeamStatic(strFileContents);
+		
 
 						parseStatic.parsePlistTeam(currentTeam);
-
-						DatabaseDAO.getInstance(appContext).updateStaticTeam(
-								currentTeam, urls[0]);
+						DatabaseDAO.getInstance(appContext).updateStaticTeam(currentTeam, urls[0]);
 					} catch (Exception e) {
 						Log.e("LOADTEAM",
 								"Fallo en la carga Estatica: "
@@ -76,16 +60,11 @@ public class AsyncLoadTeamJSON extends AsyncTask<String, Void, Team> {
 					}
 
 				}
-				Log.d("LOADTEAM",
-						"Carga Dinamica: " + currentTeam.getShortName()
-								+ " ::  " + currentTeam.getUrl());
-				strFileContents = ReadRemote.readRemoteFile(
-						currentTeam.getUrl(), true);
+				Log.d("LOADTEAM","Carga Dinamica: " + currentTeam.getShortName()+ " ::  " + currentTeam.getUrl());
+				strFileContents = ReadRemote.readRemoteFile(currentTeam.getUrl(), true);
 				ParseJSONTeam parse = new ParseJSONTeam();
-				String imagePrefix = DatabaseDAO.getInstance(appContext)
-						.getPrefix(Prefix.PREFIX_IMAGE);
-				String dataPrefix = DatabaseDAO.getInstance(appContext)
-						.getPrefix(Prefix.PREFIX_DATA);
+				String imagePrefix = DatabaseDAO.getInstance(appContext).getPrefix(Prefix.PREFIX_IMAGE);
+				String dataPrefix = DatabaseDAO.getInstance(appContext).getPrefix(Prefix.PREFIX_DATA);
 				Team teamFinal = parse.parseJSONTeam(currentTeam,
 						strFileContents, imagePrefix, dataPrefix);
 

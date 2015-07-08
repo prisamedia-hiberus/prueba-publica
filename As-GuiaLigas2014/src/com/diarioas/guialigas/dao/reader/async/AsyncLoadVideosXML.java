@@ -5,20 +5,18 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.video.VideoItem;
 import com.diarioas.guialigas.dao.reader.parser.ParsePlistVideos;
 
+
 public class AsyncLoadVideosXML extends
 		AsyncTask<String, Void, ArrayList<VideoItem>> {
 
-	// final String nameFile = "ddbb_settings.plist";
-
 	public interface AsyncLoadVideosXMLListener {
-		void onSuccessfulExecute(ArrayList<VideoItem> palmares);
+		void onSuccessfulVideosExecute(ArrayList<VideoItem> palmares);
 
-		void onFailureExecute();
+		void onFailureVideosExecute();
 	}
 
 	AsyncLoadVideosXMLListener listener;
@@ -45,8 +43,7 @@ public class AsyncLoadVideosXML extends
 			if (videos == null || videos.size() == 0) {
 				this.error = true;
 			}
-			Log.d("VIDEOS",
-					"AsyncLoadVideosXML4..." + String.valueOf(this.error));
+
 			return videos;
 
 		} catch (IOException e) {
@@ -63,16 +60,13 @@ public class AsyncLoadVideosXML extends
 	// onPostExecute displays the results of the AsyncTask.
 	@Override
 	protected void onPostExecute(ArrayList<VideoItem> videos) {
-		Log.d("VIDEOS", "AsyncLoadVideosXML5...");
 		if (this.listener != null) {
-			Log.d("VIDEOS", "AsyncLoadVideosXML6...");
 			if (this.error == false) {
-				this.listener.onSuccessfulExecute(videos);
+				this.listener.onSuccessfulVideosExecute(videos);
 			} else {
-				this.listener.onFailureExecute();
+				this.listener.onFailureVideosExecute();
 			}
 
 		}
 	}
-
 }

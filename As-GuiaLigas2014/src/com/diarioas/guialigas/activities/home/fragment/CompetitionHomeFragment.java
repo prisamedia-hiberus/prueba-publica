@@ -18,15 +18,12 @@ import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.team.TeamActivity;
-import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.team.Team;
-import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.emilsjolander.components.StickyScrollViewItems.StickyScrollView;
 
 public abstract class CompetitionHomeFragment extends Fragment {
 
@@ -85,7 +82,7 @@ public abstract class CompetitionHomeFragment extends Fragment {
 	}
 
 	private ScrollView getCustomScroll() {
-		StickyScrollView scroll = new StickyScrollView(mContext);
+		ScrollView scroll = new ScrollView(mContext);
 		scroll.setVerticalScrollBarEnabled(false);
 		scroll.setHorizontalScrollBarEnabled(false);
 		scroll.setId(competitionId * 100);
@@ -114,7 +111,6 @@ public abstract class CompetitionHomeFragment extends Fragment {
 		View convertView;
 		ImageView photo;
 		TextView name;
-		int id;
 
 		convertView = inflater.inflate(R.layout.item_grid_team, null);
 		convertView.setTag(team.getId());
@@ -122,12 +118,13 @@ public abstract class CompetitionHomeFragment extends Fragment {
 		name = (TextView) convertView.findViewById(R.id.teamName);
 
 		name.setText(team.getShortName());
-		FontUtils.setCustomfont(mContext, name, FontTypes.HELVETICANEUE);
-		id = 0;
+		FontUtils.setCustomfont(mContext, name, FontTypes.ROBOTO_REGULAR);
+		int id = 0;
 		if (team.getGridShield() != null
 				&& !team.getGridShield().equalsIgnoreCase("")) {
 			id = DrawableUtils.getDrawableId(mContext, team.getGridShield(), 4);
 		}
+		
 		if (id==0){
 			id = R.drawable.escudo_generico_size02;
 		}
@@ -149,23 +146,14 @@ public abstract class CompetitionHomeFragment extends Fragment {
 	}
 
 	protected void selectedTeam(String teamId) {
+		Intent intent = new Intent(mContext, TeamActivity.class);
+		intent.putExtra("teamId", teamId);
+		intent.putExtra("competitionId", String.valueOf(competitionId));
 
-		Team team = DatabaseDAO.getInstance(mContext).getTeam(teamId);
-		if (team != null && team.getUrl() != null&& !team.getUrl().equalsIgnoreCase("")) {
-
-			Intent intent = new Intent(mContext, TeamActivity.class);
-			intent.putExtra("teamId", teamId);
-			intent.putExtra("competitionId", String.valueOf(competitionId));
-			Competition comp = DatabaseDAO.getInstance(mContext)
-					.getCompetition(Integer.valueOf(competitionId));
-			if (comp != null)
-				intent.putExtra("competitionName", comp.getName());
-
-			getActivity().startActivityForResult(intent,
-					ReturnRequestCodes.PUBLI_BACK);
-			getActivity().overridePendingTransition(R.anim.grow_from_middle,
-					R.anim.shrink_to_middle);
-		}
+		getActivity().startActivityForResult(intent,
+				ReturnRequestCodes.PUBLI_BACK);
+		getActivity().overridePendingTransition(R.anim.grow_from_middle,
+				R.anim.shrink_to_middle);
 	}
 
 }

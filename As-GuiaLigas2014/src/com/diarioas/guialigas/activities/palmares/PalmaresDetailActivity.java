@@ -3,23 +3,23 @@ package com.diarioas.guialigas.activities.palmares;
 import android.content.DialogInterface;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.reader.CookieDAO;
 import com.diarioas.guialigas.utils.AlertManager;
+import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Reachability;
 
 public class PalmaresDetailActivity extends GeneralFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_palmares_detail);
@@ -52,9 +52,8 @@ public class PalmaresDetailActivity extends GeneralFragmentActivity {
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		callToAds("palmares/detalle", false);
+		callToAds(NativeAds.AD_PALMARES+NativeAds.AD_DETAIL, false);
 	}
 
 	@Override

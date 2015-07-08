@@ -15,9 +15,7 @@ public class Defines {
 		public static int COMPARATORPLAYER_RIGHT = 600;
 		public static int COMPARATOR_NO_PLAYER = 650;
 		public static int GALLERY_BACK = 7;
-
 		public static int PUBLI_BACK = 700;
-
 	}
 
 	public static interface Prefix {
@@ -26,9 +24,10 @@ public class Defines {
 		public static final String PREFIX_DATA_RSS = "dataServiceURLPrefix";
 		public static final String PREFIX_VIDEO = "videoURLPrefix";
 		public static final String PREFIX_RESULT = "resultsURLPrefix";
-
+		public static final String PREFIX_GEO_VIDEO = "geoServiceURLPrefix";
+		public static final String NEWS_SUFFIX = "newsSuffix";
+		public static final String NEWS_SUFFIX_SO = "android";
 	}
-	
 	
 	public static interface SplashTypes {
 		public static final String TYPE_SPLASH = "splash";
@@ -36,24 +35,11 @@ public class Defines {
 
 	}
 
-	public static interface RequestSectionTypes {
-		public static final String EXTERNAL_VIEW = "external_view";
-		public static final String WEB_VIEW = "web_view";
-		public static final String SUBSECTION_VIEW = "subsection_view";
-		public static final String PRINCIPAL_VIEW = "principal_view";
-		public static final String NEWS_VIEW = "news_view";
-		public static final String FOTO_VIEW = "foto_view";
-		public static final String VIDEO_VIEW = "video_view";
-		public static final String TAG_VIEW = "tag_view";
-	}
-
-	public static interface DATABASE {
+	public static interface ReturnDataDatabases {
 		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 4;
-//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.1.plist";
-//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.2.plist";
-//		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.3.plist";
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.4.plist";
+		public static final int VERSION = 5;
+
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.5.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
@@ -62,16 +48,13 @@ public class Defines {
 	}
 
 	public static interface ReturnSharedPreferences {
-		public static final String SP_NAME = "GUIAMUNDIALPreferences";
+		public static final String SP_NAME = "GUIALIGAPreferences";
 		public static final String SP_COOKIE_NAME_AVISOPC = "avisopc";
 		public static final String SP_NEWSDATE = "newsDate";
 	}
 
 	public static final int NUM_MAX_TVS = 4;
-
-	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia.xml";
-//	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.0/conf-guia-test.xml";
-	
+	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia.xml";
 
 	public static interface MatchStats {
 		public static final String POS_GOLES_ENCAJADOS = "GolesEnc";
@@ -101,30 +84,21 @@ public class Defines {
 		public static String PRESIDENT = "President";
 		public static String MANAGER = "Manager";
 		public static String MISTER = "Mister";
+//		public static String STAR = "Star";
 	}
 
 	public static interface RequestTimes {
-		// public static final long TIMER_REMOTEFILE_UPDATE = 6 * 60 * 60 *
-		// 1000;// 6horas
 		public static final long TIMER_REMOTEFILE_UPDATE = 1 * 30 * 1000;// 30
 																			// segundos
 		public static final long TIMER_CALENDAR_UPDATE = 5 * 60 * 1000;// 5mins
-		// public static final long TIMER_CALENDAR_UPDATE = 1 * 30 * 1000; //
-		// 30seg
-		// public static final long TIMER_CARRUSEL_UPDATE_NO_ACTIVE = 15 * 1000;
-		// public static final long TIMER_CARRUSEL_UPDATE_ACTIVE = 10 * 1000;
 		public static final long TIMER_CARRUSEL_UPDATE_NO_ACTIVE = 5 * 60 * 1000; // 5mins
-		public static final long TIMER_CARRUSEL_UPDATE_ACTIVE = 30 * 1000; //
-		// 30sg
-
+		public static final long TIMER_CARRUSEL_UPDATE_ACTIVE = 30 * 1000; // 30sg
 	}
 
 	public static interface MatchStates {
-
 		public static final String FORPLAY = "prev";
 		public static final String PLAYING = "during";
 		public static final String PLAYED = "post";
-
 	}
 
 	public static interface MatchEvents {
@@ -133,15 +107,13 @@ public class Defines {
 		public static final String MATCHEVENT_REMATE = "Remate";
 		public static final String MATCHEVENT_TARJETA_AMARILLA = "Tarjeta Amarilla";
 		public static final String MATCHEVENT_TARJETA_ROJA = "Tarjeta Roja";
-
 	}
 
 	public static interface CarruselDetail {
 		public static final String CARRUSEL_RESUMEN = "Resumen";
 		public static final String CARRUSEL_DIRECTO = "En Directo";
-		public static final String CARRUSEL_PLANTILLA = "Alineaciones";
+		public static final String CARRUSEL_PLANTILLA = "Plantilla";
 		public static final String CARRUSEL_ESTADISTICAS = "Estadísticas";
-		// public static final String CARRUSEL_REMATES = "Remates";
 		public static final String CARRUSEL_PICAS = "Picas";
 	}
 
@@ -152,7 +124,6 @@ public class Defines {
 		public static final String CARRUSEL_EVENTO_TARJETA_ROJA = "roja";
 	}
 
-	public static final String NAME_CACHE_THUMBS = "thumbs";
 	public static final String GAME_SYSTEM_DEFAULT = "4-4-2";
 
 	public static interface Demarcation {
@@ -162,7 +133,6 @@ public class Defines {
 		public static final String DEFENDER = "defensa";
 		public static final String MIDFIELD = "centrocampista";
 		public static final String SCORER = "delantero";
-
 	}
 
 	public static interface DateFormat {
@@ -171,12 +141,28 @@ public class Defines {
 		public static final String SQL_FORMAT = "yyyy-MM-dd HH:mm:ss";
 		public static final String VIDEOPARSER_FORMAT = "EEE, dd MMM yyyy HH:mm:ss z";
 		public static final String CARRUSEL_FORMAT = "EEEE dd/MM/yyyy - HH:mm";
-
+		public static final String ALL_DAY_FORMAT = "dd/MM/yyyy HH:mm";
 		public static final String DAY_FORMAT = "dd/MM/yyyy";
 		public static final String HOUR_FORMAT = "HH:mm";
 	}
 
 	public static interface SECTIONS {
+		public static final String SECTION_NAME_TEAM = "grid";
+		public static final String SECTION_NAME_CALENDAR = "calendar";
+		public static final String SECTION_NAME_PALMARES = "palmares";
+		public static final String SECTION_NAME_STADIUMS = "stadiums";
+		public static final String SECTION_NAME_COMPARATOR = "comparador";
+		public static final String SECTION_NAME_SEARCH = "search";
+		public static final String SECTION_NAME_CLASIFICATION = "clasification";
+		public static final String SECTION_NAME_CARRUSEL = "carrusel";
+		public static final String SECTION_NAME_NEWS_TAGS = "noticias tag";
+		public static final String SECTION_NAME_NEWS = "noticias";
+		public static final String SECTION_NAME_VIDEOS = "videos";
+		public static final String SECTION_NAME_PHOTOGALLERY = "photoGallery";
+		
+
+		
+		
 		public static final String CALENDAR = "calendar";
 		public static final String CARROUSEL = "carrousel";
 		public static final String CLASIFICATION = "clasification";
@@ -186,9 +172,12 @@ public class Defines {
 		public static final String COMPARATOR = "comparatorPlayers";
 		public static final String SEARCHER = "searcher";
 		public static final String NEWS = "news";
+		public static final String NEWS_TAG = "newsTag";
 		public static final String PHOTOS = "photos";
 		public static final String VIDEOS = "videos";
-		public static final String LINK = "triviaAS";
+		public static final String LINK = "link";
+
+		public static final String WEB_VIEW = "web_view";
 
 		public static final String TEAMS_ORDER_GROUP = "group";
 		public static final String TEAMS_ORDER_ALPHABETIC = "alpha";
@@ -218,8 +207,6 @@ public class Defines {
 		public static final String TYPE_VIDEO = "VIDEO";
 
 	}
-	
-
 
 	public static interface ReturnComparator {
 
@@ -242,6 +229,11 @@ public class Defines {
 		public static final String PENALTIES = "PENALTIES";
 		public static final String INTERV_PORTERO = "INTERVENCIONES DEL PORTERO";
 	}
+
+	public static final int JUMP_TO_WEB_OK = 1;
+
+	public static String COOKIE_APP_DIARIOAS_PUBID = "COOKIE_APP_DIARIOAS_PUBID";
+	public static String DOMAIN_COOKIES = "http://as.com";
 
 	/******************************* Libraries ***************************************************/
 
@@ -283,7 +275,7 @@ public class Defines {
 		public static final String SUBSECTION_PLANTILLA = "plantilla";
 		public static final String SUBSECTION_IDEALTEAM = "once ideal";
 		public static final String SUBSECTION_MUNDIALES = "mundiales";
-		public static final String SUBSECTION_COUNTRIES = "equipos";
+		public static final String SUBSECTION_COUNTRIES = "paises";
 		public static final String SUBSECTION_RESULT = "resultado";
 		public static final String SUBSECTION_DAY = "jornada";
 		public static final String SUBSECTION_GALLERY = "galeria";
@@ -292,7 +284,7 @@ public class Defines {
 		public static final String SUBSECTION_TEAM_MAP = "ver mapa";
 		public static final String SUBSECTION_TEAM_STATS = "estadísticas";
 		public static final String SUBSECTION_TEAM_INFO = "información";
-		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";
+		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";		
 
 		public static final String SUBSUBSECTION_FICHA = "ficha";
 		public static final String SUBSUBSECTION_PLAYERS = "jugadores";
@@ -312,7 +304,6 @@ public class Defines {
 		public static final String DETAILPAGE_INFORMACION = "informacion";
 		public static final String DETAILPAGE_FOTOGALERIA = "fotogaleria";
 		public static final String DETAILPAGE_DETALLE = "detalle";
-		public static final String DETAILPAGE_RESULTADO = "resultado";
 		public static final String SECTION_PHOTOS = "fotos";
 		public static final String SECTION_LINK = "triviaAS";
 
@@ -320,10 +311,12 @@ public class Defines {
 
 	public static interface NativeAds {
 
-		public static final String AD_KEY = "7811748/as_guialiga_app/android/";
+		public static final String AD_KEY = "/7811748/as_guialiga_app/android/";
+		public static final String AD_DETAIL = "/detalle";
+		
 		public static final String AD_PORTADA = "portada";
 		public static final String AD_CALENDAR = "calendario";
-		public static final String AD_COUNTRY = "equipos/";
+		public static final String AD_COUNTRY = "pais/";
 		public static final String AD_PLAYER = "jugador";
 		public static final String AD_CLASIFICATION = "clasificacion";
 		public static final String AD_CARROUSEL = "carrusel";
@@ -332,9 +325,13 @@ public class Defines {
 		public static final String AD_NEWS = "noticias";
 		public static final String AD_VIDEOS = "videos";
 		public static final String AD_PHOTOS = "fotos";
-		public static final String AD_DETAIL = "detalle";
 		public static final String AD_SEARCHER = "buscador";
 		public static final String AD_COMPARATOR = "comparador";
 		public static final String AD_LINK = "triviaAS";
+		
+		
+		
+		
+		public static final String PUBLI_PRERROL_UNIT = "player_video";
 	}
 }

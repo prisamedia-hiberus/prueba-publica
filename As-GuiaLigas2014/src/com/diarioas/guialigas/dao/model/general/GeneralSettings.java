@@ -1,6 +1,7 @@
 package com.diarioas.guialigas.dao.model.general;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.diarioas.guialigas.dao.model.competition.Competition;
@@ -8,9 +9,8 @@ import com.diarioas.guialigas.dao.model.competition.Competition;
 public class GeneralSettings {
 
 	private HashMap<?, ?> splash;
-	private HashMap<?, ?> header;
 	private HashMap<String, String> prefix;
-	// private String search;
+	private HashMap<String, String> cookies;
 	private HashMap<String, String> status;
 	private HashMap<String, String> gamePlay;
 	private HashMap<String, String> spades;
@@ -45,21 +45,6 @@ public class GeneralSettings {
 	}
 
 	/**
-	 * @return the header
-	 */
-	public HashMap<?, ?> getHeader() {
-		return header;
-	}
-
-	/**
-	 * @param header
-	 *            the header to set
-	 */
-	public void setHeader(HashMap<?, ?> header) {
-		this.header = header;
-	}
-
-	/**
 	 * @return the prefix
 	 */
 	public HashMap<String, String> getPrefix() {
@@ -73,21 +58,15 @@ public class GeneralSettings {
 	public void setPrefix(HashMap<String, String> prefix) {
 		this.prefix = prefix;
 	}
+	
 
-	// /**
-	// * @return the search
-	// */
-	// public String getSearch() {
-	// return search;
-	// }
-	//
-	// /**
-	// * @param search
-	// * the search to set
-	// */
-	// public void setSearch(String search) {
-	// this.search = search;
-	// }
+	public HashMap<String, String> getCookies() {
+		return cookies;
+	}
+
+	public void setCookies(HashMap<String, String> cookies) {
+		this.cookies = cookies;
+	}
 
 	/**
 	 * @return the status
@@ -181,8 +160,7 @@ public class GeneralSettings {
 	}
 
 	/**
-	 * @param currentCompetition
-	 *            the currentCompetition to set
+	 * @param currentCompetition the currentCompetition to set
 	 */
 	public void setCurrentCompetition(int index) {
 		this.currentCompetition = index;

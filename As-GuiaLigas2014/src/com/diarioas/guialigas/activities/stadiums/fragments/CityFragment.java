@@ -39,7 +39,7 @@ public class CityFragment extends SedeFragment {
 			TextView history = (TextView) generalView
 					.findViewById(R.id.history);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					history, FontTypes.HELVETICANEUE);
+					history, FontTypes.ROBOTO_REGULAR);
 			history.setText(arguments.getString("history"));
 		}
 
@@ -47,11 +47,11 @@ public class CityFragment extends SedeFragment {
 			TextView transporte = (TextView) generalView
 					.findViewById(R.id.transporte);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					transporte, FontTypes.HELVETICANEUE);
+					transporte, FontTypes.ROBOTO_REGULAR);
 			transporte.setText(arguments.getString("transport"));
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
 					generalView.findViewById(R.id.transporteLabel),
-					FontTypes.HELVETICANEUEBOLD);
+					FontTypes.ROBOTO_BOLD);
 		} else {
 			generalView.findViewById(R.id.transporteLabel).setVisibility(
 					View.GONE);
@@ -61,11 +61,11 @@ public class CityFragment extends SedeFragment {
 			TextView economia = (TextView) generalView
 					.findViewById(R.id.economia);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					economia, FontTypes.HELVETICANEUE);
+					economia, FontTypes.ROBOTO_REGULAR);
 			economia.setText(arguments.getString("economy"));
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
 					generalView.findViewById(R.id.economiaLabel),
-					FontTypes.HELVETICANEUEBOLD);
+					FontTypes.ROBOTO_BOLD);
 		} else {
 			generalView.findViewById(R.id.economiaLabel).setVisibility(
 					View.GONE);
@@ -75,11 +75,11 @@ public class CityFragment extends SedeFragment {
 			TextView tourism = (TextView) generalView
 					.findViewById(R.id.turismo);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					tourism, FontTypes.HELVETICANEUE);
+					tourism, FontTypes.ROBOTO_REGULAR);
 			tourism.setText(arguments.getString("tourism"));
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
 					generalView.findViewById(R.id.turismoLabel),
-					FontTypes.HELVETICANEUEBOLD);
+					FontTypes.ROBOTO_BOLD);
 		} else {
 			generalView.findViewById(R.id.turismoLabel)
 					.setVisibility(View.GONE);
@@ -92,11 +92,11 @@ public class CityFragment extends SedeFragment {
 				TextView state = (TextView) generalView
 						.findViewById(R.id.state);
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
-						state, FontTypes.HELVETICANEUE);
+						state, FontTypes.ROBOTO_REGULAR);
 				state.setText(arguments.getString("state"));
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
 						generalView.findViewById(R.id.stateLabel),
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 			} else {
 				generalView.findViewById(R.id.stateContent).setVisibility(
 						View.GONE);
@@ -106,11 +106,11 @@ public class CityFragment extends SedeFragment {
 				TextView population = (TextView) generalView
 						.findViewById(R.id.population);
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
-						population, FontTypes.HELVETICANEUE);
+						population, FontTypes.ROBOTO_REGULAR);
 				population.setText(arguments.getString("population"));
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
 						generalView.findViewById(R.id.populationLabel),
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 			} else {
 				generalView.findViewById(R.id.populationContent).setVisibility(
 						View.GONE);
@@ -120,11 +120,11 @@ public class CityFragment extends SedeFragment {
 				TextView altitude = (TextView) generalView
 						.findViewById(R.id.altitude);
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
-						altitude, FontTypes.HELVETICANEUE);
+						altitude, FontTypes.ROBOTO_REGULAR);
 				altitude.setText(arguments.getString("altitude"));
 				FontUtils.setCustomfont(getActivity().getApplicationContext(),
 						generalView.findViewById(R.id.altitudeLabel),
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 			} else {
 				generalView.findViewById(R.id.altitudeContent).setVisibility(
 						View.GONE);

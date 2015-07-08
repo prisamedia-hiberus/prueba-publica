@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" >
 
@@ -27,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:background="@drawable/escudo_generico_size03"
                 android:contentDescription="@string/defualt" />
         </RelativeLayout>
 
@@ -35,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" >
 
@@ -43,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:background="@drawable/escudo_generico_size03"
                 android:contentDescription="@string/defualt" />
         </RelativeLayout>
 

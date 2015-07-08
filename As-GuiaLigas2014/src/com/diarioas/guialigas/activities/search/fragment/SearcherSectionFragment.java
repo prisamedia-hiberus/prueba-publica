@@ -30,7 +30,6 @@ import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.model.search.SearchItem;
-import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.SearchDAO;
 import com.diarioas.guialigas.dao.reader.SearchDAO.SearchDAOListener;
@@ -58,6 +57,12 @@ public class SearcherSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_SEARCHER;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +81,7 @@ public class SearcherSectionFragment extends SectionFragment implements
 	/** Configuration methods **/
 	/***************************************************************************/
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 
 	}
 
@@ -165,34 +170,24 @@ public class SearcherSectionFragment extends SectionFragment implements
 
 	protected void goToDetail(boolean isTeam, String id, String url) {
 		Intent intent;
-		if (id != null && !id.equalsIgnoreCase("") && url != null
-				&& !url.equalsIgnoreCase("")) {
-			if (isTeam) {
-				Team team = DatabaseDAO.getInstance(mContext).getTeam(id);
-//				if (team != null && team.getUrlInfo() != null&& !team.getUrlInfo().equalsIgnoreCase("")) {
-					intent = new Intent(mContext, TeamActivity.class);
-					intent.putExtra("teamId", id);
-					intent.putExtra("teamUrl", url);
-					intent.putExtra("competitionName", NativeAds.AD_SEARCHER);
-					getActivity().startActivityForResult(intent,
-							ReturnRequestCodes.PUBLI_BACK);
-					getActivity().overridePendingTransition(R.anim.grow_from_middle,
-							R.anim.shrink_to_middle);
-//				}
+		if (isTeam) {
+			intent = new Intent(mContext, TeamActivity.class);
+			intent.putExtra("teamId", id);
+			intent.putExtra("teamUrl", url);
 
-			} else {
-				Integer playerId = Integer.valueOf(id);
-				intent = new Intent(mContext, PlayerActivity.class);
-				intent.putExtra("playerId", playerId);
-				// intent.putExtra("teamName", team);
-				intent.putExtra("playerUrl", url);
-				getActivity().startActivityForResult(intent,
-						ReturnRequestCodes.PUBLI_BACK);
-				getActivity().overridePendingTransition(R.anim.grow_from_middle,
-						R.anim.shrink_to_middle);
-			}
-
+		} else {
+			Integer playerId = Integer.valueOf(id);
+			DatabaseDAO.getInstance(mContext).getTeamNameFromPlayer(playerId);
+			intent = new Intent(mContext, PlayerActivity.class);
+			intent.putExtra("playerId", playerId);
+			// intent.putExtra("teamName", team);
+			intent.putExtra("playerUrl", url);
 		}
+		getActivity().startActivityForResult(intent,
+				ReturnRequestCodes.PUBLI_BACK);
+		getActivity().overridePendingTransition(R.anim.grow_from_middle,
+				R.anim.shrink_to_middle);
+
 	}
 
 	@Override
@@ -216,11 +211,6 @@ public class SearcherSectionFragment extends SectionFragment implements
 				null, null, null, Omniture.TYPE_PORTADA,
 				Omniture.SECTION_SEARCHER + " " + Omniture.DETAILPAGE_PORTADA,
 				null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_SEARCHER+ "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/

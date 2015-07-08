@@ -331,15 +331,15 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		TextView textComparatorImage = (TextView) cell
 				.findViewById(R.id.textComparatorImage);
 		FontUtils.setCustomfont(mContext, textComparatorImage,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		textComparatorImage.setText(getActivity().getString(text));
 
 		TextView statsTextPL = ((TextView) cell.findViewById(R.id.statsTextPL));
-		FontUtils.setCustomfont(mContext, statsTextPL, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, statsTextPL, FontTypes.ROBOTO_REGULAR);
 		statsTextPL.setText(String.valueOf(playerLeft));
 
 		TextView statsTextPR = ((TextView) cell.findViewById(R.id.statsTextPR));
-		FontUtils.setCustomfont(mContext, statsTextPR, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, statsTextPR, FontTypes.ROBOTO_REGULAR);
 		statsTextPR.setText(String.valueOf(playerRight));
 
 		View stasOffPL = cell.findViewById(R.id.stasOffPL);
@@ -387,8 +387,8 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		ImageView imagePL = (ImageView) generalView
 				.findViewById(R.id.photoPlayerLeft);
 		if (url != null) {
-			ImageDAO.getInstance(getActivity()).loadPlayerImage(url, imagePL,
-							R.drawable.mask_foto);
+			ImageDAO.getInstance(mContext).loadRegularImage(url, imagePL, -1,
+					R.drawable.mask_foto, true);
 		}
 
 		imagePL.setOnLongClickListener(new OnLongClickListener() {
@@ -412,20 +412,20 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		TextView namePlayerLeft = (TextView) generalView
 				.findViewById(R.id.namePlayerLeft);
 		FontUtils.setCustomfont(mContext, namePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 		namePlayerLeft.setText(getArguments().getString("namePL"));
 
 		TextView teamPlayerLeft = (TextView) generalView
 				.findViewById(R.id.teamPlayerLeft);
 		FontUtils.setCustomfont(mContext, teamPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		teamPlayerLeft.setText(getArguments().getString("teamNamePL"));
 
 		TextView datePlayerLeft = (TextView) generalView
 				.findViewById(R.id.datePlayerLeft);
 		FontUtils.setCustomfont(mContext, datePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		datePlayerLeft.setText(getArguments().getString("datePL"));
 
 		TextView paisPlayerLeft = (TextView) generalView
@@ -449,25 +449,23 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		}
 		if (pais != null) {
 			FontUtils.setCustomfont(mContext, paisPlayerLeft,
-					FontUtils.FontTypes.HELVETICANEUE);
+					FontUtils.FontTypes.ROBOTO_REGULAR);
 			paisPlayerLeft.setText(pais);
 		}
 
 		TextView positionPlayerLeft = (TextView) generalView
 				.findViewById(R.id.positionPlayerLeft);
 		FontUtils.setCustomfont(mContext, positionPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		positionPlayerLeft.setText(getArguments().getString("positionPL")
 				.toUpperCase());
 
 		TextView playerDorsalLeft = (TextView) generalView
 				.findViewById(R.id.playerDorsalLeft);
 		FontUtils.setCustomfont(mContext, playerDorsalLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
-		int dorsalPL= getArguments().getInt(
-				"dorsalPL");
-		if (dorsalPL>0)
-			playerDorsalLeft.setText(String.valueOf(dorsalPL));
+				FontUtils.FontTypes.ROBOTO_REGULAR);
+		playerDorsalLeft.setText(String.valueOf(getArguments().getInt(
+				"dorsalPL")));
 		/************************************************************************/
 
 		buttonYearPLPrev = (ImageView) generalView
@@ -516,11 +514,11 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 					R.layout.item_comparator_palmares, null);
 			numTitles = (TextView) relativeLeft.findViewById(R.id.numTitle);
 			FontUtils.setCustomfont(mContext, numTitles,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			numTitles.setText(String.valueOf(palm.getNumTitle()));
 			nomTitle = (TextView) relativeLeft.findViewById(R.id.nameTitle);
 			FontUtils
-					.setCustomfont(mContext, nomTitle, FontTypes.HELVETICANEUE);
+					.setCustomfont(mContext, nomTitle, FontTypes.ROBOTO_REGULAR);
 			nomTitle.setText(palm.getName());
 
 			palmaresLinearPL.addView(relativeLeft);
@@ -588,7 +586,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -748,7 +746,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -841,8 +839,8 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		ImageView imagePR = (ImageView) generalView
 				.findViewById(R.id.photoPlayerRight);
 		if (url != null) {
-			ImageDAO.getInstance(getActivity()).loadPlayerImage(url, imagePR,
-							R.drawable.mask_foto);
+			ImageDAO.getInstance(mContext).loadRegularImage(url, imagePR, -1,
+					R.drawable.mask_foto, true);
 		}
 		imagePR.setOnLongClickListener(new OnLongClickListener() {
 
@@ -865,19 +863,19 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		TextView namePlayerRight = (TextView) generalView
 				.findViewById(R.id.namePlayerRight);
 		FontUtils.setCustomfont(mContext, namePlayerRight,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 		namePlayerRight.setText(getArguments().getString("namePR"));
 
 		TextView teamPlayerRight = (TextView) generalView
 				.findViewById(R.id.teamPlayerRight);
 		FontUtils.setCustomfont(mContext, teamPlayerRight,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 		teamPlayerRight.setText(getArguments().getString("teamNamePR"));
 
 		TextView datePlayerRight = (TextView) generalView
 				.findViewById(R.id.datePlayerRight);
 		FontUtils.setCustomfont(mContext, datePlayerRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		datePlayerRight.setText(getArguments().getString("datePR"));
 
 		TextView paisPlayerRight = (TextView) generalView
@@ -900,25 +898,23 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		}
 		if (pais != null) {
 			FontUtils.setCustomfont(mContext, paisPlayerRight,
-					FontUtils.FontTypes.HELVETICANEUE);
+					FontUtils.FontTypes.ROBOTO_REGULAR);
 			paisPlayerRight.setText(pais);
 		}
 
 		TextView positionPlayerRight = (TextView) generalView
 				.findViewById(R.id.positionPlayerRight);
 		FontUtils.setCustomfont(mContext, positionPlayerRight,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		positionPlayerRight.setText(getArguments().getString("positionPR")
 				.toUpperCase());
 
 		TextView playerDorsalRight = (TextView) generalView
 				.findViewById(R.id.playerDorsalRight);
 		FontUtils.setCustomfont(mContext, playerDorsalRight,
-				FontUtils.FontTypes.HELVETICANEUE);
-		int dorsalPR = getArguments().getInt("dorsalPR");
-		if (dorsalPR>0) {
-			playerDorsalRight.setText(String.valueOf(dorsalPR));
-		}
+				FontUtils.FontTypes.ROBOTO_REGULAR);
+		playerDorsalRight.setText(String.valueOf(getArguments().getInt(
+				"dorsalPR")));
 
 		/************************************************************************/
 
@@ -962,11 +958,11 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 					R.layout.item_comparator_palmares, null);
 			numTitles = (TextView) relativeRight.findViewById(R.id.numTitle);
 			FontUtils.setCustomfont(mContext, numTitles,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			numTitles.setText(String.valueOf(palm.getNumTitle()));
 			nomTitle = (TextView) relativeRight.findViewById(R.id.nameTitle);
 			FontUtils
-					.setCustomfont(mContext, nomTitle, FontTypes.HELVETICANEUE);
+					.setCustomfont(mContext, nomTitle, FontTypes.ROBOTO_REGULAR);
 			nomTitle.setText(palm.getName());
 
 			palmaresLinearPR.addView(relativeRight);
@@ -1031,7 +1027,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -1188,7 +1184,7 @@ public class ComparatorPlayerFragmentStepFour extends Fragment {
 		Button button = ((Button) tab.findViewById(R.id.nameItemScroll));
 		button.setText(year);
 		FontUtils.setCustomfont(mContext, button,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 
 		button.setOnClickListener(new OnClickListener() {
 			@Override

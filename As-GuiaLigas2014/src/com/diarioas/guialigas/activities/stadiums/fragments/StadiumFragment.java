@@ -47,14 +47,14 @@ public class StadiumFragment extends SedeFragment {
 			TextView history = (TextView) generalView
 					.findViewById(R.id.history);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					history, FontTypes.HELVETICANEUE);
+					history, FontTypes.ROBOTO_REGULAR);
 			history.setText(arguments.getString("history"));
 		}
 
 		if (arguments.containsKey("capacity")) {
 			TextView aforo = (TextView) generalView.findViewById(R.id.aforo);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					aforo, FontTypes.HELVETICANEUE);
+					aforo, FontTypes.ROBOTO_REGULAR);
 
 			String numPeople = NumberFormat.getNumberInstance(
 					Locale.getDefault()).format(arguments.getInt("capacity"))
@@ -64,17 +64,17 @@ public class StadiumFragment extends SedeFragment {
 
 		FontUtils.setCustomfont(getActivity().getApplicationContext(),
 				generalView.findViewById(R.id.aforoLabel),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		if (arguments.containsKey("year")) {
 			TextView year = (TextView) generalView.findViewById(R.id.year);
 			FontUtils.setCustomfont(getActivity().getApplicationContext(),
-					year, FontTypes.HELVETICANEUE);
+					year, FontTypes.ROBOTO_REGULAR);
 			year.setText(String.valueOf(arguments.getInt("year")));
 		}
 		FontUtils.setCustomfont(getActivity().getApplicationContext(),
 				generalView.findViewById(R.id.yearLabel),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 	}
 

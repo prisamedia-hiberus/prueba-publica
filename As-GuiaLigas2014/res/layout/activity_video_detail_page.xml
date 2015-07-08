@@ -1,36 +1,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/general_video_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black" >
 
-    <VideoView
-        android:id="@+id/video"
+    <RelativeLayout
+        android:id="@+id/video_content_layout"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_height="match_parent" >
+
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
     <ImageView
-        android:id="@+id/splashVideo"
+        android:id="@+id/iconLoadingBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:contentDescription="@string/defualt"
-        android:src="@drawable/circulo_loading"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/publiButton"
+        
+        android:contentDescription="@string/defualt" />
+<!-- android:background="@drawable/elementos_comunes_icn_loading" -->
+    <ImageView
+        android:id="@+id/iconLoadingVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/video"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/transparent"
-        android:text="Omitir Video"
-        android:textColor="@color/white"
-        android:visibility="gone" />
-
+        android:layout_centerInParent="true"
+        
+        android:contentDescription="@string/defualt" />
+<!-- android:background="@drawable/elementos_comunes_icn_loading_charge" -->
 </RelativeLayout>

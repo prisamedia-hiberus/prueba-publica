@@ -4,21 +4,25 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp" >
 
-    <!-- <ListView -->
-
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/contentTeam"
+	<android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_contentTeam"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:clickable="false"
-        android:dividerHeight="0dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:listSelector="@android:color/transparent"
-        android:orientation="vertical" >
-    </com.handmark.pulltorefresh.library.PullToRefreshListView>
-    <!-- </ListView> -->
+        android:layout_centerHorizontal="true" >
+
+        <ListView
+            android:id="@+id/contentTeam"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent"
+            android:orientation="vertical" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

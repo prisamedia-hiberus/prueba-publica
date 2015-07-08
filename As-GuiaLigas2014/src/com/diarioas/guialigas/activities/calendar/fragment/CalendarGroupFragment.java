@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,16 +37,13 @@ import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class CalendarGroupFragment extends CalendarFragment {
 
-	private final int pos = -1;
-
 	private CalendarAdapter calendarAdapter;
-	private PullToRefreshListView contentTeam;
+	
+	private ListView contentTeam;
+	private SwipeRefreshLayout swipeRefreshLayout = null;
 
 	private int jornadaId;
 	private ArrayList<Grupo> grupos;
@@ -76,34 +75,44 @@ public class CalendarGroupFragment extends CalendarFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
 		configureView();
 	}
 
 	@Override
 	protected void configureView() {
+		
+		configureSwipeLoader();
+		configureListView();
 
-		contentTeam = (PullToRefreshListView) generalView
-				.findViewById(R.id.contentTeam);
-		contentTeam.setClickable(false);
-		contentTeam.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		contentTeam.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		contentTeam.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		contentTeam.setOnRefreshListener(new OnRefreshListener<ListView>() {
+		
+	}
+	
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_contentTeam);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
 			@Override
-			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+			public void onRefresh() {
 				reUpdateCarrusel();
 			}
-
 		});
-		ListView refreshableContentView = contentTeam.getRefreshableView();
-		refreshableContentView.setDivider(null);
-		refreshableContentView.setClickable(false);
-		refreshableContentView.setCacheColorHint(0);
-		refreshableContentView.setVerticalScrollBarEnabled(false);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
+	}
+	
+	private void configureListView() {
+		
+		contentTeam = (ListView) generalView
+				.findViewById(R.id.contentTeam);
+		contentTeam.setClickable(false);
+		contentTeam.setDivider(null);
+		contentTeam.setClickable(false);
+		contentTeam.setCacheColorHint(0);
+		contentTeam.setVerticalScrollBarEnabled(false);
 
-		if (refreshableContentView.getHeaderViewsCount() == 1) {
-			refreshableContentView.addHeaderView(getHeader());
+		if (contentTeam.getHeaderViewsCount() == 1) {
+			contentTeam.addHeaderView(getHeader());
 		}
 
 		calendarAdapter = new CalendarAdapter(this.getActivity()
@@ -113,14 +122,14 @@ public class CalendarGroupFragment extends CalendarFragment {
 		if (faseActiva) {
 			calendarAdapter.notifyDataSetChanged();
 			// calendarAdapter.addItems(day.getMatches());
-			refreshableContentView.addFooterView(getGapView(DimenUtils
+			contentTeam.addFooterView(getGapView(DimenUtils
 					.getRegularPixelFromDp(getActivity()
 							.getApplicationContext(), getResources()
 							.getDimension(R.dimen.padding_footer_min))));
 		} else {
-			View footer = refreshableContentView.findViewById(FOOTER_ID);
+			View footer = contentTeam.findViewById(FOOTER_ID);
 			if (footer == null)
-				refreshableContentView.addFooterView(getFooter());
+				contentTeam.addFooterView(getFooter());
 		}
 	}
 
@@ -168,11 +177,8 @@ public class CalendarGroupFragment extends CalendarFragment {
 	}
 
 	private void closePullToRefresh(Date date) {
-		if (contentTeam != null) {
-			contentTeam.onRefreshComplete();
-			contentTeam
-					.setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-							+ dateFormatPull.format(date));
+		if (this.swipeRefreshLayout != null) {
+			this.swipeRefreshLayout.setRefreshing(false);
 		}
 	}
 
@@ -514,25 +520,25 @@ public class CalendarGroupFragment extends CalendarFragment {
 			});
 			// }
 			holder.localShieldContainer.setTag(currentMatch.getLocalId());
-//			holder.localShieldContainer
-//					.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//							goToTeam(v);
-//
-//						}
-//					});
+			holder.localShieldContainer
+					.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							goToTeam(v);
+
+						}
+					});
 			holder.awayShieldContainer.setTag(currentMatch.getAwayId());
-//			holder.awayShieldContainer
-//					.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//							goToTeam(v);
-//
-//						}
-//					});
+			holder.awayShieldContainer
+					.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							goToTeam(v);
+
+						}
+					});
 
 			holder.leftTeamText.setText(currentMatch.getLocalTeamName());
 			holder.rightTeamText.setText(currentMatch.getAwayTeamName());
@@ -596,6 +602,9 @@ public class CalendarGroupFragment extends CalendarFragment {
 						localTeam.getCalendarShield(), 4);
 			}
 
+			if (idLocal == 0)
+				idLocal=R.drawable.escudo_generico_size03;
+			
 			holder.localShield.setBackgroundResource(idLocal);
 
 			int idAway = 0;
@@ -606,6 +615,9 @@ public class CalendarGroupFragment extends CalendarFragment {
 						4);
 			}
 
+			if (idAway == 0)
+				idAway=R.drawable.escudo_generico_size03;
+			
 			holder.awayShield.setBackgroundResource(idAway);
 
 			return convertView;

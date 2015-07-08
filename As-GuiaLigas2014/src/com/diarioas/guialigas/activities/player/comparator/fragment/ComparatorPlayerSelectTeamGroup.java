@@ -8,8 +8,7 @@ import com.diarioas.guialigas.activities.home.fragment.CompetitionHomeGroupFragm
 import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepThirdActivity;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 
-public class ComparatorPlayerSelectTeamGroup extends
-		CompetitionHomeGroupFragment {
+public class ComparatorPlayerSelectTeamGroup extends CompetitionHomeGroupFragment {
 
 	@Override
 	protected void selectedTeam(String teamId) {

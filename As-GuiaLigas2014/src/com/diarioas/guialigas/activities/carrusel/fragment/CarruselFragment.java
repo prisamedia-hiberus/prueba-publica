@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragment;
+import com.diarioas.guialigas.activities.general.fragment.GeneralFragment;
 import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
@@ -87,14 +87,14 @@ public class CarruselFragment extends GeneralFragment {
 	protected void goToPlayer(int tag, String url) {
 		// String urlLocal =
 		// DatabaseDAO.getInstance(mContext).getPlayer(tag).getUrl();
-		 if (url != null && url.length() > 1) {
-			Intent intent = new Intent(getActivity(), PlayerActivity.class);
-			intent.putExtra("playerId", tag);
-			intent.putExtra("playerUrl", url);
-			// intent.putExtra("teamName", currentTeam.getShortName());
-			startActivityForResult(intent, ReturnRequestCodes.PUBLI_BACK);
-			getActivity().overridePendingTransition(R.anim.grow_from_middle,
-					R.anim.shrink_to_middle);
+		// if (url != null && url.length() > 1) {
+		Intent intent = new Intent(getActivity(), PlayerActivity.class);
+		intent.putExtra("playerId", tag);
+		intent.putExtra("playerUrl", url);
+		// intent.putExtra("teamName", currentTeam.getShortName());
+		startActivityForResult(intent, ReturnRequestCodes.PUBLI_BACK);
+		getActivity().overridePendingTransition(R.anim.grow_from_middle,
+				R.anim.shrink_to_middle);
 		// } else {
 		// AlertManager.showAlertOkDialog(getActivity(),
 		// mContext.getString(R.string.player_detail_error),
@@ -106,7 +106,7 @@ public class CarruselFragment extends GeneralFragment {
 		// dialog.dismiss();
 		// }
 		// });
-		 }
+		// }
 	}
 
 	/**

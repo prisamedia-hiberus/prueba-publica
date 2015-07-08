@@ -1,6 +1,7 @@
 package com.diarioas.guialigas.dao.reader.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
@@ -10,6 +11,7 @@ import xmlwise.XmlParseException;
 import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.competition.Competition;
+import com.diarioas.guialigas.utils.comparator.CompetitionComparator;
 
 public class ParsePlistLoad {
 
@@ -32,14 +34,6 @@ public class ParsePlistLoad {
 		if (hashMap != null)
 			return (HashMap<String, HashMap<String, String>>) hashMap
 					.get("splash");
-		else
-			return null;
-	}
-
-	public HashMap<?, ?> parsePlistHeader() {
-		if (hashMap != null)
-			return (HashMap<String, HashMap<String, String>>) hashMap
-					.get("header");
 		else
 			return null;
 	}
@@ -74,6 +68,28 @@ public class ParsePlistLoad {
 	 */
 	public HashMap<String, String> parsePlistClasificationLabels() {
 		return getHashMap("clasificationLabels");
+	}
+
+	public HashMap<String, String> parsePlistCookies() {
+		if (hashMap.containsKey("cookies")) {
+			ArrayList<HashMap<String, String>> cookies = (ArrayList<HashMap<String, String>>) hashMap
+					.get("cookies");
+			if (cookies != null) {
+				HashMap<String, String> currentCookieParsed = new HashMap<String, String>();
+				int numCookies = cookies.size();
+				for (int i = 0; i < numCookies; i++) {
+					HashMap<String, String> cookie = cookies.get(i);
+					if (cookie.containsKey("name")
+							&& cookie.containsKey("value")) {
+						currentCookieParsed.put(cookie.get("name"),
+								cookie.get("value"));
+					}
+				}
+				return currentCookieParsed;
+			}
+		}
+		
+		return null;
 	}
 
 	// /**
@@ -124,6 +140,7 @@ public class ParsePlistLoad {
 
 		}
 
+		Collections.sort(competitions, new CompetitionComparator());
 		return competitions;
 	}
 

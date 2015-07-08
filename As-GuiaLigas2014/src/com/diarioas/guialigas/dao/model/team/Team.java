@@ -27,7 +27,7 @@ public class Team implements Serializable {
 	private Estadio estadio;
 	private ArrayList<String> shirts;
 	private ArrayList<TituloTeam> palmares;
-	private HashMap<String, TeamStats> stats;// Año, Estadistica
+	private HashMap<String, TeamStats> stats;// A�o, Estadistica
 	private HashMap<String, Staff> teamStaff;// Puesto, Persona
 	private ArrayList<Player> plantilla;
 	private ArrayList<PlayerOnField> idealPlayers;
@@ -213,29 +213,29 @@ public class Team implements Serializable {
 	 * @param string
 	 */
 	public void addShield(String detail, String shield) {
-		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-		// shield = ShieldName.PREFIX_FLAG + shield;
+		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+			shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(detail, shield);
 
 	}
 
 	public void addShieldGrid(String shield) {
-		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-		// shield = ShieldName.PREFIX_FLAG + shield;
+		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+			shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(ShieldName.GRID, shield);
 
 	}
 
 	public void addShieldCalendar(String shield) {
-		// if (!shield.startsWith(ShieldName.PREFIX_FLAG))
-		// shield = ShieldName.PREFIX_FLAG + shield;
+		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+			shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(ShieldName.CALENDAR, shield);
 
 	}
 
 	public void addShieldDetail(String shield) {
-		// if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-		// shield = ShieldName.PREFIX_SHIELD + shield;
+		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
+			shield = ShieldName.PREFIX_SHIELD + shield;
 		this.shields.put(ShieldName.DETAIL, shield);
 
 	}
@@ -398,11 +398,6 @@ public class Team implements Serializable {
 	public void addMister(Staff staff) {
 		this.teamStaff.put(StaffCharge.MISTER, staff);
 	}
-
-	// public void addStar(Staff staff) {
-	// this.teamStaff.put(StaffCharge.STAR, staff);
-	//
-	// }
 
 	public Staff getStaff(String staff) {
 		return this.teamStaff.get(staff);
@@ -607,8 +602,8 @@ public class Team implements Serializable {
 	 *            the web to set
 	 */
 	public void setWeb(String web) {
-		if (web != null && !web.equalsIgnoreCase("")
-				&& !web.startsWith("http://") && !web.startsWith("https://"))
+		if (web != null && !web.startsWith("http://")
+				&& !web.startsWith("https://"))
 			web = "http://" + web;
 		this.web = web;
 	}
@@ -641,13 +636,6 @@ public class Team implements Serializable {
 	 */
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	/**
-	 * @return the fundation
-	 */
-	public String getfundation() {
-		return fundation;
 	}
 
 	/**

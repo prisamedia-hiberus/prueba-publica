@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.Context;
 
 import com.diarioas.guialigas.dao.model.palmares.Palmares;
+import com.diarioas.guialigas.dao.model.stadium.Stadium;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadPalmaresXML;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadPalmaresXML.AsyncLoadPalmaresXMLListener;
 import com.diarioas.guialigas.utils.Reachability;
@@ -103,8 +104,7 @@ public class RemotePalmaresDAO implements AsyncLoadPalmaresXMLListener {
 	}
 
 	public boolean isPalmaresLoaded(String competitionId) {
-		if (palmares.containsKey(competitionId)
-				&& palmares.get(competitionId).size() > 0) {
+		if (palmares.containsKey(competitionId) && palmares.get(competitionId).size() > 0) {
 			return true;
 		} else {
 			return false;

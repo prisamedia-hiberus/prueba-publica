@@ -2,12 +2,14 @@ package com.diarioas.guialigas.activities.photo.fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,22 +41,27 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 public class PhotosSectionFragment extends SectionFragment implements
 		RemotePhotosDAOListener {
 
-	private PullToRefreshScrollView contentGallery;
-	private ScrollView refreshableContentView;
+	private ScrollView contentGallery;
 
 	private ArrayList<GalleryMediaItem> galleries;
 	private SimpleDateFormat dateFormatPull;
 
+	private SwipeRefreshLayout swipeRefreshLayout = null;
+
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_PHOTOS + "/" + NativeAds.AD_PORTADA;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -66,33 +73,9 @@ public class PhotosSectionFragment extends SectionFragment implements
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(mContext).exitTaskEarly();
-		ImageDAO.getInstance(mContext).flushCache();
-	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		ImageDAO.getInstance(mContext).exitTaskEarly();
-	}
-
-	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		RemoteGalleryDAO.getInstance(mContext).removeListener(this);
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-
-		// ((HomeActivity) getActivity()).setCloseCAcheAllImageFetcher();
 	}
 
 	/***************************************************************************/
@@ -108,9 +91,9 @@ public class PhotosSectionFragment extends SectionFragment implements
 	}
 
 	@Override
-	public void buildView() {
-		// TODO Auto-generated method stub
+	public void loadInformation() {
 		reUpdateGallery();
+		configureSwipeLoader();
 		configureListView();
 
 		if (RemoteGalleryDAO.getInstance(mContext).isGalleryPreLoaded()) {
@@ -121,35 +104,33 @@ public class PhotosSectionFragment extends SectionFragment implements
 
 	}
 
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_contentGallery);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {
+				reUpdateGallery();
+			}
+		});
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
+	}
+
 	private void configureListView() {
-		contentGallery = (PullToRefreshScrollView) generalView
+		contentGallery = (ScrollView) generalView
 				.findViewById(R.id.contentGallery);
 		contentGallery.setClickable(false);
-		contentGallery.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		contentGallery.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		contentGallery
-				.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		contentGallery
-				.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
-
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ScrollView> refreshView) {
-						reUpdateGallery();
-					}
-				});
-
-		refreshableContentView = contentGallery.getRefreshableView();
-		// refreshableContentView.setDivider(null);
-		refreshableContentView.setClickable(false);
-		refreshableContentView.setHorizontalScrollBarEnabled(false);
-		// refreshableContentView.setCacheColorHint(0);
-
+		contentGallery.setHorizontalScrollBarEnabled(false);
 	}
 
 	private LinearLayout getContainer() {
-		int width = (((HomeActivity) getActivity()).getWidth() - 2 * DimenUtils
-				.getRegularPixelFromDp(mContext, R.dimen.padding_photo)) / 2;
+
+		Point size = DimenUtils.getSize(getActivity().getWindowManager());
+		int width = (size.x - 2 * DimenUtils.getRegularPixelFromDp(mContext,
+				R.dimen.padding_photo)) / 2;
+
 		int height;
 		int heightLeft = 0;
 		int heightRight = 0;
@@ -272,13 +253,13 @@ public class PhotosSectionFragment extends SectionFragment implements
 				width, height);
 		imageRelativeLayout.setLayoutParams(relativeLayoutParams);
 
-		ImageDAO.getInstance(mContext).loadImage(
+		ImageDAO.getInstance(mContext).loadRegularImage(
 				galleryMediaItem.getCoverPhoto().getUrl(),
 				(ImageView) imageRelativeLayout.findViewById(R.id.image));
 
 		TextView title = (TextView) imageRelativeLayout
 				.findViewById(R.id.title);
-		FontUtils.setCustomfont(mContext, title, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, title, FontTypes.ROBOTO_REGULAR);
 		title.setText(galleryMediaItem.getTitle());
 
 		// TextView numPhotos = (TextView) imageRelativeLayout
@@ -299,24 +280,19 @@ public class PhotosSectionFragment extends SectionFragment implements
 	}
 
 	private void loadData() {
-		refreshableContentView.removeAllViews();
-		refreshableContentView.addView(getContainer());
+		contentGallery.removeAllViews();
+		contentGallery.addView(getContainer());
 	}
 
 	protected void reUpdateGallery() {
 		RemoteGalleryDAO.getInstance(mContext).addListener(this);
 		RemoteGalleryDAO.getInstance(mContext).getGalleries(section.getUrl());
-		// RemoteGalleryDAO.getInstance(mContext).getPhotosInfo("http://as.com/rss/baloncesto/nba.js2");
-
 	}
 
 	private void stopAnimation() {
 		((HomeActivity) getActivity()).stopAnimation();
-		if (contentGallery != null) {
-			contentGallery.onRefreshComplete();
-			contentGallery
-					.setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-							+ dateFormatPull.format(new Date()));
+		if (swipeRefreshLayout != null) {
+			swipeRefreshLayout.setRefreshing(false);
 		}
 
 	}
@@ -331,11 +307,6 @@ public class PhotosSectionFragment extends SectionFragment implements
 				null, null, Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_PHOTOS,
 				null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_PHOTOS + "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
@@ -360,8 +331,8 @@ public class PhotosSectionFragment extends SectionFragment implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						refreshableContentView.removeAllViews();
-						refreshableContentView.addView(getErrorContainer());
+						contentGallery.removeAllViews();
+						contentGallery.addView(getErrorContainer());
 						// palmaresArray = DatabaseDAO.getInstance(
 						// getApplicationContext()).getStadiums();
 						// if (palmaresArray != null && palmaresArray.size() >
@@ -388,8 +359,8 @@ public class PhotosSectionFragment extends SectionFragment implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						refreshableContentView.removeAllViews();
-						refreshableContentView.addView(getErrorContainer());
+						contentGallery.removeAllViews();
+						contentGallery.addView(getErrorContainer());
 						// palmaresArray = DatabaseDAO.getInstance(
 						// getApplicationContext()).getStadiums();
 						// if (palmaresArray != null && palmaresArray.size() >

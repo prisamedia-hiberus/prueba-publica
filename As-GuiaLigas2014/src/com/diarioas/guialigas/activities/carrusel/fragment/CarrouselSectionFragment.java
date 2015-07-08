@@ -12,6 +12,8 @@ import java.util.TimerTask;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,14 +38,12 @@ import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.model.carrusel.Gol;
 import com.diarioas.guialigas.dao.model.carrusel.Tarjeta;
-import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.competition.Group;
 import com.diarioas.guialigas.dao.model.general.TeamSection;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
@@ -54,17 +54,13 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestTimes;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
+import com.diarioas.guialigas.utils.Defines.ShieldName;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.Reachability;
 import com.diarioas.guialigas.utils.comparator.GroupComparator;
-import com.emilsjolander.components.StickyScrollViewItems.StickyScrollView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 public class CarrouselSectionFragment extends SectionFragment implements
 		CarruselDAOListener {
@@ -73,10 +69,9 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 	private SimpleDateFormat formatterDate;
 	private SimpleDateFormat formatterHour;
-	private SimpleDateFormat dateFormatPull;
 
-	private PullToRefreshListView carruselContent;
-	private PullToRefreshScrollView carruselContentGroup;
+	private ListView carruselContent;
+	private ScrollView carruselContentGroup;
 
 	private long timeToUpdate;
 	private long timeToUpdateOld;
@@ -89,9 +84,18 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 	private RelativeLayout container;
 
-	/***************************************************************************/
-	/** Fragment lifecycle methods **/
-	/***************************************************************************/
+	private SwipeRefreshLayout swipeRefreshList = null;
+	private SwipeRefreshLayout swipeRefreshScroll = null;
+
+	/************* Fragment lifecycle methods *******************************/
+	/**********************************************************************/
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_PORTADA;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -117,9 +121,6 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			t.cancel();
 			t = null;
 		}
-
-		ImageDAO.getInstance(getActivity()).closePlayerCache();
-		ImageDAO.getInstance(getActivity()).erasePlayerCache();
 	}
 
 	/***************************************************************************/
@@ -128,8 +129,6 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 	@Override
 	protected void configureView() {
-		dateFormatPull = new SimpleDateFormat(DateFormat.PULL_FORMAT,
-				Locale.getDefault());
 		formatterDate = new SimpleDateFormat(DateFormat.DAY_FORMAT,
 				Locale.getDefault());
 		formatterHour = new SimpleDateFormat(DateFormat.HOUR_FORMAT,
@@ -140,7 +139,7 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 		generalView.findViewById(R.id.gapBar).setVisibility(View.VISIBLE);
 		headerText = (TextView) generalView.findViewById(R.id.headerText);
-		FontUtils.setCustomfont(mContext, headerText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, headerText, FontTypes.ROBOTO_REGULAR);
 
 		container = (RelativeLayout) generalView.findViewById(R.id.container);
 
@@ -148,62 +147,54 @@ public class CarrouselSectionFragment extends SectionFragment implements
 	}
 
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 		TeamSection sectionTeams = (TeamSection) RemoteDataDAO.getInstance(
 				mContext).getSectionByType(Integer.valueOf(competitionId),
 				SECTIONS.TEAMS);
 		groups = sectionTeams.getGroups();
+
 		configurePullFromGroup();
 		configurePullFromRegular();
 
 		updateCarrusel();
-
 	}
 
 	private void configurePullFromRegular() {
-		carruselContent = (PullToRefreshListView) generalView
-				.findViewById(R.id.carruselContent);
+		this.swipeRefreshList = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container_carousel);
+		this.swipeRefreshList.setOnRefreshListener(new OnRefreshListener() {
 
-		// carruselContent.setClickable(false);
-		carruselContent.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		carruselContent.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		carruselContent
-				.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		carruselContent.setOnRefreshListener(new OnRefreshListener<ListView>() {
 			@Override
-			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+			public void onRefresh() {
 				reloadData();
 			}
-
 		});
+		this.swipeRefreshList.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
 	}
 
 	private void configurePullFromGroup() {
-		carruselContentGroup = (PullToRefreshScrollView) generalView
-				.findViewById(R.id.carruselContentGroup);
-		carruselContentGroup.setClickable(false);
-		carruselContentGroup
-				.setPullLabel(getString(R.string.ptr_pull_to_refresh));
-		carruselContentGroup
-				.setRefreshingLabel(getString(R.string.ptr_refreshing));
-		carruselContentGroup
-				.setReleaseLabel(getString(R.string.ptr_release_to_refresh));
-		carruselContentGroup
-				.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+		this.swipeRefreshScroll = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_group_carousel);
+		this.swipeRefreshScroll.setOnRefreshListener(new OnRefreshListener() {
 
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ScrollView> refreshView) {
-						reloadData();
-					}
-				});
+			@Override
+			public void onRefresh() {
+				reloadData();
+			}
+		});
+		this.swipeRefreshScroll.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
 	}
 
 	private void loadData() {
 
 		container.removeAllViews();
-		carruselContentGroup.setPullToRefreshEnabled(false);
-		carruselContentGroup.setPullToRefreshOverScrollEnabled(false);
+
+		if (swipeRefreshScroll != null) {
+			swipeRefreshScroll.setRefreshing(false);
+		}
+
 		generalView.findViewById(R.id.headerContainer).setVisibility(
 				View.VISIBLE);
 		headerText.setText("Jornada: " + fase.getIdFase());
@@ -218,13 +209,29 @@ public class CarrouselSectionFragment extends SectionFragment implements
 	}
 
 	private void configRegularView() {
-		carruselContent.setVisibility(View.VISIBLE);
-		CarruselAdapter carruselAdapter = new CarruselAdapter();
-		carruselContent.setAdapter(carruselAdapter);
+		
+		container = (RelativeLayout) generalView.findViewById(R.id.container);
+		container.setVisibility(View.GONE);
+		
+		swipeRefreshScroll = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_group_carousel);
+		swipeRefreshScroll.setVisibility(View.GONE);
+		
+		swipeRefreshList = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container_carousel);
+		swipeRefreshList.setVisibility(View.VISIBLE);
+		
+		carruselContent = (ListView)getView().findViewById(R.id.carruselContent);
+		if (carruselContent != null) {
+			carruselContent.setVisibility(View.VISIBLE);
+			CarruselAdapter carruselAdapter = new CarruselAdapter();
+			carruselContent.setAdapter(carruselAdapter);
 
-		carruselAdapter.addItems(fase.getGrupos().get(0).getJornadas().get(0)
-				.getMatches());
-		// carruselContent.getRefreshableView().scrollTo(0, (int) scrollHeight);
+			carruselAdapter.addItems(fase.getGrupos().get(0).getJornadas()
+					.get(0).getMatches());
+			// carruselContent.getRefreshableView().scrollTo(0, (int)
+			// scrollHeight);
+		}
 	}
 
 	private LinearLayout getItemsContent() {
@@ -239,6 +246,19 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 	private void configGroupView() {
 
+		carruselContent = (ListView)getView().findViewById(R.id.carruselContent);
+		carruselContent.setVisibility(View.GONE);
+		
+		swipeRefreshList = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container_carousel);
+		swipeRefreshList.setVisibility(View.GONE);
+		swipeRefreshScroll = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_group_carousel);
+		swipeRefreshScroll.setVisibility(View.VISIBLE);
+		
+		container = (RelativeLayout) generalView.findViewById(R.id.container);
+		container.setVisibility(View.VISIBLE);
+		
 		View convertView;
 		Team localTeam, awayTeam;
 		boolean first;
@@ -271,7 +291,6 @@ public class CarrouselSectionFragment extends SectionFragment implements
 
 	private View getContainerGroup(String name) {
 		RelativeLayout rel = new RelativeLayout(mContext);
-		rel.setTag(StickyScrollView.STICKY_TAG);
 		int padding = DimenUtils.getRegularPixelFromDp(mContext, 10);
 		rel.setPadding(0, padding, 0, padding);
 
@@ -434,24 +453,25 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		}
 
 		final int idLocal;
-		// if (currentMatch.getLocalId() != null) {
-		// idLocal = DrawableUtils.getDrawableId(mContext,
-		// ShieldName.PREFIX_FLAG + currentMatch.getLocalId(), 0);
-		// } else {
-		idLocal = 0;
-		// }
-
-		localShield.setBackgroundResource(idLocal);
+		String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
+		if (shield!= null && shield.length()>0) {
+			idLocal = DrawableUtils.getDrawableId(mContext,shield, 4);
+		} else {
+			idLocal = R.drawable.escudo_generico_size03;
+		}
+		
+		if (idLocal!=0)
+			localShield.setBackgroundResource(idLocal);
 
 		final int idAway;
-		// if (currentMatch.getAwayId() != null) {
-		// idAway = DrawableUtils.getDrawableId(mContext,
-		// ShieldName.PREFIX_FLAG + currentMatch.getAwayId(), 0);
-		// } else {
-		idAway = 0;
-		// }
-
-		awayShield.setBackgroundResource(idAway);
+		shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
+		if (shield!= null && shield.length()>0) {
+			idAway = DrawableUtils.getDrawableId(mContext,shield, 4);
+		} else {
+			idAway = R.drawable.escudo_generico_size03;;
+		}
+		if (idAway!=0)
+			awayShield.setBackgroundResource(idAway);
 
 		centerContainer.setTag(currentMatch);
 		convertView.setOnClickListener(new OnClickListener() {
@@ -667,32 +687,19 @@ public class CarrouselSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
-		Competition comp = DatabaseDAO.getInstance(mContext).getCompetition(
-				Integer.valueOf(competitionId));
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), comp.getName().toLowerCase(),
-				Omniture.SECTION_CARROUSEL, null, null, Omniture.TYPE_PORTADA,
+				getActivity().getApplication(), Omniture.SECTION_CARROUSEL,
+				null, null, null, Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_CARROUSEL,
 				null);
 	}
 
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_PORTADA);
-	}
-
 	private void closePullToRefresh(Date date) {
-		if (carruselContent != null) {
-			carruselContent.onRefreshComplete();
-			carruselContent
-					.setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-							+ dateFormatPull.format(date));
+		if (swipeRefreshScroll != null) {
+			swipeRefreshScroll.setRefreshing(false);
 		}
-		if (carruselContentGroup != null) {
-			carruselContentGroup.onRefreshComplete();
-			carruselContentGroup
-					.setLastUpdatedLabel(getString(R.string.ptr_last_updated)
-							+ dateFormatPull.format(date));
+		if (swipeRefreshList != null) {
+			swipeRefreshList.setRefreshing(false);
 		}
 	}
 
@@ -743,9 +750,6 @@ public class CarrouselSectionFragment extends SectionFragment implements
 						// getActivity().onBackPressed();
 						container.removeAllViews();
 						container.addView(getErrorContainer());
-						carruselContentGroup.setPullToRefreshEnabled(true);
-						carruselContentGroup
-								.setPullToRefreshOverScrollEnabled(true);
 						generalView.findViewById(R.id.headerContainer)
 								.setVisibility(View.GONE);
 						if (carruselContent != null)
@@ -857,12 +861,8 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		public View getView(int position, View convertView, ViewGroup parent) {
 
 			Match currentMatch = matches.get(position);
-			// Team localTeam = findTeam(currentMatch.getLocalId());
-			// Team awayTeam = findTeam(currentMatch.getAwayId());
-			Team localTeam = DatabaseDAO.getInstance(mContext).getTeam(
-					currentMatch.getLocalId());
-			Team awayTeam = DatabaseDAO.getInstance(mContext).getTeam(
-					currentMatch.getAwayId());
+			Team localTeam = findTeam(currentMatch.getLocalId());
+			Team awayTeam = findTeam(currentMatch.getAwayId());
 
 			final ViewHolder holder;
 			if (convertView == null) {
@@ -1022,35 +1022,26 @@ public class CarrouselSectionFragment extends SectionFragment implements
 			}
 
 			final int idLocal;
-			if (localTeam != null && localTeam.getCalendarShield() != null
-					&& !localTeam.getCalendarShield().equalsIgnoreCase("")) {
-				idLocal = DrawableUtils.getDrawableId(mContext,
-						localTeam.getCalendarShield(), 4);
+			String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
+			if (shield!= null && shield.length()>0) {
+				idLocal = DrawableUtils.getDrawableId(mContext,shield, 4);
 			} else {
 				idLocal = R.drawable.escudo_generico_size03;
 			}
 
-			// if (idLocal != 0)
-			holder.localShield.setBackgroundResource(idLocal);
-			// else
-			// holder.localShield
-			// .setBackgroundResource(R.drawable.escudo_generico_size03);
+			if (idLocal!=0)
+				holder.localShield.setBackgroundResource(idLocal);
 
 			final int idAway;
-			if (awayTeam != null && awayTeam.getCalendarShield() != null
-					&& !awayTeam.getCalendarShield().equalsIgnoreCase("")) {
-				idAway = DrawableUtils.getDrawableId(mContext,
-						awayTeam.getCalendarShield(), 4);
+			shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
+			if (shield!= null && shield.length()>0) {
+				idAway = DrawableUtils.getDrawableId(mContext,shield, 4);
 			} else {
 				idAway = R.drawable.escudo_generico_size03;
 			}
-			// if (idAway != 0)
-			holder.awayShield.setBackgroundResource(idAway);
-			// else
-			// holder.awayShield
-			// .setBackgroundResource(R.drawable.escudo_generico_size03);
 
-			// holder.awayShield.setBackgroundResource(idAway);
+			if (idAway!=0)
+				holder.awayShield.setBackgroundResource(idAway);
 
 			holder.centerContainer.setTag(currentMatch);
 			convertView.setOnClickListener(new OnClickListener() {

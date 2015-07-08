@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.DimenUtils;
 
 public class CompetitionTeamHomeFragment extends CompetitionHomeFragment {

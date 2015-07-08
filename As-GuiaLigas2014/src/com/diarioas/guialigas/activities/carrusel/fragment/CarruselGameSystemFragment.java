@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.carrusel.CarruselDetailActivity;
 import com.diarioas.guialigas.dao.model.carrusel.GameSystem;
 import com.diarioas.guialigas.dao.model.carrusel.GameSystem.Event;
 import com.diarioas.guialigas.dao.model.carrusel.PlayerOnField;
@@ -211,17 +209,17 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		TextView localGameSistem = (TextView) generalView
 				.findViewById(R.id.localGameSistem);
 		FontUtils.setCustomfont(mContext, localGameSistem,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		localGameSistem.setText(gameSys);
 
 		TextView localMister = (TextView) generalView
 				.findViewById(R.id.localMister);
-		FontUtils.setCustomfont(mContext, localMister, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, localMister, FontTypes.ROBOTO_REGULAR);
 		localMister.setText(gameSystem.getLocalTeamMisterName());
 
 		FontUtils.setCustomfont(mContext,
 				generalView.findViewById(R.id.localBanquillo),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		LinearLayout localSuplentesContainer = (LinearLayout) generalView
 				.findViewById(R.id.localSuplentesContainer2);
@@ -267,17 +265,17 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		TextView awayGameSistem = (TextView) generalView
 				.findViewById(R.id.awayGameSistem);
 		FontUtils.setCustomfont(mContext, awayGameSistem,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 		awayGameSistem.setText(gameSys);
 
 		TextView awayMister = (TextView) generalView
 				.findViewById(R.id.awayMister);
-		FontUtils.setCustomfont(mContext, awayMister, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, awayMister, FontTypes.ROBOTO_REGULAR);
 		awayMister.setText(gameSystem.getAwayTeamMisterName());
 
 		FontUtils.setCustomfont(mContext,
 				generalView.findViewById(R.id.awayBanquillo),
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 
 		LinearLayout awaySuplentesContainer = (LinearLayout) generalView
 				.findViewById(R.id.awaySuplentesContainer2);
@@ -616,21 +614,22 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 
 		playerName = (TextView) item.findViewById(R.id.playerName);
 		FontUtils.setCustomfont(mContext, playerName,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		playerName.setText(player.getName());
 
 		playerDorsal = (TextView) item.findViewById(R.id.playerDorsal);
 		FontUtils.setCustomfont(mContext, playerDorsal,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		playerDorsal.setText(String.valueOf(player.getDorsal()));
 
 		try {
-			ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(player.getUrlPhoto(),
-							(ImageView) item.findViewById(R.id.playerImage),
-							R.drawable.foto_plantilla_mask);
+
+			ImageDAO.getInstance(mContext).loadPlayerTeamDetailImage(
+					player.getUrlPhoto(), R.drawable.foto_plantilla_generica,
+					(ImageView) item.findViewById(R.id.playerImage),
+					R.drawable.foto_plantilla_mask);
+
 		} catch (Exception e) {
-			Log.e("CARRUSEL", "No se ha podido descargar la imagen de la url: "
-					+ player.getUrlPhoto());
 		}
 
 		if (this.gameSystem.isScorer(player.getId()))
@@ -673,12 +672,12 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 				LinearLayout.LayoutParams.WRAP_CONTENT, 1);
 		item.setLayoutParams(params);
 		playerName = (TextView) item.findViewById(R.id.playerName);
-		FontUtils.setCustomfont(mContext, playerName, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, playerName, FontTypes.ROBOTO_REGULAR);
 		playerName.setText(player.getName());
 
 		playerDorsal = (TextView) item.findViewById(R.id.playerDorsal);
 		FontUtils.setCustomfont(mContext, playerDorsal,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		playerDorsal.setText(String.valueOf(player.getDorsal()));
 
 		ArrayList<Event> list = gameSystem.getEventos(player.getId());
@@ -699,7 +698,7 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 					TextView changeText = (TextView) item
 							.findViewById(R.id.changeText);
 					FontUtils.setCustomfont(mContext, changeText,
-							FontTypes.HELVETICANEUEBOLD);
+							FontTypes.ROBOTO_BOLD);
 					changeText.setText(String.valueOf("- " + event.getTime()
 							+ "'"));
 

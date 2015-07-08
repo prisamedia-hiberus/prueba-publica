@@ -1,151 +1,173 @@
 package com.diarioas.guialigas.activities.news.fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aphidmobile.flip.FlipViewController;
-import com.aphidmobile.flip.FlipViewController.ViewFlipListener;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.general.fragment.FlipSectionFragment;
+import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.activities.news.NewsDetailActivity;
+import com.diarioas.guialigas.activities.news.NewsTagDetailActivity;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.model.news.NewsItemTag;
+import com.diarioas.guialigas.dao.model.news.SectionNewsTagSections;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
-import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO.RemoteNewsDAOListener;
+import com.diarioas.guialigas.dao.reader.RemoteNewsDAO.RemoteNewsTagDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
+import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.diarioas.guialigas.utils.imageutils.bitmapfun.ImageFetcher;
 
-public class NewsSectionFragment extends FlipSectionFragment implements
-		RemoteNewsDAOListener, ViewFlipListener {
+public class NewsSectionFragment extends SectionFragment implements RemoteNewsDAOListener {
 
-	private NewsAdapter newsAdapter;
+	private ArrayList<NewsItem> news = null;
+	private NewsAdapter newsAdapter = null;
+	private ListView tagList = null;
+	private View errorContainer = null;
 
-	// private RelativeLayout playerSpinner;
+	private SwipeRefreshLayout swipeRefreshLayout = null;
 
-	/***************************************************************************/
-	/** Fragment lifecycle methods **/
-	/***************************************************************************/
+	/********** Fragment lifecycle methods ***********************************/
+	/***********************************************************************/
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_NEWS + "/" + NativeAds.AD_PORTADA;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		this.inflater = inflater;
-		// Inflating layout
 		generalView = inflater.inflate(R.layout.fragment_news_section,
 				container, false);
 		return generalView;
 	}
-
+	
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		RemoteNewsDAO.getInstance(mContext).removeListener(this);
 	}
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
-
-		if (array != null) {
-			array.clear();
-			array = null;
-		}
-		newsAdapter = null;
-		ImageDAO.getInstance(getActivity()).closeNewsCache();
-		ImageDAO.getInstance(getActivity()).eraseNewsCache();
+		this.newsAdapter = null;
 	}
 
+	/****************** Configuration methods *********************************/
 	/***************************************************************************/
-	/** Configuration methods **/
-	/***************************************************************************/
-	@Override
-	protected void buildView() {
-
-		RemoteNewsDAO.getInstance(mContext).addListener(this);
-		RemoteNewsDAO.getInstance(mContext).getNewsInfo(section.getUrl());
-
-		int currentCompetitionId = Integer.valueOf(competitionId);
-		if (RemoteNewsDAO.getInstance(mContext).isNewsLoaded(
-				currentCompetitionId)) {
-			this.array = RemoteNewsDAO.getInstance(mContext).getNewsPreloaded(
-					currentCompetitionId);
-			loadData(true);
-			((HomeActivity) getActivity()).stopAnimation();
-		}
-	}
 
 	@Override
 	protected void configureView() {
-		super.configureView();
-		array = getNews();
+
+		configureErrorView();
 		configureListView();
 		callToOmniture();
+		configureSwipeLoader();
+	}
+
+	private void configureErrorView() {
+		errorContainer = getErrorContainer();
+		errorContainer.setVisibility(View.INVISIBLE);
+		((RelativeLayout) generalView).addView(errorContainer);
+	}
+
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {
+				loadInformation();
+			}
+		});
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
+	}
+
+	@Override
+	protected void loadInformation() {
+		RemoteNewsDAO.getInstance(mContext).addListener(this);
+		RemoteNewsDAO.getInstance(mContext).loadData(section.getUrl());
 	}
 
 	private void configureListView() {
-
 		newsAdapter = new NewsAdapter();
 
-		flipView = (FlipViewController) generalView.findViewById(R.id.flipView);
-		flipView.setAdapter(newsAdapter);
-		flipView.setOnViewFlipListener(this);
+		tagList = (ListView) generalView.findViewById(R.id.tagList);
+		this.tagList.setDivider(null);
+		this.tagList.setDividerHeight(0);
+		this.tagList.setCacheColorHint(0);
 
+		this.tagList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+//				NewsItemTag currentItem = (NewsItem) news.get(position);
+//
+////				if ((currentItem.getJumpToWeb() == Defines.JUMP_TO_WEB_OK)
+////						|| (currentItem.getLink() != null && RemoteNewsDAO
+////								.getInstance(mContext).isURLNeedOut(
+////										currentItem.getLink()))) {
+////
+////					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
+////							.parse(currentItem.getLink()));
+////					getActivity().startActivity(browserIntent);
+////				} else {
+//
+//					Intent intent = new Intent(mContext,
+//							NewsTagDetailActivity.class);
+//					intent.putExtra("news", news);
+//					intent.putExtra("position", position);
+//					getActivity().startActivityForResult(intent,
+//							ReturnRequestCodes.PUBLI_BACK);
+//					getActivity().overridePendingTransition(
+//							R.anim.grow_from_middle, R.anim.shrink_to_middle);
+////				}
+			}
+		});
+
+		tagList.setAdapter(newsAdapter);
 	}
 
-	private ArrayList<NewsItem> getNews() {
-		int competitionId = RemoteDataDAO.getInstance(mContext)
-				.getGeneralSettings().getCurrentCompetition().getId();
-		if (RemoteNewsDAO.getInstance(mContext).isNewsLoaded(competitionId)) {
-			return RemoteNewsDAO.getInstance(mContext).getNewsPreloaded(
-					competitionId);
-		} else {
-			return new ArrayList<NewsItem>();
+	protected void updateData() {
+		if (newsAdapter != null) {
+			newsAdapter.notifyDataSetChanged();
 		}
 	}
 
-	@Override
-	protected void stopPlayerAnimation() {
-		stopPlayerAnimation(RemoteNewsDAO.getInstance(mContext).getNewsDate());
-	}
-
-	@Override
-	protected void updateData() {
-		newsAdapter.notifyChange();
-	}
-
-	@Override
-	protected void reloadData() {
-		RemoteNewsDAO.getInstance(mContext).addListener(this);
-		RemoteNewsDAO.getInstance(mContext).getNewsInfo(section.getUrl());
-	}
-
-	/***************************************************************************/
-	/** Libraries methods **/
+	/********************* Libraries methods *********************************/
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
@@ -161,30 +183,41 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 								+ Omniture.SECTION_NEWS, null);
 	}
 
+	/************** RemotePalmaresDAOListener methods ***********************/
+	/***************************************************************************/
+
 	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_NEWS + "/" + NativeAds.AD_PORTADA);
+	public void onSuccessRemoteconfig(ArrayList<NewsItem> news) {
+		RemoteNewsDAO.getInstance(mContext).removeListener(this);
+		fillInformationAction(news);
 	}
 
-	/***************************************************************************/
-	/** RemotePalmaresDAOListener methods **/
-	/***************************************************************************/
-
-	@Override
-	public void onSuccessRemoteconfig(ArrayList<NewsItem> newsArray) {
-		Log.d("NEWS", "Updated Rss...");
-		RemoteNewsDAO.getInstance(mContext).removeListener(this);
-		stopPlayerAnimation();
-		this.array = newsArray;
+	private void fillInformationAction(ArrayList<NewsItem> news) {
+		tagList.setVisibility(View.VISIBLE);
+		errorContainer.setVisibility(View.GONE);
+		this.news = news;
+		closePullToRefresh();
+		updateData();
 		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
-		loadData(false);
+	}
 
+	private void closePullToRefresh() {
+		if (this.swipeRefreshLayout != null) {
+			this.swipeRefreshLayout.setRefreshing(false);
+		}
 	}
 
 	@Override
 	public void onFailureRemoteconfig() {
-		Log.d("NEWS", "Failed Updated Rss...");
+		errorRemoteNewsAction();
+	}
+
+	@Override
+	public void onFailureNotConnectionRemoteconfig() {
+		errorRemoteNewsAction();
+	}
+
+	private void errorRemoteNewsAction() {
 		RemoteNewsDAO.getInstance(mContext).removeListener(this);
 		AlertManager.showAlertOkDialog(getActivity(),
 				getResources().getString(R.string.section_error_download),
@@ -194,708 +227,183 @@ public class NewsSectionFragment extends FlipSectionFragment implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						array = getNews();
-						if (array != null && array.size() > 0) {
-							loadData(false);
+						if (news != null && news.size() > 0) {
+							updateData();
 						} else {
 							errorContainer.setVisibility(View.VISIBLE);
-							// loadData(true);
 						}
 					}
 
 				});
 
+		closePullToRefresh();
 		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
 	}
 
-	@Override
-	public void onFailureNotConnection() {
-		Log.d("NEWS", "Failed Updated Rss...");
-		RemoteNewsDAO.getInstance(mContext).removeListener(this);
-		AlertManager.showAlertOkDialog(
-				getActivity(),
-				getResources().getString(
-						R.string.section_not_conection_notupdated),
-				getResources().getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
+	/************** Adapter methods ************************************************/
+	/*****************************************************************************/
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						array = getNews();
-						if (array != null && array.size() > 0) {
-							loadData(false);
-						} else {
-							errorContainer.setVisibility(View.VISIBLE);
-							// loadData(true);
-						}
-					}
+	public static final int NUM_TAGS_CELLS = 7;
 
-				});
-
-		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
-
-	}
-
-	/***************************************************************************/
-	/** VideoAdapter **/
-	/***************************************************************************/
 	class NewsAdapter extends BaseAdapter {
+		private static final int ITEM_NORMAL = 0;
+		private static final int ITEM_FOOTER = ITEM_NORMAL + 1;
+		private static final int TOTAL_ITEM = ITEM_FOOTER + 1;
 
-		private static final int TYPE_ONE_ITEM = 0;
-		private static final int TYPE_TWO_ITEM = TYPE_ONE_ITEM + 1;
-		private static final int TYPE_THREE_ITEM = TYPE_TWO_ITEM + 1;
-		private static final int TYPE_FOUR_ITEM = TYPE_THREE_ITEM + 1;
-		private static final int TYPE_HEADER_ITEM = TYPE_FOUR_ITEM + 1;
-		private static final int TYPE_TOTAL = TYPE_HEADER_ITEM + 1;
-		private int numItems;
-//		private final Bitmap placeholderBitmap;
+		private SimpleDateFormat formatterPull;
+
+		private int heightCell;
 
 		public NewsAdapter() {
-//			placeholderBitmap = BitmapFactory.decodeResource(
-//					mContext.getResources(), R.drawable.galeria_imagenrecurso);
+
+			Point size = DimenUtils.getSize(getActivity().getWindowManager());
+			int height = size.y / NUM_TAGS_CELLS;
+			this.formatterPull = new SimpleDateFormat(
+					DateFormat.ALL_DAY_FORMAT, Locale.getDefault());
+			int dim = (int) getResources().getDimension(
+					R.dimen.flip_size_padding);
+			this.heightCell = height - dim;
 		}
 
-		public void notifyChange() {
-			reset();
-			notifyDataSetChanged();
-		}
-
-		private void reset() {
-			calculateTotal();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getCount()
-		 */
 		@Override
 		public int getCount() {
-			return numItems;
-
-		}
-
-		private void calculateTotal() {
-			int accum = 0;
-			numItems = 0;
-			for (int i = 0; accum < array.size(); i++) {
-				if (i % TYPE_TOTAL == TYPE_HEADER_ITEM)
-					accum += i % TYPE_TOTAL;
-				else
-					accum += i % TYPE_TOTAL + 1;
-				numItems++;
+			if (news != null && news.size() > 0) {
+				return news.size() + 1;
+			} else {
+				return 0;
 			}
-
 		}
 
 		@Override
 		public int getItemViewType(int position) {
-			return position % TYPE_TOTAL;
+			if (position > 0 && position == news.size()) {
+				return ITEM_FOOTER;
+			} else {
+				return ITEM_NORMAL;
+			}
 		}
 
 		@Override
 		public int getViewTypeCount() {
-			// TODO Auto-generated method stub
-			return TYPE_TOTAL;
+			return TOTAL_ITEM;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItem(int)
-		 */
 		@Override
 		public Object getItem(int arg0) {
-			// TODO Auto-generated method stub
-			return null;
+
+			if (news != null && news.size() > arg0) {
+				return news.get(arg0);
+			} else {
+				return null;
+			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItemId(int)
-		 */
 		@Override
 		public long getItemId(int arg0) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getView(int, android.view.View,
-		 * android.view.ViewGroup)
-		 */
-		@SuppressLint("NewApi")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-
-			ViewHolder holder = null;
-
 			int type = getItemViewType(position);
-			int pos = calculatePosition(position, type);
-			// if (convertView == null) {
-
-			switch (type) {
-			case TYPE_ONE_ITEM:
-				convertView = inflater.inflate(
-						R.layout.item_list_news_one_item, null);
-				holder = getHolderOneType(convertView);
-				break;
-			case TYPE_TWO_ITEM:
-				if (array.size() > (pos + 1)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_two_item, null);
-					holder = getHolderTwoType(convertView);
-				} else {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_one_item, null);
-					holder = getHolderOneType(convertView);
-				}
-				break;
-			case TYPE_THREE_ITEM:
-				if (array.size() > (pos + 2)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_three_item, null);
-					holder = getHolderThreeType(convertView);
-				} else if (array.size() > (pos + 1)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_two_item, null);
-					holder = getHolderTwoType(convertView);
-				} else {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_one_item, null);
-					holder = getHolderOneType(convertView);
-				}
-
-				break;
-			case TYPE_FOUR_ITEM:
-				if (array.size() > (pos + 3)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_four_item, null);
-					holder = getHolderFourType(convertView);
-				} else if (array.size() > (pos + 2)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_three_item, null);
-					holder = getHolderThreeType(convertView);
-				} else if (array.size() > (pos + 1)) {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_two_item, null);
-					holder = getHolderTwoType(convertView);
-				} else {
-					convertView = inflater.inflate(
-							R.layout.item_list_news_one_item, null);
-					holder = getHolderOneType(convertView);
-				}
-
-				break;
-			case TYPE_HEADER_ITEM:
-				convertView = inflater.inflate(
-						R.layout.item_list_news_header_item, null);
-				holder = getHolderHeaderType(convertView, pos);
-				break;
-			default:
-				break;
-			}
-
-			convertView.setTag(holder);
-			// } else {
-			// holder = (ViewHolder) convertView.getTag();
-			// }
-
-			switch (type) {
-			case TYPE_ONE_ITEM:
-				setItemOneType(pos, holder);
-				break;
-			case TYPE_TWO_ITEM:
-				if (array.size() > (pos + 1)) {
-					setItemTwoType(pos, holder);
-				} else {
-					setItemOneType(pos, holder);
-				}
-				break;
-			case TYPE_THREE_ITEM:
-				if (array.size() > (pos + 2)) {
-					setItemThreeType(pos, holder);
-				} else if (array.size() > (pos + 1)) {
-					setItemTwoType(pos, holder);
-				} else {
-					setItemOneType(pos, holder);
-				}
-				break;
-			case TYPE_FOUR_ITEM:
-				if (array.size() > (pos + 3)) {
-					setItemFourType(pos, holder);
-				} else if (array.size() > (pos + 2)) {
-					setItemThreeType(pos, holder);
-				} else if (array.size() > (pos + 1)) {
-					setItemTwoType(pos, holder);
-				} else {
-					setItemOneType(pos, holder);
-				}
-				break;
-			case TYPE_HEADER_ITEM:
-				setItemHeaderType(pos, holder);
-				break;
-			default:
-				break;
-			}
-			if (pos == 0) {
-				firstView = convertView;
-			}
-
-			return convertView;
-		}
-
-		private int calculatePosition(int position, int type) {
-			int accum = 0;
-			for (int i = 0; i <= position; i++) {
-				if (i > 0 && i % TYPE_TOTAL == 0) {
-					accum += TYPE_TOTAL - 1;
-				} else {
-					accum += i % TYPE_TOTAL;
-				}
-
-			}
-
-			// Log.d("CONTADOR", "Position: " + position +
-			// "calculatePosition: "+ " Position: " + accum);
-
-			return accum;
-		}
-
-		private ViewHolder getHolderOneType(View convertView) {
-			ViewHolder holder = new ViewHolder();
-			holder.content1 = (RelativeLayout) convertView
-					.findViewById(R.id.content1);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-			return holder;
-		}
-
-		private ViewHolder getHolderTwoType(View convertView) {
-
-			ViewHolder holder = new ViewHolder();
-			holder.content1 = (RelativeLayout) convertView
-					.findViewById(R.id.content1);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content2 = (RelativeLayout) convertView
-					.findViewById(R.id.content2);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-			return holder;
-		}
-
-		private ViewHolder getHolderThreeType(View convertView) {
-			ViewHolder holder = new ViewHolder();
-			holder.content1 = (RelativeLayout) convertView
-					.findViewById(R.id.content1);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content2 = (RelativeLayout) convertView
-					.findViewById(R.id.content2);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content3 = (RelativeLayout) convertView
-					.findViewById(R.id.content3);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-			return holder;
-		}
-
-		private ViewHolder getHolderFourType(View convertView) {
-
-			ViewHolder holder = new ViewHolder();
-			holder.content1 = (RelativeLayout) convertView
-					.findViewById(R.id.content1);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content2 = (RelativeLayout) convertView
-					.findViewById(R.id.content2);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content3 = (RelativeLayout) convertView
-					.findViewById(R.id.content3);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content4 = (RelativeLayout) convertView
-					.findViewById(R.id.content4);
-			FontUtils.setCustomfont(mContext,
-					holder.content4.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content4.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-			return holder;
-		}
-
-		private ViewHolder getHolderHeaderType(View convertView, int position) {
-			int offset = 4;
-			if (array.size() <= (position + 3)) {
-				offset = 3;
-			}
-			int height = (((HomeActivity) getActivity()).getHeight() / offset)
-					- 2 * DimenUtils.getRegularPixelFromDp(mContext, 4);
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-					height, height);
-			params.addRule(RelativeLayout.CENTER_VERTICAL);
-
-			ViewHolder holder = new ViewHolder();
-			holder.content1 = (RelativeLayout) convertView
-					.findViewById(R.id.content1);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content1.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content2 = (RelativeLayout) convertView
-					.findViewById(R.id.content2);
-
-			holder.content2.findViewById(R.id.imageContent).setLayoutParams(
-					params);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content2.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content3 = (RelativeLayout) convertView
-					.findViewById(R.id.content3);
-			holder.content3.findViewById(R.id.imageContent).setLayoutParams(
-					params);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content3.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-
-			holder.content4 = (RelativeLayout) convertView
-					.findViewById(R.id.content4);
-			holder.content4.findViewById(R.id.imageContent).setLayoutParams(
-					params);
-			FontUtils.setCustomfont(mContext,
-					holder.content4.findViewById(R.id.title),
-					FontTypes.HELVETICANEUEBOLD);
-			FontUtils.setCustomfont(mContext,
-					holder.content4.findViewById(R.id.preTitle),
-					FontTypes.HELVETICANEUEBOLD);
-			return holder;
-
-		}
-
-		private void setItemOneType(int position, final ViewHolder holder) {
-			setItem(holder.content1, (NewsItem) array.get(position),
-					getUrl((NewsItem) array.get(position), TYPE_ONE_ITEM),
-					ImageDAO.getInstance(mContext).getOneImageFetcher(),
-					position, 0);
-		}
-
-		private void setItemTwoType(int position, final ViewHolder holder) {
-
-			setItem(holder.content1, (NewsItem) array.get(position),
-					getUrl((NewsItem) array.get(position), TYPE_TWO_ITEM),
-					ImageDAO.getInstance(mContext).getHalfImageFetcher(),
-					position, 0);
-
-			if (array.size() > (position + 1)) {
-				setItem(holder.content2,
-						(NewsItem) array.get(position + 1),
-						getUrl((NewsItem) array.get(position + 1),
-								TYPE_TWO_ITEM), ImageDAO.getInstance(mContext)
-								.getHalfImageFetcher(), position, 1);
+			if (type == ITEM_FOOTER) {
+				View view = new View(mContext);
+				view.setMinimumHeight((int) getResources().getDimension(
+						R.dimen.footer_height));
+				return view;
 			} else {
-				holder.content2.setVisibility(View.GONE);
-			}
+				ImageView currentImage = null;
+				TextView body = null;
+				TextView title = null;
+				ImageView button_play = null;
 
-		}
+				if (convertView == null) {
 
-		private void setItemThreeType(int position, final ViewHolder holder) {
+					convertView = inflater
+							.inflate(R.layout.tag_item_list, null);
+					convertView.findViewById(R.id.teamContent)
+							.setMinimumHeight(heightCell);
 
-			setItem(holder.content1, (NewsItem) array.get(position),
-					getUrl((NewsItem) array.get(position), TYPE_THREE_ITEM),
-					ImageDAO.getInstance(mContext).getThirdImageFetcher(),
-					position, 0);
+					currentImage = (ImageView) convertView
+							.findViewById(R.id.imageTag);
+					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+							heightCell, heightCell);
+					currentImage.setLayoutParams(params);
 
-			if (array.size() > (position + 1)) {
-				setItem(holder.content2,
-						(NewsItem) array.get(position + 1),
-						getUrl((NewsItem) array.get(position + 1),
-								TYPE_THREE_ITEM), ImageDAO
-								.getInstance(mContext).getThirdImageFetcher(),
-						position, 1);
-				if (array.size() > (position + 2)) {
-					setItem(holder.content3,
-							(NewsItem) array.get(position + 2),
-							getUrl((NewsItem) array.get(position + 2),
-									TYPE_THREE_ITEM),
-							ImageDAO.getInstance(mContext)
-									.getThirdImageFetcher(), position, 2);
-				} else {
-					holder.content3.setVisibility(View.GONE);
+					ImageView overImageTag = (ImageView) convertView
+							.findViewById(R.id.overImageTag);
+					RelativeLayout.LayoutParams paramsOver = new RelativeLayout.LayoutParams(
+							heightCell, heightCell);
+					overImageTag.setLayoutParams(paramsOver);
+
+					FontUtils.setCustomfont(mContext,
+							(TextView) convertView.findViewById(R.id.title),
+							FontTypes.ROBOTO_BOLD);
+
+					FontUtils.setCustomfont(mContext,
+							(TextView) convertView.findViewById(R.id.body),
+							FontTypes.ROBOTO_REGULAR);
 				}
-			} else {
-				holder.content2.setVisibility(View.GONE);
-				holder.content3.setVisibility(View.GONE);
-			}
 
-		}
+				currentImage = (ImageView) convertView
+						.findViewById(R.id.imageTag);
+				body = (TextView) convertView.findViewById(R.id.body);
+				title = (TextView) convertView.findViewById(R.id.title);
+				button_play = (ImageView) convertView
+						.findViewById(R.id.button_play);
 
-		private void setItemFourType(int position, ViewHolder holder) {
-			setItem(holder.content1, (NewsItem) array.get(position),
-					getUrl((NewsItem) array.get(position), TYPE_FOUR_ITEM),
-					ImageDAO.getInstance(mContext).getFourthImageFetcher(),
-					position, 0);
-
-			if (array.size() > (position + 1)) {
-				setItem(holder.content2,
-						(NewsItem) array.get(position + 1),
-						getUrl((NewsItem) array.get(position + 1),
-								TYPE_FOUR_ITEM), ImageDAO.getInstance(mContext)
-								.getFourthImageFetcher(), position, 1);
-				if (array.size() > (position + 2)) {
-					setItem(holder.content3,
-							(NewsItem) array.get(position + 2),
-							getUrl((NewsItem) array.get(position + 2),
-									TYPE_FOUR_ITEM),
-							ImageDAO.getInstance(mContext)
-									.getFourthImageFetcher(), position, 2);
-					if (array.size() > (position + 3)) {
-						setItem(holder.content4,
-								(NewsItem) array.get(position + 3),
-								getUrl((NewsItem) array.get(position + 3),
-										TYPE_FOUR_ITEM),
-								ImageDAO.getInstance(mContext)
-										.getFourthImageFetcher(), position, 3);
+				NewsItem item = (NewsItem) getItem(position);
+				if (item != null) {
+					
+					if (item.getDate() !=null) {
+						title.setText(formatterPull.format(new Date((long) item.getDate().getTime()))
+								+ " | "
+								+ item.getAuthor());
 					} else {
-						holder.content4.setVisibility(View.GONE);
+						title.setText(item.getAuthor());
 					}
-				} else {
-					holder.content3.setVisibility(View.GONE);
-					holder.content4.setVisibility(View.GONE);
-				}
-			} else {
-				holder.content2.setVisibility(View.GONE);
-				holder.content3.setVisibility(View.GONE);
-				holder.content4.setVisibility(View.GONE);
-			}
+					body.setText(item.getTitle());
 
-		}
-
-		private void setItemHeaderType(int position, ViewHolder holder) {
-			setItem(holder.content1, (NewsItem) array.get(position),
-					getUrl((NewsItem) array.get(position), TYPE_HEADER_ITEM),
-					ImageDAO.getInstance(mContext).getFourthImageFetcher(),
-					position, 0);
-
-			boolean pos2 = array.size() > (position + 1);
-			boolean pos3 = array.size() > (position + 2);
-			boolean pos4 = array.size() > (position + 3);
-
-			if (pos2) {
-				String smallUrl;
-				if (pos3)
-					smallUrl = getSmallUrl((NewsItem) array.get(position + 1));
-				else
-					smallUrl = getUrl((NewsItem) array.get(position + 1),
-							TYPE_HEADER_ITEM);
-
-				setItem(holder.content2, (NewsItem) array.get(position + 1),
-						smallUrl, ImageDAO.getInstance(mContext)
-								.getHeaderImageFetcher(), position, 1);
-				if (pos3) {
-					smallUrl = getSmallUrl((NewsItem) array.get(position + 2));
-					setItem(holder.content3,
-							(NewsItem) array.get(position + 2), smallUrl,
-							ImageDAO.getInstance(mContext)
-									.getHeaderImageFetcher(), position, 2);
-					if (pos4) {
-						setItem(holder.content4,
-								(NewsItem) array.get(position + 3),
-								getSmallUrl((NewsItem) array.get(position + 3)),
-								ImageDAO.getInstance(mContext)
-										.getHeaderImageFetcher(), position, 3);
+					ImageView separator_news = (ImageView) convertView
+							.findViewById(R.id.separator_news);
+					if (position >= news.size() - 1) {
+						separator_news.setVisibility(View.GONE);
 					} else {
-						holder.content4.setVisibility(View.GONE);
+						separator_news.setVisibility(View.VISIBLE);
 					}
-				} else {
-					holder.content3.setVisibility(View.GONE);
-					holder.content4.setVisibility(View.GONE);
+
+					currentImage.setImageDrawable(null);
+					if (currentImage != null) {
+						String url = getUrl(item);
+						if (url!=null) {
+							ImageDAO.getInstance(getActivity()).loadRegularImage(url,currentImage,-1, -1);
+//							R.drawable.icn_loading, -1);					
+						} else {
+							convertView.findViewById(R.id.imageTagContent)
+									.setVisibility(View.GONE);
+						}
+					}
+
+//					if (item.getVideos() != null && item.getVideos().size() > 0) {
+//						button_play.setVisibility(View.VISIBLE);
+//					} else {
+//						button_play.setVisibility(View.GONE);
+//					}
 				}
-			} else {
-				holder.content2.setVisibility(View.GONE);
-				holder.content3.setVisibility(View.GONE);
-				holder.content4.setVisibility(View.GONE);
+
+				return convertView;
 			}
-
 		}
-
-		private void setItem(View content, NewsItem item, String urlPhoto,
-				ImageFetcher imageFetcher, int position, int offset) {
-
-			if (urlPhoto != null && urlPhoto.length() > 0) {
-
-				ImageView imageView = (ImageView) content
-						.findViewById(R.id.image);
-				loadImage(urlPhoto, imageFetcher, imageView);
-
-				if (item.getVideo() != null && item.getVideo().getUrl() != null) {
-					// content.setTag(item.getVideo().getUrl());
-					content.findViewById(R.id.iconVideo).setVisibility(
-							View.VISIBLE);
-					// } else {
-					// content.setTag(item.getUrlDetail());
-				}
-			}
-
-			content.setTag(position + offset);
-			goToDetail(content);
-
-			((TextView) content.findViewById(R.id.title)).setText(item
-					.getTitle());
-			((TextView) content.findViewById(R.id.preTitle)).setText(item
-					.getPreTitle());
-		}
-
-		private void loadImage(String urlPhoto, ImageFetcher imageFetcher,
-				ImageView imageView
-		// , int position
-		) {
-
-			imageFetcher.loadImage(urlPhoto, imageView);
-
-			// boolean needReload = true;
-			// AsyncImageTask previousTask = AsyncDrawable.getTask(imageView);
-			// if (previousTask != null) {
-			// if (previousTask.getImageIndex() == position
-			// && previousTask.getImageUrl().equals(urlPhoto))
-			// // check if the convertView happens to be previously used
-			// {
-			// needReload = false;
-			// } else {
-			// previousTask.cancel(true);
-			// }
-			// }
-			//
-			// if (needReload && Reachability.isOnline(mContext)) {
-			// AsyncImageTask task = new AsyncImageTask(imageView, flipView,
-			// position, urlPhoto);
-			// imageView.setImageDrawable(new AsyncDrawable(mContext
-			// .getResources(), placeholderBitmap, task));
-			//
-			// task.execute();
-			// }
-		}
-
-		private String getUrl(NewsItem item, int type) {
+		private String getUrl(NewsItem item) {
 			String urlPhoto = null;
-
-			if ((type == TYPE_ONE_ITEM || type == TYPE_TWO_ITEM)
-					&& item.getPhotoBig() != null) {
-				urlPhoto = item.getPhotoBig().getUrl();
-			} else if (item.getPhotoNormal() != null) {
-				urlPhoto = item.getPhotoNormal().getUrl();
-			} else if (item.getVideo() != null) {
-				if (item.getVideo().getPhoto() != null) {
-					urlPhoto = item.getVideo().getPhoto().getUrl();
-				}
-			}
-			return urlPhoto;
-		}
-
-		private String getSmallUrl(NewsItem item) {
-			String urlPhoto = null;
-
-			// } else if (item.getPhotoThumbnail() != null) {
-			// urlPhoto = item.getPhotoThumbnail().getUrl();
 			if (item.getPhotoNormal() != null) {
 				urlPhoto = item.getPhotoNormal().getUrl();
 			} else if (item.getVideo() != null) {
 				if (item.getVideo().getPhoto() != null) {
 					urlPhoto = item.getVideo().getPhoto().getUrl();
 				}
-			} else if (item.getPhotoBig() != null) {
-				urlPhoto = item.getPhotoBig().getUrl();
 			}
 			return urlPhoto;
 		}
-
-		private void goToDetail(View image) {
-			image.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-
-					Intent intent = new Intent(mContext,
-							NewsDetailActivity.class);
-					intent.putExtra("position", (Integer) v.getTag());
-					getActivity().startActivityForResult(intent,
-							ReturnRequestCodes.PUBLI_BACK);
-					getActivity().overridePendingTransition(
-							R.anim.grow_from_middle, R.anim.shrink_to_middle);
-				}
-			});
-
-		}
 	}
-
-	static class ViewHolder {
-
-		public RelativeLayout content1;
-		public RelativeLayout content2;
-		public RelativeLayout content3;
-		public RelativeLayout content4;
-
-	}
-
 }

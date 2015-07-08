@@ -45,7 +45,7 @@ public class RemoteStadiumsDAO implements AsyncLoadStadiumXMLListener,
 	private AsyncLoadStadiumDetailXML detailStaticLoadStadiumJSONReader;
 	private String currentCompetition;
 
-	private static HashMap<String, ArrayList<Stadium>> stadiums;
+	private static HashMap<String,ArrayList<Stadium>> stadiums;
 
 	public static RemoteStadiumsDAO getInstance(Context ctx) {
 		if (sInstance == null) {
@@ -188,8 +188,7 @@ public class RemoteStadiumsDAO implements AsyncLoadStadiumXMLListener,
 	}
 
 	public boolean isStadiumsPreLoaded(String competitionId) {
-		if (stadiums.containsKey(competitionId)
-				&& stadiums.get(competitionId).size() > 0) {
+		if (stadiums.containsKey(competitionId) && stadiums.get(competitionId).size() > 0) {
 			return true;
 		} else {
 			return false;
@@ -205,9 +204,8 @@ public class RemoteStadiumsDAO implements AsyncLoadStadiumXMLListener,
 	public boolean isStadiumsDeepPreLoaded(String competitioId) {
 		if (isStadiumsPreLoaded(competitioId))
 			return true;
-		else {
-			ArrayList<Stadium> stad = DatabaseDAO.getInstance(mContext)
-					.getStadiums(competitioId);
+		else{
+			ArrayList<Stadium> stad = DatabaseDAO.getInstance(mContext).getStadiums(competitioId);
 			stadiums.put(competitioId, stad);
 			if (stadiums != null && stadiums.size() > 0) {
 				return true;
@@ -216,7 +214,7 @@ public class RemoteStadiumsDAO implements AsyncLoadStadiumXMLListener,
 			}
 		}
 	}
-
+	
 	/**************** Metodos de AsyncLoadStadiumXMLListener *****************************/
 	@Override
 	public void onSuccessfulExecute(ArrayList<Stadium> stadiums) {
@@ -245,5 +243,7 @@ public class RemoteStadiumsDAO implements AsyncLoadStadiumXMLListener,
 		responseFailureRemoteConfigDetail(stadium);
 
 	}
+
+
 
 }

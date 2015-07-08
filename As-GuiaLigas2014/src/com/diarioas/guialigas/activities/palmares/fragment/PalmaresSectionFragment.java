@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
@@ -29,7 +30,6 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		RemotePalmaresDAOListener {
@@ -39,6 +39,14 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_PALMARES + "/" + NativeAds.AD_PORTADA;
+	}
+
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -61,7 +69,7 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 	/***************************************************************************/
 
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 		if (RemotePalmaresDAO.getInstance(mContext).isPalmaresLoaded(
 				competitionId)) {
 			array = RemotePalmaresDAO.getInstance(mContext)
@@ -82,7 +90,7 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		array = new ArrayList<Palmares>();
 		adapter = new PalmaresAdapter();
 
-		pullToRefresh = (PullToRefreshListView) generalView
+		contentListView = (ListView) generalView
 				.findViewById(R.id.palmaresContent);
 
 		configureListView();
@@ -109,11 +117,6 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 				getActivity().getApplication(), Omniture.SECTION_PALMARES,
 				null, null, null, Omniture.TYPE_PORTADA,
 				Omniture.TYPE_PORTADA + " " + Omniture.SECTION_PALMARES, null);
-	}
-
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_PALMARES + "/" + NativeAds.AD_PORTADA);
 	}
 
 	/***************************************************************************/
@@ -346,52 +349,52 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		}
 
 		private int getFlagResource(String winner) {
-			// if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_argentina))) {
-			// return R.drawable.palmares_flag_argentina;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_brasil))) {
-			// return R.drawable.palmares_flag_brazil;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_england))) {
-			// return R.drawable.palmares_flag_england;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_france))) {
-			// return R.drawable.palmares_flag_france;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_germany))) {
-			// return R.drawable.palmares_flag_germany;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_italy))) {
-			// return R.drawable.palmares_flag_italy;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_spain))) {
-			// return R.drawable.palmares_flag_spain;
-			// } else if (winner
-			// .equalsIgnoreCase(getString(R.string.team_champion_uruguay))) {
-			// return R.drawable.palmares_flag_uruguay;
-			// }
+//			if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_argentina))) {
+//				return R.drawable.palmares_flag_argentina;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_brasil))) {
+//				return R.drawable.palmares_flag_brazil;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_england))) {
+//				return R.drawable.palmares_flag_england;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_france))) {
+//				return R.drawable.palmares_flag_france;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_germany))) {
+//				return R.drawable.palmares_flag_germany;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_italy))) {
+//				return R.drawable.palmares_flag_italy;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_spain))) {
+//				return R.drawable.palmares_flag_spain;
+//			} else if (winner
+//					.equalsIgnoreCase(getString(R.string.team_champion_uruguay))) {
+//				return R.drawable.palmares_flag_uruguay;
+//			}
 			return 0;
 		}
 
 		private int getStarResource(Integer numStar) {
-			// switch (numStar) {
-			// case 1:
-			// return R.drawable.team_1star;
-			// case 2:
-			// return R.drawable.team_2star;
-			// case 3:
-			// return R.drawable.team_3star;
-			// case 4:
-			// return R.drawable.team_4star;
-			// case 5:
-			// return R.drawable.team_5star;
-			// case 6:
-			// return R.drawable.team_6star;
-			//
-			// default:
-			// return R.drawable.team_1star;
-			// }
+//			switch (numStar) {
+//			case 1:
+//				return R.drawable.team_1star;
+//			case 2:
+//				return R.drawable.team_2star;
+//			case 3:
+//				return R.drawable.team_3star;
+//			case 4:
+//				return R.drawable.team_4star;
+//			case 5:
+//				return R.drawable.team_5star;
+//			case 6:
+//				return R.drawable.team_6star;
+//
+//			default:
+//				return R.drawable.team_1star;
+//			}
 			return 0;
 		}
 

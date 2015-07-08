@@ -17,12 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.team.fragment.TeamPlayersFragment;
 import com.diarioas.guialigas.dao.model.player.Player;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -31,29 +30,20 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
-/**
- * @author robertosanchez
- * 
- */
 public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 		implements RemoteTeamDAOListener {
 
 	private CustomViewPagerLeague playerComparatorViewPager;
-
 	private String teamId;
 
 	/********************** Search RightPlayer ***************************/
 
 	// Second Step
 	private Team teamPR;
-	//
 	private boolean resultOk;
-
-	// Third Step
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_player_comparator);
@@ -72,23 +62,15 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onStart()
-	 */
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		resultOk = false;
 	}
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
 				Omniture.SECTION_COMPARATOR,
@@ -100,35 +82,8 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 						+ " " + Omniture.SUBSECTION_COUNTRIES + " "
 						// TODO: Falta el nombre del equipo
 						+ Omniture.SUBSUBSECTION_PLAYERS, null);
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
 	}
 
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-		ImageDAO.getInstance(this).flushCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		// ImageDAO.getInstance(this).closeCache();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
@@ -185,9 +140,6 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 		playerComparatorViewPager.setCurrentItem(0, true);
 	}
 
-	/**
-	 * @return
-	 */
 	private List<Fragment> getFragmentsSecondStep() {
 		ArrayList<Fragment> fList = new ArrayList<Fragment>();
 
@@ -218,8 +170,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 				bundlePlayer.putString("url", player.getUrl());
 			bundlePlayer.putString("demarcacion", player.getDemarcation());
 
-//			bundlePlant.putBundle(player.getShortName(), bundlePlayer);
-			bundlePlant.putBundle(nf.format(player.getDorsal()), bundlePlayer);
+			bundlePlant.putBundle(player.getShortName(), bundlePlayer);
 		}
 		args.putBundle("plantilla", bundlePlant);
 		playerFragment.setArguments(args);
@@ -240,25 +191,25 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 			newIntent.putExtra("teamName", teamPR.getShortName());
 			setResult(RESULT_OK, newIntent);
 			resultOk = true;
-			onBackPressed();
+//			onBackPressed();
+			overridePendingTransition(R.anim.null_anim, R.anim.slide_out_down);
+			finish();
 		} else {
-			AlertManager.showAlertOkDialog(
-					this,
-					getResources().getString(
-							R.string.player_comparator_not_content),
-					getResources()
-							.getString(R.string.connection_atention_title),
-
-					new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-						}
-					});
+			// AlertManager.showAlertOkDialog(
+			// this,
+			// getResources().getString(
+			// R.string.player_comparator_not_content),
+			// getResources()
+			// .getString(R.string.connection_atention_title),
+			//
+			// new OnClickListener() {
+			// @Override
+			// public void onClick(DialogInterface dialog, int which) {
+			// dialog.dismiss();
+			// }
+			// });
 		}
 	}
-
-	/************************************ SECOND STEP ******************************************/
 
 	/*********************************** Metodos de RemoteTeam *****************************************/
 	/*

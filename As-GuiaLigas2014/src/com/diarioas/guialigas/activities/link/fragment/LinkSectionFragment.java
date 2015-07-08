@@ -14,8 +14,6 @@ import android.webkit.WebViewClient;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.dao.reader.StatisticsDAO;
-import com.diarioas.guialigas.utils.Defines.Omniture;
 
 public class LinkSectionFragment extends SectionFragment {
 
@@ -26,11 +24,15 @@ public class LinkSectionFragment extends SectionFragment {
 	/***************************************************************************/
 
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		// this.adSection = NativeAds.AD_LINK + "/" + NativeAds.AD_PORTADA;
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		this.inflater = inflater;
-
 		// Inflating layout
 		generalView = inflater.inflate(R.layout.fragment_link_section,
 				container, false);
@@ -54,27 +56,21 @@ public class LinkSectionFragment extends SectionFragment {
 	}
 
 	@Override
-	protected void buildView() {
+	protected void loadInformation() {
 		webview.loadUrl(section.getUrl());
 	}
 
 	@Override
 	protected void callToOmniture() {
-		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(),
-				Omniture.SECTION_LINK,
-				null,
-				null,
-				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + ":" + Omniture.SECTION_LINK + " "
-						+ Omniture.TYPE_PORTADA, null);
-	}
-
-	@Override
-	public void callToAds() {
-		// callToAds(NativeAds.AD_LINK + "/" + NativeAds.AD_PORTADA);
-
+		// StatisticsDAO.getInstance(mContext).sendStatisticsState(
+		// getActivity().getApplication(),
+		// Omniture.SECTION_LINK,
+		// null,
+		// null,
+		// null,
+		// Omniture.TYPE_PORTADA,
+		// Omniture.TYPE_PORTADA + ":" + Omniture.SECTION_LINK + " "
+		// + Omniture.TYPE_PORTADA, null);
 	}
 
 	/***************************************************************************/

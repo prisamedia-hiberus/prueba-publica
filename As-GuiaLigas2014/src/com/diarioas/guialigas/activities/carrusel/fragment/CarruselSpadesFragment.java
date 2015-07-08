@@ -22,9 +22,9 @@ import com.diarioas.guialigas.activities.carrusel.CarruselDetailActivity;
 import com.diarioas.guialigas.dao.model.carrusel.Spade;
 import com.diarioas.guialigas.dao.model.carrusel.SpadeInfo;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOSpadesListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -135,30 +135,25 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 			@Override
 			public void onClick(View v) {
 				goToPlayer(spade.getPlayerId(), spade.getUrl());
-
 			}
 		});
 
-		try {
-			ImageDAO.getInstance(getActivity()).loadSmallPlayerImage(spade.getUrlPhoto(),
-							(ImageView) item.findViewById(R.id.playerImage),
-							R.drawable.foto_plantilla_mask);
-		} catch (Exception e) {
-			Log.e("CARRUSEL", "No se ha podido descargar la imagen de la url: "
-					+ spade.getUrlPhoto());
-		}
+		ImageDAO.getInstance(mContext).loadPlayerTeamDetailImage(
+				spade.getUrlPhoto(), R.drawable.foto_plantilla_generica,
+				(ImageView) item.findViewById(R.id.playerImage),
+				R.drawable.foto_plantilla_mask);
 
 		TextView dorsalText = (TextView) item.findViewById(R.id.dorsalText);
 		FontUtils.setCustomfont(mContext, dorsalText,
-				FontTypes.HELVETICANEUEBOLD);
+				FontTypes.ROBOTO_BOLD);
 		dorsalText.setText(spade.getDorsal() + ".");
 
 		TextView titleText = (TextView) item.findViewById(R.id.titleText);
-		FontUtils.setCustomfont(mContext, titleText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, titleText, FontTypes.ROBOTO_REGULAR);
 		titleText.setText(spade.getPlayer());
 
 		TextView teamText = (TextView) item.findViewById(R.id.teamText);
-		FontUtils.setCustomfont(mContext, teamText, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, teamText, FontTypes.ROBOTO_REGULAR);
 		teamText.setText(nameTeam);
 
 		LinearLayout spadesContent = (LinearLayout) item
@@ -186,7 +181,7 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 		} catch (Exception e) {
 			spadesText.setText(value);
 			FontUtils.setCustomfont(mContext, spadesText,
-					FontTypes.HELVETICANEUE);
+					FontTypes.ROBOTO_REGULAR);
 			spadesText.setVisibility(View.VISIBLE);
 		}
 
@@ -201,7 +196,7 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 	private View getContainerGroup(String name, int idImage) {
 		View header = inflater.inflate(R.layout.item_list_spades_header, null);
 		TextView nameTeam = (TextView) header.findViewById(R.id.nameTeam);
-		FontUtils.setCustomfont(mContext, nameTeam, FontTypes.HELVETICANEUE);
+		FontUtils.setCustomfont(mContext, nameTeam, FontTypes.ROBOTO_REGULAR);
 		nameTeam.setText(name);
 
 		ImageView photoTeam = (ImageView) header.findViewById(R.id.photoTeam);

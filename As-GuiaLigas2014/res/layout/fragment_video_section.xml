@@ -5,58 +5,32 @@
     android:background="@color/white" >
 
     <RelativeLayout
-        android:id="@+id/playerSpinnerContent"
+        android:id="@+id/publiContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:clickable="false"
-        android:orientation="horizontal"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:visibility="invisible" >
-
-        <RelativeLayout
-            android:id="@+id/playerSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/spinner_guia0000"
-            android:clickable="false" >
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/playerSpinner"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/titlePulltoRefresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ptr_pull_to_refresh"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_pulltorefresh_message" />
-
-            <TextView
-                android:id="@+id/datePulltoRefresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_pulltorefresh_message" />
-        </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
     </RelativeLayout>
 
-    <com.aphidmobile.flip.FlipViewController
-        xmlns:flip="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/flipView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        flip:animationBitmapFormat="ARGB_8888"
-        flip:orientation="vertical" />
+        android:layout_above="@id/publiContent"
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/videoList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent"
+            android:orientation="vertical"
+            android:scrollbars="none" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

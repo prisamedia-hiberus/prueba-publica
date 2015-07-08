@@ -13,6 +13,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.model.competition.Group;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
@@ -60,7 +61,7 @@ public class CompetitionHomeGroupFragment extends CompetitionHomeFragment {
 				convertView = inflater.inflate(R.layout.item_grid_group, null);
 				nameGroup = (TextView) convertView.findViewById(R.id.nameGroup);
 				FontUtils.setCustomfont(mContext, nameGroup,
-						FontTypes.HELVETICANEUE);
+						FontTypes.ROBOTO_REGULAR);
 				nameGroup.setText(getString(R.string.group)
 						+ groups.get(i).getName());
 				teamsContent = (LinearLayout) convertView

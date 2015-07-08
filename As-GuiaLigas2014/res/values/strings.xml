@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Guía de la Liga</string>
+    <string name="app_name">Guía de las Ligas</string>
     <string name="app_name_normalize" translatable="false">Guia-Liga</string>
 
     <!-- PLAYER -->
@@ -151,6 +151,12 @@
     <!-- home -->
     <string name="group">Grupo&#160;</string>
 
+    <!-- Videos -->
+    <string name="video_error">Error al cargar el vídeo seleccionado</string>
+    <string name="video_error_general">No se ha podido cargar el vídeo seleccionado en estos momentos</string>
+    <string name="video_error_message_no_internet">No dispone de internet para poder visualizar el vídeo seleccionado</string>
+    <string name="video_error_message_region">No ha sido posible cargar el vídeo seleccionado para la región en la que se encuentra</string>
+    
     <!-- AlertManager -->
     <string name="accept">OK</string>
     <string name="share_mens_title">Compartir&#160;</string>

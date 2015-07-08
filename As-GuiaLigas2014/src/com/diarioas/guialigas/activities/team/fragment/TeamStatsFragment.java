@@ -149,6 +149,12 @@ public class TeamStatsFragment extends TeamFragment {
 
 		configurePalmares();
 	}
+	
+	@Override
+	protected void startFirstShow() {
+		// TODO Auto-generated method stub
+
+	}
 
 	private void configureGeneral() {
 
@@ -713,6 +719,8 @@ public class TeamStatsFragment extends TeamFragment {
 		}
 
 	}
+
+
 
 	/********************************* PALMARES ******************************************************/
 

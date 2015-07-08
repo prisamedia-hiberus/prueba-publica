@@ -14,18 +14,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
+import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepFirstActivity;
 import com.diarioas.guialigas.activities.player.fragment.PlayerInfoFragment;
 import com.diarioas.guialigas.activities.player.fragment.PlayerPalmaresFragment;
@@ -45,16 +44,8 @@ import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerPlayer;
 
-/**
- * @author robertosanchez
- * 
- */
 public class PlayerActivity extends GeneralFragmentActivity implements
 		ViewPager.OnPageChangeListener, RemotePlayerDAOListener {
-
-	/**
-	 * 
-	 */
 
 	private static final int BUTTON_PALMARES = 0;
 	private static final int BUTTON_INFO = 1;
@@ -74,39 +65,26 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	private CustomViewPagerPlayer playerViewPager;
 	private Player currentPlayer;
 	private String teamName;
-	private String teamShortName;
 
 	private PlayerInfoFragment infoFragment;
 	private boolean isLoaded;
-	
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_player);
 		spinner = (RelativeLayout) findViewById(R.id.spinner);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onResume()
-	 */
 	@Override
 	public void onResume() {
 		super.onResume();
-//		mImageFetcher.setExitTasksEarly(false);
 		if (!isLoaded) {
 			Bundle extras = getIntent().getExtras();
 			int currentPlayerId = extras.getInt("playerId");
 			if (extras.containsKey("teamName"))
 				teamName = extras.getString("teamName");
-			if (extras.containsKey("teamShortName"))
-				teamShortName = extras.getString("teamShortName");
-			
 
 			configActionBar();
 			configView();
@@ -126,48 +104,21 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onStop()
-	 */
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		RemotePlayerDAO.getInstance(this).removeListener(this);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
+		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.actionbar_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-//		mImageFetcher.setExitTasksEarly(false);
-//		mImageFetcher.flushCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-//		mImageFetcher.clearCache();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onDestroy()
-	 */
-	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		if (playerViewPager != null) {
 			playerViewPager.removeAllViews();
@@ -178,18 +129,10 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		trayectoriaPlayerButton = null;
 		if (currentPlayer != null)
 			currentPlayer = null;
-
-//		mImageFetcher.closeCache();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		setResult(RESULT_OK);
 		super.onBackPressed();
 		overridePendingTransition(R.anim.grow_from_middle,
@@ -198,7 +141,6 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			onBackPressed();
@@ -220,14 +162,14 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			// getString(R.string.app_name));
 			String body = getString(R.string.mens_share_part1_2)
 					+ currentPlayer.getName()
-					+ getString(R.string.mens_share_part2)+"<a href=\""+ getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
+					+ getString(R.string.mens_share_part2)
 			// + getString(R.string.share_mens_url_long)
 			// + getString(R.string.share_mens_part2)
 			// + getString(R.string.share_mens_url_short)
 			// + getString(R.string.share_mens_part4)
 			;
-//			intent.putExtra(Intent.EXTRA_TEXT, body);
-			intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+			intent.putExtra(Intent.EXTRA_TEXT, body);
+			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(intent,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));
@@ -271,9 +213,6 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 	}
 
-
-
-
 	private void configViewPager() {
 		playerViewPager = (CustomViewPagerPlayer) findViewById(R.id.playerViewPager);
 		playerViewPager.setTeamName(teamName);
@@ -294,13 +233,13 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
-		
+		String normalize = StringUtils.getNormalizeText(teamName);
 		String playerName = StringUtils.getNormalizeText(currentPlayer
 				.getShortName());
 		switch (pos) {
 		case 0:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), teamShortName,
+					.sendStatisticsState(getApplication(), normalize,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_PALMARES, Omniture.TYPE_ARTICLE,
@@ -308,7 +247,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			break;
 		case 1:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), teamShortName,
+					.sendStatisticsState(getApplication(), normalize,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_INFORMATION, Omniture.TYPE_ARTICLE,
@@ -316,7 +255,7 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			break;
 		case 2:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), teamShortName,
+					.sendStatisticsState(getApplication(), normalize,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_TRAYECTORIA, Omniture.TYPE_ARTICLE,
@@ -418,7 +357,9 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		}
 		configViewPager();
 		if (player.getShortName() != null) {
-			String section = NativeAds.AD_PLAYER+"/"+ StringUtils.getNormalizeText(player.getNameTeam()+"/"+ player.getShortName(), false, true, true).replaceAll("_", "");
+			String section = NativeAds.AD_PLAYER
+			// + StringUtils.getNormalizeText(player.getShortName())
+			;
 			callToAds(section, true);
 		}
 

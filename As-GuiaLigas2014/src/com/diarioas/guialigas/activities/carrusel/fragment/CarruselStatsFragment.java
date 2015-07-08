@@ -233,10 +233,10 @@ public class CarruselStatsFragment extends CarruselFragment implements
 						FontTypes.ROBOTO_REGULAR);
 				FontUtils.setCustomfont(mContext,
 						convertView.findViewById(R.id.statsTextPL),
-						FontTypes.HELVETICANEUELIGHT);
+						FontTypes.ROBOTO_LIGHT);
 				FontUtils.setCustomfont(mContext,
 						convertView.findViewById(R.id.statsTextPR),
-						FontTypes.HELVETICANEUELIGHT);
+						FontTypes.ROBOTO_LIGHT);
 
 			}
 

@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="height_actionBar">80dip</dimen>
+    <dimen name="height_actionBar">60dip</dimen>
     <dimen name="widht_menu_size">320dip</dimen>
 
     <!-- Action Bar -->
-    <dimen name="size_actionbar">20dp</dimen>
-    <dimen name="size_item_actionbar">15sp</dimen>
+    <dimen name="size_actionbar">60dip</dimen>
+    <dimen name="size_item_actionbar">60dip</dimen>
+    <dimen name="size_item_actionbar_text">19sp</dimen>
     <dimen name="size_subtitle">19sp</dimen>
     <dimen name="size_button_bar">15sp</dimen>
     <!--  -->
@@ -16,6 +17,7 @@
     <dimen name="padding_footer">50dp</dimen>
     <dimen name="padding_footer_min">40dp</dimen>
     <dimen name="padding_photo">4dp</dimen>
+    <dimen name="footer_height">30dp</dimen>
 
     <!-- ImageFetcher -->
 
@@ -23,7 +25,6 @@
     <dimen name="image_player_height_small">51dp</dimen>
     <dimen name="image_thumb_height_small">170dp</dimen>
     <dimen name="image_thumb_height">206dp</dimen>
-    <dimen name="image_actionbar_height">23dp</dimen>
     <dimen name="image_image_height">640dp</dimen>
     <dimen name="image_news_detail_height">300dp</dimen>
 
@@ -103,5 +104,6 @@
     <dimen name="size_fragment_team_18">18sp</dimen>
     <dimen name="size_fragment_team_19">19sp</dimen>
     <dimen name="size_fragment_team_20">20sp</dimen>
+    <dimen name="flip_size_padding">8dp</dimen>
 
 </resources>

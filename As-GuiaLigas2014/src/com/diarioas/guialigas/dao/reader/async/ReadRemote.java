@@ -21,10 +21,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 
-/**
- * @author robertosanchez
- * 
- */
 public class ReadRemote {
 
 	public static String readRemoteFile(String myurl, boolean gzip)
@@ -67,14 +63,7 @@ public class ReadRemote {
 			}
 
 			strFileContents = sb.toString();
-			if (strFileContents.startsWith("\uFEFF")) {
-				// Log.d("READREMOTE", "Starts withh BOM");
-				strFileContents = strFileContents.replace("\uFEFF", "");
-				// Log.d("READREMOTE",
-				// "Starts withh BOM: "
-				// + strFileContents.startsWith("\uFEFF"));
-			}
-			
+			// strFileContents = strFileContents.replaceAll("\\t", "");
 			return strFileContents;
 
 		} catch (ClientProtocolException e) {

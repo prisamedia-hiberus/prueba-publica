@@ -88,32 +88,35 @@ public class ComparatorPlayerFragmentStepFirst extends Fragment {
 	private void configurePlayerLeft() {
 		String url = getArguments().getString("fotoPL");
 		if (url != null) {
-			ImageDAO.getInstance(getActivity()).loadPlayerImage(url,((ImageView) generalView.findViewById(R.id.photoPlayerLeft)),R.drawable.mask_foto);
+
+			ImageDAO.getInstance(mContext).loadRegularImage(url,
+					(ImageView) generalView.findViewById(R.id.photoPlayerLeft),
+					-1, R.drawable.mask_foto, true);
 		}
 
 		TextView namePlayerLeft = (TextView) generalView
 				.findViewById(R.id.namePlayerLeft);
 		FontUtils.setCustomfont(mContext, namePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 		namePlayerLeft.setText(getArguments().getString("namePL"));
 
 		TextView teamPlayerLeft = (TextView) generalView
 				.findViewById(R.id.teamPlayerLeft);
 		FontUtils.setCustomfont(mContext, teamPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUEBOLD);
+				FontUtils.FontTypes.ROBOTO_BOLD);
 
 		teamPlayerLeft.setText(getArguments().getString("teamNamePL"));
 
 		TextView datePlayerLeft = (TextView) generalView
 				.findViewById(R.id.datePlayerLeft);
 		FontUtils.setCustomfont(mContext, datePlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		datePlayerLeft.setText(getArguments().getString("datePL"));
 
 		TextView paisPlayerLeft = (TextView) generalView
 				.findViewById(R.id.paisPlayerLeft);
 		FontUtils.setCustomfont(mContext, paisPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		paisPlayerLeft.setText(getArguments().getString("paisPL")
 				+ getString(R.string.separator)
 				+ getArguments().getInt("edadPL")
@@ -122,7 +125,7 @@ public class ComparatorPlayerFragmentStepFirst extends Fragment {
 		TextView positionPlayerLeft = (TextView) generalView
 				.findViewById(R.id.positionPlayerLeft);
 		FontUtils.setCustomfont(mContext, positionPlayerLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
+				FontUtils.FontTypes.ROBOTO_REGULAR);
 		String positionPL = getArguments().getString("positionPL");
 		if (positionPL != null)
 			positionPlayerLeft.setText(getArguments().getString("positionPL")
@@ -131,11 +134,9 @@ public class ComparatorPlayerFragmentStepFirst extends Fragment {
 		TextView playerDorsalLeft = (TextView) generalView
 				.findViewById(R.id.playerDorsalLeft);
 		FontUtils.setCustomfont(mContext, playerDorsalLeft,
-				FontUtils.FontTypes.HELVETICANEUE);
-		int dorsalPL = getArguments().getInt(
-				"dorsalPL");
-		if (dorsalPL>0)
-			playerDorsalLeft.setText(String.valueOf(dorsalPL));
+				FontUtils.FontTypes.ROBOTO_REGULAR);
+		playerDorsalLeft.setText(String.valueOf(getArguments().getInt(
+				"dorsalPL")));
 
 	}
 

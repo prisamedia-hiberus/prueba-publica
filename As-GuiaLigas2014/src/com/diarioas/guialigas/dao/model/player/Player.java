@@ -33,7 +33,7 @@ public class Player {
 	private String competiciones;
 	private ArrayList<TituloPlayer> palmares;
 	private ArrayList<Trayectoria> trayectoria;
-	private HashMap<String, PlayerStats> stats;// Año, Estadistica
+	private HashMap<String, PlayerStats> stats;// A�o, Estadistica
 
 	public Player() {
 		palmares = new ArrayList<TituloPlayer>();

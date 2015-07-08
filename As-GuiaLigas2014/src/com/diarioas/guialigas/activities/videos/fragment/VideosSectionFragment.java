@@ -2,32 +2,32 @@ package com.diarioas.guialigas.activities.videos.fragment;
 
 import java.util.ArrayList;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.aphidmobile.flip.FlipViewController;
-import com.aphidmobile.flip.FlipViewController.ViewFlipListener;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.general.fragment.FlipSectionFragment;
+import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.activities.team.TeamVideoActivity;
+import com.diarioas.guialigas.activities.videos.VideoActivity;
 import com.diarioas.guialigas.dao.model.video.VideoItem;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteVideosDAO;
 import com.diarioas.guialigas.dao.reader.RemoteVideosDAO.RemoteVideosDAOListener;
+import com.diarioas.guialigas.dao.reader.RemoteVideosDAO.RemoteVideosDAOVideoGeoBlock;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -35,15 +35,27 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+import com.diarioas.guialigas.utils.Reachability;
 
-public class VideosSectionFragment extends FlipSectionFragment implements
-		RemoteVideosDAOListener, ViewFlipListener {
+public class VideosSectionFragment extends SectionFragment implements
+		RemoteVideosDAOListener, RemoteVideosDAOVideoGeoBlock {
 
-	private VideoAdapter videoAdapter;
+	private SwipeRefreshLayout swipeRefreshLayout = null;
+	private VideoAdapter videoAdapter = null;
+	private ArrayList<VideoItem> currentArrayVideoItems = new ArrayList<VideoItem>();
+	private View errorContainer = null;
+	private ListView videoList = null;
 
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.adSection = NativeAds.AD_VIDEOS + "/" + NativeAds.AD_PORTADA;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -57,41 +69,91 @@ public class VideosSectionFragment extends FlipSectionFragment implements
 
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
-		RemoteVideosDAO.getInstance(mContext).removeListener(this);
+		RemoteVideosDAO.getInstance(mContext).cancelCall();
 	}
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
+		RemoteVideosDAO.getInstance(mContext).cancelCall();
 
-		if (array != null) {
-			array.clear();
-			array = null;
+		if (this.currentArrayVideoItems != null) {
+			this.currentArrayVideoItems.clear();
+			this.currentArrayVideoItems = null;
 		}
-		videoAdapter = null;
+
+		if (this.videoAdapter != null) {
+			this.videoAdapter = null;
+		}
 	}
 
+	/******************* Configuration methods *********************************/
 	/***************************************************************************/
-	/** Configuration methods **/
-	/***************************************************************************/
-
-	@Override
-	protected void buildView() {
-		reloadData();
-
-	}
 
 	@Override
 	protected void configureView() {
-		super.configureView();
-
-		array = getVideoNews();
-
+		configureErrorView();
 		configureListView();
 		callToOmniture();
+		configureSwipeLoader();
+	}
+
+	private void configureErrorView() {
+		this.errorContainer = getErrorContainer();
+		if (this.errorContainer != null) {
+			errorContainer.setVisibility(View.INVISIBLE);
+			((RelativeLayout) generalView).addView(errorContainer);
+		}
+	}
+
+	private void configureSwipeLoader() {
+		this.swipeRefreshLayout = (SwipeRefreshLayout) generalView
+				.findViewById(R.id.swipe_container);
+		this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {
+				loadInformation();
+			}
+		});
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.black,
+				R.color.red, R.color.white);
+	}
+
+	private void closePullToRefresh() {
+		if (this.swipeRefreshLayout != null) {
+			this.swipeRefreshLayout.setRefreshing(false);
+		}
+	}
+
+	private void configureListView() {
+
+		this.videoAdapter = new VideoAdapter();
+		this.videoList = (ListView) generalView.findViewById(R.id.videoList);
+		this.videoList.setDivider(null);
+		this.videoList.setDividerHeight(0);
+		this.videoList.setCacheColorHint(0);
+
+		this.videoList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				goToVideo(position);
+			}
+		});
+
+		this.videoList.setAdapter(this.videoAdapter);
+	}
+
+	/******************* Load Information methods *********************************/
+	/***************************************************************************/
+
+	@Override
+	protected void loadInformation() {
+		RemoteVideosDAO.getInstance(mContext).addVideosListener(this);
+		RemoteVideosDAO.getInstance(mContext).getVideosInfo(section.getUrl());
 	}
 
 	private ArrayList<VideoItem> getVideoNews() {
@@ -102,44 +164,42 @@ public class VideosSectionFragment extends FlipSectionFragment implements
 		}
 	}
 
-	private void configureListView() {
-
-		videoAdapter = new VideoAdapter();
-		flipView = (FlipViewController) generalView.findViewById(R.id.flipView);
-
-		flipView.setAdapter(videoAdapter);
-		flipView.setOnViewFlipListener(this);
-
-	}
-
-	@Override
-	protected void stopPlayerAnimation() {
-		stopPlayerAnimation(RemoteVideosDAO.getInstance(mContext)
-				.getDateVideoUpdated());
-	}
-
-	@Override
-	protected void updateData() {
-		videoAdapter.notifyChange();
-	}
-
-	@Override
-	protected void reloadData() {
-		RemoteVideosDAO.getInstance(mContext).addListener(this);
-		RemoteVideosDAO.getInstance(mContext).getVideosInfo(section.getUrl());
-	}
+	private static String GEOBLOCK_BU = "as";
+	public int currentVideoPosition = 0;
 
 	private void goToVideo(Integer pos) {
-		Intent intent = new Intent(mContext, TeamVideoActivity.class);
-		VideoItem videoItem = (VideoItem) array.get(pos);
-		intent.putExtra("url", videoItem.getUrlEnclosure());
-		intent.putExtra("section", videoItem.getTitle());
-		intent.putExtra("subsection", videoItem.getTitle());
 
-		getActivity().startActivityForResult(intent,
-				ReturnRequestCodes.PUBLI_BACK);
-		getActivity().overridePendingTransition(R.anim.grow_from_middle,
-				R.anim.shrink_to_middle);
+		if (Reachability.isOnline(mContext)) {
+
+			Intent intent = new Intent(mContext, VideoActivity.class);
+			VideoItem videoItem = (VideoItem) currentArrayVideoItems.get(pos);
+
+			if (videoItem != null && videoItem.getUrlEnclosure() != null
+					&& videoItem.getUrlEnclosure().length() > 0) {
+				intent.putExtra("url", videoItem.getUrlEnclosure());
+				intent.putExtra("section", videoItem.getTitle());
+				intent.putExtra("subsection", videoItem.getTitle());
+
+				getActivity().startActivityForResult(intent,
+						ReturnRequestCodes.PUBLI_BACK);
+				getActivity().overridePendingTransition(
+						R.anim.grow_from_middle, R.anim.shrink_to_middle);
+			} else if (videoItem != null && videoItem.getIdBC() != null
+					&& videoItem.getIdBC().length() > 0) {
+
+				this.currentVideoPosition = pos;
+				RemoteVideosDAO.getInstance(mContext).addVideoBlockListener(
+						this);
+				RemoteVideosDAO.getInstance(mContext).requestVideoBlock(
+						videoItem.getIdBC() + GEOBLOCK_BU);
+			} else {
+				errVideoRegion(getResources().getString(
+						R.string.video_error_general));
+			}
+		} else {
+			errVideoRegion(getResources().getString(
+					R.string.video_error_message_no_internet));
+		}
 	}
 
 	/***************************************************************************/
@@ -154,225 +214,168 @@ public class VideosSectionFragment extends FlipSectionFragment implements
 				null);
 	}
 
-	@Override
-	public void callToAds() {
-		callToAds(NativeAds.AD_VIDEOS + "/" + NativeAds.AD_PORTADA);
-	}
-
-	/***************************************************************************/
-	/** RemotePalmaresDAOListener methods **/
+	/************** RemoteVideosDAOListener methods *******************************/
 	/***************************************************************************/
 
 	@Override
-	public void onSuccessRemoteconfig(ArrayList<VideoItem> videosNewsArray) {
-		Log.d("VIDEOS", "Updated Rss - onSuccessRemoteconfig");
-		RemoteVideosDAO.getInstance(mContext).removeListener(this);
-		this.array = videosNewsArray;
+	public void onSuccessRemoteVideos(ArrayList<VideoItem> videos) {
+
+		RemoteVideosDAO.getInstance(mContext).removeVideosListener(this);
+		fillInformationAction(videos);
+	}
+
+	private void fillInformationAction(ArrayList<VideoItem> videos) {
+		this.currentArrayVideoItems = videos;
+		this.videoList.setVisibility(View.VISIBLE);
+		closePullToRefresh();
+		this.videoAdapter.notifyDataSetChanged();
 		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
-		loadData(true);
 	}
 
 	@Override
-	public void onFailureRemoteconfig() {
-		Log.d("VIDEOS", "Updated Rss - onFailureRemoteconfig");
-		RemoteVideosDAO.getInstance(mContext).removeListener(this);
-		AlertManager.showAlertOkDialog(getActivity(),
-				getResources().getString(R.string.section_not_conection),
-				getResources().getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						array = getVideoNews();
-
-						if (array != null && array.size() > 0) {
-							loadData(true);
-						} else {
-							errorContainer.setVisibility(View.VISIBLE);
-							// loadData(true);
-						}
-					}
-
-				});
-
-		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
+	public void onFailureRemoteVideos() {
+		RemoteVideosDAO.getInstance(mContext).removeVideosListener(this);
+		errorInformationAction();
 	}
 
-	@Override
-	public void onFailureNotConnection() {
-		Log.d("VIDEOS", "Updated Rss - onFailureNotConnection");
-		RemoteVideosDAO.getInstance(mContext).removeListener(this);
-		AlertManager.showAlertOkDialog(getActivity(),
-				getResources().getString(R.string.section_not_conection),
-				getResources().getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						array = getVideoNews();
-						if (array != null && array.size() > 0) {
-							loadData(true);
-						} else {
-							errorContainer.setVisibility(View.VISIBLE);
-							// videoAdapter.addHeader(getErrorContainer());
-							// loadData(true);
-						}
-					}
-
-				});
-
+	private void errorInformationAction() {
+		closePullToRefresh();
+		videoList.setVisibility(View.INVISIBLE);
+		errorContainer.setVisibility(View.VISIBLE);
 		((HomeActivity) getActivity()).stopAnimation();
-		stopPlayerAnimation();
-
 	}
 
 	/***************************************************************************/
 	/** VideoAdapter **/
 	/***************************************************************************/
-	class VideoAdapter extends BaseAdapter {
 
-		private final Bitmap placeholderBitmap;
+	class VideoAdapter extends BaseAdapter {
+		private static final int ITEM_NORMAL = 0;
+		private static final int TOTAL_ITEM = ITEM_NORMAL + 1;
 
 		public VideoAdapter() {
-			placeholderBitmap = BitmapFactory.decodeResource(
-					mContext.getResources(), R.drawable.galeria_imagenrecurso);
 		}
 
-		public void notifyChange() {
-			notifyDataSetChanged();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getCount()
-		 */
 		@Override
 		public int getCount() {
-			int i = array.size() / 2;
-
-			if (array.size() % 2 != 0)
-				i++;
-
-			return i;
+			if (currentArrayVideoItems != null) {
+				return currentArrayVideoItems.size();
+			} else {
+				return 0;
+			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItem(int)
-		 */
 		@Override
-		public Object getItem(int arg0) {
-			// TODO Auto-generated method stub
-			return null;
+		public int getItemViewType(int position) {
+			return ITEM_NORMAL;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItemId(int)
-		 */
+		@Override
+		public int getViewTypeCount() {
+			return TOTAL_ITEM;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return currentArrayVideoItems.get(position);
+		}
+
 		@Override
 		public long getItemId(int arg0) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getView(int, android.view.View,
-		 * android.view.ViewGroup)
-		 */
-		@SuppressLint("NewApi")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
-			final ViewHolder holder;
-			if (convertView == null || convertView.getTag() == null) {
-				holder = new ViewHolder();
-				convertView = inflater.inflate(R.layout.item_list_video, null);
-				holder.image1 = (ImageView) convertView
-						.findViewById(R.id.image1);
-				holder.titleLabel1 = (TextView) convertView
-						.findViewById(R.id.titleLabel1);
-				FontUtils.setCustomfont(mContext, holder.titleLabel1,
-						FontTypes.HELVETICANEUEBOLD);
-				holder.content1 = (RelativeLayout) convertView
-						.findViewById(R.id.content1);
+			if (convertView == null) {
 
-				holder.image2 = (ImageView) convertView
-						.findViewById(R.id.image2);
-				holder.titleLabel2 = (TextView) convertView
-						.findViewById(R.id.titleLabel2);
-				FontUtils.setCustomfont(mContext, holder.titleLabel2,
-						FontTypes.HELVETICANEUEBOLD);
-				holder.content2 = (RelativeLayout) convertView
-						.findViewById(R.id.content2);
-
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
+				convertView = inflater.inflate(R.layout.frontpage_video_item,
+						null);
+				FontUtils.setCustomfont(mContext,
+						(TextView) convertView.findViewById(R.id.title_video),
+						FontTypes.ROBOTO_MEDIUM);
 			}
 
-			VideoItem videoItemFirst = (VideoItem) array.get(2 * position);
-			holder.titleLabel1.setText(videoItemFirst.getTitle());
-			loadImage(videoItemFirst.getUrlThumbnail(), holder.image1);
+			ImageView currentImage = (ImageView) convertView
+					.findViewById(R.id.background_video_image);
+			TextView title = (TextView) convertView
+					.findViewById(R.id.title_video);
 
-			holder.content1.setTag(2 * position);
-			holder.content1.setOnClickListener(new OnClickListener() {
+			VideoItem videoItem = (VideoItem) getItem(position);
+			title.setText(videoItem.getTitle());
 
-				@Override
-				public void onClick(View v) {
-					goToVideo((Integer) v.getTag());
+			currentImage.setImageDrawable(null);
+			if (currentImage != null) {
+
+				if (videoItem.getUrlThumbnail() != null) {
+					currentImage.setVisibility(View.VISIBLE);
+					ImageDAO.getInstance(getActivity()).loadImageNoResize(
+							videoItem.getUrlThumbnail(), currentImage);
+				} else {
+					currentImage.setVisibility(View.GONE);
 				}
-			});
+			}
 
-			if (array.size() > ((2 * position) + 1)) {
-				VideoItem videoItemSecond = (VideoItem) array
-						.get((2 * position) + 1);
-				holder.titleLabel2.setText(videoItemSecond.getTitle());
-				loadImage(videoItemSecond.getUrlThumbnail(), holder.image2);
+			FrameLayout space_separator = (FrameLayout) convertView
+					.findViewById(R.id.space_separator);
+			if (position + 1 >= currentArrayVideoItems.size()) {
+				space_separator.setVisibility(View.GONE);
+			} else {
+				space_separator.setVisibility(View.VISIBLE);
+			}
 
-				holder.content2.setVisibility(View.VISIBLE);
-				holder.content2.setTag((2 * position) + 1);
-				holder.content2.setOnClickListener(new OnClickListener() {
+			return convertView;
+		}
+	}
+
+	/********************** NewsDAOVideoGeoBlock methods ***********************/
+
+	@Override
+	public void onSuccessVideoGeoBlock(String urlVideo) {
+		RemoteVideosDAO.getInstance(mContext).removeVideoBlockListener(this);
+
+		if (this.currentVideoPosition != -1
+				&& currentArrayVideoItems != null
+				&& currentArrayVideoItems.size() > this.currentVideoPosition
+				&& currentArrayVideoItems.get(this.currentVideoPosition) != null) {
+
+			Intent intent = new Intent(mContext, VideoActivity.class);
+			VideoItem videoItem = (VideoItem) currentArrayVideoItems.get(this.currentVideoPosition);
+
+			intent.putExtra("url", urlVideo);
+			intent.putExtra("section", videoItem.getTitle());
+			intent.putExtra("subsection", videoItem.getTitle());
+
+			getActivity().startActivityForResult(intent,
+					ReturnRequestCodes.PUBLI_BACK);
+			getActivity().overridePendingTransition(R.anim.grow_from_middle,
+					R.anim.shrink_to_middle);
+
+		} else {
+			errVideoRegion(getResources().getString(
+					R.string.video_error_message_region));
+		}
+	}
+
+	@Override
+	public void onFailureVideoGeoBlock() {
+		RemoteVideosDAO.getInstance(mContext).removeVideoBlockListener(this);
+
+		errVideoRegion(getResources().getString(
+				R.string.video_error_message_region));
+	}
+
+	private void errVideoRegion(String message) {
+		AlertManager.showAlertOkDialog(getActivity(), message, getResources()
+				.getString(R.string.video_error),
+				new android.content.DialogInterface.OnClickListener() {
 
 					@Override
-					public void onClick(View v) {
-						goToVideo((Integer) v.getTag());
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
 					}
 
 				});
-			} else {
-				holder.content2.setVisibility(View.INVISIBLE);
-			}
-
-			if (position == 0) {
-				firstView = convertView;
-			}
-			return convertView;
-		}
-
-		private void loadImage(String urlPhoto, ImageView imageView) {
-			ImageDAO.getInstance(mContext).loadHalfImage(urlPhoto, imageView);
-		}
 	}
-
-	static class ViewHolder {
-
-		public RelativeLayout content1;
-		public RelativeLayout content2;
-		public TextView titleLabel2;
-		public ImageView image2;
-		public TextView titleLabel1;
-		public ImageView image1;
-
-	}
-
 }

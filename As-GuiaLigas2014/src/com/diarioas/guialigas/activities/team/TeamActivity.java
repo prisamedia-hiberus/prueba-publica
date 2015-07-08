@@ -15,19 +15,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.player.PlayerActivity;
+import com.diarioas.guialigas.activities.team.fragment.TeamFragment;
 import com.diarioas.guialigas.activities.team.fragment.TeamInfoFragment;
 import com.diarioas.guialigas.activities.team.fragment.TeamPlayersFragment;
 import com.diarioas.guialigas.activities.team.fragment.TeamStatsFragment;
@@ -35,7 +33,6 @@ import com.diarioas.guialigas.dao.model.player.Player;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.model.team.TituloTeam;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO;
 import com.diarioas.guialigas.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -65,9 +62,10 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	private Button playersButton;
 
 	private int currentPos = -1;
-
+	
 	private Team currentTeam;
 	private ViewPager teamViewPager;
+	// private CustomHoizontalScroll headerSroll;
 	private String competitionId;
 
 	private List<Fragment> fragments;
@@ -77,7 +75,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_team);
@@ -98,14 +95,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-
-	}
-
-	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
@@ -113,7 +102,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			if (requestCode == ReturnRequestCodes.PUBLI_BACK) {
 				if (currentTeam != null && currentTeam.getShortName() != null) {
 					String section = NativeAds.AD_COUNTRY
-							+ StringUtils.getNormalizeText(currentTeam.getShortName(), false, true, true).replaceAll("_", "");
+							+ StringUtils.getNormalizeText(currentTeam
+									.getShortName());
 					callToAds(section, true);
 					callToOmniture(teamViewPager.getCurrentItem());
 				}
@@ -122,46 +112,11 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitPlayerTaskEarly();
-		ImageDAO.getInstance(this).flushPlayerCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		ImageDAO.getInstance(this).closePlayerCache();
-		ImageDAO.getInstance(this).erasePlayerCache();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
-	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		setResult(RESULT_OK);
 		super.onBackPressed();
 		overridePendingTransition(R.anim.grow_from_middle,
 				R.anim.shrink_to_middle);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.actionbar_menu, menu);
-		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -189,15 +144,15 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
 			String body = getString(R.string.mens_share_part1_1)
 					+ currentTeam.getName()
-					+ getString(R.string.mens_share_part2)+"<a href=\""
-			 + getString(R.string.share_mens_url_long_1)+getApplicationContext().getPackageName()+"\">"+getString(R.string.mens_share_part3)+"</a>"
+					+ getString(R.string.mens_share_part2)
+			// + getString(R.string.share_mens_url_long)
 			// + getString(R.string.share_mens_part2)
-//			 + getString(R.string.share_mens_url_short_1)
-//			 + getString(R.string.share_mens_part4)
+			// + getString(R.string.share_mens_url_short)
+			// + getString(R.string.share_mens_part4)
 			;
 
-//			i.putExtra(Intent.EXTRA_TEXT, body);
-			i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+			i.putExtra(Intent.EXTRA_TEXT, body);
+			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(i,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));
@@ -222,11 +177,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		currentTeam = team;
 		configViewPager();
 		if (currentTeam.getShortName() != null) {
-			String competitionName = getIntent().getExtras().getString(
-					"competitionName");
 			String section = NativeAds.AD_COUNTRY
-					+ StringUtils.getNormalizeText(competitionName + "/"
-					+ currentTeam.getShortName(),false, true, true).replaceAll("_", "");
+					+ StringUtils.getNormalizeText(currentTeam.getShortName());
 			callToAds(section, true);
 		}
 
@@ -291,7 +243,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			args.putString("name", currentTeam.getName());
 		else
 			args.putString("name", currentTeam.getShortName());
-		args.putString("fundation", currentTeam.getfundation());
+		args.putString("fundation", currentTeam.getFundation());
 		args.putString("web", currentTeam.getWeb());
 		args.putString("shield", currentTeam.getDetailShield());
 		if (currentTeam.getEstadio() != null) {
@@ -373,7 +325,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		return fList;
 
 	}
-
+	
 	private void goToWeb(String url) {
 		if (url != null && !url.equalsIgnoreCase("")) {
 			if (url.contains("http") == false) {
@@ -386,6 +338,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		}
 
 	}
+	
 
 	public void playerClicked(View view) {
 		int tagged;
@@ -406,9 +359,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 					intent.putExtra("teamName", currentTeam.getName());
 				else
 					intent.putExtra("teamName", currentTeam.getShortName());
-				
-				intent.putExtra("teamShortName", StringUtils.getNormalizeText(currentTeam.getShortName()));
-				startActivity(intent);
+				startActivityForResult(intent, ReturnRequestCodes.PUBLI_BACK);
 				overridePendingTransition(R.anim.grow_from_middle,
 						R.anim.shrink_to_middle);
 			} else {
@@ -435,16 +386,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 	private void callToOmniture(final int pos) {
 
-		// String subsection = headerNames.get(pos);
-		// if (subsection.startsWith("la") || subsection.startsWith("La")
-		// || subsection.startsWith("El") || subsection.startsWith("el"))
-		// subsection = subsection.substring(3, subsection.length());
-		// if (subsection.startsWith("en los") ||
-		// subsection.startsWith("En los"))
-		// subsection = subsection.substring(7, subsection.length());
-
-		// subsection = StringUtils
-		// .getNormalizeText(subsection, true, false, true);
 		String subsection = null;
 		switch (pos) {
 		case 0:
@@ -604,7 +545,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onSuccessTeamRemoteconfig(Team team) {
 		RemoteTeamDAO.getInstance(getApplicationContext()).removeListener(this);
-		findViewById(R.id.buttonBar).setVisibility(View.VISIBLE);
 		loadInformation(team);
 		stopAnimation();
 	}
@@ -676,26 +616,9 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onPageSelected(final int pos) {
 		Log.d("SCROLL", "onPageSelected");
-		changeView(pos);
-		// ViewTreeObserver vto = teamViewPager.getViewTreeObserver();
-		// vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-		// @SuppressLint("NewApi")
-		// @Override
-		// public void onGlobalLayout() {
-		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-		// teamViewPager.getViewTreeObserver()
-		// .removeOnGlobalLayoutListener(this);
-		// } else {
-		// teamViewPager.getViewTreeObserver()
-		// .removeGlobalOnLayoutListener(this);
-		// }
-		// headerSroll.setHeaderPosition(pos);
-		// }
-		// });
-		// headerSroll.setHeaderPosition(pos);
 		callToOmniture(pos);
 
-		// ((TeamFragment) fragments.get(pos)).onShown();
+		((TeamFragment) fragments.get(pos)).onShown();
 
 	}
 

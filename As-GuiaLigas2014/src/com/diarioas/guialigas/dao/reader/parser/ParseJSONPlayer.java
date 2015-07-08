@@ -59,7 +59,7 @@ public class ParseJSONPlayer {
 				comp = comp.substring(1, comp.length() - 1);// Se quitan los
 															// corchetes
 				comp = comp.replace("\"", "");// Se quiten las comillas
-				comp = comp.replace(",", ", ");// Se añade un espacio entre
+				comp = comp.replace(",", ", ");// Se a�ade un espacio entre
 												// competiciones
 				player.setCompeticiones(comp + ".");
 			}
@@ -305,10 +305,6 @@ public class ParseJSONPlayer {
 			JSONArray equipos = null;
 			String year = null;
 			Trayectoria trayec;
-			String goles;
-			String partidos;
-			String nombre;
-			JSONObject jsonObject;
 			for (Iterator<String> iterator = trayectoriaJSON.keys(); iterator
 					.hasNext();) {
 				try {
@@ -319,34 +315,10 @@ public class ParseJSONPlayer {
 					trayec = new Trayectoria(Integer.valueOf(year),
 							trayJSON.getString("descripcion"));
 					for (int i = 0; i < equipos.length(); i++) {
-						jsonObject = (JSONObject) equipos.get(i);
-						if (jsonObject.has("goles")) {
-							goles = (String) jsonObject.get("goles");
-							if (goles.equalsIgnoreCase("")){
-								goles="0";
-							}
-//							goles = jsonObject.getInt("goles");
-						} else {
-							goles = "0";
-						}
-						if (jsonObject.has("partidos")) {
-							partidos = (String) jsonObject.get("partidos");
-							if (partidos.equalsIgnoreCase("")){
-								partidos="0";
-							}
-//							partidos = jsonObject.getInt("partidos");
-						} else {
-							partidos = "0";
-						}
-						if (jsonObject.has("partidos")) {
-							nombre = jsonObject.getString("nombre");
-						} else {
-							nombre = "";
-						}
-						
-
-						
-						trayec.addEquipo(nombre, Integer.valueOf(partidos), Integer.valueOf(goles));
+						trayec.addEquipo(((JSONObject) equipos.get(i))
+								.getString("nombre"), ((JSONObject) equipos
+								.get(i)).getInt("partidos"),
+								((JSONObject) equipos.get(i)).getInt("goles"));
 					}
 					trayectoria.add(trayec);
 				} catch (JSONException e) {

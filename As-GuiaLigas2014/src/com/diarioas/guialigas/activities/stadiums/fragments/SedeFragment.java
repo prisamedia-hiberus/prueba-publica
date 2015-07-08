@@ -3,6 +3,7 @@ package com.diarioas.guialigas.activities.stadiums.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -44,12 +45,12 @@ public abstract class SedeFragment extends Fragment implements
 					View.GONE);
 		}
 	}
-
-	public void setViewPagerPosition(int pos) {
+	
+	public void setViewPagerPosition(int pos){
 		galleryViewPager.setCurrentItem(pos, true);
 	}
 
-	protected abstract List<Fragment> getFragments(ArrayList<String> photos);
+	protected abstract List<Fragment> getFragments(ArrayList<String> photos) ;
 
 	protected View getCircle(int id) {
 		ImageView circle = new ImageView(getActivity().getApplicationContext());

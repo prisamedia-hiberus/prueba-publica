@@ -13,26 +13,32 @@
         android:paddingRight="5dp" >
     </LinearLayout>
 
-    <com.handmark.pulltorefresh.library.PullToRefreshStickyScrollView
-        android:id="@+id/teamPullContent"
+    <RelativeLayout
+        android:id="@+id/publiContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_teamPullContent"
+        android:layout_above="@id/publiContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/teamHeaderContent" >
 
-        <RelativeLayout
-            android:id="@+id/container"
+        <ScrollView
+            android:id="@+id/teamPullContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <!-- <LinearLayout -->
-            <!-- android:id="@+id/teamContent" -->
-            <!-- android:layout_width="match_parent" -->
-            <!-- android:layout_height="wrap_content" -->
-            <!-- android:clickable="false" -->
-            <!-- android:orientation="vertical" -->
-            <!-- android:paddingRight="5dp" > -->
-            <!-- </LinearLayout> -->
-        </RelativeLayout>
-    </com.handmark.pulltorefresh.library.PullToRefreshStickyScrollView>
+            <RelativeLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

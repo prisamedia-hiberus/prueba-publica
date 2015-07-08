@@ -14,9 +14,11 @@ public class FontUtils {
 	public static interface FontTypes {
 
 		public static String ROBOTO_BLACK = "Roboto-Black";
+		public static String ROBOTO_BOLD = "Roboto-Bold";
 		public static String ROBOTO_LIGHT = "Roboto-Light";
+		public static String ROBOTO_MEDIUM = "Roboto-Medium";
 		public static String ROBOTO_REGULAR = "Roboto-Regular";
-
+			
 		public static String HELVETICANEUE = "HelveticaNeue";
 		public static String HELVETICANEUEBOLD = "HelveticaNeueBold";
 		public static String HELVETICANEUELIGHT = "HelveticaNeueLight";
@@ -29,14 +31,15 @@ public class FontUtils {
 	static {
 
 		fontMap.put(FontTypes.ROBOTO_BLACK, "fonts/Roboto-Black.ttf");
+		fontMap.put(FontTypes.ROBOTO_BOLD, "fonts/Roboto-Bold.ttf");
 		fontMap.put(FontTypes.ROBOTO_LIGHT, "fonts/Roboto-Light.ttf");
 		fontMap.put(FontTypes.ROBOTO_REGULAR, "fonts/Roboto-Regular.ttf");
+		fontMap.put(FontTypes.ROBOTO_MEDIUM, "fonts/Roboto-Medium.ttf");
+		
 		fontMap.put(FontTypes.HELVETICANEUE, "fonts/HelveticaNeue.ttf");
 		fontMap.put(FontTypes.HELVETICANEUEBOLD, "fonts/HelveticaNeueBold.ttf");
-		fontMap.put(FontTypes.HELVETICANEUELIGHT,
-				"fonts/HelveticaNeueLight.ttf");
-		fontMap.put(FontTypes.HELVETICANEUEULIGHT,
-				"fonts/HelveticaNeueUltraLight.ttf");
+		fontMap.put(FontTypes.HELVETICANEUELIGHT,"fonts/HelveticaNeueLight.ttf");
+		fontMap.put(FontTypes.HELVETICANEUEULIGHT,"fonts/HelveticaNeueUltraLight.ttf");
 	}
 
 	/* cache for loaded Roboto typefaces */

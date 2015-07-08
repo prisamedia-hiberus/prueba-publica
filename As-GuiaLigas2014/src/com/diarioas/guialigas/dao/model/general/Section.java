@@ -84,7 +84,7 @@ public class Section implements Serializable {
 	public void setViewType(String viewType) {
 		this.viewType = viewType;
 	}
-
+	
 	/**
 	 * @return the url
 	 */

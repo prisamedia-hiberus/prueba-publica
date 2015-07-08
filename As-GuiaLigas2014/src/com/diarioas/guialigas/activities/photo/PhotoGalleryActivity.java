@@ -22,10 +22,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
-import com.diarioas.guialigas.activities.GeneralFragmentActivity;
+import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.photo.fragment.PhotoSectionGalleryFragment;
 import com.diarioas.guialigas.dao.model.news.GalleryMediaItem;
-import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO.RemotePhotosDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -49,17 +48,13 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	/***************************************************************************/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_photogallery);
 
 		int position = getIntent().getExtras().getInt("gallery");
-
 		configureView();
 
 		if (RemoteGalleryDAO.getInstance(getApplicationContext())
@@ -86,54 +81,27 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
 		outState.putInt("position", photoGalleryViewPager.getCurrentItem());
 		super.onSaveInstanceState(outState);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
-	 */
 	@Override
 	public void onBackPressed() {
-
 		setResult(Activity.RESULT_OK);
-
 		super.onBackPressed();
 		overridePendingTransition(R.anim.null_anim, R.anim.slide_out_left);
 	}
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		ImageDAO.getInstance(this).exitGalleryTaskEarly();
-		callToAds(NativeAds.AD_PHOTOS + "/" + NativeAds.AD_DETAIL, false);
+		callToAds(NativeAds.AD_PHOTOS + NativeAds.AD_DETAIL, false);
 
-	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ImageDAO.getInstance(this).exitGalleryTaskEarly();
-		ImageDAO.getInstance(this).flushGalleryCache();
-	}
-
-	@Override
-	public void onLowMemory() {
-		// TODO Auto-generated method stub
-		super.onLowMemory();
-		ImageDAO.getInstance(this).clearCache();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ImageDAO.getInstance(this).closeGalleryCache();
-		ImageDAO.getInstance(this).eraseGalleryCache();
 		if (photoGalleryViewPager != null) {
 			photoGalleryViewPager.removeAllViews();
 			photoGalleryViewPager = null;
@@ -175,7 +143,7 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	private void configureTitle() {
 		title = (TextView) findViewById(R.id.title);
 		FontUtils.setCustomfont(getApplicationContext(), title,
-				FontTypes.HELVETICANEUE);
+				FontTypes.ROBOTO_REGULAR);
 	}
 
 	private void share() {
@@ -250,7 +218,6 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 
 		return fList;
 	}
-
 
 	public void toogleBarsVisibility() {
 		if (upperBar.getVisibility() == View.VISIBLE) {

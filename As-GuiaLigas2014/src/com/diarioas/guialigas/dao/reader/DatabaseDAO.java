@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +32,7 @@ import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.model.general.TeamSection;
 import com.diarioas.guialigas.dao.model.news.MediaItem;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.model.news.NewsItemTag;
 import com.diarioas.guialigas.dao.model.news.PhotoMediaItem;
 import com.diarioas.guialigas.dao.model.news.VideoMediaItem;
 import com.diarioas.guialigas.dao.model.player.ItemStats;
@@ -46,18 +46,15 @@ import com.diarioas.guialigas.dao.model.team.Article;
 import com.diarioas.guialigas.dao.model.team.Estadio;
 import com.diarioas.guialigas.dao.model.team.PalmaresLabel;
 import com.diarioas.guialigas.dao.model.team.Staff;
-import com.diarioas.guialigas.dao.model.team.Star;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.model.team.TeamStats;
 import com.diarioas.guialigas.dao.model.team.TituloTeam;
-import com.diarioas.guialigas.utils.StringUtils;
-import com.diarioas.guialigas.utils.Defines.DATABASE;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.MEDIA_TYPE;
+import com.diarioas.guialigas.utils.Defines.ReturnDataDatabases;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.Defines.STADIUM_IMAGE_TYPE;
 import com.diarioas.guialigas.utils.Defines.SplashTypes;
-import com.diarioas.guialigas.utils.comparator.StringComparator;
 import com.diarioas.guialigas.utils.comparator.TeamComparator;
 
 public class DatabaseDAO extends SQLiteOpenHelper {
@@ -385,7 +382,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	}
 
 	public DatabaseDAO(Context context) {
-		super(context, DATABASE.DB_NAME, null, DATABASE.VERSION);
+		super(context, ReturnDataDatabases.DB_NAME, null, ReturnDataDatabases.VERSION);
 
 		this.mContext = context;
 		SQLiteDatabase db = null;
@@ -395,7 +392,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 				db.close();
 			}
 
-			DATABASE_FILE = context.getDatabasePath(DATABASE.DB_NAME);
+			DATABASE_FILE = context.getDatabasePath(ReturnDataDatabases.DB_NAME);
 
 			if (mInvalidDatabaseFile) {
 				copyDatabase();
@@ -421,7 +418,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		InputStream in = null;
 		OutputStream out = null;
 		try {
-			in = assetManager.open(DATABASE.DB_NAME);
+			in = assetManager.open(ReturnDataDatabases.DB_NAME);
 			out = new FileOutputStream(DATABASE_FILE);
 			byte[] buffer = new byte[1024];
 			int read = 0;
@@ -452,7 +449,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		try {
 			db = SQLiteDatabase.openDatabase(DATABASE_FILE.getAbsolutePath(),
 					null, SQLiteDatabase.OPEN_READWRITE);
-			db.execSQL("PRAGMA user_version = " + DATABASE.VERSION);
+			db.execSQL("PRAGMA user_version = " + ReturnDataDatabases.VERSION);
 		} catch (SQLiteException e) {
 		} finally {
 			if (db != null && db.isOpen()) {
@@ -1634,6 +1631,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			// Article article;
 			if (cursor.moveToFirst()) {
 				do {
+					section = null;
 					type = cursor.getString(cursor
 							.getColumnIndex(KEY_COMPETITION_SECTION_TYPE));
 					Log.d(TAG,"Competicion: "+competitionId+
@@ -1648,43 +1646,6 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 						((TeamSection) section)
 								.setTypeOrder(cursor.getString(cursor
 										.getColumnIndex((KEY_COMPETITION_SECTION_TYPEORDER))));
-					} else if (type.equalsIgnoreCase(SECTIONS.CALENDAR)) {
-						section = new Section();
-						section.setType(SECTIONS.CALENDAR);
-					} else if (type.equalsIgnoreCase(SECTIONS.CARROUSEL)) {
-						section = new Section();
-						section.setType(SECTIONS.CARROUSEL);
-					} else if (type.equalsIgnoreCase(SECTIONS.STADIUMS)) {
-						section = new Section();
-						section.setType(SECTIONS.STADIUMS);
-					} else if (type.equalsIgnoreCase(SECTIONS.PALMARES)) {
-						section = new Section();
-						section.setType(SECTIONS.PALMARES);
-					} else if (type.equalsIgnoreCase(SECTIONS.SEARCHER)) {
-						section = new Section();
-						section.setType(SECTIONS.SEARCHER);
-					} else if (type.equalsIgnoreCase(SECTIONS.NEWS)) {
-						section = new Section();
-						section.setType(SECTIONS.NEWS);
-					} else if (type.equalsIgnoreCase(SECTIONS.VIDEOS)) {
-						section = new Section();
-						section.setType(SECTIONS.VIDEOS);
-					} else if (type.equalsIgnoreCase(SECTIONS.PHOTOS)) {
-						section = new Section();
-						section.setType(SECTIONS.PHOTOS);
-					} else if (type.equalsIgnoreCase(SECTIONS.COMPARATOR)) {
-						section = new Section();
-						section.setType(SECTIONS.COMPARATOR);
-					} else if (type
-							.equalsIgnoreCase(SECTIONS.LINK_VIEW_OUTSIDE)) {
-						section = new Section();
-						section.setType(SECTIONS.LINK_VIEW_OUTSIDE);
-					} else if (type.equalsIgnoreCase(SECTIONS.LINK_VIEW_INSIDE)) {
-						section = new Section();
-						section.setType(SECTIONS.LINK_VIEW_INSIDE);
-					} else if (type.equalsIgnoreCase(SECTIONS.LINK)) {
-						section = new Section();
-						section.setType(SECTIONS.LINK);
 					} else if (type.equalsIgnoreCase(SECTIONS.CLASIFICATION)) {
 						section = new ClasificacionSection();
 						section.setType(SECTIONS.CLASIFICATION);
@@ -1694,13 +1655,9 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 												.getColumnIndex(KEY_COMPETITION_SECTION_NAME)),
 										cursor.getString(cursor
 												.getColumnIndex(KEY_COMPETITION_SECTION_URL)));
-
-						// } else if (type.equalsIgnoreCase(SECTIONS.LINK)) {
-						// section = new LinkSection();
-						// section.setType(SECTIONS.LINK);
-						// ((LinkSection) section)
-						// .setViewType(cursor.getString(cursor
-						// .getColumnIndex((KEY_COMPETITION_SECTION_TYPEORDER))));
+					}else{
+						section = new Section();
+						section.setType(type);
 					}
 
 					if (section != null) {
@@ -1965,7 +1922,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		values.put(KEY_TEAM_URL, team.getUrl());
 		values.put(KEY_TEAM_URL_INFO, team.getUrlInfo());
 		values.put(KEY_TEAM_WEB, team.getWeb());
-		values.put(KEY_TEAM_FUNDATION, team.getfundation());
+		values.put(KEY_TEAM_FUNDATION, team.getFundation());
 		if (team.getShields() != null) {
 			values.put(KEY_TEAM_SHIELD1, team.getShields().get("grid"));
 			values.put(KEY_TEAM_SHIELD2, team.getShields().get("calendar"));
@@ -2623,46 +2580,20 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 	 * @return
 	 */
 	public String getTeamGridShield(String teamId) {
-		SQLiteDatabase db = sInstance.getWritableDatabase();
-
-		String selectQuery = "SELECT " + KEY_TEAM_SHIELD2 + " FROM "
-				+ TABLE_TEAM + " where " + KEY_TEAM_ID + " = " + teamId;
-
-		String shield = null;
-		Cursor cursor = null;
-		try {
-			cursor = db.rawQuery(selectQuery, null);
-
-			if (cursor.moveToFirst()) {
-
-				shield = cursor.getString(cursor
-						.getColumnIndex((KEY_TEAM_SHIELD2)));
-
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.e(TAG, "Se ha producido un error: " + e.getMessage());
-		} finally {
-			if (cursor != null && !cursor.isClosed()) {
-				cursor.close();
-				cursor = null;
-			}
-		}
-		return shield;
+		return getTeamShield(teamId, KEY_TEAM_SHIELD2);
 	}
-
-	/**
-	 * @param teamId
-	 * @return
-	 */
+	
 	public String getTeamShield(String teamId) {
+		return getTeamShield(teamId, KEY_TEAM_SHIELD1);
+	}
+
+	private String getTeamShield(String teamId, String keyTeamShield) {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
 
-		String selectQuery = "SELECT " + KEY_TEAM_SHIELD1 + " FROM "
+		String selectQuery = "SELECT " + keyTeamShield + " FROM "
 				+ TABLE_TEAM + " where " + KEY_TEAM_ID + " = " + teamId;
 
 		String shield = null;
-
 		Cursor cursor = null;
 		try {
 			cursor = db.rawQuery(selectQuery, null);
@@ -2670,7 +2601,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 
 				shield = cursor.getString(cursor
-						.getColumnIndex((KEY_TEAM_SHIELD1)));
+						.getColumnIndex((keyTeamShield)));
 
 			}
 		} catch (Exception e) {
@@ -2684,6 +2615,8 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 		}
 		return shield;
 	}
+
+	
 
 	public String getTeamNameFromPlayer(Integer playerId) {
 		SQLiteDatabase db = sInstance.getWritableDatabase();
@@ -2882,18 +2815,7 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 			values.put(KEY_STAFF_BORN, staff.getBorn());
 			values.put(KEY_STAFF_CONTRACT, staff.getContract());
 			values.put(KEY_STAFF_PHOTO, staff.getPhoto());
-			if (staff instanceof Star) {
-				values.put(KEY_STAFF_POSITION, ((Star) staff).getPosition());
-				values.put(KEY_STAFF_NUMINTERNATIONAL,
-						((Star) staff).getNumInternational());
-				values.put(KEY_STAFF_AGE, ((Star) staff).getAge());
-				values.put(KEY_STAFF_STATURE, ((Star) staff).getStature());
-				values.put(KEY_STAFF_WEIGHT, ((Star) staff).getWeight());
-				values.put(KEY_STAFF_CLUBNAME, ((Star) staff).getClubName());
-				values.put(KEY_STAFF_CLUBSHIELD, ((Star) staff).getClubShield());
-				values.put(KEY_STAFF_URL, ((Star) staff).getUrl());
-				values.put(KEY_STAFF_PLAYERID, ((Star) staff).getPlayerId());
-			}
+
 			try {
 				String selectQuery = "Select 1 from " + TABLE_STAFF + " where "
 						+ KEY_STAFF_ID + " = " + teamId + " and "
