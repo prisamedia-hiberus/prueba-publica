@@ -185,6 +185,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.diarioas.guialigas.activities.photo.PhotoGalleryActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="sensor" />
         

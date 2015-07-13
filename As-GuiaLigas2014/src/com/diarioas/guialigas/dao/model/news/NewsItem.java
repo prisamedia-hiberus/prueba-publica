@@ -1,8 +1,11 @@
 package com.diarioas.guialigas.dao.model.news;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NewsItem {
+public class NewsItem   implements Serializable {
+	
+	private static final long serialVersionUID = 1916167245107962292L;
 
 	private int idCompetition;
 	

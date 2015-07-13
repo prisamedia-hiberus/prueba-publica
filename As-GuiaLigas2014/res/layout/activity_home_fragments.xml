@@ -45,15 +45,32 @@
                     android:contentDescription="@string/defualt" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/ads_button_actionBar"
+                android:layout_width="100dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:visibility="invisible" >
+
+                <ImageView
+                    android:id="@+id/adsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/defualt"
+                    android:scaleType="fitCenter" />
+            </RelativeLayout>
+
             <ImageView
                 android:id="@+id/logoHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-            	android:background="@drawable/home_icn_logoheader"                
+                android:background="@drawable/home_icn_logoheader"
                 android:contentDescription="@string/defualt" />
-            
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -103,10 +120,10 @@
 
             <RelativeLayout
                 android:id="@+id/publiContent"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
+                android:layout_alignParentBottom="true"
+                android:gravity="center" >
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

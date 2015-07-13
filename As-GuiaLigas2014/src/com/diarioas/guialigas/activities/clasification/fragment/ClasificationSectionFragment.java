@@ -8,6 +8,7 @@ import java.util.Set;
 
 import android.R.drawable;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
+import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.model.calendar.Fase;
 import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.clasificacion.ClasificacionInfo;
@@ -42,6 +44,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
@@ -303,7 +306,7 @@ public class ClasificationSectionFragment extends SectionFragment implements
 
 				@Override
 				public void onClick(View v) {
-//					 selectedTeam((String)v.getTag());
+					 selectedTeam((String)v.getTag());
 				}
 			});
 		}
@@ -315,6 +318,18 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		shieldImage.setBackgroundResource(idLocal);
 
 		return item;
+	}
+
+	protected void selectedTeam(String teamId) {
+		Intent intent = new Intent(mContext, TeamActivity.class);
+		intent.putExtra("teamId", teamId);
+		intent.putExtra("competitionId", String.valueOf(competitionId));
+
+		getActivity().startActivityForResult(intent,
+				ReturnRequestCodes.PUBLI_BACK);
+		getActivity().overridePendingTransition(R.anim.grow_from_middle,
+				R.anim.shrink_to_middle);
+		
 	}
 
 	/**

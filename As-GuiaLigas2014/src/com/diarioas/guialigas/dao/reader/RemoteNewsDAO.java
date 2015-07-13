@@ -198,6 +198,18 @@ public class RemoteNewsDAO implements AsyncTagReaderListener, AsyncLoadNewsXMLLi
 		}
 	}
 
+	public NewsItem getNewsPreloaded(int idCompetition, int position) {
+		return getNewsPreloaded(idCompetition).get(position);
+
+	}
+	
+	public ArrayList<NewsItem> getNewsPreloaded(int idCompetition) {
+		if (news == null || news.size() == 0) {
+			news = DatabaseDAO.getInstance(mContext).getNews(idCompetition);
+		}
+		return news;
+	}
+	
 	@Override
 	public void onSuccessfulExecute(ArrayList<NewsItem> news) {
 		this.news = news;
@@ -216,4 +228,6 @@ public class RemoteNewsDAO implements AsyncTagReaderListener, AsyncLoadNewsXMLLi
 			}
 		}		
 	}
+
+
 }

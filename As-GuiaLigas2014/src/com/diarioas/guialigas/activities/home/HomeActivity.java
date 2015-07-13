@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.diarioas.guialigas.R;
@@ -31,6 +32,8 @@ import com.diarioas.guialigas.activities.team.fragment.TeamsSectionFragment;
 import com.diarioas.guialigas.activities.videos.fragment.VideosSectionFragment;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.Section;
+import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
@@ -124,6 +127,22 @@ public class HomeActivity extends GeneralFragmentActivity implements
 				togglePane();
 			}
 		});
+		
+		String header = DatabaseDAO.getInstance(mContext).getHeaderInfo();
+		if (header!=null && header.length()>0) {
+			 findViewById(R.id.ads_button_actionBar).setVisibility(View.VISIBLE);
+			 ImageDAO.getInstance(mContext).loadHeaderSectionImage(header, (ImageView) findViewById(R.id.adsButton));
+//			 findViewById(R.id.ads_button_actionBar).setOnClickListener(new OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View v) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//			});
+			
+		}
+//		
 
 		this.spinner = (RelativeLayout) findViewById(R.id.spinner);
 		FontUtils.setCustomfont(mContext, (findViewById(R.id.spinnerMessage)),

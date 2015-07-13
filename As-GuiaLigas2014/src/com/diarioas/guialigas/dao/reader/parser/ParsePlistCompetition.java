@@ -47,22 +47,22 @@ public class ParsePlistCompetition {
 			menu = (ArrayList<HashMap<String, ?>>) hashMap.get("menu");
 		} catch (XmlParseException e) {
 			// TODO Auto-generated catch block
-			Log.w("ParsePlistCompetition",
+			Log.e("ParsePlistCompetition",
 					"No se ha parseado bien el fichero - Metodo 1: "
 							+ e.getMessage());
-			try {
-				hashMap = readXml(source);
-			} catch (XmlPullParserException xe) {
-				Log.e("ParsePlistCompetition",
-						"No se ha parseado bien el fichero - Metodo 2: "
-								+ xe.getMessage());
-				throw xe;
-			} catch (IOException ie) {
-				Log.e("ParsePlistCompetition",
-						"No se ha parseado bien el fichero - Metodo 2: "
-								+ ie.getMessage());
-				throw ie;
-			}
+//			try {
+//				hashMap = readXml(source);
+//			} catch (XmlPullParserException xe) {
+//				Log.e("ParsePlistCompetition",
+//						"No se ha parseado bien el fichero - Metodo 2: "
+//								+ xe.getMessage());
+//				throw xe;
+//			} catch (IOException ie) {
+//				Log.e("ParsePlistCompetition",
+//						"No se ha parseado bien el fichero - Metodo 2: "
+//								+ ie.getMessage());
+//				throw ie;
+//			}
 
 			// e.printStackTrace();
 		}
@@ -493,9 +493,11 @@ public class ParsePlistCompetition {
 		HashMap<String, Object> hasmap = new HashMap<String, Object>();
 
 		parser.require(XmlPullParser.START_TAG, ns, "plist");
-
 		parser.nextTag();
 		parser.require(XmlPullParser.START_TAG, ns, "dict");
+		parser.nextTag();
+		parser.require(XmlPullParser.START_TAG, ns, "menu");
+		
 		String text;
 		while (parser.nextTag() != XmlPullParser.END_TAG) {
 			if (parser.getName().equalsIgnoreCase("key")) {

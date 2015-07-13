@@ -47,6 +47,8 @@ public class AsyncLoadRemoteFeedXML extends
 		try {
 
 			HashMap<?, ?> splash;
+			HashMap<?, ?> header;
+			
 			HashMap<String, String> prefix;
 			// String strFileContents = readRemoteFile(urls[0]);
 			String strFileContents = ReadRemote.readRemoteFile(urls[0], false);
@@ -59,6 +61,11 @@ public class AsyncLoadRemoteFeedXML extends
 				splash = parse.parsePlistSplash();
 				DatabaseDAO.getInstance(appContext).updateStaticSplash(splash);
 				generalSettings.setSplash(splash);
+				
+				// Se actualiza la info de la cabecera				
+				header= parse.parsePlistHeader();
+				DatabaseDAO.getInstance(appContext).updateStaticHeader(splash);
+				generalSettings.setHeader(header);
 
 				// Se obtiene la informacion de los prefijos
 				prefix = parse.parsePlistPrefix();
@@ -88,10 +95,8 @@ public class AsyncLoadRemoteFeedXML extends
 				generalSettings.setClasificationLabels(clasificationLabels);
 
 				// Se obtiene la info de las competiciones
-				ArrayList<Competition> competitions = parse
-						.parsePlistCompetitions();
-				readCompetitions(competitions);
-				generalSettings.setCompetitions(competitions);
+				ArrayList<Competition> competitions = parse.parsePlistCompetitions();
+				generalSettings.setCompetitions(readCompetitions(competitions));
 
 				HashMap<String, String> cookies = parse.parsePlistCookies();
 				generalSettings.setCookies(cookies);

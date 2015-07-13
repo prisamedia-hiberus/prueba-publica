@@ -25,14 +25,11 @@ import android.widget.TextView;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.activities.news.NewsTagDetailActivity;
+import com.diarioas.guialigas.activities.news.NewsDetailActivity;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
-import com.diarioas.guialigas.dao.model.news.NewsItemTag;
-import com.diarioas.guialigas.dao.model.news.SectionNewsTagSections;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO;
 import com.diarioas.guialigas.dao.reader.RemoteNewsDAO.RemoteNewsDAOListener;
-import com.diarioas.guialigas.dao.reader.RemoteNewsDAO.RemoteNewsTagDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
@@ -134,27 +131,27 @@ public class NewsSectionFragment extends SectionFragment implements RemoteNewsDA
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-//				NewsItemTag currentItem = (NewsItem) news.get(position);
+//				NewsItem currentItem = (NewsItem) news.get(position);
+
+//				if ((currentItem.getJumpToWeb() == Defines.JUMP_TO_WEB_OK)
+//						|| (currentItem.getLink() != null && RemoteNewsDAO
+//								.getInstance(mContext).isURLNeedOut(
+//										currentItem.getLink()))) {
 //
-////				if ((currentItem.getJumpToWeb() == Defines.JUMP_TO_WEB_OK)
-////						|| (currentItem.getLink() != null && RemoteNewsDAO
-////								.getInstance(mContext).isURLNeedOut(
-////										currentItem.getLink()))) {
-////
-////					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
-////							.parse(currentItem.getLink()));
-////					getActivity().startActivity(browserIntent);
-////				} else {
-//
-//					Intent intent = new Intent(mContext,
-//							NewsTagDetailActivity.class);
-//					intent.putExtra("news", news);
-//					intent.putExtra("position", position);
-//					getActivity().startActivityForResult(intent,
-//							ReturnRequestCodes.PUBLI_BACK);
-//					getActivity().overridePendingTransition(
-//							R.anim.grow_from_middle, R.anim.shrink_to_middle);
-////				}
+//					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
+//							.parse(currentItem.getLink()));
+//					getActivity().startActivity(browserIntent);
+//				} else {
+
+					Intent intent = new Intent(mContext,
+							NewsDetailActivity.class);
+					intent.putExtra("news", news);
+					intent.putExtra("position", position);
+					getActivity().startActivityForResult(intent,
+							ReturnRequestCodes.PUBLI_BACK);
+					getActivity().overridePendingTransition(
+							R.anim.grow_from_middle, R.anim.shrink_to_middle);
+//				}
 			}
 		});
 

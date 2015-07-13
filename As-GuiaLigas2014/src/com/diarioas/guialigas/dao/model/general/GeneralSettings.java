@@ -9,6 +9,7 @@ import com.diarioas.guialigas.dao.model.competition.Competition;
 public class GeneralSettings {
 
 	private HashMap<?, ?> splash;
+	private HashMap<?, ?> header;
 	private HashMap<String, String> prefix;
 	private HashMap<String, String> cookies;
 	private HashMap<String, String> status;
@@ -42,6 +43,14 @@ public class GeneralSettings {
 	 */
 	public void setSplash(HashMap<?, ?> splash) {
 		this.splash = splash;
+	}
+
+	public HashMap<?, ?> getHeader() {
+		return header;
+	}
+
+	public void setHeader(HashMap<?, ?> header) {
+		this.header = header;
 	}
 
 	/**

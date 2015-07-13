@@ -58,6 +58,9 @@ public class AsyncLoadLocalFeedXML extends
 				ParsePlistLoad parse = new ParsePlistLoad(strFileContents);
 				// Se actualiza la info del Splash
 				generalSettings.setSplash(parse.parsePlistSplash());
+				
+				// Se actualiza la info de la cabecera				
+				generalSettings.setHeader(parse.parsePlistHeader());
 
 				// Se obtiene la informacion de los prefijos
 				generalSettings.setPrefix(parse.parsePlistPrefix());

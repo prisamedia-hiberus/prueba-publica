@@ -197,21 +197,26 @@ public class TeamsSectionFragment extends SectionFragment implements
 		CompetitionHomeFragment competitionFragment;
 		Bundle args;
 		boolean manyCompetititons = competitions.size() > 1;
+		String typeOrder;
+		TeamSection currentSection;
 		for (Competition competition : competitions) {
 			leagueViewPager.addChildId(competition.getId() * 100);
-			String typeOrder = ((TeamSection) section).getTypeOrder();
-			if (typeOrder == null
-					|| typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_GROUP))
-				competitionFragment = new CompetitionHomeGroupFragment();
-			else
-				competitionFragment = new CompetitionTeamHomeFragment();
-
-			args = new Bundle();
-			args.putInt("competitionId", competition.getId());
-			args.putString("competitionName", competition.getName());
-			args.putBoolean("manyCompetititons", manyCompetititons);
-			competitionFragment.setArguments(args);
-			fList.add(competitionFragment);
+			currentSection = (TeamSection) RemoteDataDAO.getInstance(mContext).getGeneralSettings().getCompetition(competition.getId()).getSection(SECTIONS.TEAMS);
+			if (section!=null) {
+				typeOrder = currentSection.getTypeOrder();
+	//			String typeOrder = ((TeamSection) section).getTypeOrder();
+				if (typeOrder == null || typeOrder.equalsIgnoreCase(SECTIONS.TEAMS_ORDER_GROUP))
+					competitionFragment = new CompetitionHomeGroupFragment();
+				else
+					competitionFragment = new CompetitionTeamHomeFragment();
+	
+				args = new Bundle();
+				args.putInt("competitionId", competition.getId());
+				args.putString("competitionName", competition.getName());
+				args.putBoolean("manyCompetititons", manyCompetititons);
+				competitionFragment.setArguments(args);
+				fList.add(competitionFragment);
+			}
 		}
 
 		return fList;
