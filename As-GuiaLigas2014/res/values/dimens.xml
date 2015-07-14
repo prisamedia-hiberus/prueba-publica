@@ -105,5 +105,8 @@
     <dimen name="size_fragment_team_19">19sp</dimen>
     <dimen name="size_fragment_team_20">20sp</dimen>
     <dimen name="flip_size_padding">8dp</dimen>
+    <dimen name="sort_title">13.5sp</dimen>
+    <dimen name="sort_item">15.5sp</dimen>
+    
 
 </resources>

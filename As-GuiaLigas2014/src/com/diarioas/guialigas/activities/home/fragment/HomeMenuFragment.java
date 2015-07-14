@@ -104,6 +104,10 @@ public class HomeMenuFragment extends Fragment {
 									SECTIONS.LINK)) {
 								((HomeActivity) getActivity())
 										.openLink(selectedSection.getUrl());
+							}else if (selectedSection.getType().equalsIgnoreCase(
+									SECTIONS.ORDER)) {
+								((HomeActivity) getActivity())
+								.openSortSection();
 							} else {
 								if (!selectedSection.getType()
 										.equalsIgnoreCase(SECTIONS.SEARCHER))
@@ -237,6 +241,9 @@ public class HomeMenuFragment extends Fragment {
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.TEAMS)) {
 				name = getString(R.string.menu_teams);
 				img = R.drawable.icn_menu_equipos;
+			} else if (item.getType().equalsIgnoreCase(SECTIONS.ORDER)) {
+				name = getString(R.string.menu_order);
+				img = R.drawable.icn_menu_noticias;
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.COMPARATOR)) {
 				name = getString(R.string.menu_comparador_jugadores);
 				img = R.drawable.icn_menu_comparador;

@@ -159,6 +159,11 @@ public class AsyncLoadRemoteFeedXML extends
 								// competition.addSection(parse.parsePlistGroups(1,
 								// true));
 							} else if (nameSection
+									.equalsIgnoreCase(SECTIONS.SECTION_NAME_SORT)) {
+								// Se actualiza la info del Comparador ??
+								competition.addSection(parse.parsePlistSort(i,
+										offset));								
+							} else if (nameSection
 									.equalsIgnoreCase(SECTIONS.SECTION_NAME_CALENDAR)) {
 								// Se actualiza la info del Calendario
 								competition.addSection(parse

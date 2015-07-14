@@ -148,6 +148,7 @@ public class Defines {
 
 	public static interface SECTIONS {
 		public static final String SECTION_NAME_TEAM = "grid";
+		public static final String SECTION_NAME_SORT = "Ordenacion";
 		public static final String SECTION_NAME_CALENDAR = "calendar";
 		public static final String SECTION_NAME_PALMARES = "palmares";
 		public static final String SECTION_NAME_STADIUMS = "stadiums";
@@ -169,6 +170,7 @@ public class Defines {
 		public static final String STADIUMS = "stadiums";
 		public static final String PALMARES = "palmares";
 		public static final String TEAMS = "grid";
+		public static final String ORDER = "orden";
 		public static final String COMPARATOR = "comparatorPlayers";
 		public static final String SEARCHER = "searcher";
 		public static final String NEWS = "news";

@@ -33,5 +33,8 @@
     <color name="gray_sedes">#929292</color>
     <color name="gray_news_items">#e6e6e6</color>
     <color name="gray_news">#666666</color>
+    <color name="gray_sort_separator">#CCCCCC</color>
+    <color name="gray_sort_background">#EEEEEE</color>
+    
 
 </resources>

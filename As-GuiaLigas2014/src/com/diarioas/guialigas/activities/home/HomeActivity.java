@@ -28,7 +28,9 @@ import com.diarioas.guialigas.activities.news.fragment.NewsTagSectionFragment;
 import com.diarioas.guialigas.activities.photo.fragment.PhotosSectionFragment;
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerSectionFragment;
 import com.diarioas.guialigas.activities.search.fragment.SearcherSectionFragment;
+import com.diarioas.guialigas.activities.sort.SortActivity;
 import com.diarioas.guialigas.activities.team.fragment.TeamsSectionFragment;
+import com.diarioas.guialigas.activities.videos.VideoActivity;
 import com.diarioas.guialigas.activities.videos.fragment.VideosSectionFragment;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.Section;
@@ -170,16 +172,32 @@ public class HomeActivity extends GeneralFragmentActivity implements
 
 	private void loadSectionFragment(Section section, int competitionId) {
 
-		configureLeftMenuSelectedItem(section.getType());
-		this.fragmentManager.popBackStackImmediate();
+		
+//		if (section.getType().equalsIgnoreCase(SECTIONS.ORDER)) {
+//			openSortSection();
+//			stopAnimation();
+//		}else {
+			configureLeftMenuSelectedItem(section.getType());
+			this.fragmentManager.popBackStackImmediate();
+	
+			FragmentTransaction fragmentTransaction = this.fragmentManager
+					.beginTransaction();
+			this.selectedFragment = getSelectedFragment(section, competitionId);
+	
+			fragmentTransaction.replace(R.id.section_fragment,
+					this.selectedFragment, section.getName());
+			fragmentTransaction.commit();
+//		}
+	}
 
-		FragmentTransaction fragmentTransaction = this.fragmentManager
-				.beginTransaction();
-		this.selectedFragment = getSelectedFragment(section, competitionId);
+	public void openSortSection() {
+		Intent intent = new Intent(mContext,
+				SortActivity.class);
 
-		fragmentTransaction.replace(R.id.section_fragment,
-				this.selectedFragment, section.getName());
-		fragmentTransaction.commit();
+		startActivityForResult(intent,ReturnRequestCodes.PUBLI_BACK);
+		overridePendingTransition(
+				R.anim.slide_in_up, R.anim.null_anim);
+		
 	}
 
 	private void configureLeftMenuSelectedItem(String type) {
@@ -215,7 +233,7 @@ public class HomeActivity extends GeneralFragmentActivity implements
 			}
 			args.putStringArrayList("competitions", competitionsId);
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.COMPARATOR)) {
-			fragment = new ComparatorPlayerSectionFragment();
+			fragment = new ComparatorPlayerSectionFragment();			
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.SEARCHER)) {
 			fragment = new SearcherSectionFragment();
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.NEWS)) {

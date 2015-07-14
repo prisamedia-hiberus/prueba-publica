@@ -135,6 +135,7 @@
     <!-- Menu Lateral -->
     <!-- <string name="menu_teams">Equipos</string> -->
     <string name="menu_teams">Competiciones</string>
+    <string name="menu_order">Ordenación</string>
     <string name="menu_calendario">Calendario</string>
     <string name="menu_clasificacion">Clasificación</string>
     <string name="menu_carrusel">Carrusel</string>
@@ -240,9 +241,14 @@
     <string name="ptr_pull_to_refresh" translatable="false">Arrastre para recargar la información</string>
     <string name="ptr_release_to_refresh" translatable="false">Suelte para recargar la información</string>
     <string name="ptr_refreshing" translatable="false">Cargando la información</string>
+    
+<!--     Ordenacion -->
+    <string name="sort_save">Aceptar</string>
+    <string name="sort_cancel">Cancelar</string>
 
     <!--  -->
     <string name="separator" translatable="false">&#160;-&#160;</string>
     <string name="defualt" translatable="false">Default</string>
+    <string name="sort_title">Ordenacion</string>
 
 </resources>

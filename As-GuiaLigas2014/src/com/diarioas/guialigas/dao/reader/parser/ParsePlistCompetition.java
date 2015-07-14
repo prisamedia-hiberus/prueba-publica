@@ -133,6 +133,15 @@ public class ParsePlistCompetition {
 
 	}
 
+	public Section parsePlistSort(int order, int offset) {
+		if (menu != null) {
+			return readSection(menu.get(order), SECTIONS.ORDER, null,
+					null, order + offset);
+		} else {
+			return null;
+		}
+	}
+	
 	public Section parsePlistComparator(int order, int offset) {
 		if (menu != null) {
 			return readSection(menu.get(order), SECTIONS.COMPARATOR, null,
@@ -755,5 +764,7 @@ public class ParsePlistCompetition {
 			}
 		}
 	}
+
+
 
 }
