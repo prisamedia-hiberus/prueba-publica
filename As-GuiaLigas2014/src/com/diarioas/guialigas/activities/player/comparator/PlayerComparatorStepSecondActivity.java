@@ -79,8 +79,7 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		width = size.x;
 		widthButton = size.x / SCROLL_WITH;
 		configActionBar();
-		competitions = DatabaseDAO.getInstance(getApplicationContext())
-				.getCompetitions();
+		competitions = RemoteDataDAO.getInstance(getApplicationContext()).getOrderedCompetitions();
 		configView();
 
 	}

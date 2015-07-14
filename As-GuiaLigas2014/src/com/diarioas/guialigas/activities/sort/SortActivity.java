@@ -1,6 +1,7 @@
 package com.diarioas.guialigas.activities.sort;
 
 import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,10 +16,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
@@ -95,8 +98,7 @@ public class SortActivity extends GeneralFragmentActivity implements
 		FontUtils.setCustomfont(mContext, findViewById(R.id.sortMessage),
 				FontTypes.ROBOTO_REGULAR);
 
-		ArrayList<Competition> competitions = DatabaseDAO.getInstance(
-				getApplicationContext()).getCompetitions();
+		ArrayList<Competition> competitions = RemoteDataDAO.getInstance(mContext).getOrderedCompetitions();
 
 		competitionList = (DynamicListView) findViewById(R.id.competitionList);
 		competitionList.setCustomListener(this);
@@ -115,10 +117,8 @@ public class SortActivity extends GeneralFragmentActivity implements
 	private void saveAction() {
 		if (changeList) {
 			ArrayList<Competition> competitions = (ArrayList<Competition>) this.competitionList.getList();
-			for (Competition competition : competitions) {
-				Log.d(TAG, "Nuevo Orden: " + competition.getName());
-			}
 			//save new order
+			RemoteDataDAO.getInstance(mContext).updateOrderCompetition(competitions);
 		}
 		onBackPressed();
 	}

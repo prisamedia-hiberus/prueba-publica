@@ -107,6 +107,10 @@ public abstract class SectionFragment extends GeneralPBSGoogleAdFragment {
 	public void setReturnFromDetail(boolean returnFromDetail) {
 		this.returnFromDetail = returnFromDetail;
 	}
+	
+	public void setReturnFromReorder() {
+		
+	}
 	/******************** Libraries methods ***************************************/
 	/***************************************************************************/
 	protected abstract void callToOmniture();
@@ -167,4 +171,6 @@ public abstract class SectionFragment extends GeneralPBSGoogleAdFragment {
 
 		return errorContent;
 	}
+
+
 }

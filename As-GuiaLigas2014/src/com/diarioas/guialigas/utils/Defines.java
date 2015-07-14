@@ -16,6 +16,7 @@ public class Defines {
 		public static int COMPARATOR_NO_PLAYER = 650;
 		public static int GALLERY_BACK = 7;
 		public static int PUBLI_BACK = 700;
+		public static int SORT_BACK = 250;
 	}
 
 	public static interface Prefix {
@@ -51,6 +52,9 @@ public class Defines {
 		public static final String SP_NAME = "GUIALIGAPreferences";
 		public static final String SP_COOKIE_NAME_AVISOPC = "avisopc";
 		public static final String SP_NEWSDATE = "newsDate";
+		public static final String SP_ORDERCOMPETITION = "orderCompetition";
+		public static final String SP_ORDERCOMPETITION_ENABLED = "customOrderCompetition";
+		public static final String SP_ORDERCOMPETITION_ORDER = "customOrder";
 	}
 
 	public static final int NUM_MAX_TVS = 4;

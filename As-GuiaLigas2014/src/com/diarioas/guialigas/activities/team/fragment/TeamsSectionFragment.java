@@ -76,6 +76,20 @@ public class TeamsSectionFragment extends SectionFragment implements
 	/** Configuration methods **/
 	/***************************************************************************/
 	@Override
+	public void setReturnFromReorder() {
+		super.setReturnFromReorder();
+		competitions = RemoteDataDAO.getInstance(mContext).getOrderedCompetitions();
+		if (competitions != null && competitions.size() > 1) {
+			configureHeader(competitions);
+			headerVisibility = true;
+		} else {
+			countrySroll.setVisibility(View.GONE);
+			headerVisibility = false;
+		}
+		configViewPager();
+		
+	}
+	@Override
 	protected void loadInformation() {
 		if (competitions != null && competitions.size() > 1) {
 			configureHeader(competitions);
@@ -94,8 +108,7 @@ public class TeamsSectionFragment extends SectionFragment implements
 		
 		widthButton = width / SCROLL_WITH;
 
-		competitions = RemoteDataDAO.getInstance(mContext).getGeneralSettings()
-				.getCompetitions();
+		competitions = RemoteDataDAO.getInstance(mContext).getOrderedCompetitions();
 		countrySroll = (CustomHoizontalScroll) generalView
 				.findViewById(R.id.countrySroll);
 		callToOmniture();

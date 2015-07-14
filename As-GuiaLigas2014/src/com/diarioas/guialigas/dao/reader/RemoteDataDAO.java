@@ -3,8 +3,14 @@ package com.diarioas.guialigas.dao.reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.GeneralSettings;
@@ -14,12 +20,15 @@ import com.diarioas.guialigas.dao.reader.async.AsyncLoadLocalFeedXML.AsyncLocalF
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadRemoteFeedXML;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadRemoteFeedXML.AsyncRemoteFeedXMLListener;
 import com.diarioas.guialigas.utils.Defines;
+import com.diarioas.guialigas.utils.Defines.ReturnSharedPreferences;
 import com.diarioas.guialigas.utils.Reachability;
+import com.diarioas.guialigas.utils.comparator.CompetitionComparator;
 import com.diarioas.guialigas.utils.comparator.SectionComparator;
 
 public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		AsyncRemoteFeedXMLListener {
 
+	private static final String TAG = "RemoteDataDAO";
 	private static RemoteDataDAO sInstance = null;
 	private Context mContext = null;
 
@@ -241,6 +250,57 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 			}
 			sInstance = null;
 		}
+	}
+
+	public ArrayList<Competition> getOrderedCompetitions() {
+		ArrayList<Competition> competitions ;
+		competitions= this.generalSettings.getCompetitions();
+		
+		SharedPreferences prefs = mContext.getSharedPreferences(ReturnSharedPreferences.SP_ORDERCOMPETITION, Context.MODE_PRIVATE);
+		
+		if (prefs.contains(ReturnSharedPreferences.SP_ORDERCOMPETITION_ENABLED)) {
+			String orderCompetitions = prefs.getString(ReturnSharedPreferences.SP_ORDERCOMPETITION_ORDER, null);
+			Log.d(TAG, "Orden Custom: "+orderCompetitions);
+			if (orderCompetitions!=null && orderCompetitions.length()>0) {
+				int id;
+				ArrayList<Competition> originalCompetitions = new ArrayList<Competition>() ;
+				originalCompetitions.addAll(generalSettings.getCompetitions());
+				ArrayList<Competition> newCompetitions = new ArrayList<Competition>() ;
+				
+				String[] comps = orderCompetitions.split(":");
+				for (int i = 0; i < comps.length; i++) {
+					id = Integer.valueOf(comps[i]);
+					for (Competition competition : originalCompetitions) {
+						if (id == competition.getId()) {
+							newCompetitions.add(competition);
+							originalCompetitions.remove(competition);
+							break;
+						}
+					}
+				}
+				
+				if (originalCompetitions.size()>0) {
+					newCompetitions.addAll(originalCompetitions);
+				}
+				return newCompetitions;
+			}
+		}
+			
+		Collections.sort(competitions, new CompetitionComparator());
+		return competitions;
+	}
+
+	public void updateOrderCompetition(ArrayList<Competition> competitions) {
+		SharedPreferences prefs = mContext.getSharedPreferences(ReturnSharedPreferences.SP_ORDERCOMPETITION, Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putBoolean(ReturnSharedPreferences.SP_ORDERCOMPETITION_ENABLED, true);
+		
+		String order="";
+		for (int i = 0; i < competitions.size(); i++) {
+			order+=competitions.get(i).getId()+":";
+		}
+		editor.putString(ReturnSharedPreferences.SP_ORDERCOMPETITION_ORDER, order);
+		editor.commit();
 	}
 
 }

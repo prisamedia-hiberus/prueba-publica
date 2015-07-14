@@ -111,6 +111,10 @@ public class HomeActivity extends GeneralFragmentActivity implements
 					((ComparatorPlayerSectionFragment) this.selectedFragment)
 							.setRightPlayer(teamName, playerId);
 				}
+			}else if(requestCode == ReturnRequestCodes.SORT_BACK) {
+				if (selectedFragment instanceof SectionFragment) {
+					((SectionFragment) selectedFragment).setReturnFromReorder();
+				}
 			}
 		}
 	}
@@ -194,7 +198,7 @@ public class HomeActivity extends GeneralFragmentActivity implements
 		Intent intent = new Intent(mContext,
 				SortActivity.class);
 
-		startActivityForResult(intent,ReturnRequestCodes.PUBLI_BACK);
+		startActivityForResult(intent,ReturnRequestCodes.SORT_BACK);
 		overridePendingTransition(
 				R.anim.slide_in_up, R.anim.null_anim);
 		

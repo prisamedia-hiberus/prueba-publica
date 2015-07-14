@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import com.diarioas.guialigas.dao.model.competition.Competition;
+import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 
 public class GeneralSettings {
 
