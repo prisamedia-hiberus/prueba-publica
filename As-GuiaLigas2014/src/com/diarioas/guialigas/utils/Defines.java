@@ -275,6 +275,7 @@ public class Defines {
 		public static final String SECTION_CLASIFICATION = "clasificacion";
 		public static final String SECTION_VIDEOS = "videos";
 		public static final String SECTION_NEWS = "noticias";
+		public static final String SECTION_NEWS_TAG = "noticias_tag";
 
 		public static final String SUBSECTION_PORTADA = "portada";
 		public static final String SUBSECTION_SELECTION = "seleccion";
@@ -286,6 +287,7 @@ public class Defines {
 		public static final String SUBSECTION_DAY = "jornada";
 		public static final String SUBSECTION_GALLERY = "galeria";
 		public static final String SUBSECTION_NEWSDETAIL = "detalle noticia";
+		public static final String SUBSECTION_NEWSTAGDETAIL = "detalle noticia_tag";
 		public static final String SUBSECTION_TEAM_NEWS = "ver noticias";
 		public static final String SUBSECTION_TEAM_MAP = "ver mapa";
 		public static final String SUBSECTION_TEAM_STATS = "estadísticas";
@@ -329,10 +331,12 @@ public class Defines {
 		public static final String AD_PALMARES = "palmares";
 		public static final String AD_STADIUMS = "sedes";
 		public static final String AD_NEWS = "noticias";
+		public static final String AD_NEWS_TAG = "noticias_tag";
 		public static final String AD_VIDEOS = "videos";
 		public static final String AD_PHOTOS = "fotos";
 		public static final String AD_SEARCHER = "buscador";
 		public static final String AD_COMPARATOR = "comparador";
+		public static final String AD_SORT = "ordenacion/";
 		public static final String AD_LINK = "triviaAS";
 		
 		

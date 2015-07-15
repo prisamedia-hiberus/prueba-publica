@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.model.competition.Competition;
@@ -24,6 +25,7 @@ import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
+import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.listview.DynamicListView;
 import com.diarioas.guialigas.utils.listview.DynamicListView.DynamicListViewCustomListener;
@@ -55,6 +57,22 @@ public class SortActivity extends GeneralFragmentActivity implements
 
 	}
 
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		comScore.onEnterForeground();
+		callToAds();
+	}
+	
+
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		comScore.onExitForeground();
+	}
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
@@ -111,7 +129,6 @@ public class SortActivity extends GeneralFragmentActivity implements
 		competitionAdapter = new CompetitionAdapter(competitions);
 
 		competitionList.setAdapter(competitionAdapter);
-
 	}
 
 	private void saveAction() {
@@ -160,6 +177,10 @@ public class SortActivity extends GeneralFragmentActivity implements
 		changeList = true;
 	}
 
+	private void callToAds() {
+		String section = NativeAds.AD_SORT;
+		callToAds(section, true);
+	}
 	/************************************************************************************************
 	 * CompetitionAdapter Methods
 	 *************************************************************************************************/

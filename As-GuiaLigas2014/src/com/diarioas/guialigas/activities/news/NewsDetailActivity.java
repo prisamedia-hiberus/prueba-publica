@@ -14,9 +14,9 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.news.fragment.NewsDetailFragment;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
-import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
-import com.diarioas.guialigas.dao.reader.RemoteNewsDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
+import com.diarioas.guialigas.utils.Defines;
+import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 
@@ -56,6 +56,13 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	public void onStop() {
 		super.onStop();
 		this.newsViewPager = null;
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		callToAds();
 	}
 	
 	@Override
@@ -153,6 +160,11 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 		NewsItem item = newsList.get(pos);
 		callToOmniture(item.getTitle());
 		
+	}
+
+	private void callToAds() {
+		String section = NativeAds.AD_NEWS+"/"+NativeAds.AD_DETAIL;
+		callToAds(section, false);
 	}
 	/***************************************************************************/
 	/** Libraries methods **/

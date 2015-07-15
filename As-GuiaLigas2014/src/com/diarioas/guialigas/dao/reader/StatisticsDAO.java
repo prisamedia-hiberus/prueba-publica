@@ -51,9 +51,9 @@ public class StatisticsDAO {
 			String subsection, String subsubsection, String tema, String tipo,
 			String detailPage, HashMap<String, String> info) {
 
-		Log.d("OMMNITURE", "sendStaticsOnState--> " + section + " :: "
-				+ subsection + " :: " + subsubsection + " :: " + tema + " :: "
-				+ tipo + " :: " + detailPage);
+//		Log.d("OMMNITURE", "sendStaticsOnState--> " + section + " :: "
+//				+ subsection + " :: " + subsubsection + " :: " + tema + " :: "
+//				+ tipo + " :: " + detailPage);
 		AppMeasurement s = getAppMeasurement(app, section, subsection,
 				subsubsection, tema, tipo, detailPage);
 

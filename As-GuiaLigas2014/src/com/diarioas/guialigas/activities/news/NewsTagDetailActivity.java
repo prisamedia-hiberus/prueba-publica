@@ -53,7 +53,8 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		callToBannerAction(NativeAds.AD_NEWS + NativeAds.AD_DETAIL);
+		callToAds();
+		
 	}
 
 //	@Override
@@ -132,6 +133,7 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 //			NewsItem item = newsList.get(pos);
 //			callToOmniture(item.getTitle());
 //		}
+
 		newsViewPager.setOnPageChangeListener(this);
 
 	}
@@ -211,14 +213,20 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 		this.pos = newPos;
 //		NewsItem item = newsList.get(pos);
 //		callToOmniture(item.getTitle());
+
+	}
+
+	private void callToAds() {
+		String section = NativeAds.AD_NEWS_TAG+"/"+NativeAds.AD_DETAIL;
+		callToAds(section, false);
 	}
 
 	/************** Not allowing call Ads or Statistics **************/
 
 	protected void callToOmniture(String title) {
 		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
-				getApplication(), Omniture.SECTION_NEWS,
-				Omniture.SUBSECTION_NEWSDETAIL, null, null,
+				getApplication(), Omniture.SECTION_NEWS_TAG,
+				Omniture.SUBSECTION_NEWSTAGDETAIL, null, null,
 				Omniture.TYPE_PORTADA, title, null);
 	}
 

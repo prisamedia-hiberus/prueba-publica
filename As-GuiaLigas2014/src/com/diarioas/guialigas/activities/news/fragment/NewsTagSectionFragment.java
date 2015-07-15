@@ -57,7 +57,7 @@ public class NewsTagSectionFragment extends SectionFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.adSection = NativeAds.AD_NEWS + "/" + NativeAds.AD_PORTADA;
+		this.adSection = NativeAds.AD_NEWS_TAG + "/" + NativeAds.AD_PORTADA;
 	}
 
 	@Override
@@ -173,13 +173,13 @@ public class NewsTagSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext)
 				.sendStatisticsState(
 						getActivity().getApplication(),
-						Omniture.SECTION_NEWS,
+						Omniture.SECTION_NEWS_TAG,
 						null,
 						null,
 						null,
 						Omniture.TYPE_PORTADA,
 						Omniture.DETAILPAGE_PORTADA + " "
-								+ Omniture.SECTION_NEWS, null);
+								+ Omniture.SECTION_NEWS_TAG, null);
 	}
 
 	/************** RemotePalmaresDAOListener methods ***********************/

@@ -62,7 +62,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	private Button playersButton;
 
 	private int currentPos = -1;
-	
+
 	private Team currentTeam;
 	private ViewPager teamViewPager;
 	// private CustomHoizontalScroll headerSroll;
@@ -325,7 +325,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		return fList;
 
 	}
-	
+
 	private void goToWeb(String url) {
 		if (url != null && !url.equalsIgnoreCase("")) {
 			if (url.contains("http") == false) {
@@ -338,7 +338,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		}
 
 	}
-	
 
 	public void playerClicked(View view) {
 		int tagged;
@@ -425,7 +424,11 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		case BUTTON_STATS:
 		case BUTTON_INFO:
 		case BUTTON_PLAYERS:
-			changeView(tag);
+			if (currentPos != tag) {
+				if (teamViewPager != null) {
+					teamViewPager.setCurrentItem(tag);
+				}
+			}
 			break;
 		case BUTTON_WEB:
 			if (currentTeam.getWeb() != null
@@ -488,10 +491,6 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	private void changeView(int pos) {
 		if (currentPos != pos) {
 			currentPos = pos;
-			if (teamViewPager != null) {
-				teamViewPager.setCurrentItem(pos);
-			}
-
 			switch (pos) {
 			case BUTTON_STATS:
 				statsButton.setTextColor(getResources().getColor(R.color.red));
@@ -537,6 +536,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			default:
 				break;
 			}
+			callToOmniture(pos);
+			((TeamFragment) fragments.get(pos)).onShown();
 		}
 
 	}
@@ -616,9 +617,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onPageSelected(final int pos) {
 		Log.d("SCROLL", "onPageSelected");
-		callToOmniture(pos);
-
-		((TeamFragment) fragments.get(pos)).onShown();
+		
+		changeView(pos);
 
 	}
 
