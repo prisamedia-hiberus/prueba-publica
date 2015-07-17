@@ -23,9 +23,11 @@ import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
+import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.listview.DynamicListView;
 import com.diarioas.guialigas.utils.listview.DynamicListView.DynamicListViewCustomListener;
@@ -63,6 +65,7 @@ public class SortActivity extends GeneralFragmentActivity implements
 		super.onResume();
 		comScore.onEnterForeground();
 		callToAds();
+		
 	}
 	
 
@@ -102,7 +105,7 @@ public class SortActivity extends GeneralFragmentActivity implements
 
 					@Override
 					public void onClick(View v) {
-						onBackPressed();
+						cancelAction();
 					}
 				});
 
@@ -129,7 +132,9 @@ public class SortActivity extends GeneralFragmentActivity implements
 		competitionAdapter = new CompetitionAdapter(competitions);
 
 		competitionList.setAdapter(competitionAdapter);
+		callToOmniture();
 	}
+
 
 	private void saveAction() {
 		if (changeList) {
@@ -137,6 +142,10 @@ public class SortActivity extends GeneralFragmentActivity implements
 			//save new order
 			RemoteDataDAO.getInstance(mContext).updateOrderCompetition(competitions);
 		}
+		onBackPressed();
+	}
+	
+	private void cancelAction() {
 		onBackPressed();
 	}
 
@@ -176,10 +185,22 @@ public class SortActivity extends GeneralFragmentActivity implements
 		((ImageView)getSupportActionBar().getCustomView().findViewById(R.id.doneButton)).setImageDrawable(getResources().getDrawable(R.drawable.icn_done_on));
 		changeList = true;
 	}
-
+	/************************************************************************************************
+	 * Libraries Methods
+	 *************************************************************************************************/
+	
 	private void callToAds() {
 		String section = NativeAds.AD_SORT;
 		callToAds(section, true);
+	}
+	private void callToOmniture() {
+		StatisticsDAO.getInstance(getApplicationContext())
+		.sendStatisticsState(getApplication(), Omniture.SECTION_SORT,
+				null,
+				null,
+				null, Omniture.TYPE_PORTADA,
+				null, null);
+		
 	}
 	/************************************************************************************************
 	 * CompetitionAdapter Methods

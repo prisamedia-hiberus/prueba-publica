@@ -276,6 +276,7 @@ public class Defines {
 		public static final String SECTION_VIDEOS = "videos";
 		public static final String SECTION_NEWS = "noticias";
 		public static final String SECTION_NEWS_TAG = "noticias_tag";
+		public static final String SECTION_SORT = "ordenacion";
 
 		public static final String SUBSECTION_PORTADA = "portada";
 		public static final String SUBSECTION_SELECTION = "seleccion";
