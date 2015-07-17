@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:tag="sticky-nonconstant" >
+        android:paddingTop="5dp">
 
         <TextView
             android:id="@+id/nameGroup"

@@ -82,6 +82,4 @@
         </ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <!-- <com.emilsjolander.components.StickyScrollViewItems.StickyScrollView -->
-
 </RelativeLayout>

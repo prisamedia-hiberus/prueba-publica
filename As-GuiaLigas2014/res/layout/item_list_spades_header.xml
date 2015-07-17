@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:clickable="false"
-    android:orientation="vertical"
-    android:tag="sticky" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/dataTeam"

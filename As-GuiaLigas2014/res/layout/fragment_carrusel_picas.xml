@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp" >
 
-    <com.emilsjolander.components.StickyScrollViewItems.StickyScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
-    </com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/spinnerContent"
