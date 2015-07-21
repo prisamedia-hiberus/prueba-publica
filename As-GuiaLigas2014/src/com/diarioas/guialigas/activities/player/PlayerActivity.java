@@ -9,6 +9,7 @@ import java.util.List;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Resources;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -160,14 +161,11 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 
 			// intent.putExtra(Intent.EXTRA_SUBJECT,
 			// getString(R.string.app_name));
-			String body = getString(R.string.mens_share_part1_2)
-					+ currentPlayer.getName()
-					+ getString(R.string.mens_share_part2)
-			// + getString(R.string.share_mens_url_long)
-			// + getString(R.string.share_mens_part2)
-			// + getString(R.string.share_mens_url_short)
-			// + getString(R.string.share_mens_part4)
-			;
+			Resources res = getResources();
+			String body = String.format(res.getString(R.string.mens_share_player),
+					currentPlayer.getName(),res.getString(R.string.share_google_play_url));
+
+			
 			intent.putExtra(Intent.EXTRA_TEXT, body);
 			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(intent,

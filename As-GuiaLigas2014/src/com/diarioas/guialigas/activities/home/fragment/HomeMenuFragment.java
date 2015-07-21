@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.home.HomeActivity;
+import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
@@ -135,13 +136,20 @@ public class HomeMenuFragment extends Fragment {
 	/************************************************************/
 
 	public void setCurrentCompetition(int position) {
+		ArrayList<Competition> orderedCompetitions = RemoteDataDAO.getInstance(this.mContext).getOrderedCompetitions();
+		RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().setCompetitions(orderedCompetitions);
+		
 		RemoteDataDAO.getInstance(this.mContext).getGeneralSettings()
 				.setCurrentCompetition(position);
-		int currentCompetitionId = RemoteDataDAO.getInstance(this.mContext)
-				.getGeneralSettings().getCurrentCompetition().getId();
-		this.menuSections = RemoteDataDAO.getInstance(this.mContext)
-				.getOrderedSections(currentCompetitionId);
-		this.menuSectionsAdapter.addItems(menuSections);
+		Competition competition = RemoteDataDAO.getInstance(this.mContext)
+				.getGeneralSettings().getCurrentCompetition();
+		if (competition!=null) {
+			int currentCompetitionId = competition.getId();
+			this.menuSections = RemoteDataDAO.getInstance(this.mContext)
+					.getOrderedSections(currentCompetitionId);
+			this.menuSectionsAdapter.addItems(menuSections);
+		}
+		
 	}
 
 	public Section getItemAtPosition(int item) {
@@ -243,7 +251,7 @@ public class HomeMenuFragment extends Fragment {
 				img = R.drawable.icn_menu_equipos;
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.ORDER)) {
 				name = getString(R.string.menu_order);
-				img = R.drawable.icn_menu_noticias;
+				img = R.drawable.icn_menu_ordenacion;
 			} else if (item.getType().equalsIgnoreCase(SECTIONS.COMPARATOR)) {
 				name = getString(R.string.menu_comparador_jugadores);
 				img = R.drawable.icn_menu_comparador;

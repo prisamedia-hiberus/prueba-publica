@@ -166,12 +166,18 @@
     <string name="connection_error_message">Lo sentimos pero no es posible ver esta sección sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
     <string name="mens_share_part1_1">Te recomiendo leer al \"</string>
     <string name="mens_share_part1_2">Te recomiendo leer a \"</string>
-    <string name="share_title">Guía de la Liga 2014 - Vía Diario AS</string>
-    <string name="mens_share_part2">\" en la app de As&#160;</string>
-    <string name="mens_share_part3">Guía de La Liga 2014.</string>
+    <string name="share_title">Guía de las Ligas - Vía Diario AS</string>
+    <string name="mens_share_part2">\" en la app de Guía de Las Ligas&#160;</string>
+    <string name="mens_share_part3">Guía de las Ligas.</string>
     <string name="mens_share_part4_1">Sigue el partido&#160;</string>
-    <string name="mens_share_part4_2">&#160;en la app del Guía de La Liga 2014.</string>
+    <string name="mens_share_part4_2">&#160;en la app del Guía de las Ligas.</string>
+    <string name="mens_share_match">Sigue el partido %1$s - %2$s en la app Guía de Las Ligas. %3$s</string>
+    <string name="mens_share_team">Te recomiendo leer al %1$s en la app Guía de Las Ligas de Diario AS. %2$s</string>
+    <string name="mens_share_player">Te recomiendo leer a %1$s en la app Guía de Las Ligas de Diario AS. %2$s</string>
+    <string name="mens_share_compare_players">Te recomiendo ver la comparativa entre %1$s y %2$s en la app Guía de Las Ligas de Diario AS. %3$s</string>
     <string name="share_mens_url_long_1">https://play.google.com/store/apps/details?id=</string>
+    <string name="share_google_play_url">https://play.google.com/store/apps/details?id=com.diarioas.guialigas</string>
+    
 
     <!-- Calendario -->
     <string name="calendar_day_not_active">Esta jornada no está activa</string>

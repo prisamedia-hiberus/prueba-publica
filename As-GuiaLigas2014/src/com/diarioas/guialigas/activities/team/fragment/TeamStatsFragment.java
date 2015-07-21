@@ -28,6 +28,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.model.team.TeamStats;
 import com.diarioas.guialigas.dao.model.team.TituloTeam;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.comparator.TeamPalmaresComparator;
 import com.diarioas.guialigas.utils.comparator.YearComparator;
@@ -166,12 +167,24 @@ public class TeamStatsFragment extends TeamFragment {
 		FontUtils.setCustomfont(mContext, name,
 				FontUtils.FontTypes.ROBOTO_LIGHT);
 
-		if (!(shield == null || shield.equalsIgnoreCase("")))
+		if (!(shield == null || shield.equalsIgnoreCase(""))) {
+			int shieldResourceInt = DrawableUtils.getDrawableId(
+					mContext, shield, 4);
+			if (shieldResourceInt<=0) {
+				shieldResourceInt=R.drawable.escudo_generico_size03;
+			}
+			((ImageView) generalView.findViewById(R.id.photoTeam))
+					.setBackgroundResource(shieldResourceInt);
+			/*
 			((ImageView) generalView.findViewById(R.id.photoTeam))
 					.setBackgroundResource(mContext.getResources()
 							.getIdentifier(
 									shield.substring(0, shield.length() - 4),
-									"drawable", mContext.getPackageName()));
+									"drawable", mContext.getPackageName()));*/
+		} else {
+			((ImageView) generalView.findViewById(R.id.photoTeam))
+			.setBackgroundResource(R.drawable.escudo_generico_size03);
+		}
 
 		statsText = (TextView) generalView.findViewById(R.id.statsText);
 		FontUtils.setCustomfont(mContext, statsText,

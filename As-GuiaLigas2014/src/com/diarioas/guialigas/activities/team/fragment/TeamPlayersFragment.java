@@ -24,6 +24,7 @@ import com.diarioas.guialigas.activities.team.TeamActivity;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.utils.Defines.Demarcation;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.comparator.DorsalComparator;
 
@@ -66,17 +67,24 @@ public class TeamPlayersFragment extends TeamFragment {
 		String shield = (String) getArguments().get("shield");
 		TextView name = (TextView) generalView.findViewById(R.id.nameTeam);
 
-		name.setText((String) getArguments().get("teamName"));
+		String teamName = (String) getArguments().get("name");
+		name.setText(teamName);
 
 		FontUtils.setCustomfont(mContext, name,
 				FontUtils.FontTypes.ROBOTO_LIGHT);
 
-		if (shield != null && !shield.equalsIgnoreCase(""))
+		if (shield != null && !shield.equalsIgnoreCase("")) {
+			int shieldResourceInt = DrawableUtils.getDrawableId(
+					mContext, shield, 4);
+			if (shieldResourceInt<=0) {
+				shieldResourceInt=R.drawable.escudo_generico_size03;
+			}
 			((ImageView) generalView.findViewById(R.id.photoTeam))
-					.setBackgroundResource(mContext.getResources()
-							.getIdentifier(
-									shield.substring(0, shield.length() - 4),
-									"drawable", mContext.getPackageName()));
+					.setBackgroundResource(shieldResourceInt);
+		} else {
+			((ImageView) generalView.findViewById(R.id.photoTeam))
+			.setBackgroundResource(R.drawable.escudo_generico_size03);
+		}
 
 		/************************** Info Plantilla ******************************************/
 		TextView porterosText = (TextView) generalView

@@ -127,6 +127,8 @@ public class TeamsSectionFragment extends SectionFragment implements
 		countrySroll.setSecondColor(getResources()
 				.getColor(R.color.medium_gray));
 		countrySroll.addScrollEndListener(this);
+		int previousPosition = getPreviousTeamSectionPosition();
+		countrySroll.setInitPosition(previousPosition);
 		countrySroll.addViews(strings);
 
 		buttonPrev = (ImageView) generalView.findViewById(R.id.buttonPrev);
@@ -196,12 +198,37 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 		leagueViewPager.setAdapter(new FragmentAdapter(
 				getChildFragmentManager(), fragments));
-		leagueViewPager.setCurrentItem(0, true);
-		leagueViewPager.setOnPageChangeListener(this);
+		int previousPosition = getPreviousTeamSectionPosition();
+		if ((previousPosition>=0)&&(previousPosition<competitions.size())) {
+			leagueViewPager.setCurrentItem(previousPosition);
+			leagueViewPager.setOnPageChangeListener(this);
 
-		setButtonsVisibility();
+			setButtonsVisibility();
 
-		((HomeActivity) getActivity()).stopAnimation();
+			((HomeActivity) getActivity()).stopAnimation();
+			
+			
+	
+		}
+		
+	}
+	
+	private int getPreviousTeamSectionPosition() {
+		if ((competitions!=null)&&(competitions.size()>0)) {			
+			int currentCompetitionId = Integer.parseInt(this.competitionId);
+			for (int i = 0; i < competitions.size(); i++) {
+				Competition compt = (Competition)competitions.get(i);
+				if (compt!=null) {
+					
+					if (compt.getId()==currentCompetitionId) {
+						return i;						
+					}
+				}
+						
+			}
+		}
+		
+		return -1;
 	}
 
 	private List<Fragment> getFragments() {
@@ -257,6 +284,12 @@ public class TeamsSectionFragment extends SectionFragment implements
 	public void setCurrentcompetition(int position) {
 		countrySroll.setHeaderPosition(position);
 		setButtonsVisibility();
+		
+		if ((competitions!=null)&&(competitions.size()>position)) {
+			Competition compt = (Competition)competitions.get(position);
+			this.competitionId=Integer.toString(compt.getId());
+		}
+		
 	}
 
 	/***************************************************************************/
@@ -276,12 +309,12 @@ public class TeamsSectionFragment extends SectionFragment implements
 
 	@Override
 	public void onScrollEnd(int x, int y, int oldx, int oldy, int pos) {
-		leagueViewPager.setCurrentItem(pos, true);
+		leagueViewPager.setCurrentItem(pos, true);					
 	}
 
 	@Override
 	public void onItemClicked(int position) {
-
+		
 	}
 
 	/***************************************************************************/
@@ -302,7 +335,6 @@ public class TeamsSectionFragment extends SectionFragment implements
 	@Override
 	public void onPageSelected(int pos) {
 		((HomeActivity) getActivity()).setCurrentcompetition(pos);
-
 	}
 
 }

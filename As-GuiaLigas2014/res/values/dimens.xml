@@ -39,7 +39,7 @@
     <dimen name="size_comparator_player_12">12sp</dimen>
     <dimen name="size_comparator_player_22">22sp</dimen>
     <dimen name="size_comparator_player_stats">25dp</dimen>
-    <dimen name="size_comparator_player_title">20sp</dimen>
+    <dimen name="size_comparator_player_title">18sp</dimen>
     <dimen name="size_item_grid_team_teamName">10sp</dimen>
     <dimen name="size_fragment_team_22">22sp</dimen>
     <dimen name="size_fragment_calendar_days">20sp</dimen>

@@ -529,7 +529,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/668b5bae319cc6cc71782cea205304c5/calendario.js2</string>
+			<string>/calendario/3e90006ee562db875f886cc0765a83f4/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/segunda/</string>
 			<key>viewType</key>
@@ -586,7 +586,7 @@
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

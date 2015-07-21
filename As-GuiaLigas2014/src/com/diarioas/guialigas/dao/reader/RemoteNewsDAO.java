@@ -180,7 +180,7 @@ public class RemoteNewsDAO implements AsyncTagReaderListener, AsyncLoadNewsXMLLi
 			this.asyncNewsReader = new AsyncLoadNewsXML(this, mContext);
 			this.asyncNewsReader.execute(url);
 		} else {
-			responseNotConnectionRemoteConfigForTag();
+			responseNotConnectionRemoteConfig();
 		}
 
 	}

@@ -113,8 +113,8 @@ public class HomeActivity extends GeneralFragmentActivity implements
 				}
 			}else if(requestCode == ReturnRequestCodes.SORT_BACK) {
 				if (selectedFragment instanceof SectionFragment) {
-					((SectionFragment) selectedFragment).setReturnFromReorder();
-				}
+					((SectionFragment) selectedFragment).setReturnFromReorder();					
+				}								
 			}
 		}
 	}

@@ -154,17 +154,16 @@ public class NewsDetailFragment extends Fragment
 			imageView.setVisibility(View.GONE);
 		}
 		TextView preTitle = (TextView) generalView.findViewById(R.id.preTitle);
-		FontUtils.setCustomfont(mContext, preTitle, FontTypes.HELVETICANEUE);
+		//FontUtils.setCustomfont(mContext, preTitle, FontTypes.HELVETICANEUE);
 		preTitle.setText(item.getPreTitleSection());
 
 		TextView title = (TextView) generalView.findViewById(R.id.title);
-		FontUtils.setCustomfont(mContext, title, FontTypes.HELVETICANEUE);
+		//FontUtils.setCustomfont(mContext, title, FontTypes.HELVETICANEUE);
 		title.setText(item.getTitle());
 
 		TextView abstractText = (TextView) generalView
 				.findViewById(R.id.abstractText);
-		FontUtils
-				.setCustomfont(mContext, abstractText, FontTypes.HELVETICANEUE);
+		//FontUtils.setCustomfont(mContext, abstractText, FontTypes.HELVETICANEUE);
 		abstractText.setText(item.getAbstract());
 
 		configureWebView();

@@ -150,7 +150,7 @@ public class GeneralSettings {
 	 * @param competitions
 	 *            the competitions to set
 	 */
-	public void setCompetitions(ArrayList<Competition> competitions) {
+	public void setCompetitions(ArrayList<Competition> competitions) {		
 		this.competitions = competitions;
 	}
 

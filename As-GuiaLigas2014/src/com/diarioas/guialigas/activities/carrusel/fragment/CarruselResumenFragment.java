@@ -298,7 +298,14 @@ public class CarruselResumenFragment extends CarruselFragment {
 				.findViewById(R.id.localShield);
 		String localShieldURL = DatabaseDAO.getInstance(mContext)
 				.getTeamShield(match.getLocalId());
-		localShield.setBackgroundResource(DrawableUtils.getDrawableId(mContext,localShieldURL,4));
+		int localShieldResourceInt = DrawableUtils.getDrawableId(mContext,localShieldURL,4);
+		if (localShieldResourceInt<=0) {
+			localShieldResourceInt=R.drawable.escudo_generico_size02;
+		} else {
+			
+		}
+		localShield.setBackgroundResource(localShieldResourceInt);
+		
 
 		View localContent = generalView.findViewById(R.id.localContent);
 		localContent.setTag(match.getLocalId());
@@ -319,7 +326,14 @@ public class CarruselResumenFragment extends CarruselFragment {
 				.findViewById(R.id.awayShield);
 		String awayShieldURL = DatabaseDAO.getInstance(mContext).getTeamShield(
 				match.getAwayId());
-		awayShield.setBackgroundResource(DrawableUtils.getDrawableId(mContext,awayShieldURL,4));
+		int awayShieldResourceInt = DrawableUtils.getDrawableId(mContext,awayShieldURL,4);
+		if (awayShieldResourceInt<=0) {
+			awayShieldResourceInt=R.drawable.escudo_generico_size02;
+		} else {
+			
+		}
+		awayShield.setBackgroundResource(awayShieldResourceInt);
+		
 
 		View awayContent = generalView.findViewById(R.id.awayContent);
 		awayContent.setTag(match.getAwayId());

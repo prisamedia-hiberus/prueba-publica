@@ -110,23 +110,22 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 								customTabView.getViewTreeObserver()
 										.removeGlobalOnLayoutListener(this);
 							}
-							if (((Integer) customTabView.getTag()) == 0) {
-								int padding = width / 2
-										- customTabView.getWidth() / 2;
+							int customTabViewWidth = customTabView.getWidth();
+							if (((Integer) customTabView.getTag()) != (strings
+									.size() - 1)) {								
+								int padding = (width - customTabViewWidth) / 2;
 								customTabView.findViewById(R.id.title)
 										.setPadding(padding, 0, 0, 0);
-								widths.add(customTabView.getWidth() + padding);
-							} else if (((Integer) customTabView.getTag()) == strings
-									.size() - 1) {
-								int padding = width / 2
-										- customTabView.getWidth() / 2;
-								customTabView.findViewById(R.id.title)
-										.setPadding(0, 0, padding, 0);
-								widths.add(customTabView.getWidth() + padding);
+								//widths.add(customTabView.getWidth() + padding);
+								widths.add(customTabViewWidth);
 							} else {
-								widths.add(customTabView.getWidth());
+								
+								int padding = (width - customTabViewWidth) / 2;
+								customTabView.findViewById(R.id.title)
+										.setPadding(padding, 0, padding, 0);
+								//widths.add(customTabView.getWidth() + 2*padding);
+								widths.add(customTabViewWidth);
 							}
-
 						}
 					});
 			customTabView.setOnClickListener(new OnClickListener() {
@@ -149,7 +148,7 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 		}
 		resetHeaderPosition();
 
-		if (initPosition != 0) {
+		if (initPosition >= 0) {
 			linear.getViewTreeObserver().addOnGlobalLayoutListener(
 					new OnGlobalLayoutListener() {
 
@@ -201,6 +200,7 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 	 * @param position
 	 */
 	public void setHeaderPosition(int position) {
+		/*
 		if (currentPosition != position) {
 
 			int w = 0;
@@ -209,16 +209,58 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 				resetHeaderPosition();
 				// Find the position
 				for (int i = 0; i < position; i++) {
-					w += widths.get(i);
+					int customTabViewWidth = widths.get(i); 
+					int padding = (width - customTabViewWidth) / 2;
+					int buttonWidth = customTabViewWidth+padding;
+					w += buttonWidth;
 				}
 				// Center in the screen
-				w -= (width - widths.get(position)) / 2;
-				this.scrollTo(w, this.getScrollY());
+				//w -= (width - widths.get(position)) / 2;
+				Log.d("HeaderPosition","Hay que colocar el scroll en la posición: "+position+" (X:"+w+")");
+				Log.d("HeaderPosition","El Array de anchuras es: ["+widths.toString()+"]");
+				Log.d("HeaderPosition","El Ancho de pantalla es: "+width);
+				//this.scrollTo(w, this.getScrollY());
 				
+				final int positionXToScroll = w;
+				final int positionYToScroll = this.getBottom();
+				
+				this.post(new Runnable() { 
+			        public void run() {
+			        	scrollTo(positionXToScroll,positionYToScroll);			             
+			        } 
+			});
 			}
 
 
 			// this.smoothScrollTo(w, this.getScrollY());
+		}*/
+		
+		int w = 0;
+		if (widths.size() > position) {
+			currentPosition = position;
+			resetHeaderPosition();
+			// Find the position
+			for (int i = 0; i < position; i++) {
+				int customTabViewWidth = widths.get(i); 
+				int padding = (width - customTabViewWidth) / 2;
+				int buttonWidth = customTabViewWidth+padding;
+				w += buttonWidth;
+			}
+			// Center in the screen
+			//w -= (width - widths.get(position)) / 2;
+			Log.d("HeaderPosition","Hay que colocar el scroll en la posición: "+position+" (X:"+w+")");
+			Log.d("HeaderPosition","El Array de anchuras es: ["+widths.toString()+"]");
+			Log.d("HeaderPosition","El Ancho de pantalla es: "+width);
+			//this.scrollTo(w, this.getScrollY());
+			
+			final int positionXToScroll = w;
+			final int positionYToScroll = this.getBottom();
+			
+			this.post(new Runnable() { 
+		        public void run() {
+		        	scrollTo(positionXToScroll,positionYToScroll);			             
+		        } 
+		});
 		}
 	}
 
@@ -247,18 +289,54 @@ public class CustomHoizontalScroll extends HorizontalScrollView {
 		int pos = -1;
 		int w = 0;
 		for (int i = 0; i < widths.size(); i++) {
-			w += widths.get(i);
+			/*int customTabViewWidth = widths.get(i); 
+			int padding = (width - customTabViewWidth) / 2;
+			int buttonWidth = customTabViewWidth+padding;
+			w += buttonWidth;
 			if (w > (x + width / 2)) {
 				pos = i;
 				break;
+			}*/
+			/*
+			int customTabViewWidth = widths.get(i); 
+			int padding = (width - customTabViewWidth) / 2;
+			int buttonWidth = customTabViewWidth/2+padding;
+			int oldW = w;
+			w += buttonWidth;
+			if (w > x) {
+				
+				int absPosPrevious = Math.abs(oldW-x);
+				int absPosNext=Math.abs(w-x);
+				if (absPosPrevious<=absPosNext) {
+					pos=i-1;
+					if (pos<-1)
+						pos=0;
+					break;
+				} else {
+					pos=i;
+					break;
+				}
+				
+			}*/
+			int customTabViewWidth = widths.get(i); 
+			int padding = (width - customTabViewWidth) / 2;
+			
+			w += padding;
+			if (w > x) {
+				pos = i;
+				break;
 			}
+			
+			w+=customTabViewWidth;
+			
 		}
 		if (pos == -1) {
 			pos = currentPosition;
 		}
 
 		setHeaderPosition(pos);
-		if (scrollEndListener != null && currentOldPosition != currentPosition) {
+		//if (scrollEndListener != null && currentOldPosition != currentPosition) {
+		if (scrollEndListener != null) {
 			currentOldPosition = currentPosition;
 			scrollEndListener.onScrollEnd(x, y, oldx, oldy, pos);
 		}

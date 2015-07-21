@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-
+	 
     <ImageView
         android:id="@+id/logoHeader"
         android:layout_width="wrap_content"
@@ -10,7 +10,7 @@
         android:layout_centerInParent="true"
         android:background="@drawable/ico_logo_navbar"
         android:contentDescription="@string/defualt" />
-
+        
     <RelativeLayout
         android:id="@+id/cancelContent"
         android:layout_width="wrap_content"

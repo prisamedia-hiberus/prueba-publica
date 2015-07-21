@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.diarioas.guialigas.R;
@@ -104,18 +106,33 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 		}
 		return true;
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionbar_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
 	private void share() {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType("text/plain");
 
 		i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-		String body = "Mensaje";
+		
+		if ((newsList!=null)&&(newsList.size()>pos)&&(pos>=0)) {
+			NewsItemTag nItem = (NewsItemTag)newsList.get(pos);
+			if (nItem!=null) {
+				String body = nItem.getTitle()+" "+nItem.getLink();
 
-		i.putExtra(Intent.EXTRA_TEXT, body);
-		startActivity(Intent.createChooser(i,
-				getString(R.string.share_mens_title)
-						+ getString(R.string.app_name)));
+				i.putExtra(Intent.EXTRA_TEXT, body);
+				startActivity(Intent.createChooser(i,
+						getString(R.string.share_mens_title)
+								+ getString(R.string.app_name)));
+			}			
+		}
+		
+		
 	}
 
 	/***************************************************************************/

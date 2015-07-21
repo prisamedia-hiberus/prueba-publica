@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.news.fragment.NewsDetailFragment;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
+import com.diarioas.guialigas.dao.model.news.NewsItemTag;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -66,6 +69,13 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	}
 	
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionbar_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
@@ -98,12 +108,18 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 		i.setType("text/plain");
 
 		i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-		String body = "Mensaje";
+		
+		if ((newsList!=null)&&(newsList.size()>pos)&&(pos>=0)) {
+			NewsItem nItem = (NewsItem)newsList.get(pos);
+			if (nItem!=null) {
+				String body = nItem.getTitle()+" "+nItem.getUrlDetail();
 
-		i.putExtra(Intent.EXTRA_TEXT, body);
-		startActivity(Intent.createChooser(i,
-				getString(R.string.share_mens_title)
-						+ getString(R.string.app_name)));
+				i.putExtra(Intent.EXTRA_TEXT, body);
+				startActivity(Intent.createChooser(i,
+						getString(R.string.share_mens_title)
+								+ getString(R.string.app_name)));
+			}			
+		}
 	}
 	
 	private void configureView() {

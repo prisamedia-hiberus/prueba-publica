@@ -58,7 +58,14 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 		generalView = inflater.inflate(R.layout.fragment_carrusel_directo,
 				container, false);
 		idShieldLocal = getArguments().getInt("idShieldLocal");
+		if (idShieldLocal==0) {
+			idShieldLocal=R.drawable.escudo_generico_size03;
+		}
 		idShieldAway = getArguments().getInt("idShieldAway");
+		if (idShieldAway==0) {
+			idShieldAway=R.drawable.escudo_generico_size03;
+		}
+		
 		configureView();
 		updateInfo();
 		return generalView;

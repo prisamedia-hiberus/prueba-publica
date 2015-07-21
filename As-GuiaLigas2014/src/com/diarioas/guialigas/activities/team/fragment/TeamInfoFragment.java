@@ -46,9 +46,14 @@ public class TeamInfoFragment extends TeamFragment {
 		/************************** Info General ******************************************/
 		String shield = (String) getArguments().get("shield");
 		if (shield != null && !shield.equalsIgnoreCase("")) {
+			int shieldResourceInt = DrawableUtils.getDrawableId(
+					mContext, shield, 4);
+			if (shieldResourceInt<=0) {
+				shieldResourceInt=R.drawable.escudo_generico_size01;
+			}
+			
 			((ImageView) generalView.findViewById(R.id.photoTeam))
-					.setBackgroundResource(DrawableUtils.getDrawableId(
-							mContext, shield, 4));
+					.setBackgroundResource(shieldResourceInt);
 		} else {
 			((ImageView) generalView.findViewById(R.id.photoTeam))
 					.setBackgroundResource(R.drawable.escudo_generico_size01);

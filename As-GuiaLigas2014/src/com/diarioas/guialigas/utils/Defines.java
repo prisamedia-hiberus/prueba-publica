@@ -40,7 +40,7 @@ public class Defines {
 		public static String DB_NAME = "ligas_2014_.sqlite";
 		public static final int VERSION = 5;
 
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia1.5.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia2.1.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 

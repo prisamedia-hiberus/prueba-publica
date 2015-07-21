@@ -144,6 +144,10 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 			}
 			this.generalSettings = generalSettings;
 			// He leido el plist y lo he cargardo en la DDBB
+			
+			//Actualizamos las competiciones de generalSettings para cargar las competiciones favoritas del usuario
+			this.generalSettings.setCompetitions(getOrderedCompetitions());
+			
 			responseUpdateDabase();
 		} else if (!conexion) {
 			// // Error en local, y no hay conexion en remoto
@@ -175,6 +179,10 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 				this.mainStaticRemoteFeedXMLReader = null;
 			}
 			this.generalSettings = generalSettings;
+			
+			//Actualizamos las competiciones de generalSettings para cargar las competiciones favoritas del usuario
+			this.generalSettings.setCompetitions(getOrderedCompetitions());
+			
 			// He leido el plist y lo he cargardo en la DDBB
 			responseUpdateDabase();
 		}
@@ -301,6 +309,8 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		}
 		editor.putString(ReturnSharedPreferences.SP_ORDERCOMPETITION_ORDER, order);
 		editor.commit();
+		
+		this.generalSettings.setCompetitions(competitions);
 	}
 
 }

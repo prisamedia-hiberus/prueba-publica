@@ -25,6 +25,7 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.photo.fragment.PhotoSectionGalleryFragment;
 import com.diarioas.guialigas.dao.model.news.GalleryMediaItem;
+import com.diarioas.guialigas.dao.model.news.NewsItem;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO.RemotePhotosDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -151,12 +152,15 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 		i.setType("text/plain");
 
 		i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-		String body = "Mensaje";
+		
+		if (gallery!=null) {
+			String body = gallery.getTitle()+" "+gallery.getLink();
 
-		i.putExtra(Intent.EXTRA_TEXT, body);
-		startActivity(Intent.createChooser(i,
-				getString(R.string.share_mens_title)
-						+ getString(R.string.app_name)));
+			i.putExtra(Intent.EXTRA_TEXT, body);
+			startActivity(Intent.createChooser(i,
+					getString(R.string.share_mens_title)
+							+ getString(R.string.app_name)));			
+		}
 	}
 
 	private void loadData() {

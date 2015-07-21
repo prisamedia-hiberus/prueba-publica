@@ -192,20 +192,20 @@
 					</dict>
 				</dict>
 
-				<key>3839</key>
+				<key>4179</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cobreloa</string>
+					<string>CD San Luis</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/442/3935/equipo.js2</string>
+					<string>/fichas/equipo/187/4179/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cobreloa_size02.png</string>
+						<string>escudo_cdsanluis_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cobreloa_size03.png</string>
+						<string>escudo_cdsanluis_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cobreloa_size01.png</string>
+						<string>escudo_cdsanluis_size01.png</string>
 					</dict>
 				</dict>
 
@@ -260,23 +260,6 @@
 					</dict>
 				</dict>
 
-				<key>4161</key>
-		  		<dict>
-					<key>name</key>
-					<string>Ñublense</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/169/4161/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_nublense_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_nublense_size03.png</string>
-						<key>detail</key>
-						<string>escudo_nublense_size01.png</string>
-					</dict>
-				</dict>
-
 				<key>4162</key>
 		  		<dict>
 					<key>name</key>
@@ -311,22 +294,6 @@
 					</dict>
 				</dict>
 
-				<key>4165</key>
-		  		<dict>
-					<key>name</key>
-					<string>Barnechea</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/173/4165/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_barnechea_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_barnechea_size03.png</string>
-						<key>detail</key>
-						<string>escudo_barnechea_size01.png</string>
-					</dict>
-				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -398,7 +365,7 @@
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

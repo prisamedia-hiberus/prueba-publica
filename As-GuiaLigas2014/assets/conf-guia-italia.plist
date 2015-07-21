@@ -443,7 +443,7 @@
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

@@ -19,7 +19,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.diarioas.guialigas.R;
@@ -62,6 +65,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 	private SwipeRefreshLayout swipeRefreshLayout = null;
 	private ArrayList<String> nomDays;
 
+	
 	/***************************************************************************/
 	/** Fragment lifecycle methods **/
 	/***************************************************************************/
@@ -104,9 +108,13 @@ public class CalendarSectionFragment extends SectionFragment implements
 	@Override
 	protected void configureView() {
 		
+		
 		configureSwipeLoader();
 		configureListView();
+		
 	}
+	
+	
 	
 	private void configureSwipeLoader()
 	{
@@ -135,6 +143,8 @@ public class CalendarSectionFragment extends SectionFragment implements
 				.findViewById(R.id.calendarContent);
 		calendarContent.setClickable(false);
 		calendarContent.setHorizontalScrollBarEnabled(false);
+		
+		
 	}
 
 	@Override
@@ -158,6 +168,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 			}
 			daysViewPager.setCurrentItem(currentDay, true);
 
+			
 		}
 	}
 
@@ -211,6 +222,8 @@ public class CalendarSectionFragment extends SectionFragment implements
 	}
 
 	private void configureHeader(int firstPosition) {
+		
+		
 		if (!this.calendarFases) {
 			days = fases.get(0).getGrupos().get(0).getJornadas();
 			generateSliderRegular(firstPosition);
@@ -220,8 +233,11 @@ public class CalendarSectionFragment extends SectionFragment implements
 			generateSliderGroup(firstPosition);
 
 		}
+		
+		
 	}
-
+	
+	
 	private void generateSliderRegular(int firstPosition) {
 
 		nomDays = new ArrayList<String>();

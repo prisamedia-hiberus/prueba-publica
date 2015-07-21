@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Resources;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -118,6 +121,13 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		overridePendingTransition(R.anim.grow_from_middle,
 				R.anim.shrink_to_middle);
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionbar_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -142,15 +152,12 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			i.setType("text/plain");
 
 			i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-			String body = getString(R.string.mens_share_part1_1)
-					+ currentTeam.getName()
-					+ getString(R.string.mens_share_part2)
-			// + getString(R.string.share_mens_url_long)
-			// + getString(R.string.share_mens_part2)
-			// + getString(R.string.share_mens_url_short)
-			// + getString(R.string.share_mens_part4)
-			;
-
+			
+			Resources res = getResources();
+			String body = String.format(res.getString(R.string.mens_share_team),
+					currentTeam.getName(),res.getString(R.string.share_google_play_url));
+			
+			
 			i.putExtra(Intent.EXTRA_TEXT, body);
 			// i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
 			startActivity(Intent.createChooser(i,

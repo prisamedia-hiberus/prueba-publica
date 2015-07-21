@@ -49,7 +49,13 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 				container, false);
 
 		idShieldLocal = getArguments().getInt("idShieldLocal");
+		if (idShieldLocal==0) {
+			idShieldLocal=R.drawable.escudo_generico_size03;
+		}
 		idShieldAway = getArguments().getInt("idShieldAway");
+		if (idShieldAway==0) {
+			idShieldAway=R.drawable.escudo_generico_size03;
+		}
 		configureView();
 		updateInfo();
 

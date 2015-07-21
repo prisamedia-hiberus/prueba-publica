@@ -14,12 +14,12 @@ import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -271,30 +271,41 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 			onBackPressed();
 			return false;
 		case R.id.share:
-			sharePlayer();
+			shareLiveMatch();
 			break;
 		}
 		return true;
 	}
 
-	private void sharePlayer() {
+	private void shareLiveMatch() {
 
-		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		String link = getIntent().getExtras().getString("link");
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("text/plain");
 
-//		String body = getString(R.string.mens_share_part3_1) + " <a href="
-//				+ link + ">" + match.getLocalTeamName() + " - "
-//				+ match.getAwayTeamName() + " </a>"
-//				+ getString(R.string.mens_share_part3_2)
-		// + getString(R.string.share_mens_url_long)
-		String body ="TODO";
-		;
+		i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+		
+		if (match!=null) {
+			
+			if ((match.getLocalTeamName()!=null)&&(match.getAwayTeamName()!=null)) {
+				Resources res = getResources();
+				String body = null;
+				
+				if ((match.getLink()!=null)&&(match.getLink().contains("http"))) {
+					body = String.format(res.getString(R.string.mens_share_match),
+							match.getLocalTeamName(),match.getAwayTeamName(),match.getLink());
+				} else {
+					body = String.format(res.getString(R.string.mens_share_match),
+							match.getLocalTeamName(),match.getAwayTeamName(),res.getString(R.string.share_google_play_url));
+				}
+				
+								
 
-		intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
-		startActivity(Intent.createChooser(intent,
-				getString(R.string.share_mens_title)
-						+ getString(R.string.app_name)));
+				i.putExtra(Intent.EXTRA_TEXT, body);
+				startActivity(Intent.createChooser(i,
+						getString(R.string.share_mens_title)
+								+ getString(R.string.app_name)));
+			}			
+		}
 
 	}
 
@@ -330,8 +341,17 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 			}
 		});
-		localShield.setBackgroundResource(idShieldLocal);
-		awayShield.setBackgroundResource(idShieldAway);
+		if (idShieldLocal>0) {
+			localShield.setBackgroundResource(idShieldLocal);
+		} else {
+			localShield.setBackgroundResource(R.drawable.escudo_generico_size03);
+		}
+		if (idShieldAway>0) {
+			awayShield.setBackgroundResource(idShieldAway);
+		} else {
+			awayShield.setBackgroundResource(R.drawable.escudo_generico_size03);
+		}
+		
 
 		leftTeamText.setText(match.getLocalTeamName());
 		rightTeamText.setText(match.getAwayTeamName());
