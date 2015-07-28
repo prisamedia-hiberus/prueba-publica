@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="false"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/dataTeam"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
+
+        <ImageView
+            android:id="@+id/photoTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dip"
+            android:contentDescription="@string/defualt" />
+
+        <TextView
+            android:id="@+id/nameTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dip"
+            android:layout_toRightOf="@+id/photoTeam"
+            android:maxLines="2"
+            android:textSize="@dimen/size_fragment_team_22" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+</LinearLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_spades_header.xml -->

@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/yesContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false" >
+
+        <ListView
+            android:id="@+id/stadiumsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:dividerHeight="0dp"
+            android:fadingEdge="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent"
+            android:orientation="vertical"
+            android:scrollbars="none" >
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/spinnerContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:clickable="false" >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/spinnerMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/spinner_message_stadiums"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/publiContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/activity_stadiums.xml -->

@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/backContent"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icn_close"
+            android:contentDescription="@string/defualt" />
+
+        <TextView
+            android:id="@+id/backText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/backButton"
+            android:text="@string/player_comparator_back"
+            android:textColor="@color/red_comparator"
+            android:textSize="@dimen/size_comparator_player_title" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cancelContent"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/cancelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/player_comparator_cancel"
+            android:textColor="@color/red_comparator"
+            android:textSize="@dimen/size_comparator_player_title" />
+    </RelativeLayout>
+
+    <!-- <ImageView -->
+    <!-- android:id="@+id/logoHeader" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_centerInParent="true" -->
+    <!-- android:background="@drawable/logoheader" -->
+    <!-- android:contentDescription="@string/defualt" /> -->
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/header_bar_comparator.xml -->

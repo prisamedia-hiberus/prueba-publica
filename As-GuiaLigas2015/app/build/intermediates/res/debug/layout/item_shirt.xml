@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/shirtImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/defualt" />
+
+    <TextView
+        android:id="@+id/shirtText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shirtImage"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/medium_gray"
+        android:textSize="@dimen/size_fragment_team_15" />
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_shirt.xml -->

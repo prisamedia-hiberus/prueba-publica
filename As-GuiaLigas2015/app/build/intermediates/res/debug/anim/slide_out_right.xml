@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android" android:shareInterpolator="false"
+    android:fromXDelta="0%p" android:toXDelta="-100%p"
+    android:duration="400"/><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/anim/slide_out_right.xml -->

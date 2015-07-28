@@ -1,0 +1,119 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_search"
+    android:clickable="false"
+    android:orientation="vertical"
+    android:paddingLeft="6dp"
+    android:paddingTop="6dp" >
+
+    <RelativeLayout
+        android:id="@+id/centerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="6dp" >
+
+        <RelativeLayout
+            android:id="@+id/playerImagesContent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" >
+
+            <ImageView
+                android:id="@+id/playerImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="false"
+                android:background="@drawable/foto_plantilla_generica"
+                android:contentDescription="@string/defualt"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="false"
+                android:background="@drawable/borde_circulo_plantilla"
+                android:contentDescription="@string/defualt"
+                android:scaleType="center" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spadesLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" >
+
+            <LinearLayout
+                android:id="@+id/spadesContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/spadesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_item_list_clasificacion_16"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dataContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/spadesLayout"
+            android:layout_toRightOf="@+id/playerImagesContent"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/dorsalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_item_list_clasificacion_16" />
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/dorsalText"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_item_list_clasificacion_16" />
+
+            <TextView
+                android:id="@+id/teamText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleText"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_item_list_clasificacion_16" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dp"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+</LinearLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_spades.xml -->

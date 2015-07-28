@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AppMeasurement_Android">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/AppMeasurement_Android.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

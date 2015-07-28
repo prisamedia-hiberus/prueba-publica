@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/iconLegendContent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <ImageView
+                android:id="@+id/iconLegend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/estrella_amarilla"
+                android:contentDescription="@string/defualt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textLegend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/gray_sedes"
+                android:textSize="@dimen/size_fragment_team_14" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_his_palmares_legend.xml -->

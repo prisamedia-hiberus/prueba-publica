@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.diarioas.guialigas.utils.scroll.VerticalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/galleryContainer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_thumb_height" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/stadiumGalleryViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/circleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@color/clear_gray"
+                android:contentDescription="@string/defualt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical" >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+
+                            <ImageView
+                                android:id="@+id/imageAforo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/icon_aforo"
+                                android:contentDescription="@string/defualt" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/imageAforo"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/aforoLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dip"
+                                    android:text="@string/aforo"
+                                    android:textColor="@color/gray_sedes"
+                                    android:textSize="@dimen/size_data_sedes" />
+
+                                <TextView
+                                    android:id="@+id/aforo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dip"
+                                    android:textColor="@color/red_sedes"
+                                    android:textSize="@dimen/size_data_sedes" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1" >
+
+                            <ImageView
+                                android:id="@+id/imageYear"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/icon_construccion"
+                                android:contentDescription="@string/defualt" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/imageYear"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/yearLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dip"
+                                    android:text="@string/build_year"
+                                    android:textColor="@color/gray_sedes"
+                                    android:textSize="@dimen/size_data_sedes" />
+
+                                <TextView
+                                    android:id="@+id/year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dip"
+                                    android:textColor="@color/red_sedes"
+                                    android:textSize="@dimen/size_data_sedes" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@color/clear_gray"
+                android:contentDescription="@string/defualt" />
+
+            <TextView
+                android:id="@+id/history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="10dip"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_dataBig_sedes" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/padding_footer" />
+        </LinearLayout>
+    </com.diarioas.guialigas.utils.scroll.VerticalScrollView>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/fragment_sede_stadium.xml -->

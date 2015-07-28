@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/playerDorsal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="right"
+        android:textColor="@color/gray_carrusel_resumen"
+        android:textSize="@dimen/size_calendar_14" />
+
+    <TextView
+        android:id="@+id/playerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="5"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:lines="1"
+        android:textColor="@color/gray_carrusel_resumen"
+        android:textSize="@dimen/size_calendar_14" />
+
+    <LinearLayout
+        android:id="@+id/changeContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/changeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="5"
+            android:gravity="left"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_calendar_14" />
+
+        <ImageView
+            android:id="@+id/changeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/plantilla_cambio02"
+            android:contentDescription="@string/defualt"
+            android:scaleType="center" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/golImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@drawable/plantilla_gol"
+        android:contentDescription="@string/defualt"
+        android:scaleType="center"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/tarjetaImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@drawable/plantilla_amarilla"
+        android:contentDescription="@string/defualt"
+        android:scaleType="center"
+        android:visibility="gone" />
+
+</LinearLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_grid_carrusel_player_suplente.xml -->

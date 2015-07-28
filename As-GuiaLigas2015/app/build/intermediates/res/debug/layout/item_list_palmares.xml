@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:paddingBottom="4dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="4dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_thumb_height"
+        android:background="@color/clear_gray" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/galeria_imagenrecurso02"
+            android:contentDescription="@string/defualt" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/defualt"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="6dp"
+        android:text="@string/mundial"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_palmares_Title" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/nameLabel"
+        android:layout_marginLeft="100dip"
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_palmares_Title" />
+
+    <LinearLayout
+        android:id="@+id/dataContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:paddingBottom="6dp"
+        android:paddingLeft="10dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/flagWinnerImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="23dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/defualt"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/flagStarsImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/defualt"
+                android:scaleType="center" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/winner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_palmares_big" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/finalistLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/finalista"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_palmares" />
+
+            <TextView
+                android:id="@+id/finalist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/finalistLabel"
+                android:layout_marginLeft="10dip"
+                android:layout_toRightOf="@id/finalistLabel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_palmares" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/resultLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resultado"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_palmares" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/resultLabel"
+                android:layout_marginLeft="10dip"
+                android:layout_toRightOf="@id/resultLabel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_palmares" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_palmares.xml -->

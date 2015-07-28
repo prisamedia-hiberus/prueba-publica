@@ -1,0 +1,3 @@
+include ':lib-ads-android'
+project(':lib-ads-android').projectDir = new File('../../lib-ads-android')
+include ':app'

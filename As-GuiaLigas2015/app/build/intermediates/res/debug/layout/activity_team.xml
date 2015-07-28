@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/yesContent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:clickable="false" >
+
+        <LinearLayout
+            android:id="@+id/buttonBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/textura_footer_team"
+            android:orientation="horizontal"
+            android:visibility="visible" >
+
+            <Button
+                android:id="@+id/statsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/textura_footer_team"
+                android:lines="1"
+                android:onClick="buttonClick"
+                android:tag="0"
+                android:text="@string/team_estadisticas"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/size_button_bar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/separador_menu"
+                android:contentDescription="@string/defualt"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp" />
+
+            <Button
+                android:id="@+id/dataButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/textura_footer_team_selected"
+                android:lines="1"
+                android:onClick="buttonClick"
+                android:tag="1"
+                android:text="@string/team_informacion"
+                android:textColor="@color/red"
+                android:textSize="@dimen/size_button_bar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/separador_menu"
+                android:contentDescription="@string/defualt"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+
+            <Button
+                android:id="@+id/playersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/textura_footer_team"
+                android:lines="1"
+                android:onClick="buttonClick"
+                android:tag="2"
+                android:text="@string/team_plantilla"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/size_button_bar" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/teamViewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/buttonBar" />
+
+        <RelativeLayout
+            android:id="@+id/publiContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/buttonBar" >
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/spinnerContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:clickable="false" >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/spinnerMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/spinner_message_team"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/errorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/errorImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/error_icn" />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorImage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="10"
+            android:text="@string/error_team_message"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+    <!-- <android.support.v4.view.ViewPager -->
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/activity_team.xml -->

@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/general_video_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black" >
+
+    <RelativeLayout
+        android:id="@+id/video_content_layout"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iconLoadingBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        
+        android:contentDescription="@string/defualt" />
+<!-- android:background="@drawable/elementos_comunes_icn_loading" -->
+    <ImageView
+        android:id="@+id/iconLoadingVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        
+        android:contentDescription="@string/defualt" />
+<!-- android:background="@drawable/elementos_comunes_icn_loading_charge" -->
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/activity_video_detail_page.xml -->

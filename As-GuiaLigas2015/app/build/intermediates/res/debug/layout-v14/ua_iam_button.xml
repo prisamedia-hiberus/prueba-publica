@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    android:id="@+id/action_button"
+    style="@style/Widget.UrbanAirship.InAppMessage.Banner.ActionButton"
+    xmlns:android="http://schemas.android.com/apk/res/android"/><!-- From: file:/Users/build/workspace/android-library/urbanairship-sdk/src/main/res/layout-v14/ua_iam_button.xml --><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.urbanairship.android/urbanairship-sdk/6.1.2/res/layout-v14/ua_iam_button.xml -->

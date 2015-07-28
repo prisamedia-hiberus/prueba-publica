@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/contentCompetition"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll
+            android:id="@+id/countrySroll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:scrollbars="none" >
+        </com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll>
+
+        <RelativeLayout
+            android:id="@+id/buttonLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/degradado_izquierda"
+            android:contentDescription="@string/defualt"
+            android:onClick="buttonClick"
+            android:tag="201" >
+
+            <ImageView
+                android:id="@+id/buttonPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/button_previus"
+                android:clickable="false"
+                android:contentDescription="@string/defualt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/buttonRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/degradado_derecha"
+            android:contentDescription="@string/defualt"
+            android:onClick="buttonClick"
+            android:tag="202" >
+
+            <ImageView
+                android:id="@+id/buttonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/button_next"
+                android:clickable="false"
+                android:contentDescription="@string/defualt" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague
+        android:id="@+id/leagueViewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/contentCompetition" />
+
+    <RelativeLayout
+        android:id="@+id/publiContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/activity_home.xml -->

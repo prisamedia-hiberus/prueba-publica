@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/image_thumb_height"
+    android:background="@color/clear_gray" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/galeria_imagenrecurso02"
+        android:contentDescription="@string/defualt" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_thumb_height"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/defualt"
+        android:scaleType="centerCrop" />
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/fragment_sede_photo.xml -->

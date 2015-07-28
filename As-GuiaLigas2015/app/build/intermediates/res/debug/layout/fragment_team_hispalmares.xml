@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp" >
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+    <LinearLayout
+        android:id="@+id/headerBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gapBar"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3" >
+
+            <TextView
+                android:id="@+id/competitionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/team_hispalmares_competitionname"
+                android:textColor="@color/gray_sedes"
+                android:textSize="@dimen/size_header_sedes" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gapBar2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/headerBar"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+    <ListView
+        android:id="@+id/palmaresContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gapBar2"
+        android:clickable="false"
+        android:dividerHeight="0dp"
+        android:fadingEdge="none"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:listSelector="@android:color/transparent"
+        android:orientation="vertical"
+        android:scrollbars="none" >
+    </ListView>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/fragment_team_hispalmares.xml -->

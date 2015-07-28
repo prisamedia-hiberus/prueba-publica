@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" >
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/medium_gray"
+            android:textSize="@dimen/size_calendar_big" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/headerContainer"
+        android:background="@color/dark_gray"
+        android:contentDescription="@string/defualt"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:visibility="gone" />
+
+    <!-- <ListView -->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container_carousel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gapBar" >
+
+        <ListView
+            android:id="@+id/carruselContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!-- </ListView> -->
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_group_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gapBar" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/itemsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/errorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/errorImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/error_icn" />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorImage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="10"
+            android:text="@string/carrusel_detail_error"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/spinnerContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:clickable="false" >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/spinnerMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/spinner_message_carrusel"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/activity_carrusel.xml -->

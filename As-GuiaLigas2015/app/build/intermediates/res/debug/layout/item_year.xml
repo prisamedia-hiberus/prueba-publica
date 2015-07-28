@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/generalTab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" >
+
+    <Button
+        android:id="@+id/button"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:maxLines="2"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:textColor="@color/medium_gray"
+        android:textSize="18sp" />
+
+</RelativeLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_year.xml -->

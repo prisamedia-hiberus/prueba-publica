@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="3dp" >
+
+    <RelativeLayout
+        android:id="@+id/centerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/images"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" >
+
+            <ImageView
+                android:id="@+id/comparatorImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icn_partidos"
+                android:contentDescription="@string/defualt" />
+
+            <TextView
+                android:id="@+id/textComparatorImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comparatorImage"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/comparator_gray"
+                android:textSize="@dimen/size_carrusel_stats" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/statsPL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/images" >
+
+            <TextView
+                android:id="@+id/statsTextPL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_comparator_player_22" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statsTextPL"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <View
+                    android:id="@+id/stasOffPL"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_comparator_player_stats"
+                    android:background="@color/black"
+                    android:visibility="invisible" />
+
+                <View
+                    android:id="@+id/stasOnPL"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_comparator_player_stats"
+                    android:background="@color/red" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/statsPR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/images" >
+
+            <TextView
+                android:id="@+id/statsTextPR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_comparator_player_22" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statsTextPR"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <View
+                    android:id="@+id/stasOnPR"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_comparator_player_stats"
+                    android:background="@color/blue" />
+
+                <View
+                    android:id="@+id/stasOffPR"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_comparator_player_stats"
+                    android:background="@color/black"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+</LinearLayout><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_stats.xml -->

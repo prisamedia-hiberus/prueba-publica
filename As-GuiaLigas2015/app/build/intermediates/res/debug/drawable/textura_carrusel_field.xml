@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:gravity="fill"
+    android:src="@drawable/plantilla_estadio_banda"
+    android:tileMode="repeat" />
+<!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/drawable/textura_carrusel_field.xml -->
