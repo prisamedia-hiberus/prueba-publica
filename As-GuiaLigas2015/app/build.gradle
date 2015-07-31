@@ -1,3 +1,5 @@
+def keystorePropertiesFile = 'sign/keystore.properties'
+
 apply plugin: 'com.android.application'
 
 android {
@@ -8,6 +10,20 @@ android {
         applicationId "com.diarioas.guialigas"
         minSdkVersion 14
         targetSdkVersion 17
+    }
+
+    File signFile = getRootProject().file(keystorePropertiesFile)
+    if (signFile.exists()) {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(signFile))
+        signingConfigs {
+            release {
+                storeFile rootProject.file(properties['keystore'])
+                storePassword properties['storePassword']
+                keyAlias properties['keyAlias']
+                keyPassword properties['keyPassword']
+            }
+        }
     }
 
     buildTypes {
