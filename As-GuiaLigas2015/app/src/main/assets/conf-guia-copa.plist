@@ -654,6 +654,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias</string>
+			<key>noticiasWS</key>
+			<string>rss/futbol/copa_del_rey.js2</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/4e5de9f7e66a77a80c9e091f9e98b34a/calendario.js2</string>
@@ -704,16 +714,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

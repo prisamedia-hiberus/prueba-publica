@@ -175,20 +175,20 @@
 					</dict>
 				</dict>
 
-				<key>3680</key>
+				<key>4241</key>
 		  		<dict>
 					<key>name</key>
-					<string>Evian</string>
+					<string>Angers</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/187/3680/equipo.js2</string>
+					<string>/fichas/equipo/249/4241/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_evian_size02.png</string>
+						<string>escudo_angers_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_evian_size03.png</string>
+						<string>escudo_angers_size03.png</string>
 						<key>detail</key>
-						<string>escudo_evian_size01.png</string>
+						<string>escudo_angers_size01.png</string>
 					</dict>
 				</dict>
 
@@ -260,37 +260,37 @@
 					</dict>
 				</dict>
 
-				<key>120</key>
+				<key>478</key>
 		  		<dict>
 					<key>name</key>
-					<string>Lens</string>
+					<string>Troyes</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/120/120/equipo.js2</string>
+					<string>/fichas/equipo/478/478/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_lens_size02.png</string>
+						<string>escudo_troyes_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_lens_size03.png</string>
+						<string>escudo_troyes_size03.png</string>
 						<key>detail</key>
-						<string>escudo_lens_size01.png</string>
+						<string>escudo_troyes_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>220</key>
+				<key>4242</key>
 		  		<dict>
 					<key>name</key>
-					<string>Metz</string>
+					<string>Gazélec</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/220/220/equipo.js2</string>
+					<string>/fichas/equipo/250/4242/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_metz_size02.png</string>
+						<string>escudo_gazelec_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_metz_size03.png</string>
+						<string>escudo_gazelec_size03.png</string>
 						<key>detail</key>
-						<string>escudo_metz_size01.png</string>
+						<string>escudo_gazelec_size01.png</string>
 					</dict>
 				</dict>
 
@@ -382,6 +382,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_francesa/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/7fa706c952c0fec15c690989a89ebeff/calendario.js2</string>
@@ -432,16 +442,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

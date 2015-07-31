@@ -150,13 +150,13 @@ public class TeamInfoFragment extends TeamFragment {
 					LayoutParams.WRAP_CONTENT);
 
 			if (idShirt1 != 0) {
-				llShield.addView(getShirtItem(idShirt1), parameters);
+				llShield.addView(getLocalShirtItem(idShirt1), parameters);
 			}
 			if (idShirt2 != 0) {
-				llShield.addView(getShirtItem(idShirt2), parameters);
+				llShield.addView(getAwayShirtItem(idShirt2), parameters);
 			}
 			if (idShirt3 != 0) {
-				llShield.addView(getShirtItem(idShirt3), parameters);
+				llShield.addView(getAlternativeShirtItem(idShirt3), parameters);
 			}
 		} else {
 			generalView.findViewById(R.id.gapShield).setVisibility(View.GONE);
@@ -283,18 +283,29 @@ public class TeamInfoFragment extends TeamFragment {
 		}
 	}
 
-	private RelativeLayout getShirtItem(int idShirt1) {
+	private RelativeLayout getShirtItem(int idShirt1, String shieldText) {
 		RelativeLayout contentShirt1 = (RelativeLayout) inflater.inflate(
 				R.layout.item_shirt, null);
 		TextView shield1Text = (TextView) contentShirt1
 				.findViewById(R.id.shirtText);
-		shield1Text.setText(getString(R.string.team_equipacion_local));
+		shield1Text.setText(shieldText);
 		FontUtils.setCustomfont(mContext, shield1Text,
 				FontUtils.FontTypes.ROBOTO_LIGHT);
 
 		((ImageView) contentShirt1.findViewById(R.id.shirtImage))
 				.setImageDrawable(getResources().getDrawable(idShirt1));
 		return contentShirt1;
+	}
+
+	private RelativeLayout getLocalShirtItem(int idShirt) {
+		return getShirtItem(idShirt,getString(R.string.team_equipacion_local));
+	}
+	private RelativeLayout getAwayShirtItem(int idShirt) {
+		return getShirtItem(idShirt,getString(R.string.team_equipacion_visitante));
+	}
+
+	private RelativeLayout getAlternativeShirtItem(int idShirt) {
+		return getShirtItem(idShirt,getString(R.string.team_equipacion_alternativa));
 	}
 
 	private boolean configurePresident() {

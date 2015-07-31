@@ -80,41 +80,41 @@
 				</dict>
 
 
-				<key>181</key>
+				<key>85</key>
 		  		<dict>
 					<key>name</key>
-					<string>Barcelona B</string>
+					<string>Almería</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/181/181/equipo.js2</string>
+					<string>/fichas/equipo/085/85/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/181.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/85.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_barcelona_size02.png</string>
+						<string>escudo_almeria_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_barcelona_size03.png</string>
+						<string>escudo_almeria_size03.png</string>
 						<key>detail</key>
-						<string>escudo_barcelona_size01.png</string>
+						<string>escudo_almeria_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>171</key>
+				<key>182</key>
 				<dict>
 					<key>name</key>
-					<string>Betis</string>
+					<string>Athletic B</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/171/171/equipo.js2</string>
+					<string>/fichas/equipo/182/182/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/171.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/182.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_betis_size02.png</string>
+						<string>escudo_athletic_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_betis_size03.png</string>
+						<string>escudo_athletic_size03.png</string>
 						<key>detail</key>
-						<string>escudo_betis_size01.png</string>
+						<string>escudo_athletic_size01.png</string>
 					</dict>
 				</dict>
 
@@ -212,22 +212,22 @@
 						<string>escudo_leganes_size01.png</string>
 					</dict>
 				</dict>
-				<key>9</key>
+				<key>342</key>
 		  		<dict>
 					<key>name</key>
-					<string>Las Palmas</string>
+					<string>Córdoba</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo/009/9/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/9.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/342.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_canarias_size02.png</string>
+						<string>escudo_cordoba_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_canarias_size03.png</string>
+						<string>escudo_cordoba_size03.png</string>
 						<key>detail</key>
-						<string>escudo_canarias_size01.png</string>
+						<string>escudo_cordoba_size01.png</string>
 					</dict>
 				</dict>
 
@@ -364,60 +364,60 @@
 					</dict>
 				</dict>-->
 
-				<key>152</key>
+				<key>121</key>
 		  		<dict>
 					<key>name</key>
-					<string>Recreativo</string>
+					<string>Elche</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/152/152/equipo.js2</string>
+					<string>/fichas/equipo/121/121/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/152.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/121.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_recreativo_size02.png</string>
+						<string>escudo_elche_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_recreativo_size03.png</string>
+						<string>escudo_elche_size03.png</string>
 						<key>detail</key>
-						<string>escudo_recreativo_size01.png</string>
+						<string>escudo_elche_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>163</key>
+				<key>504</key>
 		  		<dict>
 					<key>name</key>
-					<string>Sabadell</string>
+					<string>Gimnàstic</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/163/163/equipo.js2</string>
+					<string>/fichas/equipo/005/504/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/163.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/504.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_sabadell_size02.png</string>
+						<string>escudo_gimnastic_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_sabadell_size03.png</string>
+						<string>escudo_gimnastic_size03.png</string>
 						<key>detail</key>
-						<string>escudo_sabadell_size01.png</string>
+						<string>escudo_gimnastic_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>76</key>
+				<key>864</key>
 		  		<dict>
 					<key>name</key>
-					<string>Sporting</string>
+					<string>Huesca</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/076/76/equipo.js2</string>
+					<string>/fichas/equipo/365/864/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/76.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/864.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_sporting_size02.png</string>
+						<string>escudo_huesca_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_sporting_size03.png</string>
+						<string>escudo_huesca_size03.png</string>
 						<key>detail</key>
-						<string>escudo_sporting_size01.png</string>
+						<string>escudo_huesca_size01.png</string>
 					</dict>
 				</dict>
 
@@ -443,7 +443,7 @@
 				<key>20</key>
 		  		<dict>
 					<key>name</key>
-					<string>Zaragoza</string>
+					<string>Real Zaragoza</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo/020/20/equipo.js2</string>
 					<key>teamInfo</key>
@@ -458,22 +458,22 @@
 						<string>escudo_zaragoza_size01.png</string>
 					</dict>
 				</dict>
-				<key>15</key>
+				<key>14</key>
 		  		<dict>
 					<key>name</key>
-					<string>Racing</string>
+					<string>Oviedo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/015/15/equipo.js2</string>
+					<string>/fichas/equipo/014/14/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/15.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/14.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_santander_size02.png</string>
+						<string>escudo_oviedo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_santander_size03.png</string>
+						<string>escudo_oviedo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_santander_size01.png</string>
+						<string>escudo_oviedo_size01.png</string>
 					</dict>
 				</dict>
 				<key>3375</key>
@@ -524,7 +524,16 @@
 			<key>available</key>
 			<true/>
 		</dict>
-
+		<dict>
+			<key>name</key>
+			<string>noticias</string>
+			<key>noticiasWS</key>
+			<string>rss/futbol/segunda.js2</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
 		<dict>
 			<key>name</key>
 			<string>calendar</string>
@@ -577,16 +586,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

@@ -234,7 +234,7 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToAds() {
-		String section = NativeAds.AD_NEWS_TAG+"/"+NativeAds.AD_DETAIL;
+		String section = NativeAds.AD_NEWS_TAG+NativeAds.AD_DETAIL;
 		callToAds(section, false);
 	}
 

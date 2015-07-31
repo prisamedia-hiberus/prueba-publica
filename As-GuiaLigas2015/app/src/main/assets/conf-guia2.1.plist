@@ -6,18 +6,18 @@
 	<key>splash</key>
 	<dict>
 		<key>available</key>
-		<true/>
+		<false/>
 		<key>imageURL</key>
 		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_adidas_splash.png</string>
 		<key>seconds</key>
-		<integer>1</integer>
+		<integer>0</integer>
 	</dict>
 
 	<!-- header -->
 	<key>header</key>
 	<dict>
 		<key>available</key>
-		<true/>
+		<false/>
 		<key>imageURL</key>
 		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_adidas_header.png</string>
 	</dict>
@@ -170,7 +170,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_LigaBBVA.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-10T00:00:00Z</date>
+			<date>2014-07-23T00:00:05Z</date>
 		</dict>
 		<key>7</key>
 		<dict>
@@ -183,9 +183,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_ligaadelante.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-10T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
-		<key>13</key>
+	<!--	<key>13</key>
 		<dict>
 			<key>order</key>
 			<string>3</string>
@@ -196,7 +196,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>12</key>
 		<dict>
@@ -209,7 +209,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-28T00:00:02Z</date>
 		</dict>
 		<key>107</key>
 		<dict>
@@ -222,8 +222,8 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_copa.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
-		</dict>
+			<date>2014-07-23T00:00:02Z</date>
+		</dict>-->
 		<key>9</key>
 		<dict>
 			<key>order</key>
@@ -235,7 +235,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-24T00:00:02Z</date>
 		</dict>
 		<key>8</key>
 		<dict>
@@ -248,7 +248,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>5</key>
 		<dict>
@@ -261,7 +261,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>6</key>
 		<dict>
@@ -274,46 +274,46 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_francia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-05-25T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>3</key>
 		<dict>
 			<key>order</key>
 			<string>10</string>
 			<key>description</key>
-			<string>Liga Águila</string>
+			<string>Liga Águila 2</string>
 			<key>confFileURL</key>
 			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia-colombia.xml</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-06-01T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>4</key>
 		<dict>
 			<key>order</key>
 			<string>11</string>
 			<key>description</key>
-			<string>Liga Chilena - Clausura</string>
+			<string>Liga Chilena - Apertura</string>
 			<key>confFileURL</key>
 			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia-chile.xml</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-13T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>11</key>
 		<dict>
 			<key>order</key>
 			<string>12</string>
 			<key>description</key>
-			<string>Liga MX</string>
+			<string>Liga MX - Apertura</string>
 			<key>confFileURL</key>
 			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia-mexico.xml</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-13T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 		<key>2</key>
 		<dict>
@@ -326,7 +326,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_libertadores.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-06-02T00:00:00Z</date>
+			<date>2014-07-23T00:00:02Z</date>
 		</dict>
 	</dict>
 

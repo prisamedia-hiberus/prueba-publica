@@ -313,4 +313,22 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		this.generalSettings.setCompetitions(competitions);
 	}
 
+	public boolean isFirstTimeRun() {
+		String orderedKey = ReturnSharedPreferences.SP_ORDERCOMPETITION;
+		SharedPreferences prefs = mContext.getSharedPreferences(orderedKey, Context.MODE_PRIVATE);
+
+		if (prefs.contains(ReturnSharedPreferences.SP_ORDERCOMPETITION_ENABLED)) {
+			String orderCompetitions = prefs.getString(ReturnSharedPreferences.SP_ORDERCOMPETITION_ORDER, null);
+			if (orderCompetitions!=null){
+				return false;
+			}
+			Editor editor = prefs.edit();
+			editor.remove(orderedKey);
+			editor.commit();
+		}
+
+		return true;
+	}
+
+
 }

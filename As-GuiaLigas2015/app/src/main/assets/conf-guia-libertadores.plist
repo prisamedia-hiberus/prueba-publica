@@ -577,6 +577,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/copa_libertadores/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/bfd240ae46efd6d760f4d905fc2a1287/calendario.js2</string>
@@ -627,16 +637,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

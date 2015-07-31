@@ -156,6 +156,10 @@ public class HomeActivity extends GeneralFragmentActivity implements
 
 		hideActionBar();
 		configureDefaultSection();
+
+
+		//Check if the user run the application by first time and load the sort view
+		checkFirstTimeRun();
 	}
 
 	private void configureDefaultSection() {
@@ -169,6 +173,18 @@ public class HomeActivity extends GeneralFragmentActivity implements
 			loadSectionFragment(defaultSection, currentCompetitionId);
 		}
 
+	}
+
+	/**
+	 *	checkFirstTimeRun
+	 *
+	 * This method will check if the user was running by first time the app, and the load the
+	 * order view, to let the user to personalize all the cometitions
+	 */
+	private void checkFirstTimeRun() {
+		if (RemoteDataDAO.getInstance(this.mContext).isFirstTimeRun()) {
+			openSortSection();
+		}
 	}
 
 	/******************* Section methods ********************************/

@@ -135,7 +135,7 @@
     <!-- Menu Lateral -->
     <!-- <string name="menu_teams">Equipos</string> -->
     <string name="menu_teams">Competiciones</string>
-    <string name="menu_order">Ordenación</string>
+    <string name="menu_order">Personalización</string>
     <string name="menu_calendario">Calendario</string>
     <string name="menu_clasificacion">Clasificación</string>
     <string name="menu_carrusel">Carrusel</string>
@@ -255,6 +255,6 @@
     <!--  -->
     <string name="separator" translatable="false">&#160;-&#160;</string>
     <string name="defualt" translatable="false">Default</string>
-    <string name="sort_title">Ordenacion</string>
+    <string name="sort_title">Personalización</string>
 
 </resources>

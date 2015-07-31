@@ -39,7 +39,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/logoHeader"
         android:clickable="true"
-        android:paddingLeft="15dp" >
+        android:paddingRight="15dp" >
 
         <ImageView
             android:id="@+id/doneButton"

@@ -39,20 +39,20 @@
 					</dict>
 				</dict>
 
-				<key>1075</key>
+				<key>4240</key>
 		  		<dict>
 					<key>name</key>
-					<string>Paderborn 07</string>
+					<string>Darmstadt 98</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/077/1075/equipo.js2</string>
+					<string>/fichas/equipo/248/4240/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_paderborn_size02.png</string>
+						<string>escudo_darmstadt_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_paderborn_size03.png</string>
+						<string>escudo_darmstadt_size03.png</string>
 						<key>detail</key>
-						<string>escudo_paderborn_size01.png</string>
+						<string>escudo_darmstadt_size01.png</string>
 					</dict>
 				</dict>
 
@@ -90,20 +90,20 @@
 					</dict>
 				</dict>
 
-				<key>2892</key>
+				<key>468</key>
 		  		<dict>
 					<key>name</key>
-					<string>Hoffenheim</string>
+					<string>Schalke 04</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/397/2892/equipo.js2</string>
+					<string>/fichas/equipo/468/468/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_hoffenheim_size02.png</string>
+						<string>escudo_schalke_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_hoffenheim_size03.png</string>
+						<string>escudo_schalke_size03.png</string>
 						<key>detail</key>
-						<string>escudo_hoffenheim_size01.png</string>
+						<string>escudo_schalke_size01.png</string>
 					</dict>
 				</dict>
 
@@ -228,20 +228,20 @@
 
 				<!-- uefa -->
 
-				<key>467</key>
+				<key>4239</key>
 		  		<dict>
 					<key>name</key>
-					<string>Friburgo</string>
+					<string>Ingolstadt 04</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/467/467/equipo.js2</string>
+					<string>/fichas/equipo/247/4239/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_freiburg_size02.png</string>
+						<string>escudo_ingolstadt_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_freiburg_size03.png</string>
+						<string>escudo_ingolstadt_size03.png</string>
 						<key>detail</key>
-						<string>escudo_freiburg_size01.png</string>
+						<string>escudo_ingolstadt_size01.png</string>
 					</dict>
 				</dict>
 
@@ -351,6 +351,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_alemana/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/f993c5c6b88bf8fe847b1368d2e88d41/calendario.js2</string>
@@ -401,16 +411,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

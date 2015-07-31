@@ -272,19 +272,19 @@
 				<key>121</key>
 				<dict>
 					<key>name</key>
-					<string>Elche</string>
+					<string>Las Palmas</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/121/121/equipo.js2</string>
+					<string>/fichas/equipo/009/9/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/121.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/9.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_elche_size02.png</string>
+						<string>escudo_palmas_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_elche_size03.png</string>
+						<string>escudo_palmas_size03.png</string>
 						<key>detail</key>
-						<string>escudo_elche_size01.png</string>
+						<string>escudo_palmas_size01.png</string>
 					</dict>
 				</dict>
 
@@ -307,22 +307,22 @@
 					</dict>
 				</dict>
 
-				<key>342</key>
+				<key>76</key>
 					<dict>
 					<key>name</key>
-					<string>Córdoba</string>
+					<string>Sporting</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/342/342/equipo.js2</string>
+					<string>/fichas/equipo/076/76/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/342.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/76.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cordoba_size02.png</string>
+						<string>escudo_sporting_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cordoba_size03.png</string>
+						<string>escudo_sporting_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cordoba_size01.png</string>
+						<string>escudo_sporting_size01.png</string>
 					</dict>
 				</dict>
 
@@ -364,22 +364,22 @@
 					</dict>
 				</dict>
 
-				<key>85</key>
+				<key>171</key>
 				<dict>
 					<key>name</key>
-					<string>Almería</string>
+					<string>Betis</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/085/85/equipo.js2</string>
+					<string>/fichas/equipo/171/171/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/85.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/171.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_almeria_size02.png</string>
+						<string>escudo_betis_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_almeria_size03.png</string>
+						<string>escudo_betis_size03.png</string>
 						<key>detail</key>
-						<string>escudo_almeria_size01.png</string>
+						<string>escudo_betis_size01.png</string>
 					</dict>
 				</dict>
 
@@ -412,42 +412,11 @@
 			<key>available</key>
 			<true/>
 		</dict>
-
 		<dict>
 			<key>name</key>
 			<string>noticias</string>
 			<key>noticiasWS</key>
 			<string>rss/futbol/primera.js2</string>
-			<key>viewType</key>
-			<string>principal_view</string>
-			<key>available</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>noticias tag</string>
-			<key>noticiasWS</key>
-			<string>tag/j/copa_america</string>
-			<key>viewType</key>
-			<string>tag_view</string>
-			<key>available</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>photoGallery</string>
-			<key>photoGalleryWS</key>
-			<string>tag/c/j/b215a543b20216a63400daf79e4ed06b</string>
-			<key>viewType</key>
-			<string>principal_view</string>
-			<key>available</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>videos</string>
-			<key>videosWS</key>
-			<string>rss/tags/agr_liga_bbva_a.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -505,16 +474,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

@@ -178,17 +178,17 @@
 				<key>3850</key>
 		  		<dict>
 					<key>name</key>
-					<string>Águilas Pereira</string>
+					<string>Águilas Doradas</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo/357/3850/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_aguilaspereira_size02.png</string>
+						<string>escudo_aguilasdoradas_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_aguilaspereira_size03.png</string>
+						<string>escudo_aguilasdoradas_size03.png</string>
 						<key>detail</key>
-						<string>escudo_aguilaspereira_size01.png</string>
+						<string>escudo_aguilasdoradas_size01.png</string>
 					</dict>
 				</dict>
 
@@ -373,6 +373,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_colombiana/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/9a04b83fe40dcbe1ed5df857af5e045b/calendario.js2</string>
@@ -423,16 +433,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

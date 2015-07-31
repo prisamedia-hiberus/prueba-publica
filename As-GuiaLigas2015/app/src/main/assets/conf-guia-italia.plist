@@ -107,20 +107,20 @@
 					</dict>
 				</dict>
 
-				<key>30</key>
+				<key>36</key>
 		  		<dict>
 					<key>name</key>
-					<string>Parma</string>
+					<string>Bologna</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/030/30/equipo.js2</string>
+					<string>/fichas/equipo/036/36/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_parma_size02.png</string>
+						<string>escudo_bologna_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_parma_size03.png</string>
+						<string>escudo_bologna_size03.png</string>
 						<key>detail</key>
-						<string>escudo_parma_size01.png</string>
+						<string>escudo_bologna_size01.png</string>
 					</dict>
 				</dict>
 
@@ -141,20 +141,20 @@
 					</dict>
 				</dict>
 
-				<key>48</key>
+				<key>4244</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cagliari</string>
+					<string>Carpi</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/048/48/equipo.js2</string>
+					<string>/fichas/equipo/252/4244/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cagliari_size02.png</string>
+						<string>escudo_carpi_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cagliari_size03.png</string>
+						<string>escudo_carpi_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cagliari_size01.png</string>
+						<string>escudo_carpi_size01.png</string>
 					</dict>
 				</dict>
 
@@ -175,20 +175,20 @@
 					</dict>
 				</dict>
 
-				<key>964</key>
+				<key>4243</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cesena</string>
+					<string>Frosinone</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/465/964/equipo.js2</string>
+					<string>/fichas/equipo/251/4243/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cesena_size02.png</string>
+						<string>escudo_frosinone_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cesena_size03.png</string>
+						<string>escudo_frosinone_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cesena_size01.png</string>
+						<string>escudo_frosinone_size01.png</string>
 					</dict>
 				</dict>
 
@@ -384,9 +384,19 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_italiana/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/55e71ab45c7db6f301411245ff3a6357/calendario.js2</string>
+			<string>/calendario/9bdd87208980981ea55843a0f6556a8e/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/italia/</string>
 			<key>viewType</key>
@@ -400,22 +410,22 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/55e71ab45c7db6f301411245ff3a6357/clasificacion_regular.js2</string>
+				<string>/clasificacion/9bdd87208980981ea55843a0f6556a8e/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/55e71ab45c7db6f301411245ff3a6357/carrusel.js2</string>
+			<string>/carrusel/9bdd87208980981ea55843a0f6556a8e/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -434,16 +444,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

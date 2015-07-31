@@ -332,7 +332,7 @@ public class Defines {
 		public static final String AD_PALMARES = "palmares";
 		public static final String AD_STADIUMS = "sedes";
 		public static final String AD_NEWS = "noticias";
-		public static final String AD_NEWS_TAG = "noticias_tag";
+		public static final String AD_NEWS_TAG = "noticias";
 		public static final String AD_VIDEOS = "videos";
 		public static final String AD_PHOTOS = "fotos";
 		public static final String AD_SEARCHER = "buscador";

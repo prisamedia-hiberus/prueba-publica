@@ -2,123 +2,123 @@
 <items version="2" >
 
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-4b515c01a30055b8ae8851dfec4d692b745d9628.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/As-GuiaLigas2015/lib-ads-android/unspecified/jars/libs/sdk.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/As-GuiaLigas2015/lib-ads-android/unspecified/jars/libs/sdk.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="7b2e703a14c4656d7682f380266572be9e8e23fb">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/sdk-73e8a0f0a60b5c332028130dceae8d2d409908ee.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/sdk-409f470a2e8a97040c78d79fa515c2e2f68e6b22.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/libs/xmlwise-1_2.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="82ed648273281ccd08da6f91df30573edf15185d">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/xmlwise-1_2-f998efb9e2cf50c76b6d7e49ef1ca5192f6d2751.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-9bb4634cd2ff5b68bbd99a18c6ef752cb815b728.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-8f2297eabe24297ffd31eb5388b74ac9ddf7e3d4.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/libs/comscore.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="6574e98c0fcb05e51752e6edb11a9fd5d2ce7a77">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/comscore-18c46f8fa024eac9689c2f581f547c478d01c19f.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.urbanairship.android/urbanairship-sdk/6.1.2/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="d5234db858f5cb5ec43fc8991ef0eda4ad2b5c82">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-4f18a0989e59fb3018aea32071b49d547f21d790.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/jars/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-a5818bf71aec88e83b1841f3b9b3f56e02ca3a38.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-dbc404f7ee36b5f8af5aa863d3b31d2709d23216.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/libs/AppMeasurement_Android.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/libs/AppMeasurement_Android.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="387240f2c4922ed7028464d8d49bea1d86486a91">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/AppMeasurement_Android-e78d921881cacbe3258ad78959a0eb16e7e34d36.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/AppMeasurement_Android-983efb06af660e880521d6fe881a0e8ebc5f2b9b.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/libs/picasso-2.5.2.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/libs/xmlwise-1_2.jar"
         jumboMode="false"
         revision="22.0.0"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-92321117fe9722b2649df709ea36248371ec1df4.jar" />
+        sha1="82ed648273281ccd08da6f91df30573edf15185d">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/xmlwise-1_2-6d9153f412384f4450093afddd5a29727a0f4095.jar" />
     </item>
     <item
-        jar="/Applications/Developer/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.urbanairship.android/urbanairship-sdk/6.1.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c3052464ee61872119fe5ee78fa8dc7bec7fd501">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-009f857ef40bb48973127214d1ae9f062d42accd.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-a99f34252d1e7bbd86972d07f587bacddbb97680.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-95dbcc4bbdc7175bed05f9848525b1bb45e3c667.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-c8984c0a509637a4946566a0fbadb844144001fb.jar" />
-    </item>
-    <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="a78183f30e769a98ab4820794f597763088d3065">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-da8b2721c6a05a4317726bfc74850822b8b7a7f5.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-deeb281840fbab9cc84d9b4843b668e14164efff.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/libs/comscore.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="6574e98c0fcb05e51752e6edb11a9fd5d2ce7a77">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/comscore-a6333e75af0afdd664342b4e6677407ae3274d84.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-d1c28802a8c1c273d9145488d7566b2e77d41fff.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/As-GuiaLigas2015/lib-ads-android/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d28833392dcefdc66e56b5449a3013aa499ee269">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-b5ae0e33f6a8dbfb76453d576d2fcac018be8470.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/jars/libs/internal_impl-22.1.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-8ee12572e351b5787f00a90c3be05fe02c1ebe14.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-4b3e9e4be24b8f0aeb8b27e1a3fb8df05e44053a.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-2696261871fe2658401481902ebaffd06a367e6c.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-0b47f49bbdc2fca57e30fbfb90236dfee0369ad6.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-a377021beae495ca77a0984b385cc8ad70442e09.jar" />
+    </item>
+    <item
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-d2c4c6803b4b00b6f43c436072eb7d6ad43be491.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-fe6daf764dcc47b26a2fea8e3c0846cde2f22531.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/As-GuiaLigas2015/lib-ads-android/unspecified/jars/classes.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/libs/picasso-2.5.2.jar"
         jumboMode="false"
         revision="22.0.0"
-        sha1="de393eb7cd4de0d4998c4c99ba3af99f0f69fae6">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-53f155301defefc090da9f2c9cbf8d6bcf38d8dd.jar" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-2fa9ad283369c8e13cf47fbbd5a332e6958184c5.jar" />
     </item>
     <item
-        jar="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jar="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
-        <dex dex="/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-c7548aa922247795ecd849cc302c97220c157813.jar" />
+        <dex dex="/Users/sanjulian/Documents/git_tower/Android/as-guialiga-android/As-GuiaLigas2015/app/build/intermediates/pre-dexed/debug/classes-fa08f389100db579e6f146da40bf2c446f96ae79.jar" />
     </item>
 
 </items>

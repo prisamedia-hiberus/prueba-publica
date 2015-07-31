@@ -90,20 +90,20 @@
 					</dict>
 				</dict>
 
-				<key>1036</key>
+				<key>4238</key>
 		  		<dict>
 					<key>name</key>
-					<string>Queen's Park Rangers</string>
+					<string>Bournemouth</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/038/1036/equipo.js2</string>
+					<string>/fichas/equipo/246/4238/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_queen_size02.png</string>
+						<string>escudo_bournemouth_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_queen_size03.png</string>
+						<string>escudo_bournemouth_size03.png</string>
 						<key>detail</key>
-						<string>escudo_queen_size01.png</string>
+						<string>escudo_bournemouth_size01.png</string>
 					</dict>
 				</dict>
 
@@ -124,20 +124,20 @@
 					</dict>
 				</dict>
 
-				<key>1441</key>
+				<key>1044</key>
 		  		<dict>
 					<key>name</key>
-					<string>Hull City</string>
+					<string>Norwich City</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/443/1441/equipo.js2</string>
+					<string>/fichas/equipo/046/1044/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_hull_size02.png</string>
+						<string>escudo_norwich_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_hull_size03.png</string>
+						<string>escudo_norwich_size03.png</string>
 						<key>detail</key>
-						<string>escudo_hull_size01.png</string>
+						<string>escudo_norwich_size01.png</string>
 					</dict>
 				</dict>
 
@@ -175,20 +175,20 @@
 					</dict>
 				</dict>
 
-				<key>1029</key>
+				<key>1140</key>
 		  		<dict>
 					<key>name</key>
-					<string>Burnley</string>
+					<string>Watford</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/031/1029/equipo.js2</string>
+					<string>/fichas/equipo/142/1140/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_burnley_size02.png</string>
+						<string>escudo_watford_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_burnley_size03.png</string>
+						<string>escudo_watford_size03.png</string>
 						<key>detail</key>
-						<string>escudo_burnley_size01.png</string>
+						<string>escudo_watford_size01.png</string>
 					</dict>
 				</dict>
 
@@ -386,6 +386,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_inglesa/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
 			<string>/calendario/bc65a3ed31bb1ab35a49eff457fbdcaa/calendario.js2</string>
@@ -436,16 +446,6 @@
 			<string>principal_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>adidas</string>
-			<key>urlWV</key>
-			<string>http://www.adidas.es/futbol</string>
-			<key>viewType</key>
-			<string>external_view</string>
-			<key>available</key>
-			<false/>
 		</dict>
 	</array>
 </dict>
