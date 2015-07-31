@@ -5,7 +5,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.0"
-
     defaultConfig {
         applicationId "com.diarioas.guialigas"
         minSdkVersion 14
@@ -25,7 +24,6 @@ android {
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -52,7 +50,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:7.5.0'
     compile 'com.google.android.gms:play-services-location:7.5.0'
     compile 'com.google.android.gms:play-services-ads:7.5.0'
-    compile(name:'lib-ads-android-gradle-release', ext:'aar')
+    compile(name: 'lib-ads-android-gradle-release', ext: 'aar')
     compile files('libs/AppMeasurement_Android.jar')
     compile files('libs/comscore.jar')
     compile files('libs/picasso-2.5.2.jar')
