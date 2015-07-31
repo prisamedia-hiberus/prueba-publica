@@ -24,15 +24,19 @@ repositories {
     maven {
         url  "http://dl.bintray.com/urbanairship/android"
     }
+    flatDir {
+        dirs 'aar'
+    }
 }
 
 dependencies {
-    compile project(':lib-ads-android')
     compile 'com.urbanairship.android:urbanairship-sdk:6.1.+'
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
     compile 'com.google.android.gms:play-services-analytics:7.5.0'
     compile 'com.google.android.gms:play-services-location:7.5.0'
+    compile 'com.google.android.gms:play-services-ads:7.5.0'
+    compile(name:'lib-ads-android-gradle-release', ext:'aar')
     compile files('libs/AppMeasurement_Android.jar')
     compile files('libs/comscore.jar')
     compile files('libs/picasso-2.5.2.jar')
