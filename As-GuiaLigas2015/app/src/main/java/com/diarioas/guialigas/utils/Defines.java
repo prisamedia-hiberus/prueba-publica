@@ -239,7 +239,7 @@ public class Defines {
 	public static final int JUMP_TO_WEB_OK = 1;
 
 	public static String COOKIE_APP_DIARIOAS_PUBID = "COOKIE_APP_DIARIOAS_PUBID";
-	public static String DOMAIN_COOKIES = "http://as.com";
+	public static String DOMAIN_COOKIES = ".as.com";
 
 	/******************************* Libraries ***************************************************/
 
@@ -267,6 +267,7 @@ public class Defines {
 
 		public static final String SECTION_PORTADA = "portada";
 		public static final String SECTION_COMPARATOR = "comparador";
+		public static final String SECTION_COMPARATOR_RESULT = "resultado comparador";
 		public static final String SECTION_SEARCHER = "buscador";
 		public static final String SECTION_CALENDAR = "calendario";
 		public static final String SECTION_CARROUSEL = "carrusel";

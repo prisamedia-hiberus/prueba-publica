@@ -398,7 +398,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/bc65a3ed31bb1ab35a49eff457fbdcaa/calendario.js2</string>
+			<string>/calendario/0a989f5ad157ecb66308b35a2dc9d56c/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/inglaterra/</string>
 			<key>viewType</key>
@@ -412,7 +412,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/bc65a3ed31bb1ab35a49eff457fbdcaa/clasificacion_regular.js2</string>
+				<string>/clasificacion/0a989f5ad157ecb66308b35a2dc9d56c/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -423,7 +423,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/bc65a3ed31bb1ab35a49eff457fbdcaa/carrusel.js2</string>
+			<string>/carrusel/0a989f5ad157ecb66308b35a2dc9d56c/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -444,6 +444,16 @@
 			<string>/buscador.pl</string>
 			<key>viewType</key>
 			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
 			<key>available</key>
 			<true/>
 		</dict>
