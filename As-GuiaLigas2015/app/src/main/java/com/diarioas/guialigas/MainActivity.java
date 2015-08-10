@@ -118,7 +118,7 @@ public class MainActivity extends FragmentActivity implements
 	private void configureCookies() {
 
 		//final CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(this);
-		//CookieSyncManager.createInstance(this);
+		CookieSyncManager.createInstance(this);
 		CookieManager cookieManager = CookieManager.getInstance();
 		cookieManager.setAcceptCookie(true);
 
