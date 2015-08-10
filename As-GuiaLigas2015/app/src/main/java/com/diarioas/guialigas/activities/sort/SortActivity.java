@@ -137,7 +137,7 @@ public class SortActivity extends GeneralFragmentActivity implements
 
 
 	private void saveAction() {
-		if (changeList) {
+		if ((changeList)||(RemoteDataDAO.getInstance(mContext).isFirstTimeRun())) {
 			ArrayList<Competition> competitions = (ArrayList<Competition>) this.competitionList.getList();
 			//save new order
 			RemoteDataDAO.getInstance(mContext).updateOrderCompetition(competitions);

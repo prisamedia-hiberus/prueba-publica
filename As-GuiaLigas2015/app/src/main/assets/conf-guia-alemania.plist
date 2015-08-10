@@ -96,14 +96,16 @@
 					<string>Schalke 04</string>
 					<key>teamWS</key>
 					<string>/fichas/equipo/468/468/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/468.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_schalke_size02.png</string>
+						<string>escudo_schalke04_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_schalke_size03.png</string>
+						<string>escudo_schalke04_size03.png</string>
 						<key>detail</key>
-						<string>escudo_schalke_size01.png</string>
+						<string>escudo_schalke04_size01.png</string>
 					</dict>
 				</dict>
 
@@ -218,11 +220,11 @@
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_mgladbach_size02.png</string>
+						<string>escudo_moenchengladbach_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_mgladbach_size03.png</string>
+						<string>escudo_moenchengladbach_size03.png</string>
 						<key>detail</key>
-						<string>escudo_mgladbach_size01.png</string>
+						<string>escudo_moenchengladbach_size01.png</string>
 					</dict>
 				</dict>
 
@@ -302,24 +304,6 @@
 					</dict>
 				</dict>
 
-				<key>468</key>
-		  		<dict>
-					<key>name</key>
-					<string>Schalke 04</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/468/468/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/468.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_schalke04_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_schalke04_size03.png</string>
-						<key>detail</key>
-						<string>escudo_schalke04_size01.png</string>
-					</dict>
-				</dict>
 
 				<key>87</key>
 		  		<dict>
@@ -337,6 +321,23 @@
 						<string>escudo_bayerdortmund_size03.png</string>
 						<key>detail</key>
 						<string>escudo_bayerdortmund_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>2892</key>
+		  		<dict>
+					<key>name</key>
+					<string>Hoffenheim</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/397/2892/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_hoffenheim_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_hoffenheim_size03.png</string>
+						<key>detail</key>
+						<string>escudo_hoffenheim_size01.png</string>
 					</dict>
 				</dict>
 			</dict>
@@ -409,6 +410,16 @@
 			<string>/buscador.pl</string>
 			<key>viewType</key>
 			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
 			<key>available</key>
 			<true/>
 		</dict>

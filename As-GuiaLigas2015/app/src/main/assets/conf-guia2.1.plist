@@ -6,20 +6,20 @@
 	<key>splash</key>
 	<dict>
 		<key>available</key>
-		<false/>
+		<true/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_adidas_splash.png</string>
+		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_splash.png?1</string>
 		<key>seconds</key>
-		<integer>0</integer>
+		<integer>3</integer>
 	</dict>
 
 	<!-- header -->
 	<key>header</key>
 	<dict>
 		<key>available</key>
-		<false/>
+		<true/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_adidas_header.png</string>
+		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_header.png?1</string>
 	</dict>
 
     <!-- prefijos -->
@@ -170,7 +170,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_LigaBBVA.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:05Z</date>
+			<date>2014-08-02T00:00:00Z</date>
 		</dict>
 		<key>7</key>
 		<dict>
@@ -183,7 +183,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_ligaadelante.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-03T00:00:02Z</date>
 		</dict>
 	<!--	<key>13</key>
 		<dict>
@@ -196,7 +196,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>12</key>
 		<dict>
@@ -209,7 +209,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-28T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>107</key>
 		<dict>
@@ -222,7 +222,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_copa.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>-->
 		<key>9</key>
 		<dict>
@@ -235,7 +235,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-24T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>8</key>
 		<dict>
@@ -248,7 +248,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>5</key>
 		<dict>
@@ -261,7 +261,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-03T00:00:00Z</date>
 		</dict>
 		<key>6</key>
 		<dict>
@@ -274,7 +274,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_francia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>3</key>
 		<dict>
@@ -287,7 +287,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>4</key>
 		<dict>
@@ -300,7 +300,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
 		<key>11</key>
 		<dict>
@@ -313,9 +313,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2014-08-01T00:00:00Z</date>
 		</dict>
-		<key>2</key>
+		<!--<key>2</key>
 		<dict>
 			<key>order</key>
 			<string>13</string>
@@ -327,7 +327,7 @@
 			<string>sliding_logo_libertadores.png</string>
 			<key>conFileTimestamp</key>
 			<date>2014-07-23T00:00:02Z</date>
-		</dict>
+		</dict>-->
 	</dict>
 
 

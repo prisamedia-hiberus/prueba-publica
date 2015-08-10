@@ -423,6 +423,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 
 		}
 
+		if ((currentPlayerLeft!=null)&&(currentPlayerRight!=null)) {
+			callToOmnitureComparatorComplete();
+		} else {
+			callToOmniture();
+		}
+
 		loadPlayers();
 	}
 
@@ -1486,9 +1492,24 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 				null,
 				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + ":" + Omniture.DETAILPAGE_DETALLE + " "
+				Omniture.TYPE_PORTADA + ":"
 						+ Omniture.SECTION_COMPARATOR, null);
 	}
+
+
+	protected void callToOmnitureComparatorComplete() {
+		StatisticsDAO.getInstance(mContext).sendStatisticsState(
+				getActivity().getApplication(),
+				Omniture.SECTION_COMPARATOR,
+				null,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
+				Omniture.TYPE_PORTADA + ":"
+						+ Omniture.SECTION_COMPARATOR_RESULT, null);
+
+	}
+
 
 	/***************************************************************************/
 	/** RemotePlayerDAOListener **/

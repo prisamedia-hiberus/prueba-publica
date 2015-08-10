@@ -269,7 +269,7 @@
 					</dict>
 				</dict>
 
-				<key>121</key>
+				<key>9</key>
 				<dict>
 					<key>name</key>
 					<string>Las Palmas</string>
@@ -280,11 +280,11 @@
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_palmas_size02.png</string>
+						<string>escudo_canarias_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_palmas_size03.png</string>
+						<string>escudo_canarias_size03.png</string>
 						<key>detail</key>
-						<string>escudo_palmas_size01.png</string>
+						<string>escudo_canarias_size01.png</string>
 					</dict>
 				</dict>
 
@@ -472,6 +472,16 @@
 			<string>/buscador.pl</string>
 			<key>viewType</key>
 			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
 			<key>available</key>
 			<true/>
 		</dict>

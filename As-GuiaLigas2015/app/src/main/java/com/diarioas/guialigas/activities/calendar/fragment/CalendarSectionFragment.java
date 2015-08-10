@@ -166,6 +166,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 			} else {
 				calendarAdapter.setNewFragments(fragments);
 			}
+			callToOmniture(0);
 			daysViewPager.setCurrentItem(currentDay, true);
 
 			
@@ -418,7 +419,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 		configureHeader(firstPosition);
 		loadData();
 		stopAnimation();
-		startTimer();
+		//startTimer();
 	}
 
 	/*
@@ -509,6 +510,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 		calendarSrolldays.setHeaderPosition(pos);
 		callToOmniture(pos);
 	}
+
 
 	/***************************************************************************/
 	/** CalendarAdapter **/

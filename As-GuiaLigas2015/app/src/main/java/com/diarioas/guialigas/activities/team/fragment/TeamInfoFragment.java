@@ -146,8 +146,8 @@ public class TeamInfoFragment extends TeamFragment {
 			Point size = DimenUtils.getSize(getActivity().getWindowManager());
 			int width = size.x;
 
-			LayoutParams parameters = new LinearLayout.LayoutParams(width / 3,
-					LayoutParams.WRAP_CONTENT);
+			LayoutParams parameters = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT,1);
+
 
 			if (idShirt1 != 0) {
 				llShield.addView(getLocalShirtItem(idShirt1), parameters);
