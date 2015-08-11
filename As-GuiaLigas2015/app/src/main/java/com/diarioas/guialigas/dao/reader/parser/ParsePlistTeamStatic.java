@@ -75,7 +75,7 @@ public class ParsePlistTeamStatic {
 			// staff.setBorn(born.substring(born.indexOf("(") + 1,
 			// born.length() - 1));
 			staff.setBorn(person.get("bornPlace"));
-			staff.setContract(person.get("endContractDate"));
+			staff.setContract(person.get("contractDuration"));
 			staff.setPhoto(person.get("photo"));
 			team.addMister(staff);
 
