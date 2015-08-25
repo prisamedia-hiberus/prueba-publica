@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.stadiums;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +22,9 @@ import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener {
@@ -85,10 +85,14 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity implem
 		String name = getIntent().getExtras().getString("name");
 		if (name != null && name.length() > 0)
 			StatisticsDAO.getInstance(this).sendStatisticsState(
-					getApplication(), Omniture.SECTION_SEDES, name,
-					Omniture.SUBSUBSECTION_GALLERY, null,
+					getApplication(),
+					Omniture.SECTION_SEDES,
+					name,
+					Omniture.SUBSUBSECTION_GALLERY,
+					null,
 					Omniture.TYPE_ARTICLE,
-					Omniture.DETAILPAGE_FOTOGALERIA + " " + name + " ", null);
+					Omniture.DETAILPAGE_FOTOGALERIA + " " + name,
+					null);
 	}
 
 	@Override

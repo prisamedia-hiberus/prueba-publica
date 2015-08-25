@@ -3,14 +3,10 @@
  */
 package com.diarioas.guialigas.activities.player;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,6 +40,10 @@ import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerPlayer;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class PlayerActivity extends GeneralFragmentActivity implements
 		ViewPager.OnPageChangeListener, RemotePlayerDAOListener {
@@ -171,6 +171,14 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 			startActivity(Intent.createChooser(intent,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));
+
+			String playerName = StringUtils.getNormalizeText(currentPlayer
+					.getName());
+			StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+					playerName,
+					Omniture.SECTION_SEARCHER,
+					Omniture.SUBSECTION_PLANTILLA,
+					Omniture.SUBSUBSECTION_FICHA);
 		}
 
 	}
@@ -233,31 +241,40 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 	private void callToOmniture(int pos) {
 		String normalize = StringUtils.getNormalizeText(teamName);
 		String playerName = StringUtils.getNormalizeText(currentPlayer
-				.getShortName());
+				.getName());
 		switch (pos) {
 		case 0:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(),
+							Omniture.SECTION_SEARCHER,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_PALMARES, Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_PALMARES, null);
+							Omniture.TEMA_PALMARES,
+							Omniture.TYPE_ARTICLE,
+							playerName + " " + Omniture.TEMA_PALMARES,
+							null);
 			break;
 		case 1:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(),
+							Omniture.SECTION_SEARCHER,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_INFORMATION, Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_INFORMATION, null);
+							Omniture.TEMA_INFORMATION,
+							Omniture.TYPE_ARTICLE,
+							playerName + " " + Omniture.TEMA_INFORMATION,
+							null);
 			break;
 		case 2:
 			StatisticsDAO.getInstance(getApplicationContext())
-					.sendStatisticsState(getApplication(), normalize,
+					.sendStatisticsState(getApplication(),
+							Omniture.SECTION_SEARCHER,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_TRAYECTORIA, Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_TRAYECTORIA, null);
+							Omniture.TEMA_TRAYECTORIA,
+							Omniture.TYPE_ARTICLE,
+							playerName + " " + Omniture.TEMA_TRAYECTORIA,
+							null);
 			break;
 
 		default:

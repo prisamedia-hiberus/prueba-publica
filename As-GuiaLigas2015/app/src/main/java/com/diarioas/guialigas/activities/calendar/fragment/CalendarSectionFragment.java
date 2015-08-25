@@ -34,6 +34,7 @@ import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.reader.CalendarDAO;
 import com.diarioas.guialigas.dao.reader.CalendarDAO.CalendarDAOListener;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -365,13 +366,13 @@ public class CalendarSectionFragment extends SectionFragment implements
 		String dayName = nomDays.get(pos);
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
 				Omniture.SECTION_CALENDAR,
 				dayName,
 				null,
-				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CALENDAR
-						+ " " + dayName, null);
+				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CALENDAR + " " + dayName,
+				null);
 	}
 
 	/***************************************************************************/

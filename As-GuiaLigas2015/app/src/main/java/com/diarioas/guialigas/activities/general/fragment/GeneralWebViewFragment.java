@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.general.fragment;
 
-import java.lang.reflect.InvocationTargetException;
-
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -20,10 +18,10 @@ import android.widget.RelativeLayout;
 
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
-import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class GeneralWebViewFragment extends SectionFragment {
 
@@ -199,7 +197,7 @@ public class GeneralWebViewFragment extends SectionFragment {
 //				&& section.getType().equalsIgnoreCase(SECTIONS.STADIUMS)) {
 //			omnitureSection = Omniture.SECTION_SEDES;
 //		}
-//		
+//
 //		StatisticsDAO.getInstance(mContext)
 //		.sendStatisticsState(
 //				getActivity().getApplication(),

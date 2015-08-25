@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.news;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,12 +13,13 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.news.fragment.NewsDetailFragment;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
-import com.diarioas.guialigas.dao.model.news.NewsItemTag;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewsDetailActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener {
@@ -118,7 +116,14 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 				startActivity(Intent.createChooser(i,
 						getString(R.string.share_mens_title)
 								+ getString(R.string.app_name)));
-			}			
+
+				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+						nItem.getTitle(),
+						Omniture.SECTION_NEWS,
+						Omniture.SUBSECTION_NEWSDETAIL,
+						null);
+			}
+
 		}
 	}
 	
@@ -188,9 +193,14 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 
 	protected void callToOmniture(String title) {
 		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
-				getApplication(), Omniture.SECTION_NEWS,
-				Omniture.SUBSECTION_NEWSDETAIL, null, null,
-				Omniture.TYPE_PORTADA, title, null);
+				getApplication(),
+				Omniture.SECTION_NEWS,
+				Omniture.SUBSECTION_NEWSDETAIL,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
+				title,
+				null);
 	}
 
 

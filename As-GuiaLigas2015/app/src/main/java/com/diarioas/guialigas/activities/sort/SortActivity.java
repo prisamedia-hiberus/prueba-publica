@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.sort;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,16 +19,17 @@ import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.dao.model.competition.Competition;
-import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
-import com.diarioas.guialigas.utils.DrawableUtils;
-import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.listview.DynamicListView;
 import com.diarioas.guialigas.utils.listview.DynamicListView.DynamicListViewCustomListener;
+
+import java.util.ArrayList;
 
 public class SortActivity extends GeneralFragmentActivity implements
 		DynamicListViewCustomListener {
@@ -195,11 +194,14 @@ public class SortActivity extends GeneralFragmentActivity implements
 	}
 	private void callToOmniture() {
 		StatisticsDAO.getInstance(getApplicationContext())
-		.sendStatisticsState(getApplication(), Omniture.SECTION_SORT,
+		.sendStatisticsState(getApplication(),
+				Omniture.SECTION_SORT,
 				null,
 				null,
-				null, Omniture.TYPE_PORTADA,
-				null, null);
+				null,
+				Omniture.TYPE_PORTADA,
+				Omniture.SECTION_SORT +" "+ Omniture.TYPE_PORTADA,
+				null);
 		
 	}
 	/************************************************************************************************

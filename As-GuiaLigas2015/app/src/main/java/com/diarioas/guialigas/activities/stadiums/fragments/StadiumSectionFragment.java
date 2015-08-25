@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.stadiums.fragments;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +29,8 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+
+import java.util.ArrayList;
 
 public class StadiumSectionFragment extends ListViewSectionFragment implements
 		RemoteStadiumsDAOListener {
@@ -113,12 +113,12 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				Omniture.SECTION_SEDES,
+				Omniture.SUBSECTION_PORTADA,
 				null,
 				null,
-				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + ":" + Omniture.SECTION_SEDES + " "
-						+ Omniture.TYPE_PORTADA, null);
+				Omniture.TYPE_ARTICLE,
+				Omniture.SECTION_SEDES + " " + Omniture.TYPE_PORTADA,
+				null);
 	}
 
 	/***************************************************************************/

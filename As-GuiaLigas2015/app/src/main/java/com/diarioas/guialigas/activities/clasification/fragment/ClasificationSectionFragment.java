@@ -40,6 +40,7 @@ import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteClasificacionDAO;
 import com.diarioas.guialigas.dao.reader.RemoteClasificacionDAO.RemoteClasificacionDAOListener;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
@@ -433,13 +434,13 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
 				Omniture.SECTION_CLASIFICATION,
 				null,
 				null,
-				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " "
-						+ Omniture.SECTION_CLASIFICATION, null);
+				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CLASIFICATION,
+				null);
 	}
 
 	/***************************************************************************/

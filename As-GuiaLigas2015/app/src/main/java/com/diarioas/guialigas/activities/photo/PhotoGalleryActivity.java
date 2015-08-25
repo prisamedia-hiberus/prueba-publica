@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.photo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +11,6 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -25,7 +21,6 @@ import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.GeneralFragmentActivity;
 import com.diarioas.guialigas.activities.photo.fragment.PhotoSectionGalleryFragment;
 import com.diarioas.guialigas.dao.model.news.GalleryMediaItem;
-import com.diarioas.guialigas.dao.model.news.NewsItem;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO;
 import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO.RemotePhotosDetailDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
@@ -34,6 +29,9 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener, RemotePhotosDetailDAOListener {
@@ -271,9 +269,14 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 
 	protected void callToOmniture(String title) {
 		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
-				getApplication(), Omniture.SECTION_PHOTOS,
-				Omniture.SUBSECTION_GALLERY, null, null, Omniture.TYPE_GALLERY,
-				title, null);
+				getApplication(),
+				Omniture.SECTION_PHOTOS,
+				Omniture.SUBSECTION_GALLERY,
+				Omniture.SUBSUBSECTION_PHOTODETAIL,
+				null,
+				Omniture.TYPE_ARTICLE,
+				title,
+				null);
 	}
 
 	/**************** ViewPager Methods *****************************/

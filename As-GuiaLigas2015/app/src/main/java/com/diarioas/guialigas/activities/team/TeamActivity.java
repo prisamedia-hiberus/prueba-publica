@@ -1,16 +1,9 @@
 package com.diarioas.guialigas.activities.team;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,6 +40,13 @@ import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
 public class TeamActivity extends GeneralFragmentActivity implements
 		RemoteTeamDAOListener, OnPageChangeListener, ScrollEndListener {
@@ -163,6 +163,12 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			startActivity(Intent.createChooser(i,
 					getString(R.string.share_mens_title)
 							+ getString(R.string.app_name)));
+
+			StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+					currentTeam.getShortName(),
+					Omniture.SECTION_PORTADA,
+					null,
+					null);
 
 		}
 
@@ -416,11 +422,11 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				getApplication(),
 				section,
 				subsection,
-				null,
+				Omniture.SECTION_PORTADA,
 				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_INFORMACION + " " + section + " "
-						+ subsection, null);
+				section,
+				null);
 
 	}
 
@@ -456,9 +462,12 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				StatisticsDAO.getInstance(this).sendStatisticsAction(
 						getApplication(),
 						currentTeam.getShortName().toLowerCase(),
-						Omniture.SUBSECTION_TEAM_MAP, null, null,
+						Omniture.SUBSECTION_TEAM_MAP,
+						null,
+						null,
 						Omniture.TYPE_PORTADA,
-						currentTeam.getShortName().toLowerCase(), null);
+						currentTeam.getShortName().toLowerCase(),
+						null);
 
 				// String uri = String.format(Locale.ENGLISH,
 				// "geo:%f,%f?z=%d&q=%f,%f (%s)", currentTeam.getEstadio()

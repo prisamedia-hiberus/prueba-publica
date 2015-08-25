@@ -3,14 +3,10 @@
  */
 package com.diarioas.guialigas.activities.player.comparator;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -33,13 +29,14 @@ import com.diarioas.guialigas.dao.reader.RemotePlayerDAO;
 import com.diarioas.guialigas.dao.reader.RemotePlayerDAO.RemotePlayerDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
-import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
-import com.diarioas.guialigas.utils.bitmapfun.ImageCache.ImageCacheParams;
-import com.diarioas.guialigas.utils.bitmapfun.ImageFetcher;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
@@ -108,8 +105,8 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 						null,
 						null,
 						Omniture.TYPE_PORTADA,
-						Omniture.DETAILPAGE_DETALLE + " "
-								+ Omniture.SECTION_COMPARATOR, null);
+						Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR,
+						null);
 
 	}
 

@@ -199,6 +199,7 @@ public abstract class CalendarFragment extends Fragment implements
 				CarruselDetailActivity.class);
 		intent.putExtra("dataLink", match.getDataLink());
 		intent.putExtra("link", match.getLink());
+		intent.putExtra("comeFromCalendar", true);
 		intent.putExtra("dayName",
 				"Jornada: " + (getArguments().getInt("jornadaId") + 1));
 

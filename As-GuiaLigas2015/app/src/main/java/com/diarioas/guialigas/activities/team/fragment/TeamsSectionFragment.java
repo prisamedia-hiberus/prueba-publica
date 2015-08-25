@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.team.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.TargetApi;
 import android.graphics.Point;
 import android.os.Build;
@@ -36,6 +33,9 @@ import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamsSectionFragment extends SectionFragment implements
 		ScrollEndListener, OnPageChangeListener {
@@ -140,6 +140,8 @@ public class TeamsSectionFragment extends SectionFragment implements
 						if (leagueViewPager.getCurrentItem() > 0)
 							leagueViewPager.setCurrentItem(leagueViewPager
 									.getCurrentItem() - 1);
+
+						callToOmniture();
 					}
 				});
 		buttonNext = (ImageView) generalView.findViewById(R.id.buttonNext);
@@ -152,6 +154,8 @@ public class TeamsSectionFragment extends SectionFragment implements
 								.size())
 							leagueViewPager.setCurrentItem(leagueViewPager
 									.getCurrentItem() + 1);
+
+						callToOmniture();
 					}
 				});
 
@@ -298,8 +302,13 @@ public class TeamsSectionFragment extends SectionFragment implements
 	@Override
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_PORTADA, null,
-				null, null, Omniture.TYPE_PORTADA, Omniture.DETAILPAGE_PORTADA,
+				getActivity().getApplication(),
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+				Omniture.SUBSECTION_PORTADA,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " + Omniture.DETAILPAGE_PORTADA,
 				null);
 	}
 
