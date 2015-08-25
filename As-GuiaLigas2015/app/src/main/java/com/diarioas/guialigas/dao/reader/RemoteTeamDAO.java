@@ -3,14 +3,14 @@
  */
 package com.diarioas.guialigas.dao.reader;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadTeamJSON;
 import com.diarioas.guialigas.dao.reader.async.AsyncLoadTeamJSON.AsyncLoadTeamJSONListener;
 import com.diarioas.guialigas.utils.Reachability;
+
+import java.util.ArrayList;
 
 /**
  * @author robertosanchez
@@ -102,6 +102,11 @@ public class RemoteTeamDAO implements AsyncLoadTeamJSONListener {
 		} else {
 			responseNotConnection(currentTeam);
 		}
+	}
+
+	public Team getTeam(String currentTeamId, String competitionId) {
+		currentTeam = getTeamFromDatabase(currentTeamId, competitionId);
+		return currentTeam;
 	}
 
 	// public void refreshDatabaseWithNewResults(String currentTeamId, String

@@ -688,8 +688,12 @@ public class CarrouselSectionFragment extends SectionFragment implements
 	@Override
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_CARROUSEL,
-				null, null, null, Omniture.TYPE_PORTADA,
+				getActivity().getApplication(),
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+				Omniture.SECTION_CARROUSEL,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
 				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_CARROUSEL,
 				null);
 	}
@@ -783,6 +787,7 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		// intent.putExtra("state", match.getState());
 		intent.putExtra("dataLink", match.getDataLink());
 		intent.putExtra("link", match.getLink());
+		intent.putExtra("comeFromCalendar", false);
 
 		if (headerText != null)
 			intent.putExtra("dayName", headerText.getText().toString());

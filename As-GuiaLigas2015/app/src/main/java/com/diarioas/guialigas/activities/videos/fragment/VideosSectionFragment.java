@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.videos.fragment;
 
-import java.util.ArrayList;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +34,8 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.Reachability;
+
+import java.util.ArrayList;
 
 public class VideosSectionFragment extends SectionFragment implements
 		RemoteVideosDAOListener, RemoteVideosDAOVideoGeoBlock {
@@ -208,8 +208,12 @@ public class VideosSectionFragment extends SectionFragment implements
 	@Override
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_VIDEOS, null,
-				null, null, Omniture.TYPE_PORTADA,
+				getActivity().getApplication(),
+				Omniture.SECTION_VIDEOS,
+				null,
+				null,
+				null,
+				Omniture.TYPE_ARTICLE,
 				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_VIDEOS,
 				null);
 	}

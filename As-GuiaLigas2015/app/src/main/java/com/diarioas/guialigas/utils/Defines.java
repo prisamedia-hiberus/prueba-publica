@@ -259,7 +259,7 @@ public class Defines {
 		public static final String DOMINIO = "as.com";
 		public static final String UNIDAD_NEGOCIO = "noticias";
 		public static final String TEMATICA = "deportes";
-		public static final String NOMBRE_APP = "guia liga as";
+		public static final String NOMBRE_APP = "as guia ligas android";
 
 		public static final String TYPE_PORTADA = "portada";
 		public static final String TYPE_ARTICLE = "articulo";
@@ -280,6 +280,7 @@ public class Defines {
 		public static final String SECTION_SORT = "ordenacion";
 
 		public static final String SUBSECTION_PORTADA = "portada";
+		public static final String SUBSECTION_TEAMS = "equipos";
 		public static final String SUBSECTION_SELECTION = "seleccion";
 		public static final String SUBSECTION_PLANTILLA = "plantilla";
 		public static final String SUBSECTION_IDEALTEAM = "once ideal";
@@ -294,8 +295,9 @@ public class Defines {
 		public static final String SUBSECTION_TEAM_MAP = "ver mapa";
 		public static final String SUBSECTION_TEAM_STATS = "estadísticas";
 		public static final String SUBSECTION_TEAM_INFO = "información";
-		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";		
+		public static final String SUBSECTION_TEAM_PLANTILLA = "plantilla";
 
+		public static final String SUBSUBSECTION_PHOTODETAIL = "detalle foto";
 		public static final String SUBSUBSECTION_FICHA = "ficha";
 		public static final String SUBSUBSECTION_PLAYERS = "jugadores";
 		public static final String SUBSUBSECTION_GALLERY = "fotogaleria";

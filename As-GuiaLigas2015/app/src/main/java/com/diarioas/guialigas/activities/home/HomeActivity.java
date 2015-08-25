@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.home;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,7 +28,6 @@ import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPl
 import com.diarioas.guialigas.activities.search.fragment.SearcherSectionFragment;
 import com.diarioas.guialigas.activities.sort.SortActivity;
 import com.diarioas.guialigas.activities.team.fragment.TeamsSectionFragment;
-import com.diarioas.guialigas.activities.videos.VideoActivity;
 import com.diarioas.guialigas.activities.videos.fragment.VideosSectionFragment;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.Section;
@@ -41,6 +38,8 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends GeneralFragmentActivity implements
 		android.support.v4.widget.SlidingPaneLayout.PanelSlideListener {

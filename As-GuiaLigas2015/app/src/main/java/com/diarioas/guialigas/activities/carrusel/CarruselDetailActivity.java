@@ -3,15 +3,6 @@
  */
 package com.diarioas.guialigas.activities.carrusel;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -43,6 +34,7 @@ import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAODetailListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.CarruselDetail;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
@@ -57,6 +49,15 @@ import com.diarioas.guialigas.utils.comparator.CarruselComparator;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CarruselDetailActivity extends GeneralFragmentActivity implements
 		ViewPager.OnPageChangeListener, ScrollEndListener,
@@ -102,6 +103,8 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 	private ImageView awayShield;
 
+	private Boolean comeFromCalendar;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -142,7 +145,7 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		callToAds(NativeAds.AD_CARROUSEL +  NativeAds.AD_DETAIL, false);
+		callToAds(NativeAds.AD_CARROUSEL + NativeAds.AD_DETAIL, false);
 	}
 
 	@Override
@@ -304,6 +307,24 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 				startActivity(Intent.createChooser(i,
 						getString(R.string.share_mens_title)
 								+ getString(R.string.app_name)));
+
+
+				comeFromCalendar = getIntent().getExtras().getBoolean("comeFromCalendar");
+
+				String section = "";
+				if (comeFromCalendar) {
+					section = Omniture.SECTION_CALENDAR;
+				}else {
+					section = Omniture.SECTION_CARROUSEL;
+				}
+
+				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+						match.getLocalTeamName() + " " + match.getAwayTeamName(),
+						RemoteDataDAO.getInstance(getApplicationContext()).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+						section,
+						null);
+
+
 			}			
 		}
 
@@ -545,17 +566,44 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
+
+		comeFromCalendar = getIntent().getExtras().getBoolean("comeFromCalendar");
+
+		String section = "";
+		if (comeFromCalendar) {
+			section = Omniture.SECTION_CALENDAR;
+		}else {
+			section = Omniture.SECTION_CARROUSEL;
+		}
+
+		String theme = "";
+		if (details.get(pos) == "Resumen"){
+			theme = "previa";
+		}else if (details.get(pos) == "Retransmision") {
+			theme = "directo";
+		} else if (details.get(pos) == "Picas") {
+			theme = "picas";
+		}else if (details.get(pos) == "Estadísticas") {
+			theme = "estadisticas";
+		} else{
+			theme = "plantilla";
+		}
+
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
-				Omniture.SECTION_CARROUSEL,
-				getIntent().getExtras().getString("dayName"),
-				match.getLocalTeamName() + match.getAwayTeamName(),
-				details.get(pos),
+				RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+				section,
+				match.getLocalTeamName() + " " + match.getAwayTeamName(),
+				theme,
 				Omniture.TYPE_ARTICLE,
-				Omniture.SECTION_CARROUSEL + " "
+				Omniture.DETAILPAGE_DETALLE + " " + RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " +
+						section + " " + match.getLocalTeamName() + " " +
+						match.getAwayTeamName() + " " + theme,
+				/*Omniture.SECTION_CARROUSEL + " "
 						+ getIntent().getExtras().getString("dayName") + " "
 						+ match.getLocalTeamName() + match.getAwayTeamName()
-						+ " " + details.get(pos), null);
+						+ " " + details.get(pos)*/
+				null);
 	}
 
 	private void updateViewPager() {

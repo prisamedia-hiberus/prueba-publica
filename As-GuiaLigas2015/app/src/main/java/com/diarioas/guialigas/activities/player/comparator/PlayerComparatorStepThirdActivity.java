@@ -3,10 +3,6 @@
  */
 package com.diarioas.guialigas.activities.player.comparator;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -30,11 +26,16 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 		implements RemoteTeamDAOListener {
 
 	private CustomViewPagerLeague playerComparatorViewPager;
 	private String teamId;
+	int competitionId;
 
 	/********************** Search RightPlayer ***************************/
 
@@ -52,7 +53,7 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 				.setText(getString(R.string.spinner_message_team));
 
 		teamId = getIntent().getExtras().getString("teamId");
-		int competitionId = getIntent().getExtras().getInt("competitionId");
+		competitionId = getIntent().getExtras().getInt("competitionId");
 
 		configActionBar();
 		startAnimation();
@@ -71,17 +72,19 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 	@Override
 	public void onResume() {
 		super.onResume();
+
+
+
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
 				Omniture.SECTION_COMPARATOR,
-				Omniture.SUBSECTION_COUNTRIES,
+				Omniture.SUBSECTION_TEAMS,
 				Omniture.SUBSUBSECTION_PLAYERS,
 				null,
 				Omniture.TYPE_ARTICLE,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR
-						+ " " + Omniture.SUBSECTION_COUNTRIES + " "
-						// TODO: Falta el nombre del equipo
-						+ Omniture.SUBSUBSECTION_PLAYERS, null);
+				Omniture.SECTION_COMPARATOR + " " + Omniture.SUBSECTION_TEAMS + " " + RemoteTeamDAO.getInstance(this).getTeam(teamId, String.valueOf(competitionId)).getShortName()
+						+ " " + Omniture.SUBSUBSECTION_PLAYERS,
+				null);
 	}
 
 	@Override

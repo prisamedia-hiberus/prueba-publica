@@ -1,9 +1,5 @@
 package com.diarioas.guialigas.activities.player.comparator.fragment;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,6 +43,10 @@ import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.comparator.PlayerPalmaresComparator;
 import com.diarioas.guialigas.utils.comparator.PlayerTitlesComparator;
 import com.diarioas.guialigas.utils.comparator.YearComparator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		RemotePlayerDAOListener {
@@ -1488,12 +1488,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				Omniture.SECTION_COMPARATOR,
-				null,
+				Omniture.TYPE_PORTADA,
 				null,
 				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + ":"
-						+ Omniture.SECTION_COMPARATOR, null);
+				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR,
+				null);
 	}
 
 
@@ -1501,12 +1501,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				Omniture.SECTION_COMPARATOR,
-				null,
+				Omniture.SUBSECTION_RESULT,
 				null,
 				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + ":"
-						+ Omniture.SECTION_COMPARATOR_RESULT, null);
+				Omniture.SECTION_COMPARATOR_RESULT,
+				null);
 
 	}
 

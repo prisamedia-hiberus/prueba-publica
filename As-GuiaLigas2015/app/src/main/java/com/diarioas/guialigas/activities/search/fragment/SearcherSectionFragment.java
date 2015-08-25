@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.search.fragment;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,6 +38,8 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+
+import java.util.ArrayList;
 
 public class SearcherSectionFragment extends SectionFragment implements
 		SearchDAOListener {
@@ -207,8 +207,12 @@ public class SearcherSectionFragment extends SectionFragment implements
 	@Override
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_SEARCHER,
-				null, null, null, Omniture.TYPE_PORTADA,
+				getActivity().getApplication(),
+				Omniture.SECTION_SEARCHER,
+				null,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
 				Omniture.SECTION_SEARCHER + " " + Omniture.DETAILPAGE_PORTADA,
 				null);
 	}

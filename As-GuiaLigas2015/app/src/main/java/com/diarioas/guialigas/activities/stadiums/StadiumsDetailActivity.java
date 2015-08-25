@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.stadiums;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +31,9 @@ import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerStadium;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		RemoteStadiumDetailDAOListener, OnPageChangeListener {
@@ -86,12 +86,16 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 					null,
 					null,
 					Omniture.TYPE_ARTICLE,
-					Omniture.DETAILPAGE_INFORMACION + " "
-							+ stad.getStadiumName(), null);
+					Omniture.DETAILPAGE_INFORMACION + " " + stad.getStadiumName(),
+					null);
 		} else {
 			StatisticsDAO.getInstance(this).sendStatisticsState(
-					getApplication(), Omniture.SECTION_SEDES,
-					stad.getCityName(), null, null, Omniture.TYPE_ARTICLE,
+					getApplication(),
+					Omniture.SECTION_SEDES,
+					stad.getCityName(),
+					null,
+					null,
+					Omniture.TYPE_ARTICLE,
 					Omniture.DETAILPAGE_INFORMACION + " " + stad.getCityName(),
 					null);
 		}

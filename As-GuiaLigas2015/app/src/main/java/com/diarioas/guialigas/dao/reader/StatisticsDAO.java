@@ -3,8 +3,6 @@
  */
 package com.diarioas.guialigas.dao.reader;
 
-import java.util.HashMap;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -13,6 +11,8 @@ import android.util.Log;
 
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.omniture.AppMeasurement;
+
+import java.util.HashMap;
 
 public class StatisticsDAO {
 
@@ -60,6 +60,36 @@ public class StatisticsDAO {
 				+ " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
 		s.track();
 	}
+
+	public void sendStatisticsShare(Application app, String contentTitle, String section, String subsection, String subsubsection) {
+
+		AppMeasurement s = getAppMeasurement(app, section, subsection,
+				subsubsection, null, null, contentTitle);
+
+		s.linkTrackEvents = s.events;
+		String evento = "event69";
+		s.events = evento;
+
+		s.eVar1 = s.prop1;
+		s.eVar3 = s.pageName;
+		s.eVar13 = s.prop32;
+		s.eVar17 = s.prop17;
+		s.eVar20 = s.prop20;
+		s.eVar30 = s.prop30;
+		s.eVar39 = contentTitle;
+		s.eVar69 = ""; //We don't have access to the selected social network in Android
+
+		s.linkTrackVars = "events,channel,eVar3,eVar4,eVar13,eVar17,eVar20,eVar30,eVar39,eVar69";
+
+		if (evento != null && !evento.equalsIgnoreCase("")) {
+			//Log.d("OMMNITURE", "CHANNEL--> " + s.channel + " PROP1--> "
+			//		+ s.prop1 + " PROP2--> " + s.prop2 + " PROP3--> " + s.prop3
+			//		+ " PROP4--> " + s.prop4 + " PAGENAME--> " + s.pageName);
+
+			s.trackLink(null, "o", evento);
+		}
+	}
+
 
 	public void sendStatisticsAction(Application app, String section,
 			String subsection, String subsubsection, String tema, String tipo,

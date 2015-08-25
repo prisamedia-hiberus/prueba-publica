@@ -1,7 +1,5 @@
 package com.diarioas.guialigas.activities.news;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +21,8 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+
+import java.util.ArrayList;
 
 public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 		OnPageChangeListener {
@@ -129,8 +129,16 @@ public class NewsTagDetailActivity extends GeneralFragmentActivity implements
 				startActivity(Intent.createChooser(i,
 						getString(R.string.share_mens_title)
 								+ getString(R.string.app_name)));
+
+				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+						nItem.getTitle(),
+						Omniture.SECTION_NEWS,
+						Omniture.SUBSECTION_NEWSDETAIL,
+						null);
 			}			
 		}
+
+
 		
 		
 	}

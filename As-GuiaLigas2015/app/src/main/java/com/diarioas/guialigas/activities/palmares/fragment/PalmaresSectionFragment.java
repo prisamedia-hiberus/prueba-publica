@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.activities.palmares.fragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,6 +27,9 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PalmaresSectionFragment extends ListViewSectionFragment implements
 		RemotePalmaresDAOListener {
@@ -114,9 +114,14 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 	@Override
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(), Omniture.SECTION_PALMARES,
-				null, null, null, Omniture.TYPE_PORTADA,
-				Omniture.TYPE_PORTADA + " " + Omniture.SECTION_PALMARES, null);
+				getActivity().getApplication(),
+				Omniture.SECTION_PALMARES,
+				Omniture.SUBSECTION_PORTADA + " " + Omniture.SECTION_PALMARES,
+				null,
+				null,
+				Omniture.TYPE_PORTADA,
+				null,
+				null);
 	}
 
 	/***************************************************************************/

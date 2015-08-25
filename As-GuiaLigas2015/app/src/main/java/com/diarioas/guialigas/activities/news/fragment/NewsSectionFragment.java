@@ -1,10 +1,5 @@
 package com.diarioas.guialigas.activities.news.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
@@ -39,6 +34,11 @@ import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class NewsSectionFragment extends SectionFragment implements RemoteNewsDAOListener {
 
@@ -176,8 +176,8 @@ public class NewsSectionFragment extends SectionFragment implements RemoteNewsDA
 						null,
 						null,
 						Omniture.TYPE_PORTADA,
-						Omniture.DETAILPAGE_PORTADA + " "
-								+ Omniture.SECTION_NEWS, null);
+						null,
+						null);
 	}
 
 	/************** RemotePalmaresDAOListener methods ***********************/

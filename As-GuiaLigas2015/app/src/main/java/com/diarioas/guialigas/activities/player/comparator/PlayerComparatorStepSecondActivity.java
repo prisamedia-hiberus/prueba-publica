@@ -3,9 +3,6 @@
  */
 package com.diarioas.guialigas.activities.player.comparator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
@@ -27,7 +24,6 @@ import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPl
 import com.diarioas.guialigas.activities.player.comparator.fragment.ComparatorPlayerSelectTeamGroup;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.TeamSection;
-import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.Omniture;
@@ -39,6 +35,9 @@ import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll.ScrollEndListener;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author robertosanchez
@@ -90,12 +89,13 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
 				Omniture.SECTION_COMPARATOR,
-				Omniture.SUBSECTION_COUNTRIES,
+				Omniture.SUBSECTION_TEAMS,
 				null,
 				null,
 				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR
-						+ " " + Omniture.SUBSECTION_COUNTRIES, null);
+				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR + " " + Omniture.SUBSECTION_TEAMS + " " +
+						RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+				null);
 
 	}
 
