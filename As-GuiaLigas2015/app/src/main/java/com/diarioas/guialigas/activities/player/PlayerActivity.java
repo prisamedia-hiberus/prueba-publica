@@ -242,11 +242,14 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		String normalize = StringUtils.getNormalizeText(teamName);
 		String playerName = StringUtils.getNormalizeText(currentPlayer
 				.getName());
+		String team = StringUtils.getNormalizeText(currentPlayer
+				.getNameTeam());
 		switch (pos) {
 		case 0:
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsState(getApplication(),
-							Omniture.SECTION_SEARCHER,
+							//Omniture.SECTION_SEARCHER,
+							team,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_PALMARES,
@@ -257,7 +260,8 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		case 1:
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsState(getApplication(),
-							Omniture.SECTION_SEARCHER,
+							//Omniture.SECTION_SEARCHER,
+							team,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_INFORMATION,
@@ -268,7 +272,8 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 		case 2:
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsState(getApplication(),
-							Omniture.SECTION_SEARCHER,
+							//Omniture.SECTION_SEARCHER,
+							team,
 							Omniture.SUBSECTION_PLANTILLA,
 							Omniture.SUBSUBSECTION_FICHA,
 							Omniture.TEMA_TRAYECTORIA,

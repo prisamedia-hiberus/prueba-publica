@@ -167,7 +167,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 			} else {
 				calendarAdapter.setNewFragments(fragments);
 			}
-			callToOmniture(0);
+			//callToOmniture(0);
 			daysViewPager.setCurrentItem(currentDay, true);
 
 			
