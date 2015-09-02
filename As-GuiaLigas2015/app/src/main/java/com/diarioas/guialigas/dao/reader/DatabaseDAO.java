@@ -1769,7 +1769,11 @@ public class DatabaseDAO extends SQLiteOpenHelper {
 					+ KEY_COMPETITION_TEAM_COMPETITION_ID + " like \""
 					+ competitionId + "\"";
 			cursor2 = db.rawQuery(selectQuery2, null);
-			if (cursor2.getCount() == 0) {
+			if (cursor2.getCount() > 0) {
+				String whereClause = KEY_COMPETITION_TEAM_COMPETITION_ID + " like ? and "
+						+ KEY_COMPETITION_TEAM_TEAM_ID + " like ?";
+				db.update(TABLE_COMPETITION_TEAM, values2, whereClause, new String[]{String.valueOf(competitionId), team.getId()});
+			}else{
 				db.insert(TABLE_COMPETITION_TEAM, null, values2);
 			}
 		} catch (SQLiteException e) {

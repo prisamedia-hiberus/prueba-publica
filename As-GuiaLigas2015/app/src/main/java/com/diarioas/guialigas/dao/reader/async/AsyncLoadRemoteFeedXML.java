@@ -1,8 +1,5 @@
 package com.diarioas.guialigas.dao.reader.async;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,6 +12,9 @@ import com.diarioas.guialigas.dao.reader.parser.ParsePlistLoad;
 import com.diarioas.guialigas.utils.Defines.Prefix;
 import com.diarioas.guialigas.utils.Defines.ReturnDataDatabases;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AsyncLoadRemoteFeedXML extends
 		AsyncTask<String, Void, GeneralSettings> {
@@ -123,10 +123,10 @@ public class AsyncLoadRemoteFeedXML extends
 			// Si la fecha de actualizacion del fichero es mayor, se actualiza
 			comp = DatabaseDAO.getInstance(appContext).getCompetition(
 					competition.getId());
-			// if (true) {
-			if (comp == null
-					|| competition.getFecModificacion() > comp
-							.getFecModificacion()) {
+			 if (true) {
+			//if (comp == null
+			//		|| competition.getFecModificacion() > comp
+			//				.getFecModificacion()) {
 				try {
 					// Se lee el fichero de configuracion de la competicion
 					// strFileContents = readRemoteFile(competition.getUrl());

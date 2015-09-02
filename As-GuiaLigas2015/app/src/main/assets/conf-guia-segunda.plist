@@ -552,7 +552,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/668b5bae319cc6cc71782cea205304c5/clasificacion_regular.js2</string>
+				<string>/clasificacion/3e90006ee562db875f886cc0765a83f4/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -563,7 +563,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/668b5bae319cc6cc71782cea205304c5/carrusel.js2</string>
+			<string>/carrusel/3e90006ee562db875f886cc0765a83f4/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
