@@ -364,7 +364,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/f993c5c6b88bf8fe847b1368d2e88d41/calendario.js2</string>
+			<string>/calendario/68d57ecd1ee07e43b62a7a73fd717479/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/alemania/</string>
 			<key>viewType</key>
@@ -378,7 +378,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/f993c5c6b88bf8fe847b1368d2e88d41/clasificacion_regular.js2</string>
+				<string>/clasificacion/68d57ecd1ee07e43b62a7a73fd717479/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -389,7 +389,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/f993c5c6b88bf8fe847b1368d2e88d41/carrusel.js2</string>
+			<string>/carrusel/68d57ecd1ee07e43b62a7a73fd717479/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>

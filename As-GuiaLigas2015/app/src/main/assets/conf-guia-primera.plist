@@ -42,7 +42,7 @@
 				</dict>
 
 				<key>108</key>
-					<dict>
+				<dict>
 					<key>name</key>
 					<string>Eibar</string>
 					<key>teamWS</key>
@@ -156,7 +156,7 @@
 				</dict>
 
 				<key>7</key>
-					<dict>
+				<dict>
 					<key>name</key>
 					<string>Deportivo</string>
 					<key>teamWS</key>
@@ -308,7 +308,7 @@
 				</dict>
 
 				<key>76</key>
-					<dict>
+				<dict>
 					<key>name</key>
 					<string>Sporting</string>
 					<key>teamWS</key>
@@ -440,7 +440,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/d001cacdf99876154d247fe5aa920896/clasificacion_regular.js2</string>
+				<string>/clasificacion/8baeb906e58f27a81029b40b7bd1516d/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -451,7 +451,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/d001cacdf99876154d247fe5aa920896/carrusel.js2</string>
+			<string>/carrusel/8baeb906e58f27a81029b40b7bd1516d/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>

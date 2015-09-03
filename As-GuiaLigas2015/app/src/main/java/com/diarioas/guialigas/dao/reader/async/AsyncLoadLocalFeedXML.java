@@ -1,13 +1,5 @@
 package com.diarioas.guialigas.dao.reader.async;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -20,6 +12,14 @@ import com.diarioas.guialigas.dao.reader.parser.ParsePlistLoad;
 import com.diarioas.guialigas.utils.Defines.Prefix;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.FileUtils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AsyncLoadLocalFeedXML extends
 		AsyncTask<String, Void, GeneralSettings> {
@@ -96,7 +96,12 @@ public class AsyncLoadLocalFeedXML extends
 			ArrayList<Competition> competitions,HashMap<String, String> localPrefixes) throws Exception {
 
 		ArrayList<Competition> competitionsBack = new ArrayList<Competition>();
+
 		for (Competition competition : competitions) {
+
+			if(competition.getId() == 13){
+				competitions.remove(competition);
+			}
 			// Si la fecha de actualizacion del fichero es mayor, se actualiza
 			if (DatabaseDAO.getInstance(appContext).getCompetition(
 					competition.getId()) == null
