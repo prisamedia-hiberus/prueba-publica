@@ -16,8 +16,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.team.TeamActivity;
+import com.diarioas.guialigas.activities.team.TeamSingleCompetitionActivity;
 import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
@@ -146,7 +148,7 @@ public abstract class CompetitionHomeFragment extends Fragment {
 	}
 
 	protected void selectedTeam(String teamId) {
-		Intent intent = new Intent(mContext, TeamActivity.class);
+		Intent intent = new Intent(mContext, BuildConfig.SINGLE_COMPETITION ? TeamSingleCompetitionActivity.class : TeamActivity.class);
 		intent.putExtra("teamId", teamId);
 		intent.putExtra("competitionId", String.valueOf(competitionId));
 

@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/publiContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/yesContent"
+        android:layout_above="@id/publiContent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:clickable="false" >
+
+        <com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll
+            android:id="@+id/headerSroll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:scrollbars="none" >
+        </com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/teamViewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/headerSroll" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/spinnerContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:clickable="false" >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/spinnerMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/spinner_message_team"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/errorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/errorImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/error_icn" />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorImage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="10"
+            android:text="@string/error_team_message"
+            android:textSize="@dimen/size_spinner_message" />
+    </RelativeLayout>
+    <!-- <android.support.v4.view.ViewPager -->
+
+</RelativeLayout>

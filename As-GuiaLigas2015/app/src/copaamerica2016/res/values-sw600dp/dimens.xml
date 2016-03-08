@@ -1,0 +1,9 @@
+<resources>
+
+    <dimen name="height_actionBar">60dip</dimen>
+    <dimen name="activity_horizontal_margin">32dp</dimen>
+    <dimen name="activity_vertical_margin">32dp</dimen>
+    <dimen name="marginTopTeamCompetition">20dp</dimen>
+
+
+</resources>

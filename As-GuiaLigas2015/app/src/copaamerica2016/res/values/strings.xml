@@ -1,0 +1,32 @@
+<resources>
+
+    <string name="app_name">As Copa América</string>
+
+    <!-- Menu Lateral -->
+    <!-- <string name="menu_teams">Equipos</string> -->
+    <string name="menu_teams">Equipos</string>
+    <string name="menu_order">Personalización</string>
+    <string name="menu_calendario">Calendario</string>
+    <string name="menu_clasificacion">Clasificación</string>
+    <string name="menu_carrusel">Carrusel</string>
+    <string name="menu_comparador_jugadores">Comparador de jugadores</string>
+    <string name="menu_search">Buscador</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_palmares">Palmarés</string>
+    <string name="menu_sedes">Sedes</string>
+    <string name="menu_news">Noticias</string>
+    <string name="menu_photos">Fotos</string>
+    <string name="menu_videos">Videos</string>
+    <string name="menu_trivias">TriviasAS</string>
+    <string name="item_menu_share">Compartir</string>
+
+
+    <!-- TEAM -->
+    <string name="team_fragmentname_plantilla">La Plantilla</string>
+    <string name="team_fragmentname_elonce">El Once tipo</string>
+    <string name="team_fragmentname_palmares">Palmarés</string>
+
+
+
+
+</resources>

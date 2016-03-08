@@ -1,8 +1,10 @@
 package com.diarioas.guialigas.activities.general.fragment;
 
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.google.android.gms.ads.AdSize;
@@ -81,7 +83,7 @@ public class GeneralPBSGoogleAdFragment extends Fragment implements
 					.addInterstitialListener(this);
 			needIntestitialListenerResumed = true;
 			interstitial = PBSDFPAdDAO.getInstance(getActivity())
-					.createInterstitial(section, NativeAds.AD_KEY);
+					.createInterstitial(section, BuildConfig.AD_KEY);
 		}
 	}
 
@@ -115,7 +117,7 @@ public class GeneralPBSGoogleAdFragment extends Fragment implements
 			needBannerListenerResumed = true;
 
 			banner = PBSDFPAdDAO.getInstance(getActivity()).createBanner(
-					section, NativeAds.AD_KEY,AdSize.BANNER);
+					section, BuildConfig.AD_KEY,AdSize.BANNER);
 		}
 	}
 

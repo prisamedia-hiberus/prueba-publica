@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+    <ImageView
+        android:id="@+id/golesGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/golesStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/golesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_goles_a_favor"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/golesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/partJugGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/partJugStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/partJugLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_partidos_jugados"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/partJugText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/tarjetasAmGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/tarjetasAmStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/tarjetasAmLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_tarjetas_amarillas"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/tarjetasAmText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/tarjetasRoGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/tarjetasRoStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/tarjetasRoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_tarjetas_rojas"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/tarjetasRoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/partGanGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/partGanStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/partGanLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_partidos_ganados"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/partGanText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/partEmpGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/partEmpStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/partEmpLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_partidos_empatados"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/partEmpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/partPerGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <RelativeLayout
+        android:id="@+id/partPerStats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/partPerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dip"
+            android:text="@string/team_partidos_perdidos"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_item_player_palmares_15" />
+
+        <TextView
+            android:id="@+id/partPerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dip"
+            android:textColor="@color/red"
+            android:textSize="@dimen/size_item_player_palmares_17" />
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_team_palmares.xml -->

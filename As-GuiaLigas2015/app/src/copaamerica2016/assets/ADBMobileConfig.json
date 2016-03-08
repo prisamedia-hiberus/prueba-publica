@@ -1,0 +1,21 @@
+{
+    "version" : "1.0",
+    "analytics" : {
+        "rsids" : "prisacommovilidadelas,prisacommovilidadprisacom",
+        "server" : "prisacom.112.2o7.net",
+        "charset" : "UTF-8",
+        "ssl" : false,
+		"offlineEnabled" : true,
+        "lifecycleTimeout" : 300,
+        "privacyDefault" : "optedin",
+        "currency": "EUR",
+		"poi" : []
+    },
+	"target" : {
+		"clientCode" : "myTargetClientCode",
+		"timeout" : 5
+	},
+	"audienceManager" : {
+		"server" : "prisacom.112.2o7.net"
+	}
+}

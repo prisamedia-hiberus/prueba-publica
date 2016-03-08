@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/copaamerica2016/res/values-sw720dp/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">40dp</dimen>
+    <dimen name="activity_vertical_margin">40dp</dimen>
+    <dimen name="height_actionBar">60dip</dimen>
+    <dimen name="marginTopTeamCompetition">25dp</dimen>
+</resources>

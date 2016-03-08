@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:orientation="vertical"
+    android:paddingTop="15dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+
+        <LinearLayout
+            android:id="@+id/resultContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/resultTextLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:lines="1"
+                android:textColor="@color/gray_carrusel_resumen"
+                android:textSize="@dimen/size_calendar_big" />
+
+            <TextView
+                android:id="@+id/resultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text=" - "
+                android:textColor="@color/gray_carrusel_resumen"
+                android:textSize="@dimen/size_calendar_big" />
+
+            <TextView
+                android:id="@+id/resultTextRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:lines="1"
+                android:textColor="@color/gray_carrusel_resumen"
+                android:textSize="@dimen/size_calendar_big" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/localShieldContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/resultContent"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <ImageView
+                android:id="@+id/localShield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/defualt"
+                android:scaleType="center" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/awayShieldContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/resultContent"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <ImageView
+                android:id="@+id/awayShield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/defualt"
+                android:scaleType="center" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dataContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingRight="10dp" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" >
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/defualt"
+                    android:scaleType="center" />
+
+                <TextView
+                    android:id="@+id/minText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/icon"
+                    android:layout_centerHorizontal="true"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_item_list_clasificacion_18" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8" >
+
+            <TextView
+                android:id="@+id/textText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_item_list_clasificacion_16" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+</LinearLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_carrusel_directos_gol.xml -->

@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="4dp"
+    android:paddingLeft="@dimen/flip_size_padding"
+    android:paddingRight="@dimen/flip_size_padding"
+    android:paddingTop="4dp" >
+
+    <LinearLayout
+        android:id="@+id/teamContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <RelativeLayout
+            android:id="@+id/imageTagContent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp" >
+
+            <ImageView
+                android:id="@+id/imageTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/defualt"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/overImageTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                
+                android:contentDescription="@string/defualt" />
+<!--             android:background="@drawable/elementos_comunes_icn_cajavariable03" -->
+
+            <ImageView
+                android:id="@+id/button_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="2dip"
+                android:layout_marginLeft="2dip"
+                
+                android:visibility="gone" />
+<!--             android:background="@drawable/home_btn_plasy_astv02" -->
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/gray_news"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/separator_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dip"
+        
+        android:contentDescription="@string/defualt" />
+<!--     android:background="@drawable/noticia_separador01" -->
+
+</LinearLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/tag_item_list.xml -->

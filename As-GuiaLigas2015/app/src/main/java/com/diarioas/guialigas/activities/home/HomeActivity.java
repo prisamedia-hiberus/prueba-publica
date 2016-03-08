@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.calendar.fragment.CalendarSectionFragment;
 import com.diarioas.guialigas.activities.carrusel.fragment.CarrouselSectionFragment;
@@ -182,7 +183,9 @@ public class HomeActivity extends GeneralFragmentActivity implements
 	 */
 	private void checkFirstTimeRun() {
 		if (RemoteDataDAO.getInstance(this.mContext).isFirstTimeRun()) {
-			openSortSection();
+            if(!BuildConfig.SINGLE_COMPETITION){
+                openSortSection();
+            }
 		}
 	}
 
@@ -256,9 +259,7 @@ public class HomeActivity extends GeneralFragmentActivity implements
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.SEARCHER)) {
 			fragment = new SearcherSectionFragment();
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.NEWS)) {
-			fragment = new NewsSectionFragment();
-		} else if (section.getType().equalsIgnoreCase(SECTIONS.NEWS_TAG)) {
-			fragment = new NewsTagSectionFragment();
+            fragment = section.getViewType().equals("tag_view") ? new NewsTagSectionFragment() : new NewsSectionFragment();
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.VIDEOS)) {
 			fragment = new VideosSectionFragment();
 		} else if (section.getType().equalsIgnoreCase(SECTIONS.PHOTOS)) {

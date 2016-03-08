@@ -21,11 +21,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.activities.team.TeamActivity;
+import com.diarioas.guialigas.activities.team.TeamSingleCompetitionActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.model.search.SearchItem;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
@@ -171,7 +173,7 @@ public class SearcherSectionFragment extends SectionFragment implements
 	protected void goToDetail(boolean isTeam, String id, String url) {
 		Intent intent;
 		if (isTeam) {
-			intent = new Intent(mContext, TeamActivity.class);
+			intent = new Intent(mContext, BuildConfig.SINGLE_COMPETITION ? TeamSingleCompetitionActivity.class : TeamActivity.class);
 			intent.putExtra("teamId", id);
 			intent.putExtra("teamUrl", url);
 

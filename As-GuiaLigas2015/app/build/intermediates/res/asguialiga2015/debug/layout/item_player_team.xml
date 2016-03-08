@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/teamGap"
+        style="@style/team_gap_bar_light"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:contentDescription="@string/defualt" />
+
+    <HorizontalScrollView
+        android:id="@+id/teamPlayerSroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/teamGap"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/linear_tabs_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_player_team.xml -->

@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp" >
+
+        <RelativeLayout
+            android:id="@+id/localShieldContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <ImageView
+                android:id="@+id/localShield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/escudo_generico_size03"
+                android:contentDescription="@string/defualt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/awayShieldContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <ImageView
+                android:id="@+id/awayShield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/escudo_generico_size03"
+                android:contentDescription="@string/defualt" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/centerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/awayShieldContainer"
+            android:layout_toRightOf="@+id/localShieldContainer"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/resultContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="2dp" >
+
+                    <TextView
+                        android:id="@+id/resultText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_calendar_big" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/resultContainer" >
+
+                    <TextView
+                        android:id="@+id/leftTeamText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="right"
+                        android:maxLines="3"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_calendar" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/resultContainer" >
+
+                    <TextView
+                        android:id="@+id/rightTeamText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:maxLines="3"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_calendar" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" >
+
+                <TextView
+                    android:id="@+id/stateTeamText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:lines="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="@dimen/size_calendar_16" />
+
+                <TextView
+                    android:id="@+id/dateTeamText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stateTeamText"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:lines="1"
+                    android:textColor="@color/clear_gray"
+                    android:textSize="@dimen/size_calendar" />
+
+                <RelativeLayout
+                    android:id="@+id/tvContainerAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dateTeamText"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical" >
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_calendar_first.xml -->

@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" >
+
+    <LinearLayout
+        android:id="@+id/dataContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="3"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/iconLegendContent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="invisible" >
+
+                <ImageView
+                    android:id="@+id/iconLegend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/estrella_amarilla"
+                    android:contentDescription="@string/defualt" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/yearText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/team_hispalmares_competitionname"
+                    android:textColor="@color/red_sedes"
+                    android:textSize="@dimen/size_header_sedes" />
+
+                <TextView
+                    android:id="@+id/countryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/yearText"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/team_hispalmares_competitionname"
+                    android:textColor="@color/gray_sedes"
+                    android:textSize="@dimen/size_header_sedes" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/viewBlue"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/palmares"
+            android:contentDescription="@string/defualt" />
+        <!-- android:visibility="invisible" -->
+
+        <ImageView
+            android:id="@+id/viewWhite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:contentDescription="@string/defualt" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/worldCup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/estrella_amarilla"
+        android:contentDescription="@string/defualt"
+        android:visibility="gone" />
+    <!-- android:background="@drawable/copa_mundial" -->
+
+    <ImageView
+        android:id="@+id/gapBar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/dataContent"
+        android:background="@color/clear_gray"
+        android:contentDescription="@string/defualt" />
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_list_his_palmares.xml -->

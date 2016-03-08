@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/noTrayectoria"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dip"
+    android:paddingBottom="50dip"
+    android:paddingTop="50dip" >
+
+    <ImageView
+        android:id="@+id/noStatusImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/no_stats"
+        android:contentDescription="@string/defualt" />
+
+    <TextView
+        android:id="@+id/noStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noStatusImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
+        android:layout_marginTop="5dip"
+        android:gravity="center"
+        android:text="@string/player_no_estadisticas"
+        android:textColor="@color/medium_gray"
+        android:textSize="@dimen/size_item_player_no_14" />
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_player_no_status.xml -->

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/splashBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/defualt"
+        android:src="@drawable/logosplash01"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/splashMessage01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/defualt"
+        android:src="@drawable/logosplash02"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/splashMessage02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/defualt"
+        android:src="@drawable/logosplash03"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/splashShadow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splashBackground"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/defualt"
+        android:src="@drawable/logosplash04"
+        android:visibility="gone" />
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/loading_splash_fragment.xml -->

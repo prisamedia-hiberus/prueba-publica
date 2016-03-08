@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/btn_addplayer_press" android:state_pressed="true"/>
-    <item android:drawable="@drawable/btn_addplayer"/>
-
-</selector><!-- From: file:/Users/ahernama/Documents/git/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/drawable/button_addplayer.xml -->

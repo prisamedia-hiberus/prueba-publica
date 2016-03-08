@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+	<!-- menu -->
+	<key>menu</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>grid</string>
+			<!-- alpha|group -->
+			<key>order</key>
+			<string>alpha</string>
+			<key>default</key>
+			<true/>
+			<!-- tendriamos que definir los tipos de vista que tendriamos, en principio 4, principal_view, con subsection_view, external_view o web_view -->
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+			<key>teams</key>
+			<dict>
+
+				<key>94</key>
+		  		<dict>
+					<key>name</key>
+					<string>Colonia</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/094/94/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_colonia_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_colonia_size03.png</string>
+						<key>detail</key>
+						<string>escudo_colonia_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4240</key>
+		  		<dict>
+					<key>name</key>
+					<string>Darmstadt 98</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/248/4240/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_darmstadt_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_darmstadt_size03.png</string>
+						<key>detail</key>
+						<string>escudo_darmstadt_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>196</key>
+		  		<dict>
+					<key>name</key>
+					<string>Hamburgo</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/196/196/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_hamburgo_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_hamburgo_size03.png</string>
+						<key>detail</key>
+						<string>escudo_hamburgo_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>3679</key>
+		  		<dict>
+					<key>name</key>
+					<string>Augsburgo</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/186/3679/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_ausburgo_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_ausburgo_size03.png</string>
+						<key>detail</key>
+						<string>escudo_ausburgo_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>468</key>
+		  		<dict>
+					<key>name</key>
+					<string>Schalke 04</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/468/468/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2014_2015/teams/468.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_schalke04_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_schalke04_size03.png</string>
+						<key>detail</key>
+						<string>escudo_schalke04_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>551</key>
+		  		<dict>
+					<key>name</key>
+					<string>Hannover 96</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/052/551/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_hannover_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_hannover_size03.png</string>
+						<key>detail</key>
+						<string>escudo_hannover_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>303</key>
+		  		<dict>
+					<key>name</key>
+					<string>W. Bremen</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/303/303/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_werderbremen_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_werderbremen_size03.png</string>
+						<key>detail</key>
+						<string>escudo_werderbremen_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>1674</key>
+		  		<dict>
+					<key>name</key>
+					<string>Mainz 05</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/177/1674/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_mainz_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_mainz_size03.png</string>
+						<key>detail</key>
+						<string>escudo_mainz_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>86</key>
+		  		<dict>
+					<key>name</key>
+					<string>Stuttgart</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/086/86/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_stuttgart_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_stuttgart_size03.png</string>
+						<key>detail</key>
+						<string>escudo_stuttgart_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>340</key>
+		  		<dict>
+					<key>name</key>
+					<string>Hertha</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/340/340/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_hertha_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_hertha_size03.png</string>
+						<key>detail</key>
+						<string>escudo_hertha_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>465</key>
+		  		<dict>
+					<key>name</key>
+					<string>Wolfsburgo</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/465/465/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_wolfsburgo_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_wolfsburgo_size03.png</string>
+						<key>detail</key>
+						<string>escudo_wolfsburgo_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>536</key>
+		  		<dict>
+					<key>name</key>
+					<string>B. MGladbach</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/037/536/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_moenchengladbach_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_moenchengladbach_size03.png</string>
+						<key>detail</key>
+						<string>escudo_moenchengladbach_size01.png</string>
+					</dict>
+				</dict>
+
+				<!-- uefa -->
+
+				<key>4239</key>
+		  		<dict>
+					<key>name</key>
+					<string>Ingolstadt 04</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/247/4239/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_ingolstadt_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_ingolstadt_size03.png</string>
+						<key>detail</key>
+						<string>escudo_ingolstadt_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>469</key>
+		  		<dict>
+					<key>name</key>
+					<string>Eintracht</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/469/469/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_eintracht_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_eintracht_size03.png</string>
+						<key>detail</key>
+						<string>escudo_eintracht_size01.png</string>
+					</dict>
+				</dict>
+
+				<!-- champions -->
+
+				<key>169</key>
+		  		<dict>
+					<key>name</key>
+					<string>Leverkusen</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/169/169/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/169.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_bayernleverkusen_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_bayernleverkusen_size03.png</string>
+						<key>detail</key>
+						<string>escudo_bayernleverkusen_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>170</key>
+		  		<dict>
+					<key>name</key>
+					<string>Bayern Munich</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/170/170/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/170.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_bayern_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_bayern_size03.png</string>
+						<key>detail</key>
+						<string>escudo_bayern_size01.png</string>
+					</dict>
+				</dict>
+
+
+				<key>87</key>
+		  		<dict>
+					<key>name</key>
+					<string>Borussia Dortmund</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/087/87/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/87.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_bayerdortmund_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_bayerdortmund_size03.png</string>
+						<key>detail</key>
+						<string>escudo_bayerdortmund_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>2892</key>
+		  		<dict>
+					<key>name</key>
+					<string>Hoffenheim</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/397/2892/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_hoffenheim_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_hoffenheim_size03.png</string>
+						<key>detail</key>
+						<string>escudo_hoffenheim_size01.png</string>
+					</dict>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ordenacion</string>
+			<key>viewType</key>
+			<string>sort_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_alemana/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>calendar</string>
+			<key>calendarWS</key>
+			<string>/calendario/68d57ecd1ee07e43b62a7a73fd717479/calendario.js2</string>
+			<key>resultsURL</key>
+			<string>http://resultados.as.com/resultados/futbol/alemania/</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>clasification</string>
+			<key>clasificationWS</key>
+			<dict>
+				<key>Fase Grupos</key>
+				<string>/clasificacion/68d57ecd1ee07e43b62a7a73fd717479/clasificacion_regular.js2</string>
+			</dict>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>carrusel</string>
+			<key>carruselWS</key>
+			<string>/carrusel/68d57ecd1ee07e43b62a7a73fd717479/carrusel.js2</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>comparador</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>search</string>
+			<key>queryPath</key>
+			<string>/buscador.pl</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

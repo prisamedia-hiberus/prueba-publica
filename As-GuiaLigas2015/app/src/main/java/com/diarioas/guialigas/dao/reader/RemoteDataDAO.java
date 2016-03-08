@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.GeneralSettings;
 import com.diarioas.guialigas.dao.model.general.Section;
@@ -116,7 +117,7 @@ public class RemoteDataDAO implements AsyncLocalFeedXMLListener,
 		this.mainStaticRemoteFeedXMLReader = new AsyncLoadRemoteFeedXML(this,
 				mContext);
 		this.mainStaticRemoteFeedXMLReader
-				.execute(Defines.URL_REMOTE_CONFIG_FILE);
+				.execute(BuildConfig.URL_REMOTE_CONFIG_FILE);
 	}
 
 	/**

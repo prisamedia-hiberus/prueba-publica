@@ -40,7 +40,7 @@ public class Defines {
 		public static String DB_NAME = "ligas_2014_.sqlite";
 		public static final int VERSION = 5;
 
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia2.1.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
@@ -88,7 +88,7 @@ public class Defines {
 		public static String PRESIDENT = "President";
 		public static String MANAGER = "Manager";
 		public static String MISTER = "Mister";
-//		public static String STAR = "Star";
+		public static String STAR = "Star";
 	}
 
 	public static interface RequestTimes {

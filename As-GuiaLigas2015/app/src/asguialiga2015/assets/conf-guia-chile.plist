@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+	<!-- menu -->
+	<key>menu</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>grid</string>
+			<!-- alpha|group -->
+			<key>order</key>
+			<string>alpha</string>
+			<key>default</key>
+			<true/>
+			<!-- tendriamos que definir los tipos de vista que tendriamos, en principio 4, principal_view, con subsection_view, external_view o web_view -->
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+			<key>teams</key>
+			<dict>
+
+				<key>4159</key>
+		  		<dict>
+					<key>name</key>
+					<string>Cobresal</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/167/4159/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_cobresal_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_cobresal_size03.png</string>
+						<key>detail</key>
+						<string>escudo_cobresal_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4155</key>
+		  		<dict>
+					<key>name</key>
+					<string>Colo Colo</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/163/4155/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_colocolo_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_colocolo_size03.png</string>
+						<key>detail</key>
+						<string>escudo_colocolo_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4160</key>
+		  		<dict>
+					<key>name</key>
+					<string>Huachipato</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/168/4160/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_huachipato_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_huachipato_size03.png</string>
+						<key>detail</key>
+						<string>escudo_huachipato_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4157</key>
+		  		<dict>
+					<key>name</key>
+					<string>U. Católica</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/165/4157/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_catolica_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_catolica_size03.png</string>
+						<key>detail</key>
+						<string>escudo_catolica_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>3930</key>
+		  		<dict>
+					<key>name</key>
+					<string>U. La Calera</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/437/3930/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_calera_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_calera_size03.png</string>
+						<key>detail</key>
+						<string>escudo_calera_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>3931</key>
+		  		<dict>
+					<key>name</key>
+					<string>U. de Conce</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/438/3931/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_conce_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_conce_size03.png</string>
+						<key>detail</key>
+						<string>escudo_conce_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4153</key>
+		  		<dict>
+					<key>name</key>
+					<string>U. de Chile</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/161/4153/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_uchile_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_uchile_size03.png</string>
+						<key>detail</key>
+						<string>escudo_uchile_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4164</key>
+		  		<dict>
+					<key>name</key>
+					<string>SM Arica</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/172/4164/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_arica_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_arica_size03.png</string>
+						<key>detail</key>
+						<string>escudo_arica_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4158</key>
+		  		<dict>
+					<key>name</key>
+					<string>O´Higgins</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/166/4158/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_higgins_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_higgins_size03.png</string>
+						<key>detail</key>
+						<string>escudo_higgins_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4163</key>
+		  		<dict>
+					<key>name</key>
+					<string>U. Española</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/171/4163/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_espanola_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_espanola_size03.png</string>
+						<key>detail</key>
+						<string>escudo_espanola_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4179</key>
+		  		<dict>
+					<key>name</key>
+					<string>CD San Luis</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/187/4179/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_cdsanluis_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_cdsanluis_size03.png</string>
+						<key>detail</key>
+						<string>escudo_cdsanluis_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4156</key>
+		  		<dict>
+					<key>name</key>
+					<string>A. Italiano</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/164/4156/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_italiano_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_italiano_size03.png</string>
+						<key>detail</key>
+						<string>escudo_italiano_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>3927</key>
+		  		<dict>
+					<key>name</key>
+					<string>D. Iquique</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/434/3927/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_iquique_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_iquique_size03.png</string>
+						<key>detail</key>
+						<string>escudo_iquique_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>3919</key>
+		  		<dict>
+					<key>name</key>
+					<string>Antofagasta</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/426/3919/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_antofagasta_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_antofagasta_size03.png</string>
+						<key>detail</key>
+						<string>escudo_antofagasta_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4162</key>
+		  		<dict>
+					<key>name</key>
+					<string>Palestino</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/170/4162/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_palestino_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_palestino_size03.png</string>
+						<key>detail</key>
+						<string>escudo_palestino_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>4154</key>
+		  		<dict>
+					<key>name</key>
+					<string>Wanderers</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/162/4154/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_wanderers_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_wanderers_size03.png</string>
+						<key>detail</key>
+						<string>escudo_wanderers_size01.png</string>
+					</dict>
+				</dict>
+
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ordenacion</string>
+			<key>viewType</key>
+			<string>sort_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>noticias tag</string>
+			<key>noticiasWS</key>
+			<string>tag/j/liga_chilena/a/</string>
+			<key>viewType</key>
+			<string>tag_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>calendar</string>
+			<key>calendarWS</key>
+			<string>/calendario/72c7b722b918ff224a457602837e4cc6/calendario.js2</string>
+			<key>resultsURL</key>
+			<string>http://resultados.as.com/resultados/futbol/alemania/</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>clasification</string>
+			<key>clasificationWS</key>
+			<dict>
+				<key>Fase Grupos</key>
+				<string>/clasificacion/72c7b722b918ff224a457602837e4cc6/clasificacion_regular.js2</string>
+			</dict>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>carrusel</string>
+			<key>carruselWS</key>
+			<string>/carrusel/72c7b722b918ff224a457602837e4cc6/carrusel.js2</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>comparador</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>search</string>
+			<key>queryPath</key>
+			<string>/buscador.pl</string>
+			<key>viewType</key>
+			<string>principal_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>
