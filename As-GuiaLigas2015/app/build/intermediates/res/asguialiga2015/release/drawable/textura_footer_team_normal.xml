@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:dither="true"
-    android:src="@drawable/footer_detalle_equipo"
-    android:tileMode="repeat" />
-<!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/drawable/textura_footer_team_normal.xml -->
