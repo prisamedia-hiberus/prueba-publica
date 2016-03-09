@@ -26,6 +26,7 @@ import com.diarioas.guialigas.dao.reader.RemoteGalleryDAO.RemotePhotosDetailDAOL
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
@@ -270,11 +271,11 @@ public class PhotoGalleryActivity extends GeneralFragmentActivity implements
 	protected void callToOmniture(String title) {
 		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
 				getApplication(),
-				Omniture.SECTION_PHOTOS,
-				Omniture.SUBSECTION_GALLERY,
-				Omniture.SUBSUBSECTION_PHOTODETAIL,
+				FileUtils.readOmnitureProperties(this, "SECTION_PHOTOS"),
+				FileUtils.readOmnitureProperties(this, "SUBSECTION_GALLERY"),
+				FileUtils.readOmnitureProperties(this, "SUBSUBSECTION_PHOTODETAIL"),
 				null,
-				Omniture.TYPE_ARTICLE,
+                FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
 				title,
 				null);
 	}

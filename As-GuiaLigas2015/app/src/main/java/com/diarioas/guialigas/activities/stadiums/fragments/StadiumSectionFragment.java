@@ -27,6 +27,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -112,12 +113,12 @@ public class StadiumSectionFragment extends ListViewSectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_SEDES,
-				Omniture.SUBSECTION_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_SEDES"),
+                FileUtils.readOmnitureProperties(mContext, "SUBSECTION_PORTADA"),
 				null,
 				null,
-				Omniture.TYPE_ARTICLE,
-				Omniture.SECTION_SEDES + " " + Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_ARTICLE"),
+                FileUtils.readOmnitureProperties(mContext, "SECTION_SEDES") + " " + FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
 				null);
 	}
 

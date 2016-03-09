@@ -16,6 +16,7 @@ import com.diarioas.guialigas.dao.model.news.NewsItem;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -119,8 +120,8 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 
 				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
 						nItem.getTitle(),
-						Omniture.SECTION_NEWS,
-						Omniture.SUBSECTION_NEWSDETAIL,
+                        FileUtils.readOmnitureProperties(this, "SECTION_NEWS"),
+						FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
 						null);
 			}
 
@@ -194,11 +195,11 @@ public class NewsDetailActivity extends GeneralFragmentActivity implements
 	protected void callToOmniture(String title) {
 		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
 				getApplication(),
-				Omniture.SECTION_NEWS,
-				Omniture.SUBSECTION_NEWSDETAIL,
+                FileUtils.readOmnitureProperties(this, "SECTION_NEWS"),
+				FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
 				title,
 				null);
 	}

@@ -57,6 +57,7 @@ import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.Defines.ShieldName;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.Reachability;
@@ -690,11 +691,11 @@ public class CarrouselSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				Omniture.SECTION_CARROUSEL,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_CARROUSEL"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_CARROUSEL,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CARROUSEL"),
 				null);
 	}
 

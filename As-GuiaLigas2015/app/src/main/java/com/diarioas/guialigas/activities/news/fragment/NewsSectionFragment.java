@@ -32,6 +32,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -171,11 +172,11 @@ public class NewsSectionFragment extends SectionFragment implements RemoteNewsDA
 		StatisticsDAO.getInstance(mContext)
 				.sendStatisticsState(
 						getActivity().getApplication(),
-						Omniture.SECTION_NEWS,
+                        FileUtils.readOmnitureProperties(mContext, "SECTION_NEWS"),
 						null,
 						null,
 						null,
-						Omniture.TYPE_PORTADA,
+                        FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
 						null,
 						null);
 	}

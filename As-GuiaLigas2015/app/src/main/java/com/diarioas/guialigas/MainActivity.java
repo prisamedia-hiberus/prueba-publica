@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
@@ -18,10 +19,12 @@ import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.dao.reader.CookieDAO;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
+import com.diarioas.guialigas.dao.reader.OmnitureDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO.RemoteDataDAOListener;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.urbanairship.google.PlayServicesUtils;
 
 public class MainActivity extends FragmentActivity implements
@@ -89,6 +92,7 @@ public class MainActivity extends FragmentActivity implements
 		if (PlayServicesUtils.isGooglePlayStoreAvailable()) {
 		    PlayServicesUtils.handleAnyPlayServicesError(this);
 		}
+
 	}
 
 	@Override

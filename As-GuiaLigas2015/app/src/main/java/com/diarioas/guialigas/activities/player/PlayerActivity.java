@@ -35,6 +35,7 @@ import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
@@ -176,9 +177,9 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 					.getName());
 			StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
 					playerName,
-					Omniture.SECTION_SEARCHER,
-					Omniture.SUBSECTION_PLANTILLA,
-					Omniture.SUBSUBSECTION_FICHA);
+					FileUtils.readOmnitureProperties(this, "SECTION_SEARCHER"),
+                    FileUtils.readOmnitureProperties(this, "SUBSECTION_PLANTILLA"),
+                    FileUtils.readOmnitureProperties(this, "SUBSECTION_FICHA"));
 		}
 
 	}
@@ -250,11 +251,11 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 					.sendStatisticsState(getApplication(),
 							//Omniture.SECTION_SEARCHER,
 							team,
-							Omniture.SUBSECTION_PLANTILLA,
-							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_PALMARES,
-							Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_PALMARES,
+							FileUtils.readOmnitureProperties(this, "SUBSECTION_PLANTILLA"),
+                            FileUtils.readOmnitureProperties(this, "SUBSECTION_FICHA"),
+							FileUtils.readOmnitureProperties(this, "TEMA_PALMARES"),
+                            FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+							playerName + " " + FileUtils.readOmnitureProperties(this, "TEMA_PALMARES"),
 							null);
 			break;
 		case 1:
@@ -262,11 +263,11 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 					.sendStatisticsState(getApplication(),
 							//Omniture.SECTION_SEARCHER,
 							team,
-							Omniture.SUBSECTION_PLANTILLA,
-							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_INFORMATION,
-							Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_INFORMATION,
+                            FileUtils.readOmnitureProperties(this, "SUBSECTION_PLANTILLA"),
+                            FileUtils.readOmnitureProperties(this, "SUBSECTION_FICHA"),
+                            FileUtils.readOmnitureProperties(this, "TEAM_INFORMATION"),
+                            FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+							playerName + " " + FileUtils.readOmnitureProperties(this, "TEMA_INFORMATION"),
 							null);
 			break;
 		case 2:
@@ -274,11 +275,11 @@ public class PlayerActivity extends GeneralFragmentActivity implements
 					.sendStatisticsState(getApplication(),
 							//Omniture.SECTION_SEARCHER,
 							team,
-							Omniture.SUBSECTION_PLANTILLA,
-							Omniture.SUBSUBSECTION_FICHA,
-							Omniture.TEMA_TRAYECTORIA,
-							Omniture.TYPE_ARTICLE,
-							playerName + " " + Omniture.TEMA_TRAYECTORIA,
+                            FileUtils.readOmnitureProperties(this, "SUBSECTION_PLANTILLA"),
+                            FileUtils.readOmnitureProperties(this, "SUBSECTION_FICHA"),
+							FileUtils.readOmnitureProperties(this, "TEMA_TRAYECTORIA"),
+                            FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+							playerName + " " + FileUtils.readOmnitureProperties(this, "TEMA_TRAYECTORIA"),
 							null);
 			break;
 

@@ -249,7 +249,7 @@ public class Defines {
 	}
 
 	public static interface Omniture {
-		public static final String TRACKING_RSID = "prisacommovilidadas,prisacommovilidadprisacom";
+		/*public static final String TRACKING_RSID = "prisacommovilidadas,prisacommovilidadprisacom";
 		public static final String TRACKING_SERVER = "prisacom.112.2o7.net";
 
 		public static final String PAIS = "españa";
@@ -317,9 +317,13 @@ public class Defines {
 		public static final String DETAILPAGE_FOTOGALERIA = "fotogaleria";
 		public static final String DETAILPAGE_DETALLE = "detalle";
 		public static final String SECTION_PHOTOS = "fotos";
-		public static final String SECTION_LINK = "triviaAS";
+		public static final String SECTION_LINK = "triviaAS";*/
 
-	}
+
+        public static final String OMNITURE_PROPERTIES_FILE_NAME = "omniture.properties";
+
+
+    }
 
 	public static interface NativeAds {
 

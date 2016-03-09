@@ -21,6 +21,7 @@ import com.diarioas.guialigas.activities.general.GeneralPBSGoogleAdPrerrolActivi
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.FileUtils;
 
 public class VideoActivity extends GeneralPBSGoogleAdPrerrolActivity {
 
@@ -131,7 +132,7 @@ public class VideoActivity extends GeneralPBSGoogleAdPrerrolActivity {
 					info.put("event12", sectionName);
 					StatisticsDAO.getInstance(getApplicationContext())
 							.sendStatisticsAction(getApplication(),
-									Omniture.SECTION_VIDEOS, subsectionName,
+                                    FileUtils.readOmnitureProperties(getApplicationContext(), "SECTION_VIDEOS"), subsectionName,
 									null, null, null, null, info);
 				}
 				onBackPressed();
@@ -150,7 +151,7 @@ public class VideoActivity extends GeneralPBSGoogleAdPrerrolActivity {
 			info.put("event11", sectionName);
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsAction(getApplication(),
-							Omniture.SECTION_VIDEOS, subsectionName, null,
+                            FileUtils.readOmnitureProperties(this, "SECTION_VIDEOS"), subsectionName, null,
 							null, null, null, info);
 		}
 		currentVideo.setOnTouchListener(null);
@@ -165,7 +166,7 @@ public class VideoActivity extends GeneralPBSGoogleAdPrerrolActivity {
 			info.put("event14", sectionName);
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsAction(getApplication(),
-							Omniture.SECTION_VIDEOS, subsectionName, null,
+                            FileUtils.readOmnitureProperties(this, "SECTION_VIDEOS"), subsectionName, null,
 							null, null, null, info);
 		}
 	}
@@ -180,7 +181,7 @@ public class VideoActivity extends GeneralPBSGoogleAdPrerrolActivity {
 			info.put("event13", sectionName);
 			StatisticsDAO.getInstance(getApplicationContext())
 					.sendStatisticsAction(getApplication(),
-							Omniture.SECTION_VIDEOS, subsectionName, null,
+                            FileUtils.readOmnitureProperties(this, "SECTION_VIDEOS"), subsectionName, null,
 							null, null, null, info);
 		}
 	}

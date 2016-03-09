@@ -30,6 +30,7 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
@@ -88,12 +89,12 @@ public class PlayerComparatorStepSecondActivity extends GeneralFragmentActivity
 		super.onResume();
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
-				Omniture.SECTION_COMPARATOR,
-				Omniture.SUBSECTION_TEAMS,
+                FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"),
+				FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAMS"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR + " " + Omniture.SUBSECTION_TEAMS + " " +
+                FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
+                FileUtils.readOmnitureProperties(this, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR") + " " + FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAMS") + " " +
 						RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
 				null);
 

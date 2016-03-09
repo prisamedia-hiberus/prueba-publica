@@ -50,6 +50,7 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.comparator.GroupComparator;
@@ -437,11 +438,11 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				Omniture.SECTION_CLASIFICATION,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CLASIFICATION,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+                FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
 				null);
 	}
 

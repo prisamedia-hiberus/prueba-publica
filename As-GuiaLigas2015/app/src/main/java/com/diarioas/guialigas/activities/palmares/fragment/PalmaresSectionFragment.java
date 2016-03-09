@@ -25,6 +25,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -115,11 +116,11 @@ public class PalmaresSectionFragment extends ListViewSectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_PALMARES,
-				Omniture.SUBSECTION_PORTADA + " " + Omniture.SECTION_PALMARES,
+				FileUtils.readOmnitureProperties(mContext, "SECTION_PALMARES"),
+				FileUtils.readOmnitureProperties(mContext, "SUBSECTION_PORTADA") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_PALMARES"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
 				null,
 				null);
 	}

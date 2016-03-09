@@ -27,6 +27,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
@@ -81,22 +82,22 @@ public class StadiumsDetailActivity extends GeneralFragmentActivity implements
 		if (pos == 0) {
 			StatisticsDAO.getInstance(this).sendStatisticsState(
 					getApplication(),
-					Omniture.SECTION_SEDES,
+                    FileUtils.readOmnitureProperties(this, "SECTION_SEDES"),
 					stad.getStadiumName(),
 					null,
 					null,
-					Omniture.TYPE_ARTICLE,
-					Omniture.DETAILPAGE_INFORMACION + " " + stad.getStadiumName(),
+                    FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+					FileUtils.readOmnitureProperties(this, "DETAILPAGE_INFORMACION") + " " + stad.getStadiumName(),
 					null);
 		} else {
 			StatisticsDAO.getInstance(this).sendStatisticsState(
 					getApplication(),
-					Omniture.SECTION_SEDES,
+                    FileUtils.readOmnitureProperties(this, "SECTION_SEDES"),
 					stad.getCityName(),
 					null,
 					null,
-					Omniture.TYPE_ARTICLE,
-					Omniture.DETAILPAGE_INFORMACION + " " + stad.getCityName(),
+                    FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+					FileUtils.readOmnitureProperties(this, "DETAILPAGE_INFORMACION") + " " + stad.getCityName(),
 					null);
 		}
 	}

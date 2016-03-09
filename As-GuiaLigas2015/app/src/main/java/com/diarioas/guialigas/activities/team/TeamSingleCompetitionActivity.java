@@ -32,6 +32,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
@@ -431,8 +432,8 @@ public class TeamSingleCompetitionActivity extends GeneralFragmentActivity imple
 				subsection,
 				null,
 				null,
-				Defines.Omniture.TYPE_PORTADA,
-				Defines.Omniture.DETAILPAGE_INFORMACION + " " + section + " "
+                FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
+				FileUtils.readOmnitureProperties(this, "DETAILPAGE_INFORMACION") + " " + section + " "
 						+ subsection, null);
 
 	}

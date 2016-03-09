@@ -23,6 +23,7 @@ import com.diarioas.guialigas.dao.reader.RemoteTeamDAO.RemoteTeamDAOListener;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
@@ -77,13 +78,13 @@ public class PlayerComparatorStepThirdActivity extends GeneralFragmentActivity
 
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
-				Omniture.SECTION_COMPARATOR,
-				Omniture.SUBSECTION_TEAMS,
-				Omniture.SUBSUBSECTION_PLAYERS,
+                FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"),
+                FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAMS"),
+                FileUtils.readOmnitureProperties(this, "SUBSECTION_PLAYERS"),
 				null,
-				Omniture.TYPE_ARTICLE,
-				Omniture.SECTION_COMPARATOR + " " + Omniture.SUBSECTION_TEAMS + " " + RemoteTeamDAO.getInstance(this).getTeam(teamId, String.valueOf(competitionId)).getShortName()
-						+ " " + Omniture.SUBSUBSECTION_PLAYERS,
+                FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+                FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR") + " " + FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAMS") + " " + RemoteTeamDAO.getInstance(this).getTeam(teamId, String.valueOf(competitionId)).getShortName()
+						+ " " + FileUtils.readOmnitureProperties(this, "SUBSECTION_PLAYERS"),
 				null);
 	}
 

@@ -82,7 +82,6 @@ public class DetailTeamFragment extends TeamFragment {
 
         }
 
-        // TODO cambiar el tag de escudo por bandera
 		if (resid != 0)
 			generalView.findViewById(R.id.shieldImage).setBackgroundResource(
 					resid);

@@ -10,6 +10,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
 
 import com.diarioas.guialigas.utils.Defines.Omniture;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.omniture.AppMeasurement;
 
 import java.util.HashMap;
@@ -143,8 +144,7 @@ public class StatisticsDAO {
 		s = new AppMeasurement(app); // Activity.getApplication
 
 		/* Specify the Report Suite ID(s) to track here */
-		s.account = Omniture.TRACKING_RSID;
-
+		s.account = FileUtils.readOmnitureProperties(mContext, "TRACKING_RSID");
 		s.debugTracking = true;
 
 		// Clear Vars
@@ -164,7 +164,7 @@ public class StatisticsDAO {
 		// changes
 		// to how your visitor data is collected. Changes should only be made
 		// when instructed to do so by your account manager.
-		s.trackingServer = Omniture.TRACKING_SERVER;
+		s.trackingServer = FileUtils.readOmnitureProperties(mContext, "TRACKING_SERVER");
 
 		s.channel = section;
 
@@ -207,18 +207,18 @@ public class StatisticsDAO {
 			}
 		}
 
-		s.prop14 = Omniture.PAIS; // Pais del Medio
-		s.prop15 = Omniture.PAIS; // Zona
+		s.prop14 = FileUtils.readOmnitureProperties(mContext, "PAIS"); // Pais del Medio
+		s.prop15 = FileUtils.readOmnitureProperties(mContext, "PAIS"); // Zona
 		s.prop16 = ""; // KeyWord Interna, (para b�squedas)
-		s.prop17 = Omniture.CANAL; // Canal
-		s.prop18 = Omniture.ORGANIZACION; // Organizacion
-		s.prop19 = Omniture.PRODUCTO; // Producto
-		s.prop20 = Omniture.DOMINIO; // Dominio
+		s.prop17 = FileUtils.readOmnitureProperties(mContext, "CANAL"); // Canal
+		s.prop18 = FileUtils.readOmnitureProperties(mContext, "ORGANIZACION");; // Organizacion
+		s.prop19 = FileUtils.readOmnitureProperties(mContext, "PRODUCTO"); // Producto
+		s.prop20 = FileUtils.readOmnitureProperties(mContext, "DOMINIO"); // Dominio
 		s.prop23 = version; // Version app (coger de la app)
 
-		s.prop30 = Omniture.UNIDAD_NEGOCIO; // Unidad de Negocio
-		s.prop31 = Omniture.TEMATICA; // Tematica
-		s.prop32 = Omniture.NOMBRE_APP; // Nombre app
+		s.prop30 = FileUtils.readOmnitureProperties(mContext, "UNIDAD_NEGOCIO"); // Unidad de Negocio
+		s.prop31 = FileUtils.readOmnitureProperties(mContext, "TEMATICA"); // Tematica
+		s.prop32 = FileUtils.readOmnitureProperties(mContext, "NOMBRE_APP"); // Nombre app
 
 		if (section != null && !section.equalsIgnoreCase("")) {
 			if (subsection != null && !subsection.equalsIgnoreCase("")) {

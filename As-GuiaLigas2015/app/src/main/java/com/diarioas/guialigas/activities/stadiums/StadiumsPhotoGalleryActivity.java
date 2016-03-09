@@ -21,6 +21,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -86,12 +87,12 @@ public class StadiumsPhotoGalleryActivity extends GeneralFragmentActivity implem
 		if (name != null && name.length() > 0)
 			StatisticsDAO.getInstance(this).sendStatisticsState(
 					getApplication(),
-					Omniture.SECTION_SEDES,
+                    FileUtils.readOmnitureProperties(this, "SECTION_SEDES"),
 					name,
-					Omniture.SUBSUBSECTION_GALLERY,
+                    FileUtils.readOmnitureProperties(this, "SUBSECTION_GALLERY"),
 					null,
-					Omniture.TYPE_ARTICLE,
-					Omniture.DETAILPAGE_FOTOGALERIA + " " + name,
+                    FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+					FileUtils.readOmnitureProperties(this, "DETAILPAGE_FOTOGALERIA") + " " + name,
 					null);
 	}
 
