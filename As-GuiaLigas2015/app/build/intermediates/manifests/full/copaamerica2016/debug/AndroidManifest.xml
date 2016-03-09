@@ -179,13 +179,6 @@
             android:name="com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepThirdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
             android:name="com.diarioas.guialigas.activities.palmares.PalmaresDetailActivity"
             android:screenOrientation="portrait" />
         <activity

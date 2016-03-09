@@ -378,63 +378,49 @@ ADDED from AndroidManifest.xml:171:9
 		ADDED from AndroidManifest.xml:173:13
 	android:name
 		ADDED from AndroidManifest.xml:172:13
-activity#com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity
-ADDED from AndroidManifest.xml:174:9
+activity#com.diarioas.guialigas.activities.palmares.PalmaresDetailActivity
+ADDED from AndroidManifest.xml:175:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:176:13
+		ADDED from AndroidManifest.xml:177:13
 	android:name
-		ADDED from AndroidManifest.xml:175:13
-activity#com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity
-ADDED from AndroidManifest.xml:177:9
+		ADDED from AndroidManifest.xml:176:13
+activity#com.diarioas.guialigas.activities.news.NewsDetailActivity
+ADDED from AndroidManifest.xml:178:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:179:13
-	android:theme
 		ADDED from AndroidManifest.xml:180:13
 	android:name
-		ADDED from AndroidManifest.xml:178:13
-activity#com.diarioas.guialigas.activities.palmares.PalmaresDetailActivity
+		ADDED from AndroidManifest.xml:179:13
+activity#com.diarioas.guialigas.activities.news.NewsTagDetailActivity
 ADDED from AndroidManifest.xml:181:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:183:13
 	android:name
 		ADDED from AndroidManifest.xml:182:13
-activity#com.diarioas.guialigas.activities.news.NewsDetailActivity
+activity#com.diarioas.guialigas.activities.photo.PhotoGalleryActivity
 ADDED from AndroidManifest.xml:184:9
 	android:screenOrientation
+		ADDED from AndroidManifest.xml:188:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:187:13
+	android:theme
 		ADDED from AndroidManifest.xml:186:13
 	android:name
 		ADDED from AndroidManifest.xml:185:13
-activity#com.diarioas.guialigas.activities.news.NewsTagDetailActivity
-ADDED from AndroidManifest.xml:187:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:189:13
-	android:name
-		ADDED from AndroidManifest.xml:188:13
-activity#com.diarioas.guialigas.activities.photo.PhotoGalleryActivity
-ADDED from AndroidManifest.xml:190:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:194:13
-	android:configChanges
-		ADDED from AndroidManifest.xml:193:13
-	android:theme
-		ADDED from AndroidManifest.xml:192:13
-	android:name
-		ADDED from AndroidManifest.xml:191:13
 activity#com.diarioas.guialigas.activities.sort.SortActivity
-ADDED from AndroidManifest.xml:195:3
+ADDED from AndroidManifest.xml:189:3
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:197:13
+		ADDED from AndroidManifest.xml:191:13
 	android:name
-		ADDED from AndroidManifest.xml:196:13
+		ADDED from AndroidManifest.xml:190:13
 activity#com.google.android.gms.ads.AdActivity
-ADDED from AndroidManifest.xml:199:9
+ADDED from AndroidManifest.xml:193:9
 MERGED from com.google.android.gms:play-services-ads:7.5.0:26:9
 	android:configChanges
-		ADDED from AndroidManifest.xml:201:13
+		ADDED from AndroidManifest.xml:195:13
 	android:theme
 		ADDED from com.google.android.gms:play-services-ads:7.5.0:29:13
 	android:name
-		ADDED from AndroidManifest.xml:200:13
+		ADDED from AndroidManifest.xml:194:13
 uses-feature#android.hardware.location.gps
 ADDED from As-GuiaLigas2015:lib-ads-android:unspecified:19:5
 	android:required
