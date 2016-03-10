@@ -321,6 +321,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 				R.color.medium_gray));
 		calendarSrolldays.addScrollEndListener(this);
 		calendarSrolldays.setInitPosition(firstPosition);
+        calendarSrolldays.setScrollContainer(true);
 		calendarSrolldays.addViews(nomDays);
 	}
 

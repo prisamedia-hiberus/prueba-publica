@@ -8,8 +8,8 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.diarioas.guialigas";
   public static final String BUILD_TYPE = "debug";
   public static final String FLAVOR = "asguialiga2015";
-  public static final int VERSION_CODE = 100;
-  public static final String VERSION_NAME = "testillo";
+  public static final int VERSION_CODE = 5;
+  public static final String VERSION_NAME = "";
   // Fields from product flavor: asguialiga2015
   public static final String AD_KEY = "/7811748/as_guialiga_app/android/";
   public static final boolean SINGLE_COMPETITION = false;
