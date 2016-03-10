@@ -7,6 +7,8 @@ ADDED from AndroidManifest.xml:1:1
 		INJECTED from AndroidManifest.xml:0:0
 	android:versionName
 		ADDED from AndroidManifest.xml:6:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
 	xmlns:tools
 		ADDED from AndroidManifest.xml:2:5
 	android:versionCode

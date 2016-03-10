@@ -409,6 +409,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 			break;
 		case 2:
 			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_PLANTILLA");
+			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_PLANTILLA");
 			break;
 
 		default:

@@ -411,6 +411,64 @@ public class DatabaseDAO extends SQLiteOpenHelper {
         }
     }
 
+    public int getVersionDatabase(Context context){
+        SQLiteDatabase db = null;
+        int version = -1;
+         try{
+             db = getReadableDatabase();
+             if(db != null){
+                 version = db.getVersion();
+                 return version;
+             } else {
+                 return -1;
+             }
+         } catch (SQLiteException e){
+             e.printStackTrace();
+             return -1;
+         }
+    }
+
+    public void clearDatabase(Context context){
+        SQLiteDatabase db = null;
+        try{
+            db = getWritableDatabase();
+            if(db != null) {
+                db.delete(TABLE_SPLASH, null, null);
+                db.delete(TABLE_CLASIFICATION_LABELS, null, null);
+                db.delete(TABLE_PREFIX, null, null);
+                db.delete(TABLE_STATUS, null, null);
+                db.delete(TABLE_GAMEPLAY, null, null);
+                db.delete(TABLE_SPADES, null, null);
+                db.delete(TABLE_COMPETITION, null, null);
+                db.delete(TABLE_COMPETITION_SECTION, null, null);
+                db.delete(TABLE_TEAM, null, null);
+                db.delete(TABLE_COMPETITION_TEAM, null, null);
+                db.delete(TABLE_STAFF, null, null);
+                db.delete(TABLE_PLAYER, null, null);
+                db.delete(TABLE_PLAYER_TRAYECTORIA, null, null);
+                db.delete(TABLE_PLAYER_PALMARES, null, null);
+                db.delete(TABLE_PLAYER_ESTADISTICAS, null, null);
+                db.delete(TABLE_TEAM_PALMARES, null, null);
+                db.delete(TABLE_TEAM_ESTADISTICAS, null, null);
+                db.delete(TABLE_PALMARES_LABELS_Y, null, null);
+                db.delete(TABLE_PALMARES_LABELS_X, null, null);
+                db.delete(TABLE_PALMARES_LABELS_L, null, null);
+                db.delete(TABLE_HISTORCAL_PALMARES_TEAM, null, null);
+                db.delete(TABLE_STADIUM, null, null);
+                db.delete(TABLE_COMPETITION_STADIUM, null, null);
+                db.delete(TABLE_STADIUM_IMAGES, null, null);
+                db.delete(TABLE_TEAM_IDEALPLAYERS, null, null);
+                db.delete(TABLE_NEWS, null, null);
+                db.delete(TABLE_MEDIA_NEWS, null, null);
+
+                db.close();
+            }
+
+        } catch (SQLiteException e){
+            e.printStackTrace();
+        }
+    }
+
     private void doUpgrade() {
         // implement the database upgrade here.
     }

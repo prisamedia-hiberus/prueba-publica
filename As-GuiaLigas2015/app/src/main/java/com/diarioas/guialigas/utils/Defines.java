@@ -38,7 +38,7 @@ public class Defines {
 
 	public static interface ReturnDataDatabases {
 		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 5;
+		public static final int VERSION = 7;
 
 		public static String DB_SETTINGS_FILE_NAME = "conf-guia.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";

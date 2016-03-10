@@ -25,7 +25,6 @@ android {
             buildConfigField "String", "AD_KEY", "\"/7811748/as_guialiga_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "false"
 
-
         }
         copaamerica2016{
             applicationId "com.diarioas.copaamerica"

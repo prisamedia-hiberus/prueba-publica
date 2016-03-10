@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.comscore.analytics.comScore;
 import com.diarioas.guialigas.activities.home.HomeActivity;
+import com.diarioas.guialigas.dao.model.Preferences;
 import com.diarioas.guialigas.dao.reader.CookieDAO;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
@@ -34,6 +35,7 @@ public class MainActivity extends FragmentActivity implements
 	private static final long DEFAULT_SPLASHTIME = 3000;
 	private static long splashTime = DEFAULT_SPLASHTIME;
 	private Context mContext;
+    private Preferences mPrefs;
 
 	/************************** Life Cycle methods ****************************/
 	/*************************************************************************/
@@ -44,6 +46,7 @@ public class MainActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_main);
 
 		this.mContext = this.getApplicationContext();
+        mPrefs = new Preferences(this);
 
 		ArrayList<Object> splash = DatabaseDAO.getInstance(mContext)
 				.getSplashInfo();
@@ -54,6 +57,18 @@ public class MainActivity extends FragmentActivity implements
 					(String) splash.get(0),
 					(ImageView) findViewById(R.id.publi_splash));
 		}
+
+
+        // Check Database version
+        int version = DatabaseDAO.getInstance(this).getVersionDatabase(this);
+
+        if(version != -1){
+            if(mPrefs.getLastDatabaseVersion() == -1 || mPrefs.getLastDatabaseVersion() < version){
+                DatabaseDAO.getInstance(this).clearDatabase(this);
+            }
+            mPrefs.setLastDatabaseVersionPref(version);
+        }
+
 	}
 
 	@Override
