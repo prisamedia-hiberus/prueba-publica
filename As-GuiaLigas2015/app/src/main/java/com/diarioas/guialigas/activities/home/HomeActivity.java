@@ -256,6 +256,8 @@ public class HomeActivity extends GeneralFragmentActivity implements
             fragment = new SearcherSectionFragment();
         } else if (section.getType().equalsIgnoreCase(SECTIONS.NEWS)) {
             fragment = section.getViewType().equals("tag_view") ? new NewsTagSectionFragment() : new NewsSectionFragment();
+        } else if (section.getType().equalsIgnoreCase(SECTIONS.NEWS_TAG)) {
+            fragment = new NewsTagSectionFragment();
         } else if (section.getType().equalsIgnoreCase(SECTIONS.VIDEOS)) {
             fragment = new VideosSectionFragment();
         } else if (section.getType().equalsIgnoreCase(SECTIONS.PHOTOS)) {
