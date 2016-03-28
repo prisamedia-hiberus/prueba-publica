@@ -54,7 +54,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
     compile 'com.google.android.gms:play-services-analytics:7.5.0'
     compile 'com.google.android.gms:play-services-location:7.5.0'
-    compile files('libs/AppMeasurement_Android.jar')
+    compile files('libs/admsAppLibrary.jar')
     compile files('libs/comscore.jar')
     compile files('libs/picasso-2.5.2.jar')
     compile files('libs/xmlwise-1_2.jar')

@@ -352,4 +352,11 @@ public class Defines {
 		
 		public static final String PUBLI_PRERROL_UNIT = "player_video";
 	}
+
+    //OMNITURE PROPERTIES
+    public static interface OMNITURE_CONSTANTS{
+        public static final String OMNITURE_PROPERTIES_FILE_NAME = "omniture.properties";
+        public static final String TRACKING_RSID_DEV = "prisacomprensapreprod";
+
+    }
 }
