@@ -28,6 +28,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
@@ -304,11 +305,11 @@ public class TeamsSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				Omniture.SUBSECTION_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "SUBSECTION_PORTADA"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " + Omniture.DETAILPAGE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " + FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA"),
 				null);
 	}
 

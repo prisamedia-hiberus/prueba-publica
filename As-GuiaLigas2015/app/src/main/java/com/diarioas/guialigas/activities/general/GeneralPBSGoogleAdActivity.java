@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.google.android.gms.ads.AdSize;
@@ -100,7 +101,7 @@ public class GeneralPBSGoogleAdActivity extends ActionBarActivity implements
 			needBannerListenerResumed = true;
 
 			banner = PBSDFPAdDAO.getInstance(this).createBanner(section,
-					NativeAds.AD_KEY,AdSize.BANNER);
+                    BuildConfig.AD_KEY,AdSize.BANNER);
 		}
 	}
 

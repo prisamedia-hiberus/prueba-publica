@@ -27,10 +27,12 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.activities.team.TeamActivity;
+import com.diarioas.guialigas.activities.team.TeamSingleCompetitionActivity;
 import com.diarioas.guialigas.dao.model.calendar.Fase;
 import com.diarioas.guialigas.dao.model.calendar.Grupo;
 import com.diarioas.guialigas.dao.model.clasificacion.ClasificacionInfo;
@@ -48,6 +50,7 @@ import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.comparator.GroupComparator;
@@ -322,7 +325,7 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	}
 
 	protected void selectedTeam(String teamId) {
-		Intent intent = new Intent(mContext, TeamActivity.class);
+		Intent intent = new Intent(mContext, BuildConfig.SINGLE_COMPETITION ? TeamSingleCompetitionActivity.class : TeamActivity.class);
 		intent.putExtra("teamId", teamId);
 		intent.putExtra("competitionId", String.valueOf(competitionId));
 
@@ -435,11 +438,11 @@ public class ClasificationSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				Omniture.SECTION_CLASIFICATION,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CLASIFICATION,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+                FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
 				null);
 	}
 

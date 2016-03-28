@@ -21,11 +21,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.activities.general.fragment.SectionFragment;
 import com.diarioas.guialigas.activities.home.HomeActivity;
 import com.diarioas.guialigas.activities.player.PlayerActivity;
 import com.diarioas.guialigas.activities.team.TeamActivity;
+import com.diarioas.guialigas.activities.team.TeamSingleCompetitionActivity;
 import com.diarioas.guialigas.dao.model.general.Section;
 import com.diarioas.guialigas.dao.model.search.SearchItem;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
@@ -36,9 +38,11 @@ import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class SearcherSectionFragment extends SectionFragment implements
@@ -171,7 +175,7 @@ public class SearcherSectionFragment extends SectionFragment implements
 	protected void goToDetail(boolean isTeam, String id, String url) {
 		Intent intent;
 		if (isTeam) {
-			intent = new Intent(mContext, TeamActivity.class);
+			intent = new Intent(mContext, BuildConfig.SINGLE_COMPETITION ? TeamSingleCompetitionActivity.class : TeamActivity.class);
 			intent.putExtra("teamId", id);
 			intent.putExtra("teamUrl", url);
 
@@ -208,12 +212,12 @@ public class SearcherSectionFragment extends SectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_SEARCHER,
+				FileUtils.readOmnitureProperties(mContext, "SECTION_SEARCHER"),
 				null,
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.SECTION_SEARCHER + " " + Omniture.DETAILPAGE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				FileUtils.readOmnitureProperties(mContext, "SECTION_SEARCHER") + " " + FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA"),
 				null);
 	}
 

@@ -42,6 +42,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestTimes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
@@ -313,9 +314,9 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 				String section = "";
 				if (comeFromCalendar) {
-					section = Omniture.SECTION_CALENDAR;
+					section = FileUtils.readOmnitureProperties(this, "SECTION_CALENDAR");
 				}else {
-					section = Omniture.SECTION_CARROUSEL;
+					section = FileUtils.readOmnitureProperties(this, "SECTION_CARROUSEL");
 				}
 
 				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
@@ -571,9 +572,9 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 		String section = "";
 		if (comeFromCalendar) {
-			section = Omniture.SECTION_CALENDAR;
+			section = FileUtils.readOmnitureProperties(this, "SECTION_CALENDAR");
 		}else {
-			section = Omniture.SECTION_CARROUSEL;
+			section = FileUtils.readOmnitureProperties(this, "SECTION_CARROUSEL");
 		}
 
 		String theme = "";
@@ -595,8 +596,8 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 				section,
 				match.getLocalTeamName() + " " + match.getAwayTeamName(),
 				theme,
-				Omniture.TYPE_ARTICLE,
-				Omniture.DETAILPAGE_DETALLE + " " + RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " +
+                FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
+                FileUtils.readOmnitureProperties(this, "DETAILPAGE_DETALLE") + " " + RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " +
 						section + " " + match.getLocalTeamName() + " " +
 						match.getAwayTeamName() + " " + theme,
 				/*Omniture.SECTION_CARROUSEL + " "

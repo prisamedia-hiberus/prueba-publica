@@ -38,6 +38,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.comparator.PlayerPalmaresComparator;
@@ -1487,12 +1488,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_COMPARATOR,
-				Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_COMPARATOR"),
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+                FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_COMPARATOR"),
 				null);
 	}
 
@@ -1500,12 +1501,12 @@ public class ComparatorPlayerSectionFragment extends SectionFragment implements
 	protected void callToOmnitureComparatorComplete() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_COMPARATOR,
-				Omniture.SUBSECTION_RESULT,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_COMPARATOR"),
+                FileUtils.readOmnitureProperties(mContext, "SUBSECTION_RESULT"),
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.SECTION_COMPARATOR_RESULT,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				FileUtils.readOmnitureProperties(mContext, "SECTION_COMPARATOR_RESULT"),
 				null);
 
 	}

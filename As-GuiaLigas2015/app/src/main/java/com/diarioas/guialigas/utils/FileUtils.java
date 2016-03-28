@@ -7,7 +7,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Properties;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
@@ -54,4 +56,30 @@ public class FileUtils {
 		return strFileContents;
 
 	}
+
+    public static String readOmnitureProperties(Context context, String property){
+        try {
+            Properties props = getProperties(context, Defines.Omniture.OMNITURE_PROPERTIES_FILE_NAME);
+            return props.getProperty(property);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    public static Properties getProperties(Context context, String FileName) {
+        Properties properties = new Properties();
+        try {
+
+            AssetManager assetManager = context.getAssets();
+            InputStream inputStream = assetManager.open(FileName);
+            properties.load(inputStream);
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            Log.e("AssetsPropertyReader",e.toString());
+        }
+        return properties;
+    }
 }

@@ -35,6 +35,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -304,12 +305,12 @@ public class PhotosSectionFragment extends SectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				Omniture.SECTION_PHOTOS,
+                FileUtils.readOmnitureProperties(mContext, "SECTION_PHOTOS"),
 				null,
 				null,
 				null,
-				Omniture.TYPE_ARTICLE,
-				Omniture.DETAILPAGE_PORTADA + " " + Omniture.SECTION_PHOTOS,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_ARTICLE"),
+                FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_PHOTOS"),
 				null);
 	}
 

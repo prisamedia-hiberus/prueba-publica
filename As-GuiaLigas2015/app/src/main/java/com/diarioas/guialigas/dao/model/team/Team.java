@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.dao.model.carrusel.PlayerOnField;
 import com.diarioas.guialigas.dao.model.clasificacion.ClasificacionInfo;
 import com.diarioas.guialigas.dao.model.player.Player;
@@ -213,29 +214,29 @@ public class Team implements Serializable {
 	 * @param string
 	 */
 	public void addShield(String detail, String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-			shield = ShieldName.PREFIX_SHIELD + shield;
+		if (!shield.startsWith(BuildConfig.TEAM_IMAGE_PREFIX))
+			shield = BuildConfig.TEAM_IMAGE_PREFIX + shield;
 		this.shields.put(detail, shield);
 
 	}
 
 	public void addShieldGrid(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-			shield = ShieldName.PREFIX_SHIELD + shield;
+		if (!shield.startsWith(BuildConfig.TEAM_IMAGE_PREFIX))
+			shield = BuildConfig.TEAM_IMAGE_PREFIX + shield;
 		this.shields.put(ShieldName.GRID, shield);
 
 	}
 
 	public void addShieldCalendar(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-			shield = ShieldName.PREFIX_SHIELD + shield;
+		if (!shield.startsWith(BuildConfig.TEAM_IMAGE_PREFIX))
+			shield = BuildConfig.TEAM_IMAGE_PREFIX + shield;
 		this.shields.put(ShieldName.CALENDAR, shield);
 
 	}
 
 	public void addShieldDetail(String shield) {
-		if (!shield.startsWith(ShieldName.PREFIX_SHIELD))
-			shield = ShieldName.PREFIX_SHIELD + shield;
+		if (!shield.startsWith(BuildConfig.TEAM_IMAGE_PREFIX))
+			shield = BuildConfig.TEAM_IMAGE_PREFIX + shield;
 		this.shields.put(ShieldName.DETAIL, shield);
 
 	}
@@ -675,5 +676,10 @@ public class Team implements Serializable {
 	public void setHistoricalPalmares(ArrayList<String> historicalPalmares) {
 		this.historicalPalmares = historicalPalmares;
 	}
+
+    public void addStar(Staff staff) {
+        this.teamStaff.put(StaffCharge.STAR, staff);
+
+    }
 
 }

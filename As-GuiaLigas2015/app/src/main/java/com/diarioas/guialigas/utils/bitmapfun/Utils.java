@@ -16,19 +16,8 @@
 
 package com.diarioas.guialigas.utils.bitmapfun;
 
-import android.annotation.TargetApi;
 import android.os.Build;
-import android.os.StrictMode;
 
-import com.diarioas.guialigas.MainActivity;
-import com.diarioas.guialigas.activities.carrusel.CarruselDetailActivity;
-import com.diarioas.guialigas.activities.home.HomeActivity;
-import com.diarioas.guialigas.activities.player.PlayerActivity;
-import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepFirstActivity;
-import com.diarioas.guialigas.activities.player.comparator.PlayerComparatorStepThirdActivity;
-import com.diarioas.guialigas.activities.stadiums.StadiumsDetailActivity;
-import com.diarioas.guialigas.activities.stadiums.StadiumsPhotoGalleryActivity;
-import com.diarioas.guialigas.activities.team.TeamActivity;
 
 /**
  * Class containing some static utility methods.
@@ -37,34 +26,6 @@ public class Utils {
 	private Utils() {
 	};
 
-	@TargetApi(11)
-	public static void enableStrictMode() {
-		if (Utils.hasGingerbread()) {
-			StrictMode.ThreadPolicy.Builder threadPolicyBuilder = new StrictMode.ThreadPolicy.Builder()
-					.detectAll().penaltyLog();
-			StrictMode.VmPolicy.Builder vmPolicyBuilder = new StrictMode.VmPolicy.Builder()
-					.detectAll().penaltyLog();
-
-			if (Utils.hasHoneycomb()) {
-				threadPolicyBuilder.penaltyFlashScreen();
-				vmPolicyBuilder
-						.setClassInstanceLimit(MainActivity.class, 1)
-						.setClassInstanceLimit(HomeActivity.class, 6)
-						.setClassInstanceLimit(TeamActivity.class, 3)
-						.setClassInstanceLimit(PlayerActivity.class, 1)
-						.setClassInstanceLimit(
-								PlayerComparatorStepFirstActivity.class, 1)
-						.setClassInstanceLimit(
-								PlayerComparatorStepThirdActivity.class, 1)
-						.setClassInstanceLimit(StadiumsDetailActivity.class, 1)
-						.setClassInstanceLimit(CarruselDetailActivity.class, 1)
-						.setClassInstanceLimit(
-								StadiumsPhotoGalleryActivity.class, 1);
-			}
-			StrictMode.setThreadPolicy(threadPolicyBuilder.build());
-			StrictMode.setVmPolicy(vmPolicyBuilder.build());
-		}
-	}
 
 	public static boolean hasFroyo() {
 		// Can use static final constants like FROYO, declared in later versions

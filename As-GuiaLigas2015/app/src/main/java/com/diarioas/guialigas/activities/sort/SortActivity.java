@@ -24,6 +24,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.listview.DynamicListView;
@@ -195,12 +196,12 @@ public class SortActivity extends GeneralFragmentActivity implements
 	private void callToOmniture() {
 		StatisticsDAO.getInstance(getApplicationContext())
 		.sendStatisticsState(getApplication(),
-				Omniture.SECTION_SORT,
+                FileUtils.readOmnitureProperties(this, "SECTION_SORT"),
 				null,
 				null,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.SECTION_SORT +" "+ Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+                FileUtils.readOmnitureProperties(this, "SECTION_SORT") +" "+ FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
 				null);
 		
 	}

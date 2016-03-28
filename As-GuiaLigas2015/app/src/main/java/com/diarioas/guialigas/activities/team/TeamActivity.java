@@ -36,6 +36,7 @@ import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.StringUtils;
@@ -166,7 +167,7 @@ public class TeamActivity extends GeneralFragmentActivity implements
 
 			StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
 					currentTeam.getShortName(),
-					Omniture.SECTION_PORTADA,
+                    FileUtils.readOmnitureProperties(this, "SECTION_PORTADA"),
 					null,
 					null);
 
@@ -401,13 +402,14 @@ public class TeamActivity extends GeneralFragmentActivity implements
 		String subsection = null;
 		switch (pos) {
 		case 0:
-			subsection = Omniture.SUBSECTION_TEAM_STATS;
+			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_STATS");
 			break;
 		case 1:
-			subsection = Omniture.SUBSECTION_TEAM_INFO;
+			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_INFO");
 			break;
 		case 2:
-			subsection = Omniture.SUBSECTION_TEAM_PLANTILLA;
+			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_PLANTILLA");
+			subsection = FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_PLANTILLA");
 			break;
 
 		default:
@@ -422,9 +424,9 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				getApplication(),
 				section,
 				subsection,
-				Omniture.SECTION_PORTADA,
+				FileUtils.readOmnitureProperties(this, "SECTION_PORTADA"),
 				null,
-				Omniture.TYPE_PORTADA,
+                FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
 				section,
 				null);
 
@@ -449,8 +451,8 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				StatisticsDAO.getInstance(this).sendStatisticsAction(
 						getApplication(),
 						currentTeam.getShortName().toLowerCase(),
-						Omniture.SUBSECTION_TEAM_NEWS, null, null,
-						Omniture.TYPE_PORTADA,
+						FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_NEWS"), null, null,
+                        FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
 						currentTeam.getShortName().toLowerCase(), null);
 				goToWeb(currentTeam.getWeb());
 			}
@@ -462,10 +464,10 @@ public class TeamActivity extends GeneralFragmentActivity implements
 				StatisticsDAO.getInstance(this).sendStatisticsAction(
 						getApplication(),
 						currentTeam.getShortName().toLowerCase(),
-						Omniture.SUBSECTION_TEAM_MAP,
+						FileUtils.readOmnitureProperties(this, "SUBSECTION_TEAM_MAP"),
 						null,
 						null,
-						Omniture.TYPE_PORTADA,
+                        FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
 						currentTeam.getShortName().toLowerCase(),
 						null);
 

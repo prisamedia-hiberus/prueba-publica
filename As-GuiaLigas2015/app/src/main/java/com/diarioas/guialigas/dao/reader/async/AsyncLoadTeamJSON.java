@@ -48,9 +48,14 @@ public class AsyncLoadTeamJSON extends AsyncTask<String, Void, Team> {
 						Log.d("LOADTEAM","Carga Estatica: " + currentTeam.getShortName()+ " ::  " + currentTeam.getUrlInfo());
 						strFileContents = ReadRemote.readRemoteFile(currentTeam.getUrlInfo(), true);
 						ParsePlistTeamStatic parseStatic = new ParsePlistTeamStatic(strFileContents);
-		
 
-						parseStatic.parsePlistTeam(currentTeam);
+                        String videoPrefix = DatabaseDAO.getInstance(appContext)
+                                .getPrefix(Prefix.PREFIX_VIDEO);
+                        String imagePrefix = DatabaseDAO.getInstance(appContext)
+                                .getPrefix(Prefix.PREFIX_IMAGE);
+                        String dataPrefix = DatabaseDAO.getInstance(appContext)
+                                .getPrefix(Prefix.PREFIX_DATA);
+						parseStatic.parsePlistTeam(currentTeam, dataPrefix, imagePrefix, videoPrefix);
 						DatabaseDAO.getInstance(appContext).updateStaticTeam(currentTeam, urls[0]);
 					} catch (Exception e) {
 						Log.e("LOADTEAM",

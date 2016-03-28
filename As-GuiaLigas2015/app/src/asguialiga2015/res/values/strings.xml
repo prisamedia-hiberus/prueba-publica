@@ -1,0 +1,260 @@
+<resources>
+
+    <string name="app_name">Guía de las Ligas</string>
+    <string name="app_name_normalize" translatable="false">Guia-Liga</string>
+
+    <!-- PLAYER -->
+    <string name="player_comparator_message_versus">Escoge una Competición y una Temporada para iniciar la Comparativa</string>
+    <string name="player_detail_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+    <string name="player_detail_not_updated">Sin conexión a Internet no podrá consultar los datos actualizados de este jugador.</string>
+    <string name="player_comparator_not_content">No existen datos para ese jugador y no es posible seleccionarlo para la comparativa. Por favor, seleccione otro jugador</string>
+    <string name="error_player_message_noplayer">Lo sentimos pero no es posible recuperar la información de este jugador.</string>
+    <string name="error_player_message">Lo sentimos pero no es posible recuperar la información de este jugador sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
+    <string name="player_comparator_back">Atrás</string>
+    <string name="player_comparator_cancel">Cancelar</string>
+    <string name="player_comparator_noplayer_left">SELECCIONA EL PRIMER JUGADOR PARA COMPARAR</string>
+    <string name="player_comparator_noplayer_right">SELECCIONA EL SEGUNDO JUGADOR PARA COMPARAR</string>
+    <string name="player_comparator_goles_marc">GOLES</string>
+    <string name="player_comparator_goles_enc">GOLES ENCAJADOS</string>
+    <string name="player_comparator_partidos">PARTIDOS</string>
+    <string name="player_comparator_minutos">MINUTOS</string>
+    <string name="player_comparator_tarjetas_am">T.AMARILLAS</string>
+    <string name="player_comparator_tarjetas_ro">T.ROJAS</string>
+    <string name="player_comparator_asistencias">ASISTENCIAS</string>
+    <string name="player_comparator_paradas">PARADAS</string>
+    <string name="player_anos">&#160;Años</string>
+    <string name="player_noticias">Ver Noticias de este jugador</string>
+    <string name="player_comparator">Comparar Jugador</string>
+    <string name="player_estadisticas">Estadísticas</string>
+    <string name="player_trayectoria">Trayectoria</string>
+    <string name="player_no_trayectoria">No hay información sobre la trayectoria de este jugador</string>
+    <string name="player_no_palmares">Este jugador no tiene títulos</string>
+    <string name="player_no_estadisticas">Este jugador no tiene estadísticas</string>
+    <string name="player_palmares">Palmarés</string>
+    <string name="player_trayectoria_temp">Temp.</string>
+    <string name="player_trayectoria_team">Equipo</string>
+    <string name="player_trayectoria_partidos">Partidos</string>
+    <string name="player_trayectoria_goles">Goles</string>
+    <string name="player_trayectoria_competiciones_mostradas">Los datos que aparecen hacen referencia a las siguientes competiciones:&#160;</string>
+    <string name="player_goles">Goles</string>
+    <string name="player_goles_enc">Goles Enc.</string>
+    <string name="player_tarjetas_amarillas">Tarjetas Amarillas</string>
+    <string name="player_partidos_jugados">Partidos Jugados</string>
+    <string name="player_tarjetas_rojas">Tarjetas Rojas</string>
+    <string name="player_minutos">Minutos</string>
+    <string name="player_paradas">Paradas</string>
+    <string name="player_asistencias">Asistencias</string>
+    <string name="player_fecha_de_nacimiento">Fecha de Nacimiento -&#160;</string>
+    <string name="player_pais">Pais -&#160;</string>
+    <string name="player_edad">Edad -&#160;</string>
+    <string name="player_palmares_button">PALMARÉS</string>
+    <string name="player_informacion_button">INFORMACIÓN</string>
+    <string name="player_trayectoria_button">TRAYECTORIA</string>
+
+    <!-- TEAM -->
+    <string name="team_fragmentname_resumen">La Selección</string>
+    <string name="team_fragmentname_plantilla">La Plantilla</string>
+    <string name="team_fragmentname_elonce">El Once tipo</string>
+    <string name="team_fragmentname_palmares">En los mundiales</string>
+    <string name="team_estadisticas_min">Estadísticas</string>
+    <string name="team_palmares">Palmarés</string>
+    <string name="team_portero">Portero</string>
+    <string name="team_defensa">Defensa</string>
+    <string name="team_centrocampista">Centrocampista</string>
+    <string name="team_delantero">Delantero</string>
+    <string name="team_detail_not_updated">Sin conexión a Internet no podrá consultar los datos actualizados de su equipo.</string>
+    <string name="team_detail_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+    <string name="team_hispalmares_competitionname">Mundial</string>
+    <string name="team_equipaciones">Equipaciones</string>
+    <string name="team_equipacion_local">Local</string>
+    <string name="team_equipacion_visitante">Visitante</string>
+    <string name="team_equipacion_alternativa">Alternativa</string>
+    <string name="team_mister_label">El Seleccionador</string>
+    <string name="team_star_label">La Estrella</string>
+    <string name="team_star_position">Posicion&#160;</string>
+    <string name="team_star_numinternational">Veces Internacional&#160;</string>
+    <string name="team_star_age">Edad&#160;</string>
+    <string name="team_star_stature">Estatura&#160;</string>
+    <string name="team_star_weight">Peso&#160;</string>
+    <string name="team_star_club">Club&#160;</string>
+    <string name="team_champion_spain">España</string>
+    <string name="team_champion_italy">Italia</string>
+    <string name="team_champion_brasil">Brasil</string>
+    <string name="team_champion_france">Francia</string>
+    <string name="team_champion_germany">Alemania</string>
+    <string name="team_champion_argentina">Argentina</string>
+    <string name="team_champion_england">Inglaterra</string>
+    <string name="team_champion_uruguay">Uruguay</string>
+    <string name="team_detail_players">Jugadores</string>
+    <string name="team_detail_clubs">Clubes</string>
+    <string name="team_detail_referees">Árbitros&#160;</string>
+    <string name="team_federation_name">Nombre&#160;</string>
+    <string name="team_federation_fundation">Fundacion&#160;</string>
+    <string name="team_federation_affiliation">Afiliación a la FIFA&#160;</string>
+    <string name="team_federation_web">Web&#160;</string>
+    <string name="team_noticias">Ver Noticias de este equipo</string>
+    <string name="team_ver_mapa">Ver Mapa</string>
+    <string name="team_fundacion">"Fundacion - "</string>
+    <string name="team_web">"Web - "</string>
+    <string name="team_estadio">"Estadio - "</string>
+    <string name="team_historia">Historia</string>
+    <string name="team_presidente">Presidente</string>
+    <string name="team_manager">Director Deportivo</string>
+    <string name="team_mister">Entrenador</string>
+    <string name="team_fecha_de_nacimiento">Fecha de Nacimiento -&#160;</string>
+    <string name="team_fecha_del_cargo">Fecha del Cargo -&#160;</string>
+    <string name="team_goles_a_favor">Goles a favor</string>
+    <string name="team_partidos_jugados">Partidos Jugados</string>
+    <string name="team_tarjetas_amarillas">Tarjetas Amarillas</string>
+    <string name="team_tarjetas_rojas">Tarjetas Rojas</string>
+    <string name="team_partidos_ganados">Partidos Ganados</string>
+    <string name="team_partidos_empatados">Partidos Empatados</string>
+    <string name="team_partidos_perdidos">Partidos Perdidos</string>
+    <string name="team_autor_not_available">Nuestra opinión</string>
+    <string name="team_charge_not_available">Diario AS</string>
+    <string name="team_estadisticas">ESTADÍSTICAS</string>
+    <string name="team_informacion">INFORMACIÓN</string>
+    <string name="team_plantilla">PLANTILLA</string>
+
+    <!-- SPINNER -->
+    <string name="spinner_message">Cargando información</string>
+    <string name="spinner_message_team">Cargando información del equipo</string>
+    <string name="spinner_message_player">Cargando información del jugador</string>
+    <string name="spinner_message_teams">Cargando información de los equipos</string>
+    <string name="spinner_message_calendar">Cargando información del calendario</string>
+    <string name="spinner_message_carrusel">Cargando información del carusel</string>
+    <string name="spinner_message_clasificacion">Cargando información de la clasificación</string>
+    <string name="spinner_message_stadiums">Cargando información de las sedes</string>
+    <string name="spinner_message_palmares">Cargando información del palmarés del mundial</string>
+    <string name="spinner_message_spades">Cargando información</string>
+    <string name="section_not_conection">Sin conexión a Internet no es posible acceder a esta sección.</string>
+    <string name="section_error_download">Se ha producido un error mientras se intentaba descargar la información. El contenido de esta sección puede estar desactualizado</string>
+    <string name="section_not_conection_notupdated">Sin conexión a Internet el contenido de esta sección puede estar desactualizado.</string>
+    <string name="section_download_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+
+    <!-- Menu Lateral -->
+    <!-- <string name="menu_teams">Equipos</string> -->
+    <string name="menu_teams">Competiciones</string>
+    <string name="menu_order">Personalización</string>
+    <string name="menu_calendario">Calendario</string>
+    <string name="menu_clasificacion">Clasificación</string>
+    <string name="menu_carrusel">Carrusel</string>
+    <string name="menu_comparador_jugadores">Comparador de jugadores</string>
+    <string name="menu_search">Buscador</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_palmares">Palmarés</string>
+    <string name="menu_sedes">Sedes</string>
+    <string name="menu_news">Noticias</string>
+    <string name="menu_photos">Fotos</string>
+    <string name="menu_videos">Videos</string>
+    <string name="menu_trivias">TriviasAS</string>
+    <string name="item_menu_share">Compartir</string>
+    <!-- home -->
+    <string name="group">Grupo&#160;</string>
+
+    <!-- Videos -->
+    <string name="video_error">Error al cargar el vídeo seleccionado</string>
+    <string name="video_error_general">No se ha podido cargar el vídeo seleccionado en estos momentos</string>
+    <string name="video_error_message_no_internet">No dispone de internet para poder visualizar el vídeo seleccionado</string>
+    <string name="video_error_message_region">No ha sido posible cargar el vídeo seleccionado para la región en la que se encuentra</string>
+
+    <!-- AlertManager -->
+    <string name="accept">OK</string>
+    <string name="share_mens_title">Compartir&#160;</string>
+    <string name="connection_error_title">Error de Conexion</string>
+    <string name="connection_atention_title">Atención</string>
+    <string name="connection_error_message">Lo sentimos pero no es posible ver esta sección sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
+    <string name="mens_share_part1_1">Te recomiendo leer al \"</string>
+    <string name="mens_share_part1_2">Te recomiendo leer a \"</string>
+    <string name="share_title">Guía de las Ligas - Vía Diario AS</string>
+    <string name="mens_share_part2">\" en la app de Guía de Las Ligas&#160;</string>
+    <string name="mens_share_part3">Guía de las Ligas.</string>
+    <string name="mens_share_part4_1">Sigue el partido&#160;</string>
+    <string name="mens_share_part4_2">&#160;en la app del Guía de las Ligas.</string>
+    <string name="mens_share_match">Sigue el partido %1$s - %2$s en la app Guía de Las Ligas. %3$s</string>
+    <string name="mens_share_team">Te recomiendo leer al %1$s en la app Guía de Las Ligas de Diario AS. %2$s</string>
+    <string name="mens_share_player">Te recomiendo leer a %1$s en la app Guía de Las Ligas de Diario AS. %2$s</string>
+    <string name="mens_share_compare_players">Te recomiendo ver la comparativa entre %1$s y %2$s en la app Guía de Las Ligas de Diario AS. %3$s</string>
+    <string name="share_mens_url_long_1">https://play.google.com/store/apps/details?id=</string>
+    <string name="share_google_play_url">https://play.google.com/store/apps/details?id=com.diarioas.guialigas</string>
+
+
+    <!-- Calendario -->
+    <string name="calendar_day_not_active">Esta jornada no está activa</string>
+    <string name="day" translatable="false">Jornada&#160;</string>
+    <string name="calendar_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde</string>
+    <!-- <string name="calendar_not_conection">Sin conexión a Internet no es posible acceder a esta sección.</string> -->
+    <string name="calendar_group">Grupo</string>
+
+    <!-- Carrusel -->
+    <string name="carrusel_detail_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+    <string name="carrusel_detail_error_no_info">No disponemos de información sobre este partido. Disculpe las molestias</string>
+    <string name="carrusel_prev_match_button">Leer previa del partido</string>
+    <string name="carrusel_post_match_button">Leer crónica del partido</string>
+    <string name="carrusel_gol">GOLES</string>
+    <string name="carrusel_tarjeta_amarillas">T.AMARILLAS</string>
+    <string name="carrusel_tarjeta_rojas">T.ROJAS</string>
+    <string name="carrusel_banquillo">BANQUILLO</string>
+
+    <!-- Buscador -->
+    <string name="buscar">Buscar</string>
+    <string name="search_message_prev">Introduce en la barra superior el nombre del jugador o el equipo a buscar</string>
+    <string name="search_error_message">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+    <string name="search_error_noresult_message">No se ha encontrado ninguna coincidencia con los parámetros  de busqueda introducidos.</string>
+    <string name="search_error_noconnection_message">Lo sentimos pero no es posible realizar la búsqueda sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
+    <string name="spinner_message_search">Cargando información</string>
+    <string name="error_team_message">Lo sentimos pero no es posible recuperar la información de este equipo sin conexión a Internet. Compruebe su conexión e intentelo de nuevo más tarde por favor.</string>
+
+    <!-- Clasificacion -->
+    <string name="clasificacion_team">EQUIPO</string>
+    <string name="clasificacion_puntos">PT</string>
+    <string name="clasificacion_partigosjugados">PJ</string>
+    <string name="clasificacion_partidos_ganados">PG</string>
+    <string name="clasificacion_partidos_empatados">PE</string>
+    <string name="clasificacion_partidos_perdidos">PP</string>
+    <string name="clasificacion_goles_favor">GF</string>
+    <string name="clasificacion_goles_contra">GC</string>
+    <string name="clasificacion_champions">PASAN A CHAMPIONS</string>
+    <string name="clasificacion_uefa">PASAN A UEFA</string>
+    <string name="clasificacion_descenso">DESCIENDEN</string>
+    <!-- <string name="clasificacion_not_conection">Sin conexión a Internet no es posible acceder a esta sección.</string> -->
+    <string name="clasificacion_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde</string>
+
+    <!-- Stadiums -->
+    <string name="stadium_not_conection">No tiene conexión a internet. Es posible que la información esté desactualizada.</string>
+    <string name="stadium_error">Se ha producido un error al descargar el contenido. Es posible que la información esté desactualizada.</string>
+    <string name="aforo">Aforo</string>
+    <string name="build_year">Año de construcción</string>
+    <string name="state">Estado</string>
+    <string name="population">Población</string>
+    <string name="altitude">Altitud</string>
+    <string name="transport">Transporte</string>
+    <string name="economy">Economía</string>
+    <string name="tourism">Turismo</string>
+
+    <!-- Palmares -->
+
+    <string name="finalista">Finalista</string>
+    <string name="resultado">Resultado</string>
+    <string name="mundial">Mundial</string>
+
+    <!-- Fotogaleria -->
+    <string name="potogaleria_detail_error">Se ha producido un error al descargar el contenido. Intentelo de nuevo más tarde.</string>
+
+    <!-- Pull to refresh -->
+    <!-- <string name="ptr_last_updated" translatable="false">Úa: </string> -->
+    <string name="ptr_last_updated" translatable="false">Actualizado:&#160;</string>
+    <string name="ptr_pull_to_refresh" translatable="false">Arrastre para recargar la información</string>
+    <string name="ptr_release_to_refresh" translatable="false">Suelte para recargar la información</string>
+    <string name="ptr_refreshing" translatable="false">Cargando la información</string>
+
+    <!--     Ordenacion -->
+    <string name="sort_save">Aceptar</string>
+    <string name="sort_cancel">Cancelar</string>
+
+    <!--  -->
+    <string name="separator" translatable="false">&#160;-&#160;</string>
+    <string name="defualt" translatable="false">Default</string>
+    <string name="sort_title">Personalización</string>
+
+</resources>

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import com.diarioas.guialigas.BuildConfig;
 import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.google.ads.interactivemedia.v3.api.AdsLoader;
@@ -118,7 +119,7 @@ public class GeneralPBSGoogleAdPrerrolActivity extends Activity implements
 
 		PBSDFPAdDAO.getInstance(this).addPrerolListener(this);
 		adsLoader = PBSDFPAdDAO.getInstance(this).createVideoPreroll(
-				demoplayer, demoplayer.getUiContainer(), section, NativeAds.AD_KEY);
+				demoplayer, demoplayer.getUiContainer(), section, BuildConfig.AD_KEY);
 	}
 
 	public String getAdSection() {

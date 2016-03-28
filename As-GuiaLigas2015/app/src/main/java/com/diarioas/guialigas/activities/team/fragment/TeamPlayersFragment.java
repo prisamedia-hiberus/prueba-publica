@@ -67,7 +67,7 @@ public class TeamPlayersFragment extends TeamFragment {
 		String shield = (String) getArguments().get("shield");
 		TextView name = (TextView) generalView.findViewById(R.id.nameTeam);
 
-		String teamName = (String) getArguments().get("name");
+		String teamName = (String) getArguments().get("teamName");
 		name.setText(teamName);
 
 		FontUtils.setCustomfont(mContext, name,

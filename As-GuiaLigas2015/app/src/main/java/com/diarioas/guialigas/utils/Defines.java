@@ -38,9 +38,9 @@ public class Defines {
 
 	public static interface ReturnDataDatabases {
 		public static String DB_NAME = "ligas_2014_.sqlite";
-		public static final int VERSION = 5;
+		public static final int VERSION = 7;
 
-		public static String DB_SETTINGS_FILE_NAME = "conf-guia2.1.plist";
+		public static String DB_SETTINGS_FILE_NAME = "conf-guia.plist";
 		public static String DATABASE_NAME = "2014_ligas.db";
 	}
 
@@ -88,7 +88,7 @@ public class Defines {
 		public static String PRESIDENT = "President";
 		public static String MANAGER = "Manager";
 		public static String MISTER = "Mister";
-//		public static String STAR = "Star";
+		public static String STAR = "Star";
 	}
 
 	public static interface RequestTimes {
@@ -249,7 +249,7 @@ public class Defines {
 	}
 
 	public static interface Omniture {
-		public static final String TRACKING_RSID = "prisacommovilidadas,prisacommovilidadprisacom";
+		/*public static final String TRACKING_RSID = "prisacommovilidadas,prisacommovilidadprisacom";
 		public static final String TRACKING_SERVER = "prisacom.112.2o7.net";
 
 		public static final String PAIS = "españa";
@@ -317,9 +317,13 @@ public class Defines {
 		public static final String DETAILPAGE_FOTOGALERIA = "fotogaleria";
 		public static final String DETAILPAGE_DETALLE = "detalle";
 		public static final String SECTION_PHOTOS = "fotos";
-		public static final String SECTION_LINK = "triviaAS";
+		public static final String SECTION_LINK = "triviaAS";*/
 
-	}
+
+        public static final String OMNITURE_PROPERTIES_FILE_NAME = "omniture.properties";
+
+
+    }
 
 	public static interface NativeAds {
 
@@ -348,4 +352,11 @@ public class Defines {
 		
 		public static final String PUBLI_PRERROL_UNIT = "player_video";
 	}
+
+    //OMNITURE PROPERTIES
+    public static interface OMNITURE_CONSTANTS{
+        public static final String OMNITURE_PROPERTIES_FILE_NAME = "omniture.properties";
+        public static final String TRACKING_RSID_DEV = "prisacomprensapreprod";
+
+    }
 }

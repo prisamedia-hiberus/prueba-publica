@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/contentStats2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip" >
+
+        <LinearLayout
+            android:id="@+id/linearLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/contentLeftUpper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/golesPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_goles"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/golesPlayerImage"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/golesPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/golesLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/golesPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:text="@string/player_goles"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/linearLeftDown"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/tarjAmarillasPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_amarillas"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tarjAmarillasPlayerImage"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tarjAmarillasPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/tarjAmarillasLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tarjAmarillasPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="2"
+                        android:text="@string/player_tarjetas_amarillas"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/linearCenterUpper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/partJugPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_partidos"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/partJugPlayerImage"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/partJugPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/partJugLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/partJugPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:text="@string/player_partidos_jugados"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/linearCentertDown"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/tarjRojasPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_rojas"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tarjRojasPlayerImage"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tarjRojasPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/tarjRojasLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tarjRojasPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="2"
+                        android:text="@string/player_tarjetas_rojas"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/llinearRightUpper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/minutosPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_minutos"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/minutosPlayerImage"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/minutosPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/minutosLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/minutosPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:text="@string/player_minutos"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/linearRightDown"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/datosPlayerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/icn_paradas"
+                    android:contentDescription="@string/defualt" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/datosPlayerImage"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/datosPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_item_player_statiscs_17" />
+
+                    <TextView
+                        android:id="@+id/datosLabelPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/datosPlayer"
+                        android:layout_centerHorizontal="true"
+                        android:lines="2"
+                        android:text="@string/player_paradas"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="@dimen/size_item_player_statiscs_13" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/item_player_statistics.xml -->

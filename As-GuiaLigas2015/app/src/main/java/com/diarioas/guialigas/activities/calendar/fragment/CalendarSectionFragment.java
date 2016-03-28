@@ -41,6 +41,7 @@ import com.diarioas.guialigas.utils.Defines.NativeAds;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestTimes;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.scroll.CustomHoizontalScroll;
@@ -320,6 +321,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 				R.color.medium_gray));
 		calendarSrolldays.addScrollEndListener(this);
 		calendarSrolldays.setInitPosition(firstPosition);
+        calendarSrolldays.setScrollContainer(true);
 		calendarSrolldays.addViews(nomDays);
 	}
 
@@ -367,11 +369,11 @@ public class CalendarSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				Omniture.SECTION_CALENDAR,
+				FileUtils.readOmnitureProperties(mContext, "SECTION_CALENDAR"),
 				dayName,
 				null,
-				Omniture.TYPE_PORTADA,
-				Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_CALENDAR + " " + dayName,
+                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CALENDAR") + " " + dayName,
 				null);
 	}
 

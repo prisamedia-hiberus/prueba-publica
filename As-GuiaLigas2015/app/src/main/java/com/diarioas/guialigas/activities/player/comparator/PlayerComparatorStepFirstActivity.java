@@ -31,6 +31,7 @@ import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 import com.diarioas.guialigas.utils.viewpager.CustomViewPagerLeague;
 
@@ -100,12 +101,12 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 		StatisticsDAO.getInstance(this)
 				.sendStatisticsState(
 						getApplication(),
-						Omniture.SECTION_COMPARATOR,
-						Omniture.SUBSECTION_PORTADA,
+                        FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"),
+                        FileUtils.readOmnitureProperties(this, "SUBSECTION_PORTADA"),
 						null,
 						null,
-						Omniture.TYPE_PORTADA,
-						Omniture.DETAILPAGE_DETALLE + " " + Omniture.SECTION_COMPARATOR,
+                        FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
+                        FileUtils.readOmnitureProperties(this, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"),
 						null);
 
 	}
@@ -249,13 +250,13 @@ public class PlayerComparatorStepFirstActivity extends GeneralFragmentActivity
 			if (requestCode == ReturnRequestCodes.COMPARATORPLAYER_RIGHT) {
 				StatisticsDAO.getInstance(this).sendStatisticsState(
 						getApplication(),
-						Omniture.SECTION_COMPARATOR,
-						Omniture.SUBSECTION_RESULT,
+                        FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"),
+                        FileUtils.readOmnitureProperties(this, "SUBSECTION_RESULT"),
 						null,
 						null,
-						Omniture.TYPE_PORTADA,
-						Omniture.SUBSECTION_RESULT + " "
-								+ Omniture.SECTION_COMPARATOR, null);
+                        FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
+                        FileUtils.readOmnitureProperties(this, "SUBSECTION_RESULT") + " "
+								+ FileUtils.readOmnitureProperties(this, "SECTION_COMPARATOR"), null);
 				if (data != null && data.getExtras() != null
 						&& data.getExtras().containsKey("playerId")
 						&& data.getExtras().containsKey("teamName")) {

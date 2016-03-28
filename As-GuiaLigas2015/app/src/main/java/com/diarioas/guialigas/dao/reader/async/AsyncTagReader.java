@@ -2,9 +2,12 @@ package com.diarioas.guialigas.dao.reader.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.news.SectionNewsTagSections;
 import com.diarioas.guialigas.dao.reader.parser.ParseJSONNews;
+
+import java.io.IOException;
 
 public class AsyncTagReader extends
 		AsyncTask<String, Void, SectionNewsTagSections> {
@@ -35,12 +38,14 @@ public class AsyncTagReader extends
 
 			ParseJSONNews parser = new ParseJSONNews();
 			results = parser.parsePlistTagNews(appContext, strFileContents);
-			if (results == null) {
-				this.error = true;
-			}
+            Log.d("s", "s");
+			//if (results == null) {
+			//	this.error = true;
+			//}
 			return results;
 
 		} catch (Exception e) {
+            e.printStackTrace();
 			this.error = true;
 			return null;
 		}

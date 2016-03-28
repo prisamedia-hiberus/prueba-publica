@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp" >
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/contentDays"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/dataDayContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp" >
+
+                <TextView
+                    android:id="@+id/dataDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:lines="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="@dimen/size_fragment_calendar_days" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/gapBarData"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/dataDayContainer"
+                android:background="@color/calendar_clear_gray"
+                android:contentDescription="@string/defualt"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp" />
+
+            <LinearLayout
+                android:id="@+id/itemsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gapBarData"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </RelativeLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+</RelativeLayout><!-- From: file:/Users/luismiguel/Desktop/Proyectos/prisa/as-guialiga-android/As-GuiaLigas2015/app/src/main/res/layout/fragment_calendar_group_days.xml -->
