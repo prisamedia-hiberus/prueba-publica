@@ -1,5 +1,16 @@
 def keyStoreProperties = 'sign/keystore.properties'
 
+def getVersionCode = { ->
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : -1
+    println "VersionCode is set to $code"
+    return code
+}
+
+def getVersionName = { ->
+    def name = project.hasProperty('versionName') ? versionName.toString() : ''
+    println "VersionName is set to $name"
+    return name
+}
 
 apply plugin: 'com.android.application'
 
@@ -61,8 +72,17 @@ android {
             buildConfigField "String", "TEAM_IMAGE_PREFIX", "\"escudo_\""
             buildConfigField "String", "AD_KEY", "\"/7811748/as_guialiga_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "false"
-            versionCode = 6
-            versionName = "1.0.6"
+            if(getVersionCode().equals(-1)){
+                versionCode = 6
+            } else {
+                versionCode = getVersionCode()
+            }
+
+            if(getVersionName().equals('')){
+                versionName = "1.0.6"
+            } else {
+                versionName = getVersionName()
+            }
             signingConfig signingConfigs.asguialiga2015
 
         }
@@ -73,14 +93,25 @@ android {
             buildConfigField "String", "TEAM_IMAGE_PREFIX", "\"flag_\""
             buildConfigField "String", "AD_KEY", "\"/7811748/as_copa_america_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "true"
-            versionCode = 1
-            versionName = "1.0.0"
+            if(getVersionCode().equals(-1)){
+                versionCode = 1
+            } else {
+                versionCode = getVersionCode()
+            }
+
+            if(getVersionName().equals('')){
+                versionName = "1.0.0"
+            } else {
+                versionName = getVersionName()
+            }
             signingConfig signingConfigs.copaamerica2016
 
         }
     }
 
 }
+
+
 
 repositories {
     jcenter()
