@@ -1,4 +1,5 @@
-def keystorePropertiesFile = 'sign/keystore.properties'
+def keyStoreProperties = 'sign/keystore.properties'
+
 
 apply plugin: 'com.android.application'
 
@@ -10,24 +11,35 @@ android {
         targetSdkVersion 17
     }
 
-    File signFile = getRootProject().file(keystorePropertiesFile)
-    if (signFile.exists()) {
+
+
+    File singFile = getRootProject().file(keyStoreProperties)
+    if (singFile.exists()) {
         Properties properties = new Properties()
-        properties.load(new FileInputStream(signFile))
+        properties.load(new FileInputStream(singFile))
+
         signingConfigs {
-            release {
-                storeFile rootProject.file(properties['keystore'])
-                storePassword properties['storePassword']
-                keyAlias properties['keyAlias']
-                keyPassword properties['keyPassword']
+            copaamerica2016 {
+                storeFile rootProject.file(properties['keystorePathCopaAmerica'])
+                storePassword properties['storePasswordCopaAmerica']
+                keyAlias properties['keyAliasCopaAmerica']
+                keyPassword properties['keyPasswordCopaAmerica']
+            }
+
+            asguialiga2015 {
+                storeFile rootProject.file(properties['keystorePathAsGuiaLiga'])
+                storePassword properties['storePasswordAsGuiaLiga']
+                keyAlias properties['keyAliasAsGuiaLiga']
+                keyPassword properties['keyPasswordAsGuiaLiga']
             }
         }
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.release
 
         }
     }
@@ -40,6 +52,8 @@ android {
 
 
     productFlavors {
+
+
         asguialiga2015{
             applicationId "com.diarioas.guialigas"
             resValue "string", "authority", applicationId
@@ -49,6 +63,7 @@ android {
             buildConfigField "boolean", "SINGLE_COMPETITION", "false"
             versionCode = 6
             versionName = "1.0.6"
+            signingConfig signingConfigs.asguialiga2015
 
         }
         copaamerica2016{
@@ -60,6 +75,7 @@ android {
             buildConfigField "boolean", "SINGLE_COMPETITION", "true"
             versionCode = 1
             versionName = "1.0.0"
+            signingConfig signingConfigs.copaamerica2016
 
         }
     }
