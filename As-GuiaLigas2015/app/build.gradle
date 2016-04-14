@@ -1,14 +1,22 @@
 def keyStoreProperties = 'sign/keystore.properties'
 
-def getVersionCode = { ->
-    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : -1
-    println "VersionCode is set to $code"
+def getVersionCodeAsLiga2015 = { ->
+    def code = project.hasProperty('versionCodeAsLiga2015') ? versionCodeAsLiga2015.toInteger() : -1
     return code
 }
 
-def getVersionName = { ->
-    def name = project.hasProperty('versionName') ? versionName.toString() : ''
-    println "VersionName is set to $name"
+def getVersionNameAsLiga2015 = { ->
+    def name = project.hasProperty('versionNameAsLiga2015') ? versionNameAsLiga2015.toString() : ''
+    return name
+}
+
+def getVersionCodeCopaAmerica2016 = { ->
+    def code = project.hasProperty('versionCodeCopaAmerica2016') ? versionCodeCopaAmerica2016.toInteger() : -1
+    return code
+}
+
+def getVersionNameCopaAmerica2016 = { ->
+    def name = project.hasProperty('versionNameCopaAmerica2016') ? versionNameCopaAmerica2016.toString() : ''
     return name
 }
 
@@ -72,16 +80,16 @@ android {
             buildConfigField "String", "TEAM_IMAGE_PREFIX", "\"escudo_\""
             buildConfigField "String", "AD_KEY", "\"/7811748/as_guialiga_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "false"
-            if(getVersionCode().equals(-1)){
+            if(getVersionCodeAsLiga2015().equals(-1)){
                 versionCode = 6
             } else {
-                versionCode = getVersionCode()
+                versionCode = getVersionCodeAsLiga2015()
             }
 
-            if(getVersionName().equals('')){
+            if(getVersionNameAsLiga2015().equals('')){
                 versionName = "1.0.6"
             } else {
-                versionName = getVersionName()
+                versionName = getVersionNameAsLiga2015()
             }
             signingConfig signingConfigs.asguialiga2015
 
@@ -93,16 +101,16 @@ android {
             buildConfigField "String", "TEAM_IMAGE_PREFIX", "\"flag_\""
             buildConfigField "String", "AD_KEY", "\"/7811748/as_copa_america_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "true"
-            if(getVersionCode().equals(-1)){
+            if(getVersionCodeCopaAmerica2016().equals(-1)){
                 versionCode = 1
             } else {
-                versionCode = getVersionCode()
+                versionCode = getVersionCodeCopaAmerica2016()
             }
 
-            if(getVersionName().equals('')){
+            if(getVersionNameCopaAmerica2016().equals('')){
                 versionName = "1.0.0"
             } else {
-                versionName = getVersionName()
+                versionName = getVersionNameCopaAmerica2016()
             }
             signingConfig signingConfigs.copaamerica2016
 
