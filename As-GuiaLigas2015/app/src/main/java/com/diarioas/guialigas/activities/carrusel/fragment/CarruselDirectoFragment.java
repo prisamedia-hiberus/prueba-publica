@@ -26,8 +26,10 @@ import com.diarioas.guialigas.dao.model.calendar.Match;
 import com.diarioas.guialigas.dao.model.carrusel.ItemDirecto;
 import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAODirectoListener;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.MatchEvents;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -101,6 +103,8 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 
 		directosAdapter = new DirectosAdapter();
 		directosListView.setAdapter(directosAdapter);
+
+
 	}
 
 	private void configureSwipeLoader() {
@@ -467,4 +471,6 @@ public class CarruselDirectoFragment extends CarruselFragment implements
 		else
 			return 0;
 	}
+
+
 }

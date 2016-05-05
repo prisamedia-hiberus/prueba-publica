@@ -213,11 +213,11 @@ public class SearcherSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				FileUtils.readOmnitureProperties(mContext, "SECTION_SEARCHER"),
-				null,
-				null,
-				null,
                 FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-				FileUtils.readOmnitureProperties(mContext, "SECTION_SEARCHER") + " " + FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA"),
+				null,
+				null,
+                null,
+				null,
 				null);
 	}
 

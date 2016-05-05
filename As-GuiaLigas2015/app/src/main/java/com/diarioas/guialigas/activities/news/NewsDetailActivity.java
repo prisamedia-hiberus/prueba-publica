@@ -15,7 +15,6 @@ import com.diarioas.guialigas.activities.news.fragment.NewsDetailFragment;
 import com.diarioas.guialigas.dao.model.news.NewsItem;
 import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
-import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FragmentAdapter;
 
@@ -23,188 +22,185 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsDetailActivity extends GeneralFragmentActivity implements
-		OnPageChangeListener {
+        OnPageChangeListener {
 
-	private ViewPager newsViewPager;
-	private Integer pos = -1;
-	private Integer originalPos = -1;
-	
+    private ViewPager newsViewPager;
+    private Integer pos = -1;
+    private Integer originalPos = -1;
 
-	private ArrayList<NewsItem> newsList = new ArrayList<NewsItem>();
 
-	/***************************************************************************/
-	/** Activity lifecycle methods **/
-	/***************************************************************************/
+    private ArrayList<NewsItem> newsList = new ArrayList<NewsItem>();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
+    /***************************************************************************/
+    /** Activity lifecycle methods **/
+    /***************************************************************************/
 
-		setContentView(R.layout.activity_news_detail);
-		
-		pos = (Integer) getIntent().getExtras().get("position");
-		originalPos = (Integer) getIntent().getExtras().get("position");
-		
-		ArrayList<NewsItem> news = (ArrayList<NewsItem>) getIntent().getExtras().get("news");
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
 
-		configActionBar();
-		fillNewsArray(news);
-		configureView();
+        setContentView(R.layout.activity_news_detail);
 
-	}
-	
-	@Override
-	public void onStop() {
-		super.onStop();
-		this.newsViewPager = null;
-	}
-	
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		callToAds();
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.actionbar_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+        pos = (Integer) getIntent().getExtras().get("position");
+        originalPos = (Integer) getIntent().getExtras().get("position");
 
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			onBackPressed();
-			return false;
-		case R.id.share:
-			share();
-			break;
-		}
-		return true;
-	}
-	
-	
+        ArrayList<NewsItem> news = (ArrayList<NewsItem>) getIntent().getExtras().get("news");
 
-	private void fillNewsArray(ArrayList<NewsItem> currentItems) {
-		int numItems = currentItems.size();
-		for (int i = 0; i < numItems; i++) {
-			if (currentItems.get(i) != null) {
-				this.newsList.add(currentItems.get(i));
-			} else if (i <= originalPos) {
-				pos = pos - 1;
-			}
-		}
-	}
+        configActionBar();
+        fillNewsArray(news);
+        configureView();
 
-	
-	private void share() {
-		Intent i = new Intent(Intent.ACTION_SEND);
-		i.setType("text/plain");
+    }
 
-		i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-		
-		if ((newsList!=null)&&(newsList.size()>pos)&&(pos>=0)) {
-			NewsItem nItem = (NewsItem)newsList.get(pos);
-			if (nItem!=null) {
-				String body = nItem.getTitle()+" "+nItem.getUrlDetail();
+    @Override
+    public void onStop() {
+        super.onStop();
+        this.newsViewPager = null;
+    }
 
-				i.putExtra(Intent.EXTRA_TEXT, body);
-				startActivity(Intent.createChooser(i,
-						getString(R.string.share_mens_title)
-								+ getString(R.string.app_name)));
+    @Override
+    public void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        callToAds();
+    }
 
-				StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
-						nItem.getTitle(),
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return false;
+            case R.id.share:
+                share();
+                break;
+        }
+        return true;
+    }
+
+
+    private void fillNewsArray(ArrayList<NewsItem> currentItems) {
+        int numItems = currentItems.size();
+        for (int i = 0; i < numItems; i++) {
+            if (currentItems.get(i) != null) {
+                this.newsList.add(currentItems.get(i));
+            } else if (i <= originalPos) {
+                pos = pos - 1;
+            }
+        }
+    }
+
+
+    private void share() {
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+
+        i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+
+        if ((newsList != null) && (newsList.size() > pos) && (pos >= 0)) {
+            NewsItem nItem = (NewsItem) newsList.get(pos);
+            if (nItem != null) {
+                String body = nItem.getTitle() + " " + nItem.getUrlDetail();
+
+                i.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(i,
+                        getString(R.string.share_mens_title)
+                                + getString(R.string.app_name)));
+
+                StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsShare(getApplication(),
+                        nItem.getTitle(),
                         FileUtils.readOmnitureProperties(this, "SECTION_NEWS"),
-						FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
-						null);
-			}
+                        FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
+                        null);
+            }
 
-		}
-	}
-	
-	private void configureView() {
-		newsViewPager = (ViewPager) findViewById(R.id.newsViewPager);
+        }
+    }
 
-		List<Fragment> fragments = getFragments();
+    private void configureView() {
+        newsViewPager = (ViewPager) findViewById(R.id.newsViewPager);
 
-		newsViewPager.setAdapter(new FragmentAdapter(
-				getSupportFragmentManager(), fragments));
-		int currentIndex = getIntent().getExtras().getInt("position");
-		newsViewPager.setCurrentItem(currentIndex, true);
-		NewsItem item = newsList.get(currentIndex);
-		callToOmniture(item.getTitle());
-		newsViewPager.setOnPageChangeListener(this);
+        List<Fragment> fragments = getFragments();
 
-	}
-	
-	private List<Fragment> getFragments() {
-		List<Fragment> fList = new ArrayList<Fragment>();
+        newsViewPager.setAdapter(new FragmentAdapter(
+                getSupportFragmentManager(), fragments));
+        int currentIndex = getIntent().getExtras().getInt("position");
+        newsViewPager.setCurrentItem(currentIndex, true);
+        NewsItem item = newsList.get(currentIndex);
+        callToOmniture(item.getTitle());
+        newsViewPager.setOnPageChangeListener(this);
 
-		NewsDetailFragment newsDetailFragment;
-		Bundle args;
-		// for (NewsItem newsItem : newsArray) {
-		for (int i = 0; i < newsList.size(); i++) {
-			newsDetailFragment = new NewsDetailFragment();
-			args = new Bundle();
-			args.putInt("itemNumber", i);
-			newsDetailFragment.setArguments(args);
-			fList.add(newsDetailFragment);
-		}
+    }
 
-		return fList;
-	}
-	
-	/**************** ViewPager Methods *****************************/
-	@Override
-	public void onPageScrollStateChanged(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+    private List<Fragment> getFragments() {
+        List<Fragment> fList = new ArrayList<Fragment>();
 
+        NewsDetailFragment newsDetailFragment;
+        Bundle args;
+        // for (NewsItem newsItem : newsArray) {
+        for (int i = 0; i < newsList.size(); i++) {
+            newsDetailFragment = new NewsDetailFragment();
+            args = new Bundle();
+            args.putInt("itemNumber", i);
+            newsDetailFragment.setArguments(args);
+            fList.add(newsDetailFragment);
+        }
 
+        return fList;
+    }
 
-	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+    /****************
+     * ViewPager Methods
+     *****************************/
+    @Override
+    public void onPageScrollStateChanged(int arg0) {
+        // TODO Auto-generated method stub
+
+    }
 
 
+    @Override
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onPageSelected(int arg0) {
-		NewsItem item = newsList.get(pos);
-		callToOmniture(item.getTitle());
-		
-	}
+    }
 
-	private void callToAds() {
-		String section = NativeAds.AD_NEWS+NativeAds.AD_DETAIL;
-		callToAds(section, false);
-	}
-	/***************************************************************************/
-	/** Libraries methods **/
-	/***************************************************************************/
 
-	protected void callToOmniture(String title) {
-		StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
-				getApplication(),
+    @Override
+    public void onPageSelected(int arg0) {
+        NewsItem item = newsList.get(pos);
+        callToOmniture(item.getTitle());
+
+    }
+
+    private void callToAds() {
+        String section = NativeAds.AD_NEWS + NativeAds.AD_DETAIL;
+        callToAds(section, false);
+    }
+    /***************************************************************************/
+    /** Libraries methods **/
+    /***************************************************************************/
+
+    protected void callToOmniture(String title) {
+        StatisticsDAO.getInstance(getApplicationContext()).sendStatisticsState(
+                getApplication(),
                 FileUtils.readOmnitureProperties(this, "SECTION_NEWS"),
-				FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
-				null,
-				null,
+                FileUtils.readOmnitureProperties(this, "SUBSECTION_NEWSDETAIL"),
+                null,
+                null,
                 FileUtils.readOmnitureProperties(this, "TYPE_PORTADA"),
-				title,
-				null);
-	}
-
-
+                title,
+                null);
+    }
 
 
 }

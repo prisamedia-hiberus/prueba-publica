@@ -171,16 +171,17 @@ public class NewsTagSectionFragment extends SectionFragment implements
 	/***************************************************************************/
 	@Override
 	protected void callToOmniture() {
+        // Antes se marcama como newstag
 		StatisticsDAO.getInstance(mContext)
 				.sendStatisticsState(
 						getActivity().getApplication(),
-                        FileUtils.readOmnitureProperties(mContext, "SECTION_NEWS_TAG"),
-						null,
-						null,
-						null,
+                        FileUtils.readOmnitureProperties(mContext, "SECTION_NEWS"),
                         FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-                        FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA") + " "
-								+ FileUtils.readOmnitureProperties(mContext, "SECTION_NEWS_TAG"), null);
+						null,
+						null,
+                        null,
+                        null,
+                        null);
 	}
 
 	/************** RemotePalmaresDAOListener methods ***********************/

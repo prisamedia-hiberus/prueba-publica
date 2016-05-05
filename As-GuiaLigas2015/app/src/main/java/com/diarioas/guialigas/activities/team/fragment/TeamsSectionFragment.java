@@ -305,11 +305,11 @@ public class TeamsSectionFragment extends SectionFragment implements
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
 				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-                FileUtils.readOmnitureProperties(mContext, "SUBSECTION_PORTADA"),
+                null,
 				null,
 				null,
                 FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " + FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA"),
+                FileUtils.readOmnitureProperties(mContext, "TYPE_HOME"),
 				null);
 	}
 

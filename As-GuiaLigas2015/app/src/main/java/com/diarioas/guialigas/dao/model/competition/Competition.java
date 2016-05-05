@@ -202,6 +202,7 @@ public class Competition {
 		return order;
 	}
 
+
 	/**
 	 * @param order
 	 *            the order to set

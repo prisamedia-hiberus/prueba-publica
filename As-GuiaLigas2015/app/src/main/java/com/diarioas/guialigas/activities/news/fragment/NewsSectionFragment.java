@@ -173,10 +173,10 @@ public class NewsSectionFragment extends SectionFragment implements RemoteNewsDA
 				.sendStatisticsState(
 						getActivity().getApplication(),
                         FileUtils.readOmnitureProperties(mContext, "SECTION_NEWS"),
-						null,
-						null,
-						null,
                         FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+						null,
+						null,
+                        null,
 						null,
 						null);
 	}

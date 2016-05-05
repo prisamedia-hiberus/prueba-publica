@@ -197,11 +197,11 @@ public class SortActivity extends GeneralFragmentActivity implements
 		StatisticsDAO.getInstance(getApplicationContext())
 		.sendStatisticsState(getApplication(),
                 FileUtils.readOmnitureProperties(this, "SECTION_SORT"),
-				null,
-				null,
-				null,
                 FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-                FileUtils.readOmnitureProperties(this, "SECTION_SORT") +" "+ FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
+				null,
+				null,
+                null,
+                null,
 				null);
 		
 	}

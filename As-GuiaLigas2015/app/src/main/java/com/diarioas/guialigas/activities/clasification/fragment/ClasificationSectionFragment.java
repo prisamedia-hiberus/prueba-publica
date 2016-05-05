@@ -437,12 +437,12 @@ public class ClasificationSectionFragment extends SectionFragment implements
 	protected void callToOmniture() {
 		StatisticsDAO.getInstance(mContext).sendStatisticsState(
 				getActivity().getApplication(),
-				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
                 FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
-				null,
-				null,
                 FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-                FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CLASIFICATION"),
+				null,
+				null,
+                null,
+                null,
 				null);
 	}
 

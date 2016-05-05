@@ -27,11 +27,13 @@ import com.diarioas.guialigas.dao.model.carrusel.Gol;
 import com.diarioas.guialigas.dao.model.carrusel.Tarjeta;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -464,6 +466,8 @@ public class CarruselResumenFragment extends CarruselFragment {
 			generalView.findViewById(R.id.gapBarTvs).setVisibility(View.GONE);
 		}
 	}
+
+
 
 
 }

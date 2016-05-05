@@ -1,14 +1,5 @@
 package com.diarioas.guialigas.activities.carrusel.fragment;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,11 +41,9 @@ import com.diarioas.guialigas.utils.AlertManager;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.DateFormat;
 import com.diarioas.guialigas.utils.Defines.NativeAds;
-import com.diarioas.guialigas.utils.Defines.Omniture;
 import com.diarioas.guialigas.utils.Defines.RequestTimes;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
 import com.diarioas.guialigas.utils.Defines.SECTIONS;
-import com.diarioas.guialigas.utils.Defines.ShieldName;
 import com.diarioas.guialigas.utils.DimenUtils;
 import com.diarioas.guialigas.utils.DrawableUtils;
 import com.diarioas.guialigas.utils.FileUtils;
@@ -63,1024 +52,1034 @@ import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.Reachability;
 import com.diarioas.guialigas.utils.comparator.GroupComparator;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class CarrouselSectionFragment extends SectionFragment implements
-		CarruselDAOListener {
+        CarruselDAOListener {
 
-	private Timer t;
+    private Timer t;
 
-	private SimpleDateFormat formatterDate;
-	private SimpleDateFormat formatterHour;
-
-	private ListView carruselContent;
-	private ScrollView carruselContentGroup;
-
-	private long timeToUpdate;
-	private long timeToUpdateOld;
-
-	private TextView headerText;
-
-	private Fase fase;
-
-	private ArrayList<Group> groups;
-
-	private RelativeLayout container;
-
-	private SwipeRefreshLayout swipeRefreshList = null;
-	private SwipeRefreshLayout swipeRefreshScroll = null;
-
-	/************* Fragment lifecycle methods *******************************/
-	/**********************************************************************/
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		this.adSection = NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_PORTADA;
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		this.inflater = inflater;
-		// Inflating layout
-		generalView = inflater.inflate(R.layout.fragment_carrousel_section,
-				container, false);
-
-		return generalView;
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		CarruselDAO.getInstance(mContext).removeListener(this);
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		if (t != null) {
-			t.cancel();
-			t = null;
-		}
-	}
-
-	/***************************************************************************/
-	/** Configuration methods **/
-	/***************************************************************************/
-
-	@Override
-	protected void configureView() {
-		formatterDate = new SimpleDateFormat(DateFormat.DAY_FORMAT,
-				Locale.getDefault());
-		formatterHour = new SimpleDateFormat(DateFormat.HOUR_FORMAT,
-				Locale.getDefault());
-
-		timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_NO_ACTIVE;
-		timeToUpdateOld = timeToUpdate;
-
-		generalView.findViewById(R.id.gapBar).setVisibility(View.VISIBLE);
-		headerText = (TextView) generalView.findViewById(R.id.headerText);
-		FontUtils.setCustomfont(mContext, headerText, FontTypes.ROBOTO_REGULAR);
-
-		container = (RelativeLayout) generalView.findViewById(R.id.container);
-
-		callToOmniture();
-	}
-
-	@Override
-	protected void loadInformation() {
-		TeamSection sectionTeams = (TeamSection) RemoteDataDAO.getInstance(
-				mContext).getSectionByType(Integer.valueOf(competitionId),
-				SECTIONS.TEAMS);
-		groups = sectionTeams.getGroups();
-
-		configurePullFromGroup();
-		configurePullFromRegular();
-
-		updateCarrusel();
-	}
-
-	private void configurePullFromRegular() {
-		this.swipeRefreshList = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_container_carousel);
-		this.swipeRefreshList.setOnRefreshListener(new OnRefreshListener() {
-
-			@Override
-			public void onRefresh() {
-				reloadData();
-			}
-		});
-		this.swipeRefreshList.setColorSchemeResources(R.color.black,
-				R.color.red, R.color.white);
-	}
-
-	private void configurePullFromGroup() {
-		this.swipeRefreshScroll = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_group_carousel);
-		this.swipeRefreshScroll.setOnRefreshListener(new OnRefreshListener() {
-
-			@Override
-			public void onRefresh() {
-				reloadData();
-			}
-		});
-		this.swipeRefreshScroll.setColorSchemeResources(R.color.black,
-				R.color.red, R.color.white);
-	}
-
-	private void loadData() {
-
-		container.removeAllViews();
-
-		if (swipeRefreshScroll != null) {
-			swipeRefreshScroll.setRefreshing(false);
-		}
-
-		generalView.findViewById(R.id.headerContainer).setVisibility(
-				View.VISIBLE);
-		headerText.setText("Jornada: " + fase.getIdFase());
-
-		if (fase.getGrupos().size() == 1) {
-			configRegularView();
-		} else {
-			configGroupView();
-		}
-
-		checkTime();
-	}
-
-	private void configRegularView() {
-		
-		container = (RelativeLayout) generalView.findViewById(R.id.container);
-		container.setVisibility(View.GONE);
-		
-		swipeRefreshScroll = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_group_carousel);
-		swipeRefreshScroll.setVisibility(View.GONE);
-		
-		swipeRefreshList = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_container_carousel);
-		swipeRefreshList.setVisibility(View.VISIBLE);
-		
-		carruselContent = (ListView)getView().findViewById(R.id.carruselContent);
-		if (carruselContent != null) {
-			carruselContent.setVisibility(View.VISIBLE);
-			CarruselAdapter carruselAdapter = new CarruselAdapter();
-			carruselContent.setAdapter(carruselAdapter);
-
-			carruselAdapter.addItems(fase.getGrupos().get(0).getJornadas()
-					.get(0).getMatches());
-			// carruselContent.getRefreshableView().scrollTo(0, (int)
-			// scrollHeight);
-		}
-	}
-
-	private LinearLayout getItemsContent() {
-		LinearLayout teamContent = new LinearLayout(mContext);
-		teamContent.setOrientation(LinearLayout.VERTICAL);
-		teamContent.setClickable(false);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		teamContent.setLayoutParams(params);
-		return teamContent;
-	}
-
-	private void configGroupView() {
-
-		carruselContent = (ListView)getView().findViewById(R.id.carruselContent);
-		carruselContent.setVisibility(View.GONE);
-		
-		swipeRefreshList = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_container_carousel);
-		swipeRefreshList.setVisibility(View.GONE);
-		swipeRefreshScroll = (SwipeRefreshLayout) generalView
-				.findViewById(R.id.swipe_group_carousel);
-		swipeRefreshScroll.setVisibility(View.VISIBLE);
-		
-		container = (RelativeLayout) generalView.findViewById(R.id.container);
-		container.setVisibility(View.VISIBLE);
-		
-		View convertView;
-		Team localTeam, awayTeam;
-		boolean first;
-		container.removeAllViews();
-		LinearLayout itemsLayout = getItemsContent();
-		container.addView(itemsLayout);
-		// LinearLayout itemsLayout = (LinearLayout)
-		// generalView.findViewById(R.id.itemsLayout);
-		// itemsLayout.removeAllViews();
-
-		ArrayList<Grupo> grupos = fase.getGrupos();
-		Collections.sort(grupos, new GroupComparator());
-
-		for (Grupo grupo : grupos) {
-			// Escribir la cabecera del grupo
-
-			convertView = getContainerGroup(grupo.getName());
-			itemsLayout.addView(convertView);
-			first = true;
-			for (Match match : grupo.getJornadas().get(0).getMatches()) {
-				// Escribir los layout por cada partido
-				localTeam = findTeam(match.getLocalId());
-				awayTeam = findTeam(match.getAwayId());
-				convertView = getContainerMatch(first, match);
-				itemsLayout.addView(convertView);
-				first = false;
-			}
-		}
-	}
-
-	private View getContainerGroup(String name) {
-		RelativeLayout rel = new RelativeLayout(mContext);
-		int padding = DimenUtils.getRegularPixelFromDp(mContext, 10);
-		rel.setPadding(0, padding, 0, padding);
-
-		TextView title = new TextView(mContext);
-		title.setId(150);
-		title.setText(getString(R.string.calendar_group) + name);
-		title.setTextColor(getResources().getColor(R.color.red));
-		title.setTextSize(TypedValue.COMPLEX_UNIT_PT, getResources()
-				.getDimension(R.dimen.size_10_px));
-		FontUtils.setCustomfont(mContext, title, FontTypes.ROBOTO_LIGHT);
-
-		RelativeLayout.LayoutParams paramsTitle = new RelativeLayout.LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		paramsTitle.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-		paramsTitle.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		title.setLayoutParams(paramsTitle);
-		rel.addView(title);
-
-		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
-
-		rel.setLayoutParams(params);
-		rel.setBackgroundColor(getResources().getColor(
-				R.color.calendar_clear_gray));
-		return rel;
-	}
-
-	private View getContainerMatch(boolean first, Match currentMatch) {
-		View convertView;
-		if (first)
-			convertView = inflater.inflate(R.layout.item_list_carrusel_first,
-					null);
-		else
-			convertView = inflater.inflate(R.layout.item_list_carrusel, null);
-
-		final View centerContainer = convertView
-				.findViewById(R.id.centerContainer);
-		TextView leftTeamText = (TextView) convertView
-				.findViewById(R.id.leftTeamText);
-		FontUtils.setCustomfont(mContext, leftTeamText,
-				FontUtils.FontTypes.ROBOTO_REGULAR);
-		leftTeamText.setText(currentMatch.getLocalTeamName());
-		// leftTeamText.setSelected(true);
-
-		TextView rightTeamText = (TextView) convertView
-				.findViewById(R.id.rightTeamText);
-		FontUtils.setCustomfont(mContext, rightTeamText,
-				FontUtils.FontTypes.ROBOTO_REGULAR);
-		rightTeamText.setText(currentMatch.getAwayTeamName());
-		// rightTeamText.setSelected(true);
-
-		View resultContainer = convertView.findViewById(R.id.resultContainer);
-		final TextView resultText = (TextView) convertView
-				.findViewById(R.id.resultText);
-		FontUtils.setCustomfont(mContext, resultText,
-				FontUtils.FontTypes.ROBOTO_BLACK);
-
-		TextView stateTeamText = (TextView) convertView
-				.findViewById(R.id.stateTeamText);
-		FontUtils.setCustomfont(mContext, stateTeamText,
-				FontUtils.FontTypes.ROBOTO_LIGHT);
-
-		TextView dateTeamText = (TextView) convertView
-				.findViewById(R.id.dateTeamText);
-		FontUtils.setCustomfont(mContext, dateTeamText,
-				FontUtils.FontTypes.ROBOTO_REGULAR);
-
-		TextView goleadoresText = (TextView) convertView
-				.findViewById(R.id.goleadoresText);
-		FontUtils.setCustomfont(mContext, goleadoresText,
-				FontUtils.FontTypes.ROBOTO_REGULAR);
-
-		TextView tarjeteadosText = (TextView) convertView
-				.findViewById(R.id.tarjeteadosText);
-		FontUtils.setCustomfont(mContext, tarjeteadosText,
-				FontUtils.FontTypes.ROBOTO_REGULAR);
-		ImageView localShield = (ImageView) convertView
-				.findViewById(R.id.localShield);
-		ImageView awayShield = (ImageView) convertView
-				.findViewById(R.id.awayShield);
-
-		RelativeLayout tvContainerAll = (RelativeLayout) convertView
-				.findViewById(R.id.tvContainerAll);
-
-		dateTeamText.setTextColor(getResources().getColor(R.color.medium_gray));
-
-		Time date = new Time(Long.valueOf(currentMatch.getDate()) * 1000);
-		final String resultString;
-		if (currentMatch.getState().equalsIgnoreCase(
-				Defines.MatchStates.FORPLAY)) {
-			stateTeamText.setVisibility(View.GONE);
-			String dateString = formatterHour.format(date);
-			// if (!dateString.equalsIgnoreCase("00:00"))
-			dateString += " h";
-			// else {
-			// dateString = "  -  ";
-			// }
-			resultString = dateString;
-			resultText.setText(resultString);
-			resultContainer.setBackgroundColor(getResources().getColor(
-					R.color.calendar_yellow));
-			dateTeamText.setText(formatterDate.format(date));
-			paintTVs(currentMatch, tvContainerAll);
-			convertView.findViewById(R.id.extraDataContent).setVisibility(
-					View.GONE);
-		} else {
-			resultString = String.valueOf(currentMatch.getMarkerLocalTeam())
-					+ " - " + String.valueOf(currentMatch.getMarkerAwayTeam());
-
-			stateTeamText.setVisibility(View.VISIBLE);
-
-			stateTeamText.setText(DatabaseDAO.getInstance(mContext).getStatus(
-					currentMatch.getStateCode()));
-			resultText.setText(resultString);
-			dateTeamText.setVisibility(View.GONE);
-			// Goles y tarjetas
-			String goles = "";
-			for (Gol gol : currentMatch.getGoles()) {
-				goles += gol.getMin() + "' " + gol.getPlayer() + "("
-						+ gol.getScoreBoard() + "), ";
-			}
-			String tarjetas = "";
-			for (Tarjeta tajeta : currentMatch.getTarjetasRojas()) {
-				tarjetas += tajeta.getMin() + "' " + tajeta.getPlayer() + ", ";
-			}
-
-			if (goles.equalsIgnoreCase("") && tarjetas.equalsIgnoreCase("")) {
-				convertView.findViewById(R.id.extraDataContent).setVisibility(
-						View.GONE);
-			} else {
-				if (!goles.equalsIgnoreCase("")) {
-					goles = goles.substring(0, goles.length() - 2);
-					goleadoresText.setText(goles);
-				} else {
-					convertView.findViewById(R.id.golesContent).setVisibility(
-							View.GONE);
-				}
-
-				if (!tarjetas.equalsIgnoreCase("")) {
-					tarjetas = tarjetas.substring(0, tarjetas.length() - 2);
-					tarjeteadosText.setText(tarjetas);
-				} else {
-					convertView.findViewById(R.id.tarjetasContent)
-							.setVisibility(View.GONE);
-				}
-			}
-			// Goles y tarjetas
-			if (currentMatch.getState().equalsIgnoreCase(
-					Defines.MatchStates.PLAYING)) {
-				resultContainer.setBackgroundColor(getResources().getColor(
-						R.color.calendar_red));
-				paintTVs(currentMatch, tvContainerAll);
-
-			} else if (currentMatch.getState().equalsIgnoreCase(
-					Defines.MatchStates.PLAYED)) {
-				resultContainer.setBackgroundColor(getResources().getColor(
-						R.color.calendar_gray));
-				tvContainerAll.setVisibility(View.GONE);
-			}
-		}
-
-		final int idLocal;
-		String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
-		if (shield!= null && shield.length()>0) {
-			idLocal = DrawableUtils.getDrawableId(mContext,shield, 4);
-		} else {
-			idLocal = R.drawable.escudo_generico_size03;
-		}
-		
-		if (idLocal!=0)
-			localShield.setBackgroundResource(idLocal);
-
-		final int idAway;
-		shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
-		if (shield!= null && shield.length()>0) {
-			idAway = DrawableUtils.getDrawableId(mContext,shield, 4);
-		} else {
-			idAway = R.drawable.escudo_generico_size03;;
-		}
-		if (idAway!=0)
-			awayShield.setBackgroundResource(idAway);
-
-		centerContainer.setTag(currentMatch);
-		convertView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				goToMatch(
-						(Match) v.findViewById(R.id.centerContainer).getTag(),
-						idLocal, idAway, resultString);
-
-			}
-		});
-		return convertView;
-	}
-
-	private Team findTeam(String teamId) {
-		for (Group group : groups) {
-			for (Team team : group.getTeams()) {
-				if (team.getId().equalsIgnoreCase(teamId))
-					return team;
-			}
-		}
-		return null;
-
-	}
-
-	protected void paintTVs(Match currentMatch, RelativeLayout tvContainerAll) {
-		tvContainerAll.removeAllViews();
-		if (currentMatch.getTelevisiones().size() > 0) {
-			ImageView gapImage = new ImageView(mContext);
-			gapImage.setId(500);
-			gapImage.setBackgroundResource(R.color.clear_gray);
-			int margin = DimenUtils.getRegularPixelFromDp(mContext, 2);
-			RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, margin);
-			paramsImage.addRule(RelativeLayout.CENTER_HORIZONTAL);
-			paramsImage.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-			gapImage.setLayoutParams(paramsImage);
-			tvContainerAll.addView(gapImage);
-
-			LinearLayout tvContainer = new LinearLayout(mContext);
-			tvContainer.setId(550);
-			tvContainer.setPadding(margin, margin, margin, margin);
-			tvContainer.setOrientation(LinearLayout.HORIZONTAL);
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-			params.addRule(RelativeLayout.BELOW, gapImage.getId());
-			tvContainer.setLayoutParams(params);
-
-			int i = 0, j = 10;
-			int id = 0;
-			boolean iconFound = false;
-			LinearLayout.LayoutParams paramsCell;
-			RelativeLayout.LayoutParams paramsIcon;
-			RelativeLayout rel;
-			ImageView tvIcon;
-			for (String key : currentMatch.getTelevisiones()) {
-
-				id = DrawableUtils.getDrawableId(mContext, key, 4);
-				if (id != 0) {
-					tvIcon = new ImageView(mContext);
-					rel = new RelativeLayout(mContext);
-					iconFound = true;
-					// tvIcon.setBackgroundResource(id);
-					tvIcon.setImageDrawable(getResources().getDrawable(id));
-					paramsIcon = new RelativeLayout.LayoutParams(
-							LayoutParams.WRAP_CONTENT,
-							LayoutParams.WRAP_CONTENT);
-					paramsIcon.addRule(RelativeLayout.CENTER_IN_PARENT);
-					tvIcon.setLayoutParams(paramsIcon);
-					rel.addView(tvIcon);
-					paramsCell = new LinearLayout.LayoutParams(0,
-							LayoutParams.WRAP_CONTENT);
-					paramsCell.weight = 1;
-					paramsCell.leftMargin = margin;
-					paramsCell.rightMargin = margin;
-					tvContainer.addView(new View(mContext), paramsCell);
-					tvContainer.addView(rel, paramsCell);
-					i++;
-					if (i >= Defines.NUM_MAX_TVS) {
-						tvContainerAll.addView(tvContainer);
-						id = tvContainer.getId();
-
-						tvContainer = new LinearLayout(mContext);
-						tvContainer.setId(id + 5);
-						tvContainer.setPadding(margin, margin, margin, margin);
-						tvContainer.setOrientation(LinearLayout.HORIZONTAL);
-						params = new RelativeLayout.LayoutParams(
-								LayoutParams.MATCH_PARENT,
-								LayoutParams.WRAP_CONTENT);
-						params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-						params.addRule(RelativeLayout.BELOW, id);
-						tvContainer.setLayoutParams(params);
-						i = 0;
-					}
-
-				}
-			}
-			paramsCell = new LinearLayout.LayoutParams(0,
-					LayoutParams.WRAP_CONTENT);
-			paramsCell.weight = 1;
-			paramsCell.leftMargin = margin;
-			paramsCell.rightMargin = margin;
-			tvContainer.addView(new View(mContext), paramsCell);
-			if (iconFound) {
-				tvContainerAll.addView(tvContainer);
-				tvContainerAll.setVisibility(View.VISIBLE);
-			} else {
-				tvContainerAll.setVisibility(View.GONE);
-			}
-		} else {
-			tvContainerAll.setVisibility(View.GONE);
-		}
-	}
-
-	/***************************************************************************/
-	/** Timer methods **/
-	/***************************************************************************/
-
-	private void checkTime() {
-		// SE busca si hay algun partido activo,
-		boolean carruselActive = false;
-		for (Grupo grupo : fase.getGrupos()) {
-			for (Day jornada : grupo.getJornadas()) {
-				for (Match match : jornada.getMatches()) {
-					if (match.getStateCode() > 0 && match.getStateCode() < 7) {
-						carruselActive = true;
-						break;
-					}
-				}
-
-			}
-		}
-
-		// Si hay algun partido activo, se actualiza el tiempo
-		if (carruselActive) {
-			timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_ACTIVE;
-		} else {
-			timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_NO_ACTIVE;
-		}
-	}
-
-	private void startTimer() {
-		if (t == null || timeToUpdate != timeToUpdateOld) {
-
-			if (t != null)
-				t.cancel();
-
-			t = new Timer();
-			t.scheduleAtFixedRate(new TimerTask() {
-				@Override
-				public void run() {
-					if (Reachability.isOnline(mContext))
-						updateCarrusel();
-					else {
-						stopTimer();
-
-					}
-				}
-			}, 0, timeToUpdate);
-			timeToUpdateOld = timeToUpdate;
-		}
-	}
-
-	protected void stopTimer() {
-		getActivity().runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (t != null)
-					t.cancel();
-
-				AlertManager.showAlertOkDialog(
-						getActivity(),
-						getResources().getString(
-								R.string.section_error_download),
-						getResources().getString(
-								R.string.connection_error_title),
-						new android.content.DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-							}
-
-						});
-			}
-		});
-
-	}
-
-	private void updateCarrusel() {
-
-		CarruselDAO.getInstance(mContext).addListener(this);
-		CarruselDAO.getInstance(mContext).refreshCarrusel(section.getUrl());
-	}
-
-	private void reloadData() {
-
-		if (t != null) {
-			t.cancel();
-			t = null;
-		}
-
-		CarruselDAO.getInstance(mContext).addListener(this);
-		CarruselDAO.getInstance(mContext).refreshCarrusel(section.getUrl());
-	}
-
-	/***************************************************************************/
-	/** Libraries methods **/
-	/***************************************************************************/
-	@Override
-	protected void callToOmniture() {
-		StatisticsDAO.getInstance(mContext).sendStatisticsState(
-				getActivity().getApplication(),
-				RemoteDataDAO.getInstance(this.mContext).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
+    private SimpleDateFormat formatterDate;
+    private SimpleDateFormat formatterHour;
+
+    private ListView carruselContent;
+    private ScrollView carruselContentGroup;
+
+    private long timeToUpdate;
+    private long timeToUpdateOld;
+
+    private TextView headerText;
+
+    private Fase fase;
+
+    private ArrayList<Group> groups;
+
+    private RelativeLayout container;
+
+    private SwipeRefreshLayout swipeRefreshList = null;
+    private SwipeRefreshLayout swipeRefreshScroll = null;
+
+    /************* Fragment lifecycle methods *******************************/
+    /**********************************************************************/
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.adSection = NativeAds.AD_CARROUSEL + "/" + NativeAds.AD_PORTADA;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        this.inflater = inflater;
+        // Inflating layout
+        generalView = inflater.inflate(R.layout.fragment_carrousel_section,
+                container, false);
+
+        return generalView;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        CarruselDAO.getInstance(mContext).removeListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        if (t != null) {
+            t.cancel();
+            t = null;
+        }
+    }
+
+    /***************************************************************************/
+    /** Configuration methods **/
+    /***************************************************************************/
+
+    @Override
+    protected void configureView() {
+        formatterDate = new SimpleDateFormat(DateFormat.DAY_FORMAT,
+                Locale.getDefault());
+        formatterHour = new SimpleDateFormat(DateFormat.HOUR_FORMAT,
+                Locale.getDefault());
+
+        timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_NO_ACTIVE;
+        timeToUpdateOld = timeToUpdate;
+
+        generalView.findViewById(R.id.gapBar).setVisibility(View.VISIBLE);
+        headerText = (TextView) generalView.findViewById(R.id.headerText);
+        FontUtils.setCustomfont(mContext, headerText, FontTypes.ROBOTO_REGULAR);
+
+        container = (RelativeLayout) generalView.findViewById(R.id.container);
+
+        callToOmniture();
+    }
+
+    @Override
+    protected void loadInformation() {
+        TeamSection sectionTeams = (TeamSection) RemoteDataDAO.getInstance(
+                mContext).getSectionByType(Integer.valueOf(competitionId),
+                SECTIONS.TEAMS);
+        groups = sectionTeams.getGroups();
+
+        configurePullFromGroup();
+        configurePullFromRegular();
+
+        updateCarrusel();
+    }
+
+    private void configurePullFromRegular() {
+        this.swipeRefreshList = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_container_carousel);
+        this.swipeRefreshList.setOnRefreshListener(new OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                reloadData();
+            }
+        });
+        this.swipeRefreshList.setColorSchemeResources(R.color.black,
+                R.color.red, R.color.white);
+    }
+
+    private void configurePullFromGroup() {
+        this.swipeRefreshScroll = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_group_carousel);
+        this.swipeRefreshScroll.setOnRefreshListener(new OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                reloadData();
+            }
+        });
+        this.swipeRefreshScroll.setColorSchemeResources(R.color.black,
+                R.color.red, R.color.white);
+    }
+
+    private void loadData() {
+
+        container.removeAllViews();
+
+        if (swipeRefreshScroll != null) {
+            swipeRefreshScroll.setRefreshing(false);
+        }
+
+        generalView.findViewById(R.id.headerContainer).setVisibility(
+                View.VISIBLE);
+        headerText.setText("Jornada: " + fase.getIdFase());
+
+        if (fase.getGrupos().size() == 1) {
+            configRegularView();
+        } else {
+            configGroupView();
+        }
+
+        checkTime();
+    }
+
+    private void configRegularView() {
+
+        container = (RelativeLayout) generalView.findViewById(R.id.container);
+        container.setVisibility(View.GONE);
+
+        swipeRefreshScroll = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_group_carousel);
+        swipeRefreshScroll.setVisibility(View.GONE);
+
+        swipeRefreshList = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_container_carousel);
+        swipeRefreshList.setVisibility(View.VISIBLE);
+
+        carruselContent = (ListView) getView().findViewById(R.id.carruselContent);
+        if (carruselContent != null) {
+            carruselContent.setVisibility(View.VISIBLE);
+            CarruselAdapter carruselAdapter = new CarruselAdapter();
+            carruselContent.setAdapter(carruselAdapter);
+
+            carruselAdapter.addItems(fase.getGrupos().get(0).getJornadas()
+                    .get(0).getMatches());
+            // carruselContent.getRefreshableView().scrollTo(0, (int)
+            // scrollHeight);
+        }
+    }
+
+    private LinearLayout getItemsContent() {
+        LinearLayout teamContent = new LinearLayout(mContext);
+        teamContent.setOrientation(LinearLayout.VERTICAL);
+        teamContent.setClickable(false);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        teamContent.setLayoutParams(params);
+        return teamContent;
+    }
+
+    private void configGroupView() {
+
+        carruselContent = (ListView) getView().findViewById(R.id.carruselContent);
+        carruselContent.setVisibility(View.GONE);
+
+        swipeRefreshList = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_container_carousel);
+        swipeRefreshList.setVisibility(View.GONE);
+        swipeRefreshScroll = (SwipeRefreshLayout) generalView
+                .findViewById(R.id.swipe_group_carousel);
+        swipeRefreshScroll.setVisibility(View.VISIBLE);
+
+        container = (RelativeLayout) generalView.findViewById(R.id.container);
+        container.setVisibility(View.VISIBLE);
+
+        View convertView;
+        Team localTeam, awayTeam;
+        boolean first;
+        container.removeAllViews();
+        LinearLayout itemsLayout = getItemsContent();
+        container.addView(itemsLayout);
+        // LinearLayout itemsLayout = (LinearLayout)
+        // generalView.findViewById(R.id.itemsLayout);
+        // itemsLayout.removeAllViews();
+
+        ArrayList<Grupo> grupos = fase.getGrupos();
+        Collections.sort(grupos, new GroupComparator());
+
+        for (Grupo grupo : grupos) {
+            // Escribir la cabecera del grupo
+
+            convertView = getContainerGroup(grupo.getName());
+            itemsLayout.addView(convertView);
+            first = true;
+            for (Match match : grupo.getJornadas().get(0).getMatches()) {
+                // Escribir los layout por cada partido
+                localTeam = findTeam(match.getLocalId());
+                awayTeam = findTeam(match.getAwayId());
+                convertView = getContainerMatch(first, match);
+                itemsLayout.addView(convertView);
+                first = false;
+            }
+        }
+    }
+
+    private View getContainerGroup(String name) {
+        RelativeLayout rel = new RelativeLayout(mContext);
+        int padding = DimenUtils.getRegularPixelFromDp(mContext, 10);
+        rel.setPadding(0, padding, 0, padding);
+
+        TextView title = new TextView(mContext);
+        title.setId(150);
+        title.setText(getString(R.string.calendar_group) + name);
+        title.setTextColor(getResources().getColor(R.color.red));
+        title.setTextSize(TypedValue.COMPLEX_UNIT_PT, getResources()
+                .getDimension(R.dimen.size_10_px));
+        FontUtils.setCustomfont(mContext, title, FontTypes.ROBOTO_LIGHT);
+
+        RelativeLayout.LayoutParams paramsTitle = new RelativeLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        paramsTitle.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        paramsTitle.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        title.setLayoutParams(paramsTitle);
+        rel.addView(title);
+
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT);
+
+        rel.setLayoutParams(params);
+        rel.setBackgroundColor(getResources().getColor(
+                R.color.calendar_clear_gray));
+        return rel;
+    }
+
+    private View getContainerMatch(boolean first, Match currentMatch) {
+        View convertView;
+        if (first)
+            convertView = inflater.inflate(R.layout.item_list_carrusel_first,
+                    null);
+        else
+            convertView = inflater.inflate(R.layout.item_list_carrusel, null);
+
+        final View centerContainer = convertView
+                .findViewById(R.id.centerContainer);
+        TextView leftTeamText = (TextView) convertView
+                .findViewById(R.id.leftTeamText);
+        FontUtils.setCustomfont(mContext, leftTeamText,
+                FontUtils.FontTypes.ROBOTO_REGULAR);
+        leftTeamText.setText(currentMatch.getLocalTeamName());
+        // leftTeamText.setSelected(true);
+
+        TextView rightTeamText = (TextView) convertView
+                .findViewById(R.id.rightTeamText);
+        FontUtils.setCustomfont(mContext, rightTeamText,
+                FontUtils.FontTypes.ROBOTO_REGULAR);
+        rightTeamText.setText(currentMatch.getAwayTeamName());
+        // rightTeamText.setSelected(true);
+
+        View resultContainer = convertView.findViewById(R.id.resultContainer);
+        final TextView resultText = (TextView) convertView
+                .findViewById(R.id.resultText);
+        FontUtils.setCustomfont(mContext, resultText,
+                FontUtils.FontTypes.ROBOTO_BLACK);
+
+        TextView stateTeamText = (TextView) convertView
+                .findViewById(R.id.stateTeamText);
+        FontUtils.setCustomfont(mContext, stateTeamText,
+                FontUtils.FontTypes.ROBOTO_LIGHT);
+
+        TextView dateTeamText = (TextView) convertView
+                .findViewById(R.id.dateTeamText);
+        FontUtils.setCustomfont(mContext, dateTeamText,
+                FontUtils.FontTypes.ROBOTO_REGULAR);
+
+        TextView goleadoresText = (TextView) convertView
+                .findViewById(R.id.goleadoresText);
+        FontUtils.setCustomfont(mContext, goleadoresText,
+                FontUtils.FontTypes.ROBOTO_REGULAR);
+
+        TextView tarjeteadosText = (TextView) convertView
+                .findViewById(R.id.tarjeteadosText);
+        FontUtils.setCustomfont(mContext, tarjeteadosText,
+                FontUtils.FontTypes.ROBOTO_REGULAR);
+        ImageView localShield = (ImageView) convertView
+                .findViewById(R.id.localShield);
+        ImageView awayShield = (ImageView) convertView
+                .findViewById(R.id.awayShield);
+
+        RelativeLayout tvContainerAll = (RelativeLayout) convertView
+                .findViewById(R.id.tvContainerAll);
+
+        dateTeamText.setTextColor(getResources().getColor(R.color.medium_gray));
+
+        Time date = new Time(Long.valueOf(currentMatch.getDate()) * 1000);
+        final String resultString;
+        if (currentMatch.getState().equalsIgnoreCase(
+                Defines.MatchStates.FORPLAY)) {
+            stateTeamText.setVisibility(View.GONE);
+            String dateString = formatterHour.format(date);
+            // if (!dateString.equalsIgnoreCase("00:00"))
+            dateString += " h";
+            // else {
+            // dateString = "  -  ";
+            // }
+            resultString = dateString;
+            resultText.setText(resultString);
+            resultContainer.setBackgroundColor(getResources().getColor(
+                    R.color.calendar_yellow));
+            dateTeamText.setText(formatterDate.format(date));
+            paintTVs(currentMatch, tvContainerAll);
+            convertView.findViewById(R.id.extraDataContent).setVisibility(
+                    View.GONE);
+        } else {
+            resultString = String.valueOf(currentMatch.getMarkerLocalTeam())
+                    + " - " + String.valueOf(currentMatch.getMarkerAwayTeam());
+
+            stateTeamText.setVisibility(View.VISIBLE);
+
+            stateTeamText.setText(DatabaseDAO.getInstance(mContext).getStatus(
+                    currentMatch.getStateCode()));
+            resultText.setText(resultString);
+            dateTeamText.setVisibility(View.GONE);
+            // Goles y tarjetas
+            String goles = "";
+            for (Gol gol : currentMatch.getGoles()) {
+                goles += gol.getMin() + "' " + gol.getPlayer() + "("
+                        + gol.getScoreBoard() + "), ";
+            }
+            String tarjetas = "";
+            for (Tarjeta tajeta : currentMatch.getTarjetasRojas()) {
+                tarjetas += tajeta.getMin() + "' " + tajeta.getPlayer() + ", ";
+            }
+
+            if (goles.equalsIgnoreCase("") && tarjetas.equalsIgnoreCase("")) {
+                convertView.findViewById(R.id.extraDataContent).setVisibility(
+                        View.GONE);
+            } else {
+                if (!goles.equalsIgnoreCase("")) {
+                    goles = goles.substring(0, goles.length() - 2);
+                    goleadoresText.setText(goles);
+                } else {
+                    convertView.findViewById(R.id.golesContent).setVisibility(
+                            View.GONE);
+                }
+
+                if (!tarjetas.equalsIgnoreCase("")) {
+                    tarjetas = tarjetas.substring(0, tarjetas.length() - 2);
+                    tarjeteadosText.setText(tarjetas);
+                } else {
+                    convertView.findViewById(R.id.tarjetasContent)
+                            .setVisibility(View.GONE);
+                }
+            }
+            // Goles y tarjetas
+            if (currentMatch.getState().equalsIgnoreCase(
+                    Defines.MatchStates.PLAYING)) {
+                resultContainer.setBackgroundColor(getResources().getColor(
+                        R.color.calendar_red));
+                paintTVs(currentMatch, tvContainerAll);
+
+            } else if (currentMatch.getState().equalsIgnoreCase(
+                    Defines.MatchStates.PLAYED)) {
+                resultContainer.setBackgroundColor(getResources().getColor(
+                        R.color.calendar_gray));
+                tvContainerAll.setVisibility(View.GONE);
+            }
+        }
+
+        final int idLocal;
+        String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
+        if (shield != null && shield.length() > 0) {
+            idLocal = DrawableUtils.getDrawableId(mContext, shield, 4);
+        } else {
+            idLocal = R.drawable.escudo_generico_size03;
+        }
+
+        if (idLocal != 0)
+            localShield.setBackgroundResource(idLocal);
+
+        final int idAway;
+        shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
+        if (shield != null && shield.length() > 0) {
+            idAway = DrawableUtils.getDrawableId(mContext, shield, 4);
+        } else {
+            idAway = R.drawable.escudo_generico_size03;
+            ;
+        }
+        if (idAway != 0)
+            awayShield.setBackgroundResource(idAway);
+
+        centerContainer.setTag(currentMatch);
+        convertView.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                goToMatch(
+                        (Match) v.findViewById(R.id.centerContainer).getTag(),
+                        idLocal, idAway, resultString);
+
+            }
+        });
+        return convertView;
+    }
+
+    private Team findTeam(String teamId) {
+        for (Group group : groups) {
+            for (Team team : group.getTeams()) {
+                if (team.getId().equalsIgnoreCase(teamId))
+                    return team;
+            }
+        }
+        return null;
+
+    }
+
+    protected void paintTVs(Match currentMatch, RelativeLayout tvContainerAll) {
+        tvContainerAll.removeAllViews();
+        if (currentMatch.getTelevisiones().size() > 0) {
+            ImageView gapImage = new ImageView(mContext);
+            gapImage.setId(500);
+            gapImage.setBackgroundResource(R.color.clear_gray);
+            int margin = DimenUtils.getRegularPixelFromDp(mContext, 2);
+            RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(
+                    LayoutParams.MATCH_PARENT, margin);
+            paramsImage.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            paramsImage.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            gapImage.setLayoutParams(paramsImage);
+            tvContainerAll.addView(gapImage);
+
+            LinearLayout tvContainer = new LinearLayout(mContext);
+            tvContainer.setId(550);
+            tvContainer.setPadding(margin, margin, margin, margin);
+            tvContainer.setOrientation(LinearLayout.HORIZONTAL);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            params.addRule(RelativeLayout.BELOW, gapImage.getId());
+            tvContainer.setLayoutParams(params);
+
+            int i = 0, j = 10;
+            int id = 0;
+            boolean iconFound = false;
+            LinearLayout.LayoutParams paramsCell;
+            RelativeLayout.LayoutParams paramsIcon;
+            RelativeLayout rel;
+            ImageView tvIcon;
+            for (String key : currentMatch.getTelevisiones()) {
+
+                id = DrawableUtils.getDrawableId(mContext, key, 4);
+                if (id != 0) {
+                    tvIcon = new ImageView(mContext);
+                    rel = new RelativeLayout(mContext);
+                    iconFound = true;
+                    // tvIcon.setBackgroundResource(id);
+                    tvIcon.setImageDrawable(getResources().getDrawable(id));
+                    paramsIcon = new RelativeLayout.LayoutParams(
+                            LayoutParams.WRAP_CONTENT,
+                            LayoutParams.WRAP_CONTENT);
+                    paramsIcon.addRule(RelativeLayout.CENTER_IN_PARENT);
+                    tvIcon.setLayoutParams(paramsIcon);
+                    rel.addView(tvIcon);
+                    paramsCell = new LinearLayout.LayoutParams(0,
+                            LayoutParams.WRAP_CONTENT);
+                    paramsCell.weight = 1;
+                    paramsCell.leftMargin = margin;
+                    paramsCell.rightMargin = margin;
+                    tvContainer.addView(new View(mContext), paramsCell);
+                    tvContainer.addView(rel, paramsCell);
+                    i++;
+                    if (i >= Defines.NUM_MAX_TVS) {
+                        tvContainerAll.addView(tvContainer);
+                        id = tvContainer.getId();
+
+                        tvContainer = new LinearLayout(mContext);
+                        tvContainer.setId(id + 5);
+                        tvContainer.setPadding(margin, margin, margin, margin);
+                        tvContainer.setOrientation(LinearLayout.HORIZONTAL);
+                        params = new RelativeLayout.LayoutParams(
+                                LayoutParams.MATCH_PARENT,
+                                LayoutParams.WRAP_CONTENT);
+                        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        params.addRule(RelativeLayout.BELOW, id);
+                        tvContainer.setLayoutParams(params);
+                        i = 0;
+                    }
+
+                }
+            }
+            paramsCell = new LinearLayout.LayoutParams(0,
+                    LayoutParams.WRAP_CONTENT);
+            paramsCell.weight = 1;
+            paramsCell.leftMargin = margin;
+            paramsCell.rightMargin = margin;
+            tvContainer.addView(new View(mContext), paramsCell);
+            if (iconFound) {
+                tvContainerAll.addView(tvContainer);
+                tvContainerAll.setVisibility(View.VISIBLE);
+            } else {
+                tvContainerAll.setVisibility(View.GONE);
+            }
+        } else {
+            tvContainerAll.setVisibility(View.GONE);
+        }
+    }
+
+    /***************************************************************************/
+    /** Timer methods **/
+    /***************************************************************************/
+
+    private void checkTime() {
+        // SE busca si hay algun partido activo,
+        boolean carruselActive = false;
+        for (Grupo grupo : fase.getGrupos()) {
+            for (Day jornada : grupo.getJornadas()) {
+                for (Match match : jornada.getMatches()) {
+                    if (match.getStateCode() > 0 && match.getStateCode() < 7) {
+                        carruselActive = true;
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        // Si hay algun partido activo, se actualiza el tiempo
+        if (carruselActive) {
+            timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_ACTIVE;
+        } else {
+            timeToUpdate = RequestTimes.TIMER_CARRUSEL_UPDATE_NO_ACTIVE;
+        }
+    }
+
+    private void startTimer() {
+        if (t == null || timeToUpdate != timeToUpdateOld) {
+
+            if (t != null)
+                t.cancel();
+
+            t = new Timer();
+            t.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if (Reachability.isOnline(mContext))
+                        updateCarrusel();
+                    else {
+                        stopTimer();
+
+                    }
+                }
+            }, 0, timeToUpdate);
+            timeToUpdateOld = timeToUpdate;
+        }
+    }
+
+    protected void stopTimer() {
+        getActivity().runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if (t != null)
+                    t.cancel();
+
+                AlertManager.showAlertOkDialog(
+                        getActivity(),
+                        getResources().getString(
+                                R.string.section_error_download),
+                        getResources().getString(
+                                R.string.connection_error_title),
+                        new android.content.DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
+                            }
+
+                        });
+            }
+        });
+
+    }
+
+    private void updateCarrusel() {
+
+        CarruselDAO.getInstance(mContext).addListener(this);
+        CarruselDAO.getInstance(mContext).refreshCarrusel(section.getUrl());
+    }
+
+    private void reloadData() {
+
+        if (t != null) {
+            t.cancel();
+            t = null;
+        }
+
+        CarruselDAO.getInstance(mContext).addListener(this);
+        CarruselDAO.getInstance(mContext).refreshCarrusel(section.getUrl());
+    }
+
+    /***************************************************************************/
+    /** Libraries methods **/
+    /***************************************************************************/
+    @Override
+    protected void callToOmniture() {
+        StatisticsDAO.getInstance(mContext).sendStatisticsState(
+                getActivity().getApplication(),
                 FileUtils.readOmnitureProperties(mContext, "SECTION_CARROUSEL"),
-				null,
-				null,
                 FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-				FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_PORTADA") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CARROUSEL"),
-				null);
-	}
+                null,
+                null,
+                null,
+                null,
+                null);
+    }
 
-	private void closePullToRefresh(Date date) {
-		if (swipeRefreshScroll != null) {
-			swipeRefreshScroll.setRefreshing(false);
-		}
-		if (swipeRefreshList != null) {
-			swipeRefreshList.setRefreshing(false);
-		}
-	}
+    private void closePullToRefresh(Date date) {
+        if (swipeRefreshScroll != null) {
+            swipeRefreshScroll.setRefreshing(false);
+        }
+        if (swipeRefreshList != null) {
+            swipeRefreshList.setRefreshing(false);
+        }
+    }
 
-	/***************************************************************************/
-	/** CarruselDAOListener methods **/
-	/***************************************************************************/
+    /***************************************************************************/
+    /** CarruselDAOListener methods **/
+    /***************************************************************************/
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 * 
 	 * @see
 	 * es.prisacom.as.dao.reader.RemoteCalendarDAO.RemoteCalendarDAOListener
 	 * #onSuccessRemoteconfig(java.util.ArrayList)
 	 */
-	@Override
-	public void onSuccessCarrusel(Fase fase) {
-		CarruselDAO.getInstance(mContext).removeListener(this);
-		closePullToRefresh(fase.getDateUpdated());
-		this.fase = fase;
-		loadData();
-		((HomeActivity) getActivity()).stopAnimation();
-		// Se da inicio al timer ora vez, por si hubiera cambios en la jornada
-		startTimer();
-	}
+    @Override
+    public void onSuccessCarrusel(Fase fase) {
+        CarruselDAO.getInstance(mContext).removeListener(this);
+        closePullToRefresh(fase.getDateUpdated());
+        this.fase = fase;
+        loadData();
+        ((HomeActivity) getActivity()).stopAnimation();
+        // Se da inicio al timer ora vez, por si hubiera cambios en la jornada
+        startTimer();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.prisacom.as.dao.reader.RemoteCalendarDAO.RemoteCalendarDAOListener
-	 * #onFailureRemoteconfig()
-	 */
-	@Override
-	public void onFailureCarrusel() {
-		CarruselDAO.getInstance(mContext).removeListener(this);
-		showError(getResources().getString(R.string.calendar_error));
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * es.prisacom.as.dao.reader.RemoteCalendarDAO.RemoteCalendarDAOListener
+     * #onFailureRemoteconfig()
+     */
+    @Override
+    public void onFailureCarrusel() {
+        CarruselDAO.getInstance(mContext).removeListener(this);
+        showError(getResources().getString(R.string.calendar_error));
+    }
 
-	private void showError(String message) {
-		closePullToRefresh(new Date());
-		AlertManager.showAlertOkDialog(getActivity(), message, getResources()
-				.getString(R.string.connection_error_title),
-				new android.content.DialogInterface.OnClickListener() {
+    private void showError(String message) {
+        closePullToRefresh(new Date());
+        AlertManager.showAlertOkDialog(getActivity(), message, getResources()
+                        .getString(R.string.connection_error_title),
+                new android.content.DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						// getActivity().onBackPressed();
-						container.removeAllViews();
-						container.addView(getErrorContainer());
-						generalView.findViewById(R.id.headerContainer)
-								.setVisibility(View.GONE);
-						if (carruselContent != null)
-							carruselContent.setVisibility(View.GONE);
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // getActivity().onBackPressed();
+                        container.removeAllViews();
+                        container.addView(getErrorContainer());
+                        generalView.findViewById(R.id.headerContainer)
+                                .setVisibility(View.GONE);
+                        if (carruselContent != null)
+                            carruselContent.setVisibility(View.GONE);
 
-					}
+                    }
 
-				});
+                });
 
-		((HomeActivity) getActivity()).stopAnimation();
-	}
+        ((HomeActivity) getActivity()).stopAnimation();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.prisacom.as.dao.reader.RemoteCalendarDAO.RemoteCalendarDAOListener
-	 * #onFailureNotConnection()
-	 */
-	@Override
-	public void onFailureNotConnection() {
-		CarruselDAO.getInstance(mContext).removeListener(this);
-		showError(getResources().getString(R.string.section_not_conection));
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * es.prisacom.as.dao.reader.RemoteCalendarDAO.RemoteCalendarDAOListener
+     * #onFailureNotConnection()
+     */
+    @Override
+    public void onFailureNotConnection() {
+        CarruselDAO.getInstance(mContext).removeListener(this);
+        showError(getResources().getString(R.string.section_not_conection));
 
-	}
+    }
 
-	public void goToMatch(Match match, int idLocal, int idAway,
-			String resultString) {
+    public void goToMatch(Match match, int idLocal, int idAway,
+                          String resultString) {
 
-		Intent intent = new Intent(mContext, CarruselDetailActivity.class);
-		// intent.putExtra("state", match.getState());
-		intent.putExtra("dataLink", match.getDataLink());
-		intent.putExtra("link", match.getLink());
-		intent.putExtra("comeFromCalendar", false);
+        Intent intent = new Intent(mContext, CarruselDetailActivity.class);
+        // intent.putExtra("state", match.getState());
+        intent.putExtra("dataLink", match.getDataLink());
+        intent.putExtra("link", match.getLink());
+        intent.putExtra("comeFromCalendar", false);
 
-		if (headerText != null)
-			intent.putExtra("dayName", headerText.getText().toString());
-		else
-			intent.putExtra("dayName", "Jornada");
+        if (headerText != null)
+            intent.putExtra("dayName", headerText.getText().toString());
+        else
+            intent.putExtra("dayName", "Jornada");
 
-		intent.putExtra("idLocal", idLocal);
-		intent.putExtra("idAway", idAway);
-		// intent.putExtra("resultString", resultString);
+        intent.putExtra("idLocal", idLocal);
+        intent.putExtra("idAway", idAway);
+        // intent.putExtra("resultString", resultString);
 
-		getActivity().startActivityForResult(intent,
-				ReturnRequestCodes.PUBLI_BACK);
-		getActivity().overridePendingTransition(R.anim.slide_in_left,
-				R.anim.slide_out_right);
+        getActivity().startActivityForResult(intent,
+                ReturnRequestCodes.PUBLI_BACK);
+        getActivity().overridePendingTransition(R.anim.slide_in_left,
+                R.anim.slide_out_right);
 
-	}
+    }
 
-	/***************************************************************************/
-	/** CarruselAdapter **/
-	/***************************************************************************/
+    /***************************************************************************/
+    /** CarruselAdapter **/
+    /***************************************************************************/
 
-	class CarruselAdapter extends BaseAdapter {
+    class CarruselAdapter extends BaseAdapter {
 
-		private ArrayList<Match> matches;
+        private ArrayList<Match> matches;
 
-		public CarruselAdapter() {
-			this.matches = new ArrayList<Match>();
+        public CarruselAdapter() {
+            this.matches = new ArrayList<Match>();
 
-		}
+        }
 
-		public void addItems(ArrayList<Match> matches) {
-			this.matches = matches;
-			notifyDataSetChanged();
-		}
+        public void addItems(ArrayList<Match> matches) {
+            this.matches = matches;
+            notifyDataSetChanged();
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getCount()
-		 */
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return matches.size();
-		}
+        /*
+         * (non-Javadoc)
+         *
+         * @see android.widget.Adapter#getCount()
+         */
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return matches.size();
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItem(int)
-		 */
-		@Override
-		public Object getItem(int arg0) {
-			// TODO Auto-generated method stub
-			return matches.get(arg0);
-		}
+        /*
+         * (non-Javadoc)
+         *
+         * @see android.widget.Adapter#getItem(int)
+         */
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return matches.get(arg0);
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getItemId(int)
-		 */
-		@Override
-		public long getItemId(int arg0) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
+        /*
+         * (non-Javadoc)
+         *
+         * @see android.widget.Adapter#getItemId(int)
+         */
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.widget.Adapter#getView(int, android.view.View,
-		 * android.view.ViewGroup)
-		 */
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+        /*
+         * (non-Javadoc)
+         *
+         * @see android.widget.Adapter#getView(int, android.view.View,
+         * android.view.ViewGroup)
+         */
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
 
-			Match currentMatch = matches.get(position);
-			Team localTeam = findTeam(currentMatch.getLocalId());
-			Team awayTeam = findTeam(currentMatch.getAwayId());
+            Match currentMatch = matches.get(position);
+            Team localTeam = findTeam(currentMatch.getLocalId());
+            Team awayTeam = findTeam(currentMatch.getAwayId());
 
-			final ViewHolder holder;
-			if (convertView == null) {
-				convertView = inflater.inflate(
-						R.layout.item_list_carrusel_first, null);
-				holder = new ViewHolder();
+            final ViewHolder holder;
+            if (convertView == null) {
+                convertView = inflater.inflate(
+                        R.layout.item_list_carrusel_first, null);
+                holder = new ViewHolder();
 
-				holder.container = convertView.findViewById(R.id.container);
-				holder.centerContainer = convertView
-						.findViewById(R.id.centerContainer);
-				holder.leftTeamText = (TextView) convertView
-						.findViewById(R.id.leftTeamText);
-				FontUtils.setCustomfont(mContext, holder.leftTeamText,
-						FontUtils.FontTypes.ROBOTO_REGULAR);
-				// holder.leftTeamText.setSelected(true);
+                holder.container = convertView.findViewById(R.id.container);
+                holder.centerContainer = convertView
+                        .findViewById(R.id.centerContainer);
+                holder.leftTeamText = (TextView) convertView
+                        .findViewById(R.id.leftTeamText);
+                FontUtils.setCustomfont(mContext, holder.leftTeamText,
+                        FontUtils.FontTypes.ROBOTO_REGULAR);
+                // holder.leftTeamText.setSelected(true);
 
-				holder.resultContainer = convertView
-						.findViewById(R.id.resultContainer);
-				holder.resultText = (TextView) convertView
-						.findViewById(R.id.resultText);
-				FontUtils.setCustomfont(mContext, holder.resultText,
-						FontUtils.FontTypes.ROBOTO_BLACK);
+                holder.resultContainer = convertView
+                        .findViewById(R.id.resultContainer);
+                holder.resultText = (TextView) convertView
+                        .findViewById(R.id.resultText);
+                FontUtils.setCustomfont(mContext, holder.resultText,
+                        FontUtils.FontTypes.ROBOTO_BLACK);
 
-				holder.stateTeamText = (TextView) convertView
-						.findViewById(R.id.stateTeamText);
-				FontUtils.setCustomfont(mContext, holder.stateTeamText,
-						FontUtils.FontTypes.ROBOTO_LIGHT);
+                holder.stateTeamText = (TextView) convertView
+                        .findViewById(R.id.stateTeamText);
+                FontUtils.setCustomfont(mContext, holder.stateTeamText,
+                        FontUtils.FontTypes.ROBOTO_LIGHT);
 
-				holder.rightTeamText = (TextView) convertView
-						.findViewById(R.id.rightTeamText);
-				FontUtils.setCustomfont(mContext, holder.rightTeamText,
-						FontUtils.FontTypes.ROBOTO_REGULAR);
-				// holder.rightTeamText.setSelected(true);
+                holder.rightTeamText = (TextView) convertView
+                        .findViewById(R.id.rightTeamText);
+                FontUtils.setCustomfont(mContext, holder.rightTeamText,
+                        FontUtils.FontTypes.ROBOTO_REGULAR);
+                // holder.rightTeamText.setSelected(true);
 
-				holder.dateTeamText = (TextView) convertView
-						.findViewById(R.id.dateTeamText);
-				FontUtils.setCustomfont(mContext, holder.dateTeamText,
-						FontUtils.FontTypes.ROBOTO_REGULAR);
+                holder.dateTeamText = (TextView) convertView
+                        .findViewById(R.id.dateTeamText);
+                FontUtils.setCustomfont(mContext, holder.dateTeamText,
+                        FontUtils.FontTypes.ROBOTO_REGULAR);
 
-				holder.goleadoresText = (TextView) convertView
-						.findViewById(R.id.goleadoresText);
-				FontUtils.setCustomfont(mContext, holder.goleadoresText,
-						FontUtils.FontTypes.ROBOTO_REGULAR);
+                holder.goleadoresText = (TextView) convertView
+                        .findViewById(R.id.goleadoresText);
+                FontUtils.setCustomfont(mContext, holder.goleadoresText,
+                        FontUtils.FontTypes.ROBOTO_REGULAR);
 
-				holder.tarjeteadosText = (TextView) convertView
-						.findViewById(R.id.tarjeteadosText);
-				FontUtils.setCustomfont(mContext, holder.tarjeteadosText,
-						FontUtils.FontTypes.ROBOTO_REGULAR);
+                holder.tarjeteadosText = (TextView) convertView
+                        .findViewById(R.id.tarjeteadosText);
+                FontUtils.setCustomfont(mContext, holder.tarjeteadosText,
+                        FontUtils.FontTypes.ROBOTO_REGULAR);
 
-				holder.localShield = (ImageView) convertView
-						.findViewById(R.id.localShield);
-				holder.awayShield = (ImageView) convertView
-						.findViewById(R.id.awayShield);
+                holder.localShield = (ImageView) convertView
+                        .findViewById(R.id.localShield);
+                holder.awayShield = (ImageView) convertView
+                        .findViewById(R.id.awayShield);
 
-				holder.tvContainerAll = (RelativeLayout) convertView
-						.findViewById(R.id.tvContainerAll);
+                holder.tvContainerAll = (RelativeLayout) convertView
+                        .findViewById(R.id.tvContainerAll);
 
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
 
-			if (position % 2 == 0) {
-				convertView.setBackgroundColor(getResources().getColor(
-						R.color.white));
-			} else {
-				convertView.setBackgroundColor(getResources().getColor(
-						R.color.calendar_clear_gray));
-			}
+            if (position % 2 == 0) {
+                convertView.setBackgroundColor(getResources().getColor(
+                        R.color.white));
+            } else {
+                convertView.setBackgroundColor(getResources().getColor(
+                        R.color.calendar_clear_gray));
+            }
 
-			holder.leftTeamText.setText(currentMatch.getLocalTeamName());
-			holder.rightTeamText.setText(currentMatch.getAwayTeamName());
+            holder.leftTeamText.setText(currentMatch.getLocalTeamName());
+            holder.rightTeamText.setText(currentMatch.getAwayTeamName());
 
-			holder.dateTeamText.setTextColor(getResources().getColor(
-					R.color.medium_gray));
+            holder.dateTeamText.setTextColor(getResources().getColor(
+                    R.color.medium_gray));
 
-			final String resultString;
-			if (currentMatch.getState().equalsIgnoreCase(
-					Defines.MatchStates.FORPLAY)) {
-				Time date = new Time(
-						Long.valueOf(currentMatch.getDate()) * 1000);
-				holder.stateTeamText.setVisibility(View.GONE);
-				String dateString = formatterHour.format(date);
-				// if (!dateString.equalsIgnoreCase("00:00"))
-				dateString += " h";
-				// else {
-				// dateString = "  -  ";
-				// }
-				resultString = dateString;
-				holder.resultText.setText(dateString);
-				holder.resultContainer.setBackgroundColor(getResources()
-						.getColor(R.color.calendar_yellow));
-				holder.dateTeamText.setText(formatterDate.format(date));
-				paintTVs(currentMatch, holder.tvContainerAll);
-				convertView.findViewById(R.id.extraDataContent).setVisibility(
-						View.GONE);
-			} else {
-				resultString = String
-						.valueOf(currentMatch.getMarkerLocalTeam())
-						+ " - "
-						+ String.valueOf(currentMatch.getMarkerAwayTeam());
-				holder.stateTeamText.setVisibility(View.VISIBLE);
-				holder.stateTeamText.setText(DatabaseDAO.getInstance(mContext)
-						.getStatus(currentMatch.getStateCode()));
-				holder.resultText.setText(resultString);
-				holder.dateTeamText.setVisibility(View.GONE);
-				// Goles y tarjetas
-				String goles = "";
-				for (Gol gol : currentMatch.getGoles()) {
-					goles += gol.getMin() + "' " + gol.getPlayer() + "("
-							+ gol.getScoreBoard() + "), ";
-				}
-				String tarjetas = "";
-				for (Tarjeta tajeta : currentMatch.getTarjetasRojas()) {
-					tarjetas += tajeta.getMin() + "' " + tajeta.getPlayer()
-							+ ", ";
-				}
+            final String resultString;
+            if (currentMatch.getState().equalsIgnoreCase(
+                    Defines.MatchStates.FORPLAY)) {
+                Time date = new Time(
+                        Long.valueOf(currentMatch.getDate()) * 1000);
+                holder.stateTeamText.setVisibility(View.GONE);
+                String dateString = formatterHour.format(date);
+                // if (!dateString.equalsIgnoreCase("00:00"))
+                dateString += " h";
+                // else {
+                // dateString = "  -  ";
+                // }
+                resultString = dateString;
+                holder.resultText.setText(dateString);
+                holder.resultContainer.setBackgroundColor(getResources()
+                        .getColor(R.color.calendar_yellow));
+                holder.dateTeamText.setText(formatterDate.format(date));
+                paintTVs(currentMatch, holder.tvContainerAll);
+                convertView.findViewById(R.id.extraDataContent).setVisibility(
+                        View.GONE);
+            } else {
+                resultString = String
+                        .valueOf(currentMatch.getMarkerLocalTeam())
+                        + " - "
+                        + String.valueOf(currentMatch.getMarkerAwayTeam());
+                holder.stateTeamText.setVisibility(View.VISIBLE);
+                holder.stateTeamText.setText(DatabaseDAO.getInstance(mContext)
+                        .getStatus(currentMatch.getStateCode()));
+                holder.resultText.setText(resultString);
+                holder.dateTeamText.setVisibility(View.GONE);
+                // Goles y tarjetas
+                String goles = "";
+                for (Gol gol : currentMatch.getGoles()) {
+                    goles += gol.getMin() + "' " + gol.getPlayer() + "("
+                            + gol.getScoreBoard() + "), ";
+                }
+                String tarjetas = "";
+                for (Tarjeta tajeta : currentMatch.getTarjetasRojas()) {
+                    tarjetas += tajeta.getMin() + "' " + tajeta.getPlayer()
+                            + ", ";
+                }
 
-				if (goles.equalsIgnoreCase("") && tarjetas.equalsIgnoreCase("")) {
-					convertView.findViewById(R.id.extraDataContent)
-							.setVisibility(View.GONE);
-				} else {
-					convertView.findViewById(R.id.extraDataContent)
-							.setVisibility(View.VISIBLE);
-					if (!goles.equalsIgnoreCase("")) {
-						goles = goles.substring(0, goles.length() - 2);
-						holder.goleadoresText.setText(goles);
-						convertView.findViewById(R.id.golesContent)
-								.setVisibility(View.VISIBLE);
-					} else {
-						convertView.findViewById(R.id.golesContent)
-								.setVisibility(View.GONE);
-					}
+                if (goles.equalsIgnoreCase("") && tarjetas.equalsIgnoreCase("")) {
+                    convertView.findViewById(R.id.extraDataContent)
+                            .setVisibility(View.GONE);
+                } else {
+                    convertView.findViewById(R.id.extraDataContent)
+                            .setVisibility(View.VISIBLE);
+                    if (!goles.equalsIgnoreCase("")) {
+                        goles = goles.substring(0, goles.length() - 2);
+                        holder.goleadoresText.setText(goles);
+                        convertView.findViewById(R.id.golesContent)
+                                .setVisibility(View.VISIBLE);
+                    } else {
+                        convertView.findViewById(R.id.golesContent)
+                                .setVisibility(View.GONE);
+                    }
 
-					if (!tarjetas.equalsIgnoreCase("")) {
-						tarjetas = tarjetas.substring(0, tarjetas.length() - 2);
-						holder.tarjeteadosText.setText(tarjetas);
-						convertView.findViewById(R.id.tarjetasContent)
-								.setVisibility(View.VISIBLE);
-					} else {
-						convertView.findViewById(R.id.tarjetasContent)
-								.setVisibility(View.GONE);
-					}
-				}
-				// Goles y tarjetas
-				if (currentMatch.getState().equalsIgnoreCase(
-						Defines.MatchStates.PLAYING)) {
-					holder.resultContainer.setBackgroundColor(getResources()
-							.getColor(R.color.calendar_red));
-					paintTVs(currentMatch, holder.tvContainerAll);
-				} else if (currentMatch.getState().equalsIgnoreCase(
-						Defines.MatchStates.PLAYED)) {
-					holder.resultContainer.setBackgroundColor(getResources()
-							.getColor(R.color.calendar_gray));
-					holder.tvContainerAll.setVisibility(View.GONE);
-				}
-			}
+                    if (!tarjetas.equalsIgnoreCase("")) {
+                        tarjetas = tarjetas.substring(0, tarjetas.length() - 2);
+                        holder.tarjeteadosText.setText(tarjetas);
+                        convertView.findViewById(R.id.tarjetasContent)
+                                .setVisibility(View.VISIBLE);
+                    } else {
+                        convertView.findViewById(R.id.tarjetasContent)
+                                .setVisibility(View.GONE);
+                    }
+                }
+                // Goles y tarjetas
+                if (currentMatch.getState().equalsIgnoreCase(
+                        Defines.MatchStates.PLAYING)) {
+                    holder.resultContainer.setBackgroundColor(getResources()
+                            .getColor(R.color.calendar_red));
+                    paintTVs(currentMatch, holder.tvContainerAll);
+                } else if (currentMatch.getState().equalsIgnoreCase(
+                        Defines.MatchStates.PLAYED)) {
+                    holder.resultContainer.setBackgroundColor(getResources()
+                            .getColor(R.color.calendar_gray));
+                    holder.tvContainerAll.setVisibility(View.GONE);
+                }
+            }
 
-			final int idLocal;
-			String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
-			if (shield!= null && shield.length()>0) {
-				idLocal = DrawableUtils.getDrawableId(mContext,shield, 4);
-			} else {
-				idLocal = R.drawable.escudo_generico_size03;
-			}
+            final int idLocal;
+            String shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getLocalId());
+            if (shield != null && shield.length() > 0) {
+                idLocal = DrawableUtils.getDrawableId(mContext, shield, 4);
+            } else {
+                idLocal = R.drawable.escudo_generico_size03;
+            }
 
-			if (idLocal!=0)
-				holder.localShield.setBackgroundResource(idLocal);
+            if (idLocal != 0)
+                holder.localShield.setBackgroundResource(idLocal);
 
-			final int idAway;
-			shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
-			if (shield!= null && shield.length()>0) {
-				idAway = DrawableUtils.getDrawableId(mContext,shield, 4);
-			} else {
-				idAway = R.drawable.escudo_generico_size03;
-			}
+            final int idAway;
+            shield = DatabaseDAO.getInstance(mContext).getTeamGridShield(currentMatch.getAwayId());
+            if (shield != null && shield.length() > 0) {
+                idAway = DrawableUtils.getDrawableId(mContext, shield, 4);
+            } else {
+                idAway = R.drawable.escudo_generico_size03;
+            }
 
-			if (idAway!=0)
-				holder.awayShield.setBackgroundResource(idAway);
+            if (idAway != 0)
+                holder.awayShield.setBackgroundResource(idAway);
 
-			holder.centerContainer.setTag(currentMatch);
-			convertView.setOnClickListener(new OnClickListener() {
+            holder.centerContainer.setTag(currentMatch);
+            convertView.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					goToMatch((Match) v.findViewById(R.id.centerContainer)
-							.getTag(), idLocal, idAway, resultString);
+                @Override
+                public void onClick(View v) {
+                    goToMatch((Match) v.findViewById(R.id.centerContainer)
+                            .getTag(), idLocal, idAway, resultString);
 
-				}
-			});
+                }
+            });
 
-			return convertView;
-		}
+            return convertView;
+        }
 
-	}
+    }
 
-	static class ViewHolder {
+    static class ViewHolder {
 
-		public TextView tarjeteadosText;
-		public TextView goleadoresText;
-		public View container;
-		public TextView stateTeamText;
-		public View resultContainer;
-		public View centerContainer;
-		public TextView resultText;
-		public RelativeLayout tvContainerAll;
-		public TextView dateTeamText;
-		public TextView leftTeamText;
-		public TextView rightTeamText;
-		public ImageView localShield;
-		public ImageView awayShield;
+        public TextView tarjeteadosText;
+        public TextView goleadoresText;
+        public View container;
+        public TextView stateTeamText;
+        public View resultContainer;
+        public View centerContainer;
+        public TextView resultText;
+        public RelativeLayout tvContainerAll;
+        public TextView dateTeamText;
+        public TextView leftTeamText;
+        public TextView rightTeamText;
+        public ImageView localShield;
+        public ImageView awayShield;
 
-	}
+    }
 
 }

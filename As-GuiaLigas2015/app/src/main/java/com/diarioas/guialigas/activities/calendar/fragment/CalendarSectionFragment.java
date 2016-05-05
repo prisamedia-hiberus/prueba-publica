@@ -168,7 +168,7 @@ public class CalendarSectionFragment extends SectionFragment implements
 			} else {
 				calendarAdapter.setNewFragments(fragments);
 			}
-			//callToOmniture(0);
+			callToOmniture(0);
 			daysViewPager.setCurrentItem(currentDay, true);
 
 			
@@ -372,8 +372,8 @@ public class CalendarSectionFragment extends SectionFragment implements
 				FileUtils.readOmnitureProperties(mContext, "SECTION_CALENDAR"),
 				dayName,
 				null,
-                FileUtils.readOmnitureProperties(mContext, "TYPE_PORTADA"),
-				FileUtils.readOmnitureProperties(mContext, "DETAILPAGE_DETALLE") + " " + FileUtils.readOmnitureProperties(mContext, "SECTION_CALENDAR") + " " + dayName,
+                null,
+				null,
 				null);
 	}
 

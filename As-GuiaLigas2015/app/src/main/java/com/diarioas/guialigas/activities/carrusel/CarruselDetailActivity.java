@@ -567,20 +567,11 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 	}
 
 	private void callToOmniture(int pos) {
-
 		comeFromCalendar = getIntent().getExtras().getBoolean("comeFromCalendar");
-
-		String section = "";
-		if (comeFromCalendar) {
-			section = FileUtils.readOmnitureProperties(this, "SECTION_CALENDAR");
-		}else {
-			section = FileUtils.readOmnitureProperties(this, "SECTION_CARROUSEL");
-		}
-
 		String theme = "";
 		if (details.get(pos) == "Resumen"){
-			theme = "previa";
-		}else if (details.get(pos) == "Retransmision") {
+			theme = "resumen";
+		}else if (details.get(pos) == "En Directo") {
 			theme = "directo";
 		} else if (details.get(pos) == "Picas") {
 			theme = "picas";
@@ -592,18 +583,12 @@ public class CarruselDetailActivity extends GeneralFragmentActivity implements
 
 		StatisticsDAO.getInstance(this).sendStatisticsState(
 				getApplication(),
-				RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase(),
-				section,
-				match.getLocalTeamName() + " " + match.getAwayTeamName(),
+                FileUtils.readOmnitureProperties(this, "SECTION_CARROUSEL"),
 				theme,
-                FileUtils.readOmnitureProperties(this, "TYPE_ARTICLE"),
-                FileUtils.readOmnitureProperties(this, "DETAILPAGE_DETALLE") + " " + RemoteDataDAO.getInstance(this).getGeneralSettings().getCurrentCompetition().getName().toLowerCase() + " " +
-						section + " " + match.getLocalTeamName() + " " +
-						match.getAwayTeamName() + " " + theme,
-				/*Omniture.SECTION_CARROUSEL + " "
-						+ getIntent().getExtras().getString("dayName") + " "
-						+ match.getLocalTeamName() + match.getAwayTeamName()
-						+ " " + details.get(pos)*/
+				null,
+				null,
+                null,
+                match.getLocalTeamName() + " " + match.getAwayTeamName(),
 				null);
 	}
 

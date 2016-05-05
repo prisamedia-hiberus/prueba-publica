@@ -25,6 +25,8 @@ import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOSpadesListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 
@@ -250,5 +252,6 @@ public class CarruselSpadesFragment extends CarruselFragment implements
 		CarruselDAO.getInstance(mContext).removeSpadesListener(this);
 		stopAnimation();
 	}
+
 
 }

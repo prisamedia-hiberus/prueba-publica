@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,9 +27,11 @@ import com.diarioas.guialigas.dao.reader.CarruselDAO;
 import com.diarioas.guialigas.dao.reader.CarruselDAO.CarruselDAOGameSystemListener;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
+import com.diarioas.guialigas.dao.reader.StatisticsDAO;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.CarruselEventos;
 import com.diarioas.guialigas.utils.DimenUtils;
+import com.diarioas.guialigas.utils.FileUtils;
 import com.diarioas.guialigas.utils.FontUtils;
 import com.diarioas.guialigas.utils.FontUtils.FontTypes;
 import com.diarioas.guialigas.utils.scroll.CustomScrollView;
@@ -63,11 +66,12 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		return generalView;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.Fragment#onDestroyView()
-	 */
+
+    /*
+         * (non-Javadoc)
+         *
+         * @see android.support.v4.app.Fragment#onDestroyView()
+         */
 	@Override
 	public void onDestroyView() {
 		// TODO Auto-generated method stub
@@ -777,5 +781,6 @@ public class CarruselGameSystemFragment extends CarruselFragment implements
 		stopAnimation();
 
 	}
+
 
 }
