@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -170,7 +171,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_LigaBBVA.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-05T00:00:00Z</date>
+			<date>2015-08-05T00:00:00Z</date>
 		</dict>
 
 		<key>7</key>
@@ -184,7 +185,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_ligaadelante.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-05T00:00:00Z</date>
+			<date>2015-08-05T00:00:00Z</date>
 		</dict>
 
 		<key>13</key>
@@ -198,7 +199,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-08T00:00:00Z</date>
+			<date>2015-08-08T00:00:00Z</date>
 		</dict>
 
 		<key>12</key>
@@ -212,9 +213,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-08T00:00:00Z</date>
+			<date>2015-08-08T00:00:00Z</date>
 		</dict>
-<!--
+
 		<key>107</key>
 		<dict>
 			<key>order</key>
@@ -226,8 +227,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_copa.png</string>
 			<key>conFileTimestamp</key>
-			<date>2054-08-01T00:00:00Z</date>
-		</dict>-->
+			<date>2015-09-01T00:00:00Z</date>
+		</dict>
+
 		<key>9</key>
 		<dict>
 			<key>order</key>
@@ -239,7 +241,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-16T00:00:00Z</date>
+			<date>2015-08-16T00:00:00Z</date>
 		</dict>
 		<key>8</key>
 		<dict>
@@ -252,7 +254,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-01T00:00:00Z</date>
+			<date>2015-08-01T00:00:00Z</date>
 		</dict>
 		<key>5</key>
 		<dict>
@@ -265,7 +267,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-04T00:00:00Z</date>
+			<date>2015-08-04T00:00:00Z</date>
 		</dict>
 		<key>6</key>
 		<dict>
@@ -291,7 +293,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-01T00:00:00Z</date>
+			<date>2015-08-01T00:00:00Z</date>
 		</dict>
 		<key>4</key>
 		<dict>
@@ -304,7 +306,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-01T00:00:00Z</date>
+			<date>2015-08-01T00:00:00Z</date>
 		</dict>
 		<key>11</key>
 		<dict>
@@ -317,8 +319,23 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-08-01T00:00:00Z</date>
+			<date>2015-08-01T00:00:00Z</date>
 		</dict>
+
+		<key>17</key>
+		<dict>
+			<key>order</key>
+			<string>13</string>
+			<key>description</key>
+			<string>Eurocopa 2016</string>
+			<key>confFileURL</key>
+			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia-eurocopa.xml</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_euro16.png</string>
+			<key>conFileTimestamp</key>
+			<date>2016-05-18T00:00:00Z</date>
+		</dict>
+
 		<!--<key>2</key>
 		<dict>
 			<key>order</key>
@@ -330,7 +347,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_libertadores.png</string>
 			<key>conFileTimestamp</key>
-			<date>2014-07-23T00:00:02Z</date>
+			<date>2015-07-23T00:00:02Z</date>
 		</dict>-->
 	</dict>
 

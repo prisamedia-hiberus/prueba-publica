@@ -99,9 +99,6 @@ public class AsyncLoadLocalFeedXML extends
 
 		for (Competition competition : competitions) {
 
-			if(competition.getId() == 13){
-				competitions.remove(competition);
-			}
 			// Si la fecha de actualizacion del fichero es mayor, se actualiza
 			if (DatabaseDAO.getInstance(appContext).getCompetition(
 					competition.getId()) == null

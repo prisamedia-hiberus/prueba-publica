@@ -58,7 +58,6 @@ public class Defines {
 	}
 
 	public static final int NUM_MAX_TVS = 4;
-	public static String URL_REMOTE_CONFIG_FILE = "http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia.xml";
 
 	public static interface MatchStats {
 		public static final String POS_GOLES_ENCAJADOS = "GolesEnc";
