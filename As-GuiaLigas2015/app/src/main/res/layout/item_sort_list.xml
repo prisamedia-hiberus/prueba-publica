@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:contentDescription="@string/defualt"
             android:scaleType="centerCrop"
-            android:src="@drawable/sliding_logo_ligabbva" />
+            android:src="@drawable/sliding_logo_laligasantander" />
 
         <ImageView
             android:id="@+id/imageReordering"
