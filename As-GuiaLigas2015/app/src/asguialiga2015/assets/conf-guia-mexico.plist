@@ -90,20 +90,20 @@
 					</dict>
 				</dict>
 
-				<key>4252</key>
+				<key>4282</key>
 		  		<dict>
 					<key>name</key>
-					<string>Dorados de Sinaloa</string>
+					<string>Necaxa</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/260/4252/equipo.js2</string>
+					<string>/fichas/equipo/290/4282/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_doradossinaloa_size02.png</string>
+						<string>escudo_necaxa_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_doradossinaloa_size03.png</string>
+						<string>escudo_necaxa_size03.png</string>
 						<key>detail</key>
-						<string>escudo_doradossinaloa_size01.png</string>
+						<string>escudo_necaxa_size01.png</string>
 					</dict>
 				</dict>
 
@@ -351,7 +351,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/d2daf63468f305d06d160e5cfbacca63/calendario.js2</string>
+			<string>/calendario/06907945b5072894b09503c9c3bb0a84/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/mexico_apertura/2015/calendario/</string>
 			<key>viewType</key>
@@ -365,7 +365,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/d2daf63468f305d06d160e5cfbacca63/clasificacion_regular.js2</string>
+				<string>/clasificacion/06907945b5072894b09503c9c3bb0a84/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -376,7 +376,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/d2daf63468f305d06d160e5cfbacca63/carrusel.js2</string>
+			<string>/carrusel/06907945b5072894b09503c9c3bb0a84/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -400,7 +400,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -409,7 +409,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>

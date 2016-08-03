@@ -41,54 +41,54 @@
 					</dict>
 				</dict>
 
-				<key>658</key>
+				<key>98989898</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cornellà</string>
+					<string>Villanovense</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/159/658/equipo.js2</string>
+					<string></string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cornella_size02.png</string>
+						<string></string>
 						<key>calendar</key>
-						<string>escudo_cornella_size03.png</string>
+						<string></string>
 						<key>detail</key>
-						<string>escudo_cornella_size01.png</string>
+						<string></string>
 					</dict>
 				</dict>
 
-				<key>244</key>
+				<key>485</key>
 		  		<dict>
 					<key>name</key>
-					<string>L'Hospitalet</string>
+					<string>Ponferradina</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/244/244/equipo.js2</string>
+					<string>/fichas/equipo/485/485/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_hospitalet_size02.png</string>
+						<string>escudo_ponferradina_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_hospitalet_size03.png</string>
+						<string>escudo_ponferradina_size03.png</string>
 						<key>detail</key>
-						<string>escudo_hospitalet_size01.png</string>
+						<string>escudo_ponferradina_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>676</key>
+				<key>180</key>
 		  		<dict>
 					<key>name</key>
-					<string>Alcoyano</string>
+					<string>Barakaldo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/177/676/equipo.js2</string>
+					<string>/fichas/equipo/180/180/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_alcoyano_size02.png</string>
+						<string>escudo_barakaldo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_alcoyano_size03.png</string>
+						<string>escudo_barakaldo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_alcoyano_size01.png</string>
+						<string>escudo_barakaldo_size01.png</string>
 					</dict>
 				</dict>
 
@@ -109,64 +109,60 @@
 					</dict>
 				</dict>
 
-				<key>14</key>
+				<key>969696</key>
 		  		<dict>
 					<key>name</key>
-					<string>Oviedo</string>
+					<string>Reus</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/014/14/equipo.js2</string>
+					<string></string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_oviedo_size02.png</string>
+						<string></string>
 						<key>calendar</key>
-						<string>escudo_oviedo_size03.png</string>
+						<string></string>
 						<key>detail</key>
-						<string>escudo_oviedo_size01.png</string>
+						<string></string>
 					</dict>
 				</dict>
 
-				<key>163</key>
+				<key>97979797</key>
 		  		<dict>
 					<key>name</key>
-					<string>Sabadell</string>
+					<string>UD Logroñés</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/163/163/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/163.xml</string>
+					<string></string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_sabadell_size02.png</string>
+						<string></string>
 						<key>calendar</key>
-						<string>escudo_sabadell_size03.png</string>
+						<string></string>
 						<key>detail</key>
-						<string>escudo_sabadell_size01.png</string>
+						<string></string>
 					</dict>
 				</dict>
 
 				<!-- segunda -->
 
-				<key>4</key>
+				<key>95959595</key>
 		  		<dict>
 					<key>name</key>
-					<string>Alavés</string>
+					<string>RB Linense</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/004/4/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/4.xml</string>
+					<string></string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_alaves_size02.png</string>
+						<string></string>
 						<key>calendar</key>
-						<string>escudo_alaves_size03.png</string>
+						<string></string>
 						<key>detail</key>
-						<string>escudo_alaves_size01.png</string>
+						<string></string>
 					</dict>
 				</dict>
 
-		    	<key>8</key>
+		    <key>8</key>
 		    	<dict>
 					<key>name</key>
 					<string>Espanyol</string>
@@ -185,22 +181,20 @@
 					</dict>
 				</dict>
 
-				<key>103</key>
+				<key>76</key>
 		  		<dict>
 					<key>name</key>
-					<string>Albacete</string>
+					<string>Sporting</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/103/103/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/103.xml</string>
+					<string>/fichas/equipo/076/76/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_albacete_size02.png</string>
+						<string>escudo_sporting_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_albacete_size03.png</string>
+						<string>escudo_sporting_size03.png</string>
 						<key>detail</key>
-						<string>escudo_albacete_size01.png</string>
+						<string>escudo_sporting_size01.png</string>
 					</dict>
 				</dict>
 
@@ -244,46 +238,42 @@
 
 			<!-- primera -->
 
-				<key>342</key>
-				<dict>
-					<key>name</key>
-					<string>Córdoba</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/342/342/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/19.xml</string>
-					<key>shields</key>
+				<key>132</key>
 					<dict>
-						<key>grid</key>
-						<string>escudo_cordoba_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_cordoba_size03.png</string>
-						<key>detail</key>
-						<string>escudo_cordoba_size01.png</string>
-					</dict>
+						<key>name</key>
+						<string>Leganés</string>
+						<key>teamWS</key>
+						<string>/fichas/equipo/132/132/equipo.js2</string>
+						<key>shields</key>
+						<dict>
+							<key>grid</key>
+							<string>escudo_leganes_size02.png</string>
+							<key>calendar</key>
+							<string>escudo_leganes_size03.png</string>
+							<key>detail</key>
+							<string>escudo_leganes_size01.png</string>
+						</dict>
 				</dict>
 
-				<key>18</key>
-				<dict>
+				<key>3375</key>
+					<dict>
 					<key>name</key>
-					<string>Valladolid</string>
+					<string>Llagostera</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/018/18/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/18.xml</string>
+					<string>/fichas/equipo/381/3375/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_valladolid_size02.png</string>
+						<string>escudo_llagostera_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_valladolid_size03.png</string>
+						<string>escudo_llagostera_size03.png</string>
 						<key>detail</key>
-						<string>escudo_valladolid_size01.png</string>
+						<string>escudo_llagostera_size01.png</string>
 					</dict>
 				</dict>
 
 				<key>17</key>
-				<dict>
+					<dict>
 					<key>name</key>
 					<string>Valencia</string>
 					<key>teamWS</key>
@@ -302,7 +292,7 @@
 				</dict>
 
 				<key>53</key>
-				<dict>
+					<dict>
 					<key>name</key>
 					<string>Sevilla</string>
 					<key>teamWS</key>
@@ -321,7 +311,7 @@
 				</dict>
 
 				<key>16</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Real Sociedad</string>
 					<key>teamWS</key>
@@ -340,7 +330,7 @@
 				</dict>
 
 				<key>1</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Real Madrid</string>
 					<key>teamWS</key>
@@ -359,7 +349,7 @@
 				</dict>
 
 				<key>2</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Rayo</string>
 					<key>teamWS</key>
@@ -378,7 +368,7 @@
 				</dict>
 
 				<key>7</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Deportivo</string>
 					<key>teamWS</key>
@@ -397,7 +387,7 @@
 				</dict>
 
 				<key>10</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Málaga</string>
 					<key>teamWS</key>
@@ -416,7 +406,7 @@
 				</dict>
 
 				<key>136</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Levante</string>
 					<key>teamWS</key>
@@ -435,7 +425,7 @@
 				</dict>
 
 				<key>347</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Granada</string>
 					<key>teamWS</key>
@@ -454,7 +444,7 @@
 				</dict>
 
 				<key>172</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Getafe</string>
 					<key>teamWS</key>
@@ -472,46 +462,25 @@
 					</dict>
 				</dict>
 
-				<key>8</key>
-				<dict>
+				<key>843</key>
+				 <dict>
 					<key>name</key>
-					<string>Espanyol</string>
+					<string>Mirandés</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/008/8/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/8.xml</string>
+					<string>/fichas/equipo/344/843/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_espanyol_size02.png</string>
+						<string>escudo_mirandes_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_espanyol_size03.png</string>
+						<string>escudo_mirandes_size03.png</string>
 						<key>detail</key>
-						<string>escudo_espanyol_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>121</key>
-				<dict>
-					<key>name</key>
-					<string>Elche</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/121/121/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/121.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_elche_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_elche_size03.png</string>
-						<key>detail</key>
-						<string>escudo_elche_size01.png</string>
+						<string>escudo_mirandes_size01.png</string>
 					</dict>
 				</dict>
 
 				<key>6</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Celta</string>
 					<key>teamWS</key>
@@ -530,7 +499,7 @@
 				</dict>
 
 				<key>171</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Betis</string>
 					<key>teamWS</key>
@@ -549,7 +518,7 @@
 				</dict>
 
 				<key>3</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Barcelona</string>
 					<key>teamWS</key>
@@ -568,7 +537,7 @@
 				</dict>
 
 				<key>5</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Athletic</string>
 					<key>teamWS</key>
@@ -587,7 +556,7 @@
 				</dict>
 
 				<key>85</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Almería</string>
 					<key>teamWS</key>
@@ -606,7 +575,7 @@
 				</dict>
 
 				<key>42</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Atlético de Madrid</string>
 					<key>teamWS</key>
@@ -625,7 +594,7 @@
 				</dict>
 
 				<key>19</key>
-				<dict>
+				 <dict>
 					<key>name</key>
 					<string>Villarreal</string>
 					<key>teamWS</key>
@@ -666,7 +635,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/4e5de9f7e66a77a80c9e091f9e98b34a/calendario.js2</string>
+			<string>/calendario/2f20e04bc699cd5610e185d365602b08/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/copa_del_rey/</string>
 			<key>viewType</key>
@@ -680,7 +649,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/4e5de9f7e66a77a80c9e091f9e98b34a/clasificacion_regular.js2</string>
+				<string>/clasificacion/2f20e04bc699cd5610e185d365602b08/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -691,7 +660,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/4e5de9f7e66a77a80c9e091f9e98b34a/carrusel.js2</string>
+			<string>/carrusel/2f20e04bc699cd5610e185d365602b08/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -715,6 +684,16 @@
 			<key>available</key>
 			<true/>
 		</dict>
+		<!-- <dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
+			<key>available</key>
+			<true/>
+		</dict> -->
 	</array>
 </dict>
 </plist>

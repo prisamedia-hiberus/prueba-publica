@@ -702,7 +702,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -711,7 +711,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>

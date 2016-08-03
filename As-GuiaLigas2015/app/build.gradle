@@ -76,7 +76,7 @@ android {
         asguialiga2015{
             applicationId "com.diarioas.guialigas"
             resValue "string", "authority", applicationId
-            buildConfigField "String", "URL_REMOTE_CONFIG_FILE", "\"http://as.com/apps/guia_de_la_liga/config/v2.x/v2.1/conf-guia.xml\""
+            buildConfigField "String", "URL_REMOTE_CONFIG_FILE", "\"http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia.xml\""
             buildConfigField "String", "TEAM_IMAGE_PREFIX", "\"escudo_\""
             buildConfigField "String", "AD_KEY", "\"/7811748/as_guialiga_app/android/\""
             buildConfigField "boolean", "SINGLE_COMPETITION", "false"

@@ -22,20 +22,20 @@
 			<key>teams</key>
 			<dict>
 
-				<key>55</key>
+				<key>1441</key>
 		  		<dict>
 					<key>name</key>
-					<string>Aston Villa</string>
+					<string>Hull City</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/055/55/equipo.js2</string>
+					<string>/fichas/equipo/443/1441/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_aston_villa_size02.png</string>
+						<string>escudo_hull_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_aston_villa_size03.png</string>
+						<string>escudo_hull_size02.png</string>
 						<key>detail</key>
-						<string>escudo_aston_villa_size01.png</string>
+						<string>escudo_hull_size01.png</string>
 					</dict>
 				</dict>
 
@@ -124,20 +124,20 @@
 					</dict>
 				</dict>
 
-				<key>1044</key>
+				<key>68</key>
 		  		<dict>
 					<key>name</key>
-					<string>Norwich City</string>
+					<string>Middlesbrough</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/046/1044/equipo.js2</string>
+					<string>/fichas/equipo/068/68/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_norwich_size02.png</string>
+						<string>escudo_middlesbrough_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_norwich_size03.png</string>
+						<string>escudo_middlesbrough_size03.png</string>
 						<key>detail</key>
-						<string>escudo_norwich_size01.png</string>
+						<string>escudo_middlesbrough_size01.png</string>
 					</dict>
 				</dict>
 
@@ -209,20 +209,20 @@
 					</dict>
 				</dict>
 
-				<key>69</key>
+				<key>1029</key>
 		  		<dict>
 					<key>name</key>
-					<string>Newcastle</string>
+					<string>Burnley</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/069/69/equipo.js2</string>
+					<string>/fichas/equipo/031/1029/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_newcastle_size02.png</string>
+						<string>escudo_burnley_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_newcastle_size03.png</string>
+						<string>escudo_burnley_size03.png</string>
 						<key>detail</key>
-						<string>escudo_newcastle_size01.png</string>
+						<string>escudo_burnley_size01.png</string>
 					</dict>
 				</dict>
 
@@ -398,7 +398,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/0a989f5ad157ecb66308b35a2dc9d56c/calendario.js2</string>
+			<string>/calendario/9078f2fb0d17e449d2b7611256fb6619/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/inglaterra/</string>
 			<key>viewType</key>
@@ -412,7 +412,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/0a989f5ad157ecb66308b35a2dc9d56c/clasificacion_regular.js2</string>
+				<string>/clasificacion/9078f2fb0d17e449d2b7611256fb6619/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -423,7 +423,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/0a989f5ad157ecb66308b35a2dc9d56c/carrusel.js2</string>
+			<string>/carrusel/9078f2fb0d17e449d2b7611256fb6619/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -447,7 +447,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -456,7 +456,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>
