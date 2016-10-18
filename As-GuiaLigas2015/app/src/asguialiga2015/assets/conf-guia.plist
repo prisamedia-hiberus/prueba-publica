@@ -27,7 +27,7 @@
 	<dict>
 		<!-- url  de imagenes -->
 		<key>imageURLPrefix</key>
-		<string>http://as02.epimg.net/</string>
+		<string>http://as.com/</string>
 		<!-- url  de videos -->
 		<key>videoURLPrefix</key>
 		<string>http://as02.epimg.net/</string>
@@ -171,7 +171,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_laligasantander.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:00Z</date>
+			<date>2015-10-05T00:00:10Z</date>
 		</dict>
 
 		<key>7</key>
@@ -179,15 +179,15 @@
 			<key>order</key>
 			<string>2</string>
 			<key>description</key>
-			<string>LaLiga 123</string>
+			<string>LaLiga 1|2|3</string>
 			<key>confFileURL</key>
 			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-segunda.xml</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_laliga123.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:10Z</date>
+			<date>2015-09-03T00:00:00Z</date>
 		</dict>
-<!--
+
 		<key>13</key>
 		<dict>
 			<key>order</key>
@@ -199,7 +199,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2015-08-28T00:01:00Z</date>
 		</dict>
 
 		<key>12</key>
@@ -213,9 +213,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2015-08-30T00:00:00Z</date>
 		</dict>
-
+<!--
 		<key>107</key>
 		<dict>
 			<key>order</key>
@@ -311,7 +311,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:00Z</date>
+			<date>2015-08-03T00:00:00Z</date>
 		</dict>
 
 		<key>11</key>
@@ -327,7 +327,7 @@
 			<key>conFileTimestamp</key>
 			<date>2015-08-02T00:00:00Z</date>
 		</dict>
-
+<!--
 		<key>17</key>
 		<dict>
 			<key>order</key>
@@ -341,7 +341,7 @@
 			<key>conFileTimestamp</key>
 			<date>2015-06-30T00:00:01Z</date>
 		</dict>
-
+-->
 
 		<!--<key>2</key>
 		<dict>

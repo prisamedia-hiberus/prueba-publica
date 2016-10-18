@@ -638,6 +638,16 @@
 			<key>available</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>Apuesta en bet365</string>
+			<key>urlWV</key>
+			<string>http://www.bet365.es</string>
+			<key>viewType</key>
+			<string>external_view</string>
+			<key>available</key>
+			<true/>
+		</dict>
 	</array>
 </dict>
 </plist>

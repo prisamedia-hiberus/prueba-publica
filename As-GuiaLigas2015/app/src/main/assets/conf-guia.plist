@@ -27,7 +27,7 @@
 	<dict>
 		<!-- url  de imagenes -->
 		<key>imageURLPrefix</key>
-		<string>http://as02.epimg.net/</string>
+		<string>http://as.com/</string>
 		<!-- url  de videos -->
 		<key>videoURLPrefix</key>
 		<string>http://as02.epimg.net/</string>
@@ -171,7 +171,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_laligasantander.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2015-10-05T00:00:10Z</date>
 		</dict>
 
 		<key>7</key>
@@ -179,15 +179,15 @@
 			<key>order</key>
 			<string>2</string>
 			<key>description</key>
-			<string>LaLiga 123</string>
+			<string>LaLiga 1|2|3</string>
 			<key>confFileURL</key>
 			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-segunda.xml</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_laliga123.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:10Z</date>
+			<date>2015-09-03T00:00:00Z</date>
 		</dict>
-<!--
+
 		<key>13</key>
 		<dict>
 			<key>order</key>
@@ -199,7 +199,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-08-28T00:01:00Z</date>
 		</dict>
 
 		<key>12</key>
@@ -213,9 +213,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-08-30T00:00:00Z</date>
 		</dict>
-
+<!--
 		<key>107</key>
 		<dict>
 			<key>order</key>
@@ -227,7 +227,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_copa.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-06-30T00:00:00Z</date>
 		</dict>
 -->
 		<key>9</key>
@@ -241,7 +241,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2015-08-02T00:00:00Z</date>
 		</dict>
 
 		<key>8</key>
@@ -255,7 +255,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2015-08-02T00:00:00Z</date>
 		</dict>
 
 		<key>5</key>
@@ -269,7 +269,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>6</key>
@@ -283,7 +283,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_francia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>3</key>
@@ -297,7 +297,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2015-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>4</key>
@@ -311,7 +311,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2015-08-03T00:00:00Z</date>
 		</dict>
 
 		<key>11</key>
@@ -325,9 +325,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2015-08-02T00:00:00Z</date>
 		</dict>
-
+<!--
 		<key>17</key>
 		<dict>
 			<key>order</key>
@@ -339,9 +339,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_euro16.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:01Z</date>
+			<date>2015-06-30T00:00:01Z</date>
 		</dict>
-
+-->
 
 		<!--<key>2</key>
 		<dict>

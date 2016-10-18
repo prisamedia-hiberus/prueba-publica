@@ -73,20 +73,20 @@
 					</dict>
 				</dict>
 
-				<key>1496</key>
+				<key>477</key>
 		  		<dict>
 					<key>name</key>
-					<string>Stade de Reims</string>
+					<string>Nancy</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/498/1496/equipo.js2</string>
+					<string>/fichas/equipo/477/477/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_stade_size02.png</string>
+						<string>escudo_nancylorrain_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_stade_size03.png</string>
+						<string>escudo_nancylorrain_size03.png</string>
 						<key>detail</key>
-						<string>escudo_stade_size01.png</string>
+						<string>escudo_nancylorrain_size01.png</string>
 					</dict>
 				</dict>
 
@@ -260,37 +260,37 @@
 					</dict>
 				</dict>
 
-				<key>478</key>
+				<key>220</key>
 		  		<dict>
 					<key>name</key>
-					<string>Troyes</string>
+					<string>Metz</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/478/478/equipo.js2</string>
+					<string>/fichas/equipo/220/220/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_troyes_size02.png</string>
+						<string>escudo_metz_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_troyes_size03.png</string>
+						<string>escudo_metz_size03.png</string>
 						<key>detail</key>
-						<string>escudo_troyes_size01.png</string>
+						<string>escudo_metz_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>4242</key>
+				<key>2435</key>
 		  		<dict>
 					<key>name</key>
-					<string>Gazélec</string>
+					<string>Dijon</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/250/4242/equipo.js2</string>
+					<string>/fichas/equipo/439/2435/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_gazelec_size02.png</string>
+						<string>escudo_dijon_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_gazelec_size03.png</string>
+						<string>escudo_dijon_size03.png</string>
 						<key>detail</key>
-						<string>escudo_gazelec_size01.png</string>
+						<string>escudo_dijon_size01.png</string>
 					</dict>
 				</dict>
 
@@ -394,7 +394,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/915cb45025f65c8ab3de54b95743eb51/calendario.js2</string>
+			<string>/calendario/91390062bb4417766cfd4add6a2ac82e/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/francia/</string>
 			<key>viewType</key>
@@ -408,7 +408,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/915cb45025f65c8ab3de54b95743eb51/clasificacion_regular.js2</string>
+				<string>/clasificacion/91390062bb4417766cfd4add6a2ac82e/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -419,7 +419,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/915cb45025f65c8ab3de54b95743eb51/carrusel.js2</string>
+			<string>/carrusel/91390062bb4417766cfd4add6a2ac82e/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -443,7 +443,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -452,7 +452,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>

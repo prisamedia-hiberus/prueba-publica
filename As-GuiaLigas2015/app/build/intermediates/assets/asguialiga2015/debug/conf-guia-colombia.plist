@@ -385,9 +385,9 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/9e8722d5e0b8a5e2b5f91f9e145a114f/calendario.js2</string>
+			<string>/calendario/94fe2f71b38cac1d4bc4f4f41f681824/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/alemania/</string>
+			<string>http://resultados.as.com/resultados/futbol/colombia_ii/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -399,7 +399,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/9e8722d5e0b8a5e2b5f91f9e145a114f/clasificacion_regular.js2</string>
+				<string>/clasificacion/94fe2f71b38cac1d4bc4f4f41f681824/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -410,7 +410,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/9e8722d5e0b8a5e2b5f91f9e145a114f/carrusel.js2</string>
+			<string>/carrusel/94fe2f71b38cac1d4bc4f4f41f681824/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -434,7 +434,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -443,7 +443,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>

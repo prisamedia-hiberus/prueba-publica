@@ -1,10 +1,5 @@
 package com.diarioas.guialigas.dao.reader.parser;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import xmlwise.Plist;
-import xmlwise.XmlParseException;
 import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.carrusel.PlayerOnField;
@@ -12,7 +7,13 @@ import com.diarioas.guialigas.dao.model.team.Article;
 import com.diarioas.guialigas.dao.model.team.Staff;
 import com.diarioas.guialigas.dao.model.team.Star;
 import com.diarioas.guialigas.dao.model.team.Team;
-import com.diarioas.guialigas.utils.Defines.StaffCharge;
+import com.diarioas.guialigas.utils.Defines;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import xmlwise.Plist;
+import xmlwise.XmlParseException;
 
 public class ParsePlistTeamStatic {
 
@@ -74,23 +75,38 @@ public class ParsePlistTeamStatic {
                 team.setHistoricalPalmares(new ArrayList<String>());
             }
 
-            Staff staff;
-            // Read the staff
-            HashMap<String, HashMap<String, String>> staffPeople = (HashMap<String, HashMap<String, String>>) hashMap
-                    .get("teamStaff");
+            if (hashMap.containsKey("teamStaff")) {
 
-            if (staffPeople.containsKey(StaffCharge.MISTER)) {
-                staff = readPerson(staffPeople.get(StaffCharge.MISTER),
-                        imagePrefix);
-                staff.setCharge(StaffCharge.MISTER);
-                team.addMister(staff);
+                // Read the staff
+                HashMap<String, HashMap<String, String>> staffPeople = (HashMap<String, HashMap<String, String>>) hashMap
+                        .get("teamStaff");
+
+                if (staffPeople.containsKey(Defines.StaffCharge.MISTER)) {
+                    Staff staff = readPerson(staffPeople.get(Defines.StaffCharge.MISTER),
+                            imagePrefix);
+                    staff.setCharge(Defines.StaffCharge.MISTER);
+                    team.addMister(staff);
+                }
+                if (staffPeople.containsKey(Defines.StaffCharge.STAR)) {
+                    Staff staff = readStar(staffPeople.get(Defines.StaffCharge.STAR), dataPrefix,
+                            imagePrefix);
+                    staff.setCharge(Defines.StaffCharge.STAR);
+                    team.addStar(staff);
+                }
+                if (staffPeople.containsKey(Defines.StaffCharge.MANAGER)) {
+                    Staff staff = readPerson(staffPeople.get(Defines.StaffCharge.MANAGER),
+                            imagePrefix);
+                    staff.setCharge(Defines.StaffCharge.MANAGER);
+                    team.addManager(staff);
+                }
+                if (staffPeople.containsKey(Defines.StaffCharge.PRESIDENT)) {
+                    Staff staff = readPerson(staffPeople.get(Defines.StaffCharge.PRESIDENT),
+                            imagePrefix);
+                    staff.setCharge(Defines.StaffCharge.PRESIDENT);
+                    team.addPresident(staff);
+                }
             }
-            if (staffPeople.containsKey(StaffCharge.STAR)) {
-                staff = readStar(staffPeople.get(StaffCharge.STAR), dataPrefix,
-                        imagePrefix);
-                staff.setCharge(StaffCharge.STAR);
-                team.addStar(staff);
-            }
+
             if (hashMap.containsKey("system")) {
                 team.setGameSystem((String) hashMap.get("system"));
             }
@@ -108,6 +124,11 @@ public class ParsePlistTeamStatic {
                 team.setArticle(article);
             }
 
+            if (hashMap.containsKey("history")) {
+                team.setHistory(hashMap.get("history").toString());
+            }
+
+
             team.setStaticInfo(true);
             return team;
 
@@ -120,9 +141,16 @@ public class ParsePlistTeamStatic {
         if (person.containsKey("name"))
             staff.setName(person.get("name"));
         if (person.containsKey("photo"))
-            staff.setPhoto(imagePrefix + person.get("photo"));
+            //staff.setPhoto(imagePrefix + person.get("photo"));
+            staff.setPhoto(person.get("photo"));
         if (person.containsKey("history"))
             staff.setHistory(person.get("history"));
+
+        if (person.containsKey("bornPlace"))
+            staff.setBorn(person.get("bornPlace"));
+        if (person.containsKey("contractDuration"))
+            staff.setContract(person.get("contractDuration"));
+
 
         return staff;
     }

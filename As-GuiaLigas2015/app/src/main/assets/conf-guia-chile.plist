@@ -150,11 +150,11 @@
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_everton_size02.png</string>
+						<string>escudo_everton_vina_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_everton_size03.png</string>
+						<string>escudo_everton_vina_size03.png</string>
 						<key>detail</key>
-						<string>escudo_everton_size01.png</string>
+						<string>escudo_everton_vina_size01.png</string>
 					</dict>
 				</dict>
 

@@ -34,10 +34,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:adjustViewBounds="true"
+                        android:adjustViewBounds="false"
                         android:background="@drawable/foto_generica"
                         android:contentDescription="@string/defualt"
-                        android:scaleType="center" />
+                        android:scaleType="centerInside" />
 
                     <ImageView
                         android:layout_width="wrap_content"

@@ -394,13 +394,27 @@ public class TeamInfoFragment extends TeamFragment {
 						FontUtils.FontTypes.ROBOTO_LIGHT);
 				staffName.setText(staff.getName());
 
-				staffBorn.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_de_nacimiento),
-						staff.getBorn())));
+				if (staff.getBorn()==null) {
+                    staffBorn.setText(Html.fromHtml(getDate(
+                            getString(R.string.team_fecha_de_nacimiento),
+                            getString(R.string.data_not_available))));
+				} else {
+					staffBorn.setText(Html.fromHtml(getDate(
+							getString(R.string.team_fecha_de_nacimiento),
+							staff.getBorn())));
+				}
 
-				staffContract.setText(Html.fromHtml(getDate(
-						getString(R.string.team_fecha_del_cargo),
-						staff.getContract())));
+
+				if (staff.getContract()==null) {
+					staffContract.setText(Html.fromHtml(getDate(
+							getString(R.string.team_fecha_del_cargo),
+							getString(R.string.data_not_available))));
+				} else {
+					staffContract.setText(Html.fromHtml(getDate(
+							getString(R.string.team_fecha_del_cargo),
+							staff.getContract())));
+				}
+
 			}
 
 		} else {

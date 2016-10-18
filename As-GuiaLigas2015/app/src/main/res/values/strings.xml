@@ -103,6 +103,7 @@
     <string name="team_mister">Entrenador</string>
     <string name="team_fecha_de_nacimiento">Fecha de Nacimiento -&#160;</string>
     <string name="team_fecha_del_cargo">Fecha del Cargo -&#160;</string>
+    <string name="data_not_available">N.D.</string>
     <string name="team_goles_a_favor">Goles a favor</string>
     <string name="team_partidos_jugados">Partidos Jugados</string>
     <string name="team_tarjetas_amarillas">Tarjetas Amarillas</string>

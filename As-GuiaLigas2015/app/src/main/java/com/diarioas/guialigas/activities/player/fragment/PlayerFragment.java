@@ -125,10 +125,21 @@ public abstract class PlayerFragment extends Fragment {
 
 		String url = getArguments().getString("foto");
 
+
+
 		if (url != null) {
+
+/*
 			ImageDAO.getInstance(mContext).loadRegularImage(url,
 					((ImageView) generalView.findViewById(R.id.photoPlayer)),
-					-1, R.drawable.mask_foto, true);
+					-1, -1, true);
+*/
+
+            ImageDAO.getInstance(mContext).loadRegularImage(url,
+                    (ImageView) generalView.findViewById(R.id.photoPlayer),
+                    R.drawable.foto_generica, R.drawable.foto_generica, true);
+
+
 		}
 
 		if (!getArguments().getBoolean("isTag")) {

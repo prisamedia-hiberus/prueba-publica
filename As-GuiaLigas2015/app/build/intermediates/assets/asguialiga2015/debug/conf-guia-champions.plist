@@ -44,388 +44,6 @@
 					</dict>
 				</dict>
 
-				<key>1</key>
-		  		<dict>
-					<key>name</key>
-					<string>Real Madrid</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/001/1/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/1.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_realmadrid_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_realmadrid_size03.png</string>
-						<key>detail</key>
-						<string>escudo_realmadrid_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>288</key>
-		  		<dict>
-					<key>name</key>
-					<string>Shakhtar</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/288/288/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/288.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_shackhtar_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_shackhtar_size03.png</string>
-						<key>detail</key>
-						<string>escudo_shackhtar_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>1053</key>
-		  		<dict>
-					<key>name</key>
-					<string>Malmö</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/055/1053/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/1053.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_malmo_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_malmo_size03.png</string>
-						<key>detail</key>
-						<string>escudo_malmo_size01.png</string>
-					</dict>
-				</dict>
-
-				<!-- Grupo B -->
-
-				<key>114</key>
-		  		<dict>
-					<key>name</key>
-					<string>PSV</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/114/114/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_psv_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_psv_size03.png</string>
-						<key>detail</key>
-						<string>escudo_psv_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>67</key>
-		  		<dict>
-					<key>name</key>
-					<string>Manchester</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/067/67/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/67.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_manchester_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_manchester_size03.png</string>
-						<key>detail</key>
-						<string>escudo_manchester_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>165</key>
-		  		<dict>
-					<key>name</key>
-					<string>Cska Moscú</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/165/165/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/165.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_moscu_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_moscu_size03.png</string>
-						<key>detail</key>
-						<string>escudo_moscu_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>465</key>
-		  		<dict>
-					<key>name</key>
-					<string>Wolfsburgo</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/465/465/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_wolfsburgo_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_wolfsburgo_size03.png</string>
-						<key>detail</key>
-						<string>escudo_wolfsburgo_size01.png</string>
-					</dict>
-				</dict>
-
-				<!-- Grupo C -->
-
-				<key>44</key>
-		  		<dict>
-					<key>name</key>
-					<string>Benfica</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/044/44/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/44.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_benfica_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_benfica_size03.png</string>
-						<key>detail</key>
-						<string>escudo_benfica_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>42</key>
-		  		<dict>
-					<key>name</key>
-					<string>Atlético de Madrid</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/042/42/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/42.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_atleticomadrid_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_atleticomadrid_size03.png</string>
-						<key>detail</key>
-						<string>escudo_atleticomadrid_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>109</key>
-		  		<dict>
-					<key>name</key>
-					<string>Galatasaray</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/109/109/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/109.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_galatasaray_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_galatasaray_size03.png</string>
-						<key>detail</key>
-						<string>escudo_galatasaray_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>3219</key>
-		  		<dict>
-					<key>name</key>
-					<string>Astana</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/225/3219/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_astana_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_astana_size03.png</string>
-						<key>detail</key>
-						<string>escudo_astana_size01.png</string>
-					</dict>
-				</dict>
-
-				<!-- Grupo D -->
-
-				<key>29</key>
-		  		<dict>
-					<key>name</key>
-					<string>Juventus</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/029/29/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/29.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_juventus_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_juventus_size03.png</string>
-						<key>detail</key>
-						<string>escudo_juventus_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>66</key>
-		  		<dict>
-					<key>name</key>
-					<string>Manchester City</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/066/66/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/66.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_manchester_city_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_manchester_city_size03.png</string>
-						<key>detail</key>
-						<string>escudo_manchester_city_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>53</key>
-				<dict>
-					<key>name</key>
-					<string>Sevilla</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/053/53/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/53.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_sevilla_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_sevilla_size03.png</string>
-						<key>detail</key>
-						<string>escudo_sevilla_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>536</key>
-		  		<dict>
-					<key>name</key>
-					<string>Borussia Moenchengladbach</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/037/536/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_moenchengladbach_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_moenchengladbach_size03.png</string>
-						<key>detail</key>
-						<string>escudo_moenchengladbach_size01.png</string>
-					</dict>
-				</dict>
-
-				<!-- Grupo E -->
-
-				<key>3</key>
-		  		<dict>
-					<key>name</key>
-					<string>Barcelona</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/003/3/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/3.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_barcelona_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_barcelona_size03.png</string>
-						<key>detail</key>
-						<string>escudo_barcelona_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>169</key>
-		  		<dict>
-					<key>name</key>
-					<string>Leverkusen</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/169/169/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/169.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_bayernleverkusen_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_bayernleverkusen_size03.png</string>
-						<key>detail</key>
-						<string>escudo_bayernleverkusen_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>24</key>
-		  		<dict>
-					<key>name</key>
-					<string>Roma</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/024/24/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/24.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_roma_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_roma_size03.png</string>
-						<key>detail</key>
-						<string>escudo_roma_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>2814</key>
-		  		<dict>
-					<key>name</key>
-					<string>Bate Borisov</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/319/2814/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/2814.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_borisov_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_borisov_size03.png</string>
-						<key>detail</key>
-						<string>escudo_borisov_size01.png</string>
-					</dict>
-				</dict>
-
-				<!-- Grupo F -->
-
-				<key>170</key>
-		  		<dict>
-					<key>name</key>
-					<string>Bayern Munich</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/170/170/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/170.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_bayern_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_bayern_size03.png</string>
-						<key>detail</key>
-						<string>escudo_bayern_size01.png</string>
-					</dict>
-				</dict>
-
 				<key>54</key>
 		  		<dict>
 					<key>name</key>
@@ -445,60 +63,413 @@
 					</dict>
 				</dict>
 
-				<key>137</key>
+				<key>1458</key>
 		  		<dict>
 					<key>name</key>
-					<string>Olympiacos</string>
+					<string>Basilea</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/137/137/equipo.js2</string>
+					<string>/fichas/equipo/460/1458/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/137.xml</string>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/1458.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_olympiakos_size02.png</string>
+						<string>escudo_basilea_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_olympiakos_size03.png</string>
+						<string>escudo_basilea_size03.png</string>
 						<key>detail</key>
-						<string>escudo_olympiakos_size01.png</string>
+						<string>escudo_basilea_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>324</key>
-		  		<dict>
+				<key>3955</key>
+					<dict>
 					<key>name</key>
-					<string>D. Zagreb</string>
+					<string>Ludogorets</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/324/324/equipo.js2</string>
+					<string>/fichas/equipo/462/3955/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_dinamozagreb_size02.png</string>
+						<string>escudo_ludogorets_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_dinamozagreb_size03.png</string>
+						<string>escudo_ludogorets_size03.png</string>
 						<key>detail</key>
-						<string>escudo_dinamozagreb_size01.png</string>
+						<string>escudo_ludogorets_size01.png</string>
+					</dict>
+				</dict>
+
+			<!-- Grupo B -->
+
+			<key>331</key>
+				<dict>
+				<key>name</key>
+				<string>Dinamo Kiev</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/331/331/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_dinamokiev_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_dinamokiev_size03.png</string>
+					<key>detail</key>
+					<string>escudo_dinamokiev_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>44</key>
+				<dict>
+				<key>name</key>
+				<string>Benfica</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/044/44/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/44.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_benfica_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_benfica_size03.png</string>
+					<key>detail</key>
+					<string>escudo_benfica_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>28</key>
+				<dict>
+				<key>name</key>
+				<string>Nápoles</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/028/28/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_napoles_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_napoles_size03.png</string>
+					<key>detail</key>
+					<string>escudo_napoles_size01.png</string>
+				</dict>
+			</dict>
+
+			<!-- Grupo C -->
+
+			<key>3</key>
+				<dict>
+				<key>name</key>
+				<string>Barcelona</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/003/3/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/3.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_barcelona_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_barcelona_size03.png</string>
+					<key>detail</key>
+					<string>escudo_barcelona_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>229</key>
+				<dict>
+				<key>name</key>
+				<string>Celtic</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/229/229/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_celtic_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_celtic_size03.png</string>
+					<key>detail</key>
+					<string>escudo_celtic_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>66</key>
+				<dict>
+				<key>name</key>
+				<string>Manchester City</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/066/66/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/66.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_manchester_city_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_manchester_city_size03.png</string>
+					<key>detail</key>
+					<string>escudo_manchester_city_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>536</key>
+				<dict>
+				<key>name</key>
+				<string>Borussia Moenchengladbach</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/037/536/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_moenchengladbach_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_moenchengladbach_size03.png</string>
+					<key>detail</key>
+					<string>escudo_moenchengladbach_size01.png</string>
+				</dict>
+			</dict>
+
+			<!-- Grupo D -->
+
+			<key>170</key>
+				<dict>
+				<key>name</key>
+				<string>Bayern Munich</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/170/170/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/170.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_bayern_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_bayern_size03.png</string>
+					<key>detail</key>
+					<string>escudo_bayern_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>114</key>
+				<dict>
+				<key>name</key>
+				<string>PSV</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/114/114/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_psv_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_psv_size03.png</string>
+					<key>detail</key>
+					<string>escudo_psv_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>42</key>
+				<dict>
+				<key>name</key>
+				<string>Atlético de Madrid</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/042/42/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/42.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_atleticomadrid_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_atleticomadrid_size03.png</string>
+					<key>detail</key>
+					<string>escudo_atleticomadrid_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>4291</key>
+				<dict>
+				<key>name</key>
+				<string>Rostov</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/299/4291/equipo.js2</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_rostov_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_rostov_size03.png</string>
+					<key>detail</key>
+					<string>escudo_rostov_size01.png</string>
+				</dict>
+			</dict>
+
+			<!-- Grupo E -->
+
+			<key>169</key>
+				<dict>
+				<key>name</key>
+				<string>Leverkusen</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/169/169/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/169.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_bayernleverkusen_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_bayernleverkusen_size03.png</string>
+					<key>detail</key>
+					<string>escudo_bayernleverkusen_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>197</key>
+				<dict>
+				<key>name</key>
+				<string>Mónaco</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/197/197/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/197.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_monaco_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_monaco_size03.png</string>
+					<key>detail</key>
+					<string>escudo_monaco_size01.png</string>
+				</dict>
+			</dict>
+
+			<key>72</key>
+			<dict>
+					<key>name</key>
+					<string>Tottenham</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/072/72/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+							<key>grid</key>
+							<string>escudo_tottenham_size02.png</string>
+							<key>calendar</key>
+							<string>escudo_tottenham_size03.png</string>
+							<key>detail</key>
+							<string>escudo_tottenham_size01.png</string>
+					</dict>
+			</dict>
+
+			<key>165</key>
+				<dict>
+				<key>name</key>
+				<string>Cska Moscú</string>
+				<key>teamWS</key>
+				<string>/fichas/equipo/165/165/equipo.js2</string>
+				<key>teamInfo</key>
+				<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/165.xml</string>
+				<key>shields</key>
+				<dict>
+					<key>grid</key>
+					<string>escudo_moscu_size02.png</string>
+					<key>calendar</key>
+					<string>escudo_moscu_size03.png</string>
+					<key>detail</key>
+					<string>escudo_moscu_size01.png</string>
+				</dict>
+			</dict>
+
+			<!-- Grupo F -->
+
+				<key>1</key>
+		  		<dict>
+					<key>name</key>
+					<string>Real Madrid</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/001/1/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/1.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_realmadrid_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_realmadrid_size03.png</string>
+						<key>detail</key>
+						<string>escudo_realmadrid_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>87</key>
+		  		<dict>
+					<key>name</key>
+					<string>Borussia Dortmund</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/087/87/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/87.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_bayerdortmund_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_bayerdortmund_size03.png</string>
+						<key>detail</key>
+						<string>escudo_bayerdortmund_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>39</key>
+		  		<dict>
+					<key>name</key>
+					<string>Sp. Portugal</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/039/39/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/39.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_lisboa_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_lisboa_size03.png</string>
+						<key>detail</key>
+						<string>escudo_lisboa_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>1778</key>
+		  		<dict>
+					<key>name</key>
+					<string>Legia</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/281/1778/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_varsovia_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_varsovia_size03.png</string>
+						<key>detail</key>
+						<string>escudo_varsovia_size01.png</string>
 					</dict>
 				</dict>
 
 				<!-- Grupo G -->
 
-				<key>58</key>
+				<key>112</key>
 		  		<dict>
 					<key>name</key>
-					<string>Chelsea</string>
+					<string>Brujas</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/058/58/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/58.xml</string>
+					<string>/fichas/equipo/112/112/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_chelsea_size02.png</string>
+						<string>escudo_brujas_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_chelsea_size03.png</string>
+						<string>escudo_brujas_size03.png</string>
 						<key>detail</key>
-						<string>escudo_chelsea_size01.png</string>
+						<string>escudo_brujas_size01.png</string>
 					</dict>
 				</dict>
 
@@ -521,79 +492,41 @@
 					</dict>
 				</dict>
 
-				<key>331</key>
-		  		<dict>
+				<key>64</key>
+					<dict>
 					<key>name</key>
-					<string>Dinamo Kiev</string>
+					<string>Leicester</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/331/331/equipo.js2</string>
+					<string>/fichas/equipo/064/64/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_dinamokiev_size02.png</string>
+						<string>escudo_leicester_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_dinamokiev_size03.png</string>
+						<string>escudo_leicester_size03.png</string>
 						<key>detail</key>
-						<string>escudo_dinamokiev_size01.png</string>
+						<string>escudo_leicester_size01.png</string>
 					</dict>
 				</dict>
 
-                <key>1784</key>
-                <dict>
-                        <key>name</key>
-                        <string>M. Tel-Aviv</string>
-                        <key>teamWS</key>
-                        <string>/fichas/equipo/287/1784/equipo.js2</string>
-                        <key>shields</key>
-                        <dict>
-                            <key>grid</key>
-                            <string>escudo_maccabi_size02.png</string>
-                            <key>calendar</key>
-                            <string>escudo_maccabi_size03.png</string>
-                            <key>detail</key>
-                            <string>escudo_maccabi_size01.png</string>
-                        </dict>
-                </dict>
+				<key>294</key>
+					<dict>
+					<key>name</key>
+					<string>Copenhague</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/294/294/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_copenhague_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_copenhague_size03.png</string>
+						<key>detail</key>
+						<string>escudo_copenhague_size01.png</string>
+					</dict>
+				</dict>
 
 				<!-- Grupo H -->
-
-				<key>1575</key>
-		  		<dict>
-					<key>name</key>
-					<string>Zenit</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/078/1575/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/1575.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_zenit_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_zenit_size03.png</string>
-						<key>detail</key>
-						<string>escudo_zenit_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>17</key>
-				<dict>
-					<key>name</key>
-					<string>Valencia</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/017/17/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/17.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_valencia_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_valencia_size03.png</string>
-						<key>detail</key>
-						<string>escudo_valencia_size01.png</string>
-					</dict>
-				</dict>
 
 				<key>106</key>
 		  		<dict>
@@ -612,20 +545,75 @@
 					</dict>
 				</dict>
 
-				<key>1428</key>
+				<key>324</key>
 		  		<dict>
 					<key>name</key>
-					<string>Gent</string>
+					<string>D. Zagreb</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/430/1428/equipo.js2</string>
+					<string>/fichas/equipo/324/324/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_gent_size02.png</string>
+						<string>escudo_dinamozagreb_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_gent_size03.png</string>
+						<string>escudo_dinamozagreb_size03.png</string>
 						<key>detail</key>
-						<string>escudo_gent_size01.png</string>
+						<string>escudo_dinamozagreb_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>29</key>
+		  		<dict>
+					<key>name</key>
+					<string>Juventus</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/029/29/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/29.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_juventus_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_juventus_size03.png</string>
+						<key>detail</key>
+						<string>escudo_juventus_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>53</key>
+				<dict>
+					<key>name</key>
+					<string>Sevilla</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/053/53/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/53.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_sevilla_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_sevilla_size03.png</string>
+						<key>detail</key>
+						<string>escudo_sevilla_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>249</key>
+				<dict>
+					<key>name</key>
+					<string>Besiktas</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/249/249/equipo.js2</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_besiktas_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_besiktas_size03.png</string>
+						<key>detail</key>
+						<string>escudo_besiktas_size01.png</string>
 					</dict>
 				</dict>
 
@@ -653,7 +641,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/2b62f45cc68ee339963987c9a7479403/calendario.js2</string>
+			<string>/calendario/d002526a090a829f88b04cceecbda7e3/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>http://resultados.as.com/resultados/futbol/champions/</string>
 			<key>viewType</key>
@@ -667,7 +655,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/2b62f45cc68ee339963987c9a7479403/clasificacion_grupos.js2</string>
+				<string>/clasificacion/d002526a090a829f88b04cceecbda7e3/clasificacion_grupos.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -678,7 +666,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/2b62f45cc68ee339963987c9a7479403/carrusel.js2</string>
+			<string>/carrusel/d002526a090a829f88b04cceecbda7e3/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -702,7 +690,7 @@
 			<key>available</key>
 			<true/>
 		</dict>
-		<dict>
+		<!-- <dict>
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
@@ -711,7 +699,7 @@
 			<string>external_view</string>
 			<key>available</key>
 			<true/>
-		</dict>
+		</dict> -->
 	</array>
 </dict>
 </plist>
