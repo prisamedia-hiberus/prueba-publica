@@ -3,14 +3,6 @@
  */
 package com.diarioas.guialigas.dao.reader.parser;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.player.Player;
@@ -20,6 +12,14 @@ import com.diarioas.guialigas.dao.model.team.Team;
 import com.diarioas.guialigas.dao.model.team.TeamStats;
 import com.diarioas.guialigas.dao.model.team.TituloTeam;
 import com.diarioas.guialigas.utils.Defines.StaffCharge;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * @author robertosanchez
@@ -45,6 +45,7 @@ public class ParseJSONTeam {
 		JSONObject datosFic = (JSONObject) json.get("datos_fichero");
 		int fecMod = (Integer) datosFic.get("ultima_modificacion");
 		// if (true) {
+		/*
 		if (fecMod > team.getFecModificacion()) {
 			// Log.d("Parser", "Se actualiza el fichero");
 			JSONObject datosGenerales = (JSONObject) json
@@ -113,6 +114,70 @@ public class ParseJSONTeam {
 			// Log.d("Parser", "NO Se actualiza el fichero!!!!");
 			return null;
 		}
+		*/
+		// Log.d("Parser", "Se actualiza el fichero");
+		JSONObject datosGenerales = (JSONObject) json
+				.get("datos_generales");
+		team.setFecModificacion(fecMod);
+		if (datosFic.has("url_ficha"))
+			team.setUrlFicha(datosFic.getString("url_ficha"));
+		if (datosFic.has("url_tag")) {
+			team.setUrlTag(datosFic.getString("url_tag"));
+
+		}
+		if (datosGenerales.has("nombre"))
+			team.setName(datosGenerales.getString("nombre"));
+		if (datosGenerales.has("nombre_corto"))
+			team.setShortName(datosGenerales.getString("nombre_corto"));
+		if (datosGenerales.has("web")) {
+			team.setWeb(datosGenerales.getString("web"));
+		}
+		if (datosGenerales.has("pais"))
+			team.setCountry(datosGenerales.getString("pais"));
+		if (datosGenerales.has("localidad"))
+			team.setCity(datosGenerales.getString("localidad"));
+		if (datosGenerales.has("fecha_fundacion"))
+			team.setFundation(datosGenerales.getString("fecha_fundacion"));
+		// Se machacan los datos del presidente
+		if (datosGenerales.has("presidente")) {
+			if (team.getPresident() == null) {
+				Staff st = new Staff();
+				st.setCharge(StaffCharge.PRESIDENT);
+				team.addPresident(st);
+			}
+
+			team.getPresident().setName(
+					datosGenerales.getString("presidente"));
+		}
+		// Se machacan los datos del entrenador
+		if (datosGenerales.has("entrenador")) {
+			if (team.getMister() == null) {
+				Staff st = new Staff();
+				st.setCharge(StaffCharge.MISTER);
+				team.addMister(st);
+			}
+
+			team.getMister()
+					.setName(datosGenerales.getString("entrenador"));
+		}
+
+		// Recupero datos del estadio
+		Estadio estadio = getEstadio(datosGenerales);
+		team.setEstadio(estadio);
+
+		// Recupero datos de la plantilla
+		ArrayList<Player> plantilla = getPlantilla(json, imagePrefix,
+				dataPrefix);
+		team.setPlantilla(plantilla);
+
+		// Recupero datos del Palmares
+		ArrayList<TituloTeam> palmares = getPalmares(json);
+		team.setPalmares(palmares);
+
+		// Recupero datos de las estadisticas
+		HashMap<String, TeamStats> stats = getEstadisticas(json);
+		team.setStats(stats);
+		return team;
 
 	}
 
