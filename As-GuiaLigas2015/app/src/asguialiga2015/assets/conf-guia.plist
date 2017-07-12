@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<!-- splash -->
@@ -8,7 +8,7 @@
 		<key>available</key>
 		<false/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_splash.png?1</string>
+		<string>https://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_splash.png?1</string>
 		<key>seconds</key>
 		<integer>0</integer>
 	</dict>
@@ -19,7 +19,7 @@
 		<key>available</key>
 		<false/>
 		<key>imageURL</key>
-		<string>http://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_header.png?1</string>
+		<string>https://as.com/apps/guia_de_la_liga/patrocinio/2015_2016/img_365_header.png?1</string>
 	</dict>
 
     <!-- prefijos -->
@@ -27,21 +27,21 @@
 	<dict>
 		<!-- url  de imagenes -->
 		<key>imageURLPrefix</key>
-		<string>http://as.com/</string>
+		<string>https://as.com/</string>
 		<!-- url  de videos -->
 		<key>videoURLPrefix</key>
-		<string>http://as02.epimg.net/</string>
+		<string>https://as02.epimg.net/</string>
 		<!-- url para el servicio de geobloqueo de vídeos -->
 		<key>geoServiceURLPrefix</key>
-		<string> http://as.com/vdpep/1/?pepid=</string>
+		<string> https://as.com/vdpep/1/?pepid=</string>
 		<key>dataURLPrefix</key>
-		<string>http://as.com/apps/datos/</string>
+		<string>https://as.com/apps/datos/</string>
 		<!-- url de resultados -->
 		<key>resultsURLPrefix</key>
-		<string>http://resultados.as.com/</string>
+		<string>https://resultados.as.com/</string>
 		<!-- contenido editorial -->
 		<key>dataServiceURLPrefix</key>
-		<string>http://as.com/</string>
+		<string>https://as.com/</string>
 	</dict>
 
 	<!-- Cookies para las noticias de tags y notificaciones -->
@@ -167,11 +167,11 @@
 			<key>description</key>
 			<string>LaLiga Santander</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-primera.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-primera.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_laligasantander.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-10-05T00:00:10Z</date>
+			<date>2016-10-08T00:00:40Z</date>
 		</dict>
 
 		<key>7</key>
@@ -181,11 +181,11 @@
 			<key>description</key>
 			<string>LaLiga 1|2|3</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-segunda.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-segunda.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_laliga123.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-09-03T00:00:00Z</date>
+			<date>2016-09-08T00:00:40Z</date>
 		</dict>
 
 		<key>13</key>
@@ -195,11 +195,11 @@
 			<key>description</key>
 			<string>Liga de Campeones</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-champions.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-champions.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_champions.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-28T00:01:00Z</date>
+			<date>2016-09-28T00:01:00Z</date>
 		</dict>
 
 		<key>12</key>
@@ -209,11 +209,11 @@
 			<key>description</key>
 			<string>Europa Liga</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-uefa.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-uefa.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_europaleague.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-30T00:00:00Z</date>
+			<date>2016-09-30T00:00:00Z</date>
 		</dict>
 <!--
 		<key>107</key>
@@ -223,11 +223,11 @@
 			<key>description</key>
 			<string>Copa</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-copa.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-copa.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_copa.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2016-06-30T00:00:00Z</date>
 		</dict>
 -->
 		<key>9</key>
@@ -237,11 +237,11 @@
 			<key>description</key>
 			<string>Serie A</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-italia.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-italia.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:00Z</date>
+			<date>2016-10-02T00:00:00Z</date>
 		</dict>
 
 		<key>8</key>
@@ -251,11 +251,11 @@
 			<key>description</key>
 			<string>Premier League</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-inglaterra.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-inglaterra.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_inglaterra.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:00Z</date>
+			<date>2016-08-02T00:00:00Z</date>
 		</dict>
 
 		<key>5</key>
@@ -265,11 +265,11 @@
 			<key>description</key>
 			<string>Bundesliga</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-alemania.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-alemania.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_alemania.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2016-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>6</key>
@@ -279,11 +279,11 @@
 			<key>description</key>
 			<string>Liga Francesa</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-francia.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-francia.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_francia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2016-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>3</key>
@@ -293,11 +293,11 @@
 			<key>description</key>
 			<string>Liga Águila 2</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-colombia.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-colombia.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:00Z</date>
+			<date>2016-06-30T00:00:00Z</date>
 		</dict>
 
 		<key>4</key>
@@ -307,11 +307,11 @@
 			<key>description</key>
 			<string>Liga Chilena - Apertura</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-chile.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-chile.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-03T00:00:00Z</date>
+			<date>2016-08-03T00:00:00Z</date>
 		</dict>
 
 		<key>11</key>
@@ -321,43 +321,13 @@
 			<key>description</key>
 			<string>Liga MX - Apertura</string>
 			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-mexico.xml</string>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-mexico.xml2</string>
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2015-08-02T00:00:00Z</date>
+			<date>2016-08-02T00:00:00Z</date>
 		</dict>
-<!--
-		<key>17</key>
-		<dict>
-			<key>order</key>
-			<string>13</string>
-			<key>description</key>
-			<string>Eurocopa 2016</string>
-			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-eurocopa.xml</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_euro16.png</string>
-			<key>conFileTimestamp</key>
-			<date>2015-06-30T00:00:01Z</date>
-		</dict>
--->
-
-		<!--<key>2</key>
-		<dict>
-			<key>order</key>
-			<string>13</string>
-			<key>description</key>
-			<string>Copa Libertadores</string>
-			<key>confFileURL</key>
-			<string>http://as.com/apps/guia_de_la_liga/config/v2.x/v2.2/conf-guia-libertadores.xml</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_libertadores.png</string>
-			<key>conFileTimestamp</key>
-			<date>2015-07-23T00:00:02Z</date>
-		</dict>-->
 	</dict>
-
 
 </dict>
 </plist>

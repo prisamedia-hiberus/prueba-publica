@@ -279,7 +279,7 @@ public class AsyncLoadLocalFeedXML extends
 		nameUrl = url[url.length - 1];
 		// nameUrl = "local" + nameUrl.substring(0, nameUrl.length() - 3)+
 		// "plist";
-		nameUrl = nameUrl.substring(0, nameUrl.length() - 3) + "plist";
+		nameUrl = nameUrl.substring(0, nameUrl.length() - 4) + "plist";
 		return nameUrl;
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -22,351 +22,353 @@
 			<key>teams</key>
 			<dict>
 
-				<key>197</key>
+				<key>24</key>
 		  		<dict>
 					<key>name</key>
-					<string>Mónaco</string>
+					<string>Roma</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/197/197/equipo.js2</string>
+					<string>/fichas/equipo/024/24/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_monaco_size02.png</string>
+						<string>escudo_roma_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_monaco_size03.png</string>
+						<string>escudo_roma_size03.png</string>
 						<key>detail</key>
-						<string>escudo_monaco_size01.png</string>
+						<string>escudo_roma_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>124</key>
+				<key>35</key>
 		  		<dict>
 					<key>name</key>
-					<string>Lille</string>
+					<string>Inter</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/124/124/equipo.js2</string>
+					<string>/fichas/equipo/035/35/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_lille_size02.png</string>
+						<string>escudo_inter_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_lille_size03.png</string>
+						<string>escudo_inter_size03.png</string>
 						<key>detail</key>
-						<string>escudo_lille_size01.png</string>
+						<string>escudo_inter_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>134</key>
+				<key>1351</key>
 		  		<dict>
 					<key>name</key>
-					<string>Nantes</string>
+					<string>Chievo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/134/134/equipo.js2</string>
+					<string>/fichas/equipo/353/1351/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_nantes_size02.png</string>
+						<string>escudo_chievo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_nantes_size03.png</string>
+						<string>escudo_chievo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_nantes_size01.png</string>
+						<string>escudo_chievo_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>477</key>
+				<key>1137</key>
 		  		<dict>
 					<key>name</key>
-					<string>Nancy</string>
+					<string>Genoa</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/477/477/equipo.js2</string>
+					<string>/fichas/equipo/139/1137/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_nancylorrain_size02.png</string>
+						<string>escudo_genoa_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_nancylorrain_size03.png</string>
+						<string>escudo_genoa_size03.png</string>
 						<key>detail</key>
-						<string>escudo_nancylorrain_size01.png</string>
+						<string>escudo_genoa_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>484</key>
+				<key>21</key>
 		  		<dict>
 					<key>name</key>
-					<string>Guingamp</string>
+					<string>Atalanta</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/484/484/equipo.js2</string>
+					<string>/fichas/equipo/021/21/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_guingamp_size02.png</string>
+						<string>escudo_atalanta_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_guingamp_size03.png</string>
+						<string>escudo_atalanta_size03.png</string>
 						<key>detail</key>
-						<string>escudo_guingamp_size01.png</string>
+						<string>escudo_atalanta_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>473</key>
+				<key>36</key>
 		  		<dict>
 					<key>name</key>
-					<string>Saint-Etienne</string>
+					<string>Bologna</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/473/473/equipo.js2</string>
+					<string>/fichas/equipo/036/36/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_etienne_size02.png</string>
+						<string>escudo_bologna_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_etienne_size03.png</string>
+						<string>escudo_bologna_size03.png</string>
 						<key>detail</key>
-						<string>escudo_etienne_size01.png</string>
+						<string>escudo_bologna_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>476</key>
+				<key>37</key>
 		  		<dict>
 					<key>name</key>
-					<string>Bastia</string>
+					<string>Udinese</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/476/476/equipo.js2</string>
+					<string>/fichas/equipo/037/37/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_bastia_size02.png</string>
+						<string>escudo_udinese_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_bastia_size03.png</string>
+						<string>escudo_udinese_size03.png</string>
 						<key>detail</key>
-						<string>escudo_bastia_size01.png</string>
+						<string>escudo_udinese_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>123</key>
+				<key>48</key>
 		  		<dict>
 					<key>name</key>
-					<string>Rennes</string>
+					<string>Cagliari</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/123/123/equipo.js2</string>
+					<string>/fichas/equipo/048/48/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_rennes_size02.png</string>
+						<string>escudo_cagliari_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_rennes_size03.png</string>
+						<string>escudo_cagliari_size03.png</string>
 						<key>detail</key>
-						<string>escudo_rennes_size01.png</string>
+						<string>escudo_cagliari_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>118</key>
+				<key>125</key>
 		  		<dict>
 					<key>name</key>
-					<string>Niza</string>
+					<string>Torino</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/118/118/equipo.js2</string>
+					<string>/fichas/equipo/125/125/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_niza_size02.png</string>
+						<string>escudo_torino_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_niza_size03.png</string>
+						<string>escudo_torino_size03.png</string>
 						<key>detail</key>
-						<string>escudo_niza_size01.png</string>
+						<string>escudo_torino_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>4241</key>
+				<key>1341</key>
 		  		<dict>
 					<key>name</key>
-					<string>Angers</string>
+					<string>Crotone</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/249/4241/equipo.js2</string>
+					<string>/fichas/equipo/343/1341/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_angers_size02.png</string>
+						<string>escudo_crotone_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_angers_size03.png</string>
+						<string>escudo_crotone_size03.png</string>
 						<key>detail</key>
-						<string>escudo_angers_size01.png</string>
+						<string>escudo_crotone_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>350</key>
+				<key>980</key>
 		  		<dict>
 					<key>name</key>
-					<string>Toulouse</string>
+					<string>Empoli</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/350/350/equipo.js2</string>
+					<string>/fichas/equipo/481/980/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_toulouse_size02.png</string>
+						<string>escudo_empoli_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_toulouse_size03.png</string>
+						<string>escudo_empoli_size03.png</string>
 						<key>detail</key>
-						<string>escudo_toulouse_size01.png</string>
+						<string>escudo_empoli_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>480</key>
+				<key>2863</key>
 		  		<dict>
 					<key>name</key>
-					<string>Montpellier</string>
+					<string>Sassuolo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/480/480/equipo.js2</string>
+					<string>/fichas/equipo/368/2863/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_montpellier_size02.png</string>
+						<string>escudo_sassuolo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_montpellier_size03.png</string>
+						<string>escudo_sassuolo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_montpellier_size01.png</string>
+						<string>escudo_sassuolo_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>1114</key>
+				<key>130</key>
 		  		<dict>
 					<key>name</key>
-					<string>Lorient</string>
+					<string>Sampdoria</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/116/1114/equipo.js2</string>
+					<string>/fichas/equipo/130/130/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_lorient_size02.png</string>
+						<string>escudo_sampdoria_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_lorient_size03.png</string>
+						<string>escudo_sampdoria_size03.png</string>
 						<key>detail</key>
-						<string>escudo_lorient_size01.png</string>
+						<string>escudo_sampdoria_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>193</key>
+				<key>25</key>
 		  		<dict>
 					<key>name</key>
-					<string>Caen</string>
+					<string>Verona</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/193/193/equipo.js2</string>
+					<string>/fichas/equipo/025/25/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_caen_size02.png</string>
+						<string>escudo_verona_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_caen_size03.png</string>
+						<string>escudo_verona_size03.png</string>
 						<key>detail</key>
-						<string>escudo_caen_size01.png</string>
+						<string>escudo_verona_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>220</key>
+				<key>1346</key>
 		  		<dict>
 					<key>name</key>
-					<string>Metz</string>
+					<string>Pescara</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/220/220/equipo.js2</string>
+					<string>/fichas/equipo/348/1346/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_metz_size02.png</string>
+						<string>escudo_pescara_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_metz_size03.png</string>
+						<string>escudo_pescara_size02.png</string>
 						<key>detail</key>
-						<string>escudo_metz_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>2435</key>
-		  		<dict>
-					<key>name</key>
-					<string>Dijon</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/439/2435/equipo.js2</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_dijon_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_dijon_size03.png</string>
-						<key>detail</key>
-						<string>escudo_dijon_size01.png</string>
+						<string>escudo_pescara_size01.png</string>
 					</dict>
 				</dict>
 
 				<!-- uefa -->
 
-				<key>106</key>
+				<key>31</key>
 		  		<dict>
 					<key>name</key>
-					<string>Lyon</string>
+					<string>Fiorentina</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/106/106/equipo.js2</string>
+					<string>/fichas/equipo/031/31/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_olimpiquelyon_size02.png</string>
+						<string>escudo_fiorentina_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_olimpiquelyon_size03.png</string>
+						<string>escudo_fiorentina_size03.png</string>
 						<key>detail</key>
-						<string>escudo_olimpiquelyon_size01.png</string>
+						<string>escudo_fiorentina_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>483</key>
+				<key>23</key>
 		  		<dict>
 					<key>name</key>
-					<string>Girondins</string>
+					<string>Lazio</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/483/483/equipo.js2</string>
+					<string>/fichas/equipo/023/23/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_bordeaux_size02.png</string>
+						<string>escudo_lazio_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_bordeaux_size03.png</string>
+						<string>escudo_lazio_size03.png</string>
 						<key>detail</key>
-						<string>escudo_bordeaux_size01.png</string>
+						<string>escudo_lazio_size01.png</string>
 					</dict>
 				</dict>
 
 				<!-- champions -->
 
-				<key>49</key>
+				<key>29</key>
 		  		<dict>
 					<key>name</key>
-					<string>PSG</string>
+					<string>Juventus</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/049/49/equipo.js2</string>
+					<string>/fichas/equipo/029/29/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/49.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/29.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_psg_size02.png</string>
+						<string>escudo_juventus_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_psg_size03.png</string>
+						<string>escudo_juventus_size03.png</string>
 						<key>detail</key>
-						<string>escudo_psg_size01.png</string>
+						<string>escudo_juventus_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>338</key>
+				<key>28</key>
 		  		<dict>
 					<key>name</key>
-					<string>Marsella</string>
+					<string>Nápoles</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/338/338/equipo.js2</string>
+					<string>/fichas/equipo/028/28/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/338.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/28.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_marsella_size02.png</string>
+						<string>escudo_napoles_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_marsella_size03.png</string>
+						<string>escudo_napoles_size03.png</string>
 						<key>detail</key>
-						<string>escudo_marsella_size01.png</string>
+						<string>escudo_napoles_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>22</key>
+		  		<dict>
+					<key>name</key>
+					<string>Milan</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/022/22/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/22.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_milan_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_milan_size03.png</string>
+						<key>detail</key>
+						<string>escudo_milan_size01.png</string>
 					</dict>
 				</dict>
 
@@ -384,7 +386,7 @@
 			<key>name</key>
 			<string>noticias tag</string>
 			<key>noticiasWS</key>
-			<string>tag/j/liga_francesa/a/</string>
+			<string>tag/j/liga_italiana/a/</string>
 			<key>viewType</key>
 			<string>tag_view</string>
 			<key>available</key>
@@ -394,9 +396,9 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/91390062bb4417766cfd4add6a2ac82e/calendario.js2</string>
+			<string>/calendario/b5f3fc58be2c5b0415ed443eb86dbda5/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/francia/</string>
+			<string>https://resultados.as.com/resultados/futbol/italia/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -408,7 +410,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/91390062bb4417766cfd4add6a2ac82e/clasificacion_regular.js2</string>
+				<string>/clasificacion/b5f3fc58be2c5b0415ed443eb86dbda5/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -419,7 +421,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/91390062bb4417766cfd4add6a2ac82e/carrusel.js2</string>
+			<string>/carrusel/b5f3fc58be2c5b0415ed443eb86dbda5/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -447,7 +449,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>

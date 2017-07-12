@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -305,7 +305,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/067/67/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/67.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/67.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -324,7 +324,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/066/66/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/66.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/66.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -343,7 +343,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/058/58/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/58.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/58.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -362,7 +362,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/054/54/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2015_2016/teams/54.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2015_2016/teams/54.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -400,7 +400,7 @@
 			<key>calendarWS</key>
 			<string>/calendario/9078f2fb0d17e449d2b7611256fb6619/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/inglaterra/</string>
+			<string>https://resultados.as.com/resultados/futbol/inglaterra/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -451,7 +451,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>
