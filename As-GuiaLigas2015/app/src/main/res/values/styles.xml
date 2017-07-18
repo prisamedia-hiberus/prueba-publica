@@ -38,8 +38,8 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:height">@dimen/size_actionbar</item>
         <item name="height">@dimen/size_actionbar</item>
-        <item name="icon">@drawable/home_icn_logoheader</item>
-        <item name="android:icon">@drawable/home_icn_logoheader</item>
+        <item name="icon">@drawable/ico_logo_navbar</item>
+        <item name="android:icon">@drawable/ico_logo_navbar</item>
         <item name="titleTextStyle">@style/CustomTitleActionBar</item>
         <item name="actionMenuTextColor">@color/red</item>
         <item name="android:textSize">@dimen/size_actionbar</item>
