@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.diarioas.guialigas.R;
 import com.diarioas.guialigas.dao.model.competition.Competition;
 import com.diarioas.guialigas.dao.model.general.GeneralSettings;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
@@ -300,7 +301,7 @@ public class AsyncLoadRemoteFeedXML extends
 		String nameUrl;
 		url = urlCompetition.split("/");
 		nameUrl = url[url.length - 1];
-		nameUrl = nameUrl.substring(0, nameUrl.length() - 3) + "plist";
+		nameUrl = nameUrl.substring(0, nameUrl.lastIndexOf(".")+1) + appContext.getString(R.string.config_file_extension);
 		return nameUrl;
 	}
 
