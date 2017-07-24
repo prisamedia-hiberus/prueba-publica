@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -22,43 +22,43 @@
 			<key>teams</key>
 			<dict>
 
-		    	<key>486</key>
-		    	<dict>
-						<key>name</key>
-						<string>Alcorcón</string>
-						<key>teamWS</key>
-						<string>/fichas/equipo/486/486/equipo.js2</string>
-						<key>teamInfo</key>
-						<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/486.xml</string>
-						<key>shields</key>
-						<dict>
-							<key>grid</key>
-							<string>escudo_alcorcon_size02.png</string>
-							<key>calendar</key>
-							<string>escudo_alcorcon_size03.png</string>
-							<key>detail</key>
-							<string>escudo_alcorcon_size01.png</string>
-						</dict>
-					</dict>
-
-					<key>136</key>
+	    	<key>486</key>
+	    	<dict>
+					<key>name</key>
+					<string>Alcorcón</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/486/486/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/486.xml</string>
+					<key>shields</key>
 					<dict>
-						<key>name</key>
-						<string>Levante</string>
-						<key>teamWS</key>
-						<string>/fichas/equipo/136/136/equipo.js2</string>
-						<key>teamInfo</key>
-						<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/136.xml</string>
-						<key>shields</key>
-						<dict>
-							<key>grid</key>
-							<string>escudo_levante_size02.png</string>
-							<key>calendar</key>
-							<string>escudo_levante_size03.png</string>
-							<key>detail</key>
-							<string>escudo_levante_size01.png</string>
-						</dict>
+						<key>grid</key>
+						<string>escudo_alcorcon_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_alcorcon_size03.png</string>
+						<key>detail</key>
+						<string>escudo_alcorcon_size01.png</string>
 					</dict>
+				</dict>
+
+				<key>76</key>
+				<dict>
+					<key>name</key>
+					<string>Sporting</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/076/76/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/76.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_sporting_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_sporting_size03.png</string>
+						<key>detail</key>
+						<string>escudo_sporting_size01.png</string>
+					</dict>
+				</dict>
 
 				<key>85</key>
 		  		<dict>
@@ -67,7 +67,7 @@
 						<key>teamWS</key>
 						<string>/fichas/equipo/085/85/equipo.js2</string>
 						<key>teamInfo</key>
-						<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/85.xml</string>
+						<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/85.xml</string>
 						<key>shields</key>
 						<dict>
 							<key>grid</key>
@@ -86,7 +86,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/091/91/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/91.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/91.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -105,7 +105,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/018/18/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/18.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/18.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -117,79 +117,41 @@
 					</dict>
 				</dict>
 
-				<key>648</key>
+				<key>13</key>
 				<dict>
 					<key>name</key>
-					<string>Girona</string>
+					<string>Osasuna</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/149/648/equipo.js2</string>
+					<string>/fichas/equipo/013/13/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/648.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/13.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_girona_size02.png</string>
+						<string>escudo_osasuna_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_girona_size03.png</string>
+						<string>escudo_osasuna_size03.png</string>
 						<key>detail</key>
-						<string>escudo_girona_size01.png</string>
+						<string>escudo_osasuna_size01.png</string>
 					</dict>
 				</dict>
 
-				<!--<key>93</key>
-		  		<dict>
-					<key>name</key>
-					<string>Hércules</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/093/93/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/93.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_hercules_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_hercules_size03.png</string>
-						<key>detail</key>
-						<string>escudo_hercules_size01.png</string>
-					</dict>
-				</dict>
-
-				<key>253</key>
-		  		<dict>
-					<key>name</key>
-					<string>Jaén</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/253/253/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/253.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_jaen_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_jaen_size03.png</string>
-						<key>detail</key>
-						<string>escudo_jaen_size01.png</string>
-					</dict>
-				</dict>-->
-
-				<key>172</key>
+				<key>347</key>
 				<dict>
 					<key>name</key>
-					<string>Getafe</string>
+					<string>Granada</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/172/172/equipo.js2</string>
+					<string>/fichas/equipo/347/347/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/172.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/347.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_getafe_size02.png</string>
+						<string>escudo_granada_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_getafe_size03.png</string>
+						<string>escudo_granada_size03.png</string>
 						<key>detail</key>
-						<string>escudo_getafe_size01.png</string>
+						<string>escudo_granada_size01.png</string>
 					</dict>
 				</dict>
 
@@ -200,7 +162,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/342/342/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/342.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/342.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -219,7 +181,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/263/263/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/263.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/263.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -231,62 +193,43 @@
 					</dict>
 				</dict>
 
-				<key>11</key>
+				<key>394</key>
 		  	<dict>
 					<key>name</key>
-					<string>Mallorca</string>
+					<string>Lorca</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/011/11/equipo.js2</string>
+					<string>/fichas/equipo/394/394/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/11.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/394.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_mallorca_size02.png</string>
+						<string>escudo_lorca_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_mallorca_size03.png</string>
+						<string>escudo_lorca_size03.png</string>
 						<key>detail</key>
-						<string>escudo_mallorca_size01.png</string>
+						<string>escudo_lorca_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>843</key>
+				<key>103</key>
 		  	<dict>
 					<key>name</key>
-					<string>Mirandés</string>
+					<string>Albacete</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/344/843/equipo.js2</string>
+					<string>/fichas/equipo/103/103/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/843.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/103.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_mirandes_size02.png</string>
+						<string>escudo_albacete_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_mirandes_size03.png</string>
+						<string>escudo_albacete_size03.png</string>
 						<key>detail</key>
-						<string>escudo_mirandes_size01.png</string>
+						<string>escudo_albacete_size01.png</string>
 					</dict>
 				</dict>
-
-				<!--<key>164</key>
-		  		<dict>
-					<key>name</key>
-					<string>Murcia</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/164/164/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/164.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_murcia_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_murcia_size03.png</string>
-						<key>detail</key>
-						<string>escudo_murcia_size01.png</string>
-					</dict>
-				</dict>-->
 
 				<key>12</key>
 		  	<dict>
@@ -295,7 +238,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/012/12/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/12.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/12.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -307,60 +250,41 @@
 					</dict>
 				</dict>
 
-				<key>3498</key>
+				<key>496</key>
 		  	<dict>
 					<key>name</key>
-					<string>UCAM Murcia</string>
+					<string>Cultural Leonesa</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/005/3498/equipo.js2</string>
+					<string>/fichas/equipo/496/496/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/3498.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/496.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_ucam_size02.png</string>
+						<string>escudo_cultural_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_ucam_size03.png</string>
+						<string>escudo_cultural_size03.png</string>
 						<key>detail</key>
-						<string>escudo_ucam_size01.png</string>
+						<string>escudo_cultural_size01.png</string>
 					</dict>
 				</dict>
-<!--
-				<key>187</key>
-		  		<dict>
-					<key>name</key>
-					<string>RM Castilla</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/187/187/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/187.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_realmadrid_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_realmadrid_size03.png</string>
-						<key>detail</key>
-						<string>escudo_realmadrid_size01.png</string>
-					</dict>
-				</dict>-->
 
-				<key>121</key>
+				<key>181</key>
 		  	<dict>
 					<key>name</key>
-					<string>Elche</string>
+					<string>Barcelona B</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/121/121/equipo.js2</string>
+					<string>/fichas/equipo/181/181/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/121.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/181.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_elche_size02.png</string>
+						<string>escudo_barcelona_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_elche_size03.png</string>
+						<string>escudo_barcelona_size03.png</string>
 						<key>detail</key>
-						<string>escudo_elche_size01.png</string>
+						<string>escudo_barcelona_size01.png</string>
 					</dict>
 				</dict>
 
@@ -371,7 +295,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/005/504/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/504.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/504.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -390,7 +314,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/365/864/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/864.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/864.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -409,7 +333,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/162/162/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/162.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/162.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -428,7 +352,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/020/20/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/20.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/20.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -446,7 +370,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/014/14/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/14.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/14.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -465,7 +389,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/162/661/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/661.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/661.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -484,7 +408,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/326/326/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/326.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/326.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -503,7 +427,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/002/2/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/2.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/2.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -542,7 +466,7 @@
 			<key>calendarWS</key>
 			<string>/calendario/e428a3042b1046346255f8ddeba591bf/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/segunda/</string>
+			<string>https://resultados.as.com/resultados/futbol/segunda/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -593,7 +517,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>

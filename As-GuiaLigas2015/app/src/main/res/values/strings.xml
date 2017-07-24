@@ -161,6 +161,7 @@
     
     <!-- AlertManager -->
     <string name="accept">OK</string>
+    <string name="cancel">Cancelar</string>
     <string name="share_mens_title">Compartir&#160;</string>
     <string name="connection_error_title">Error de Conexion</string>
     <string name="connection_atention_title">Atención</string>
@@ -257,5 +258,8 @@
     <string name="separator" translatable="false">&#160;-&#160;</string>
     <string name="defualt" translatable="false">Default</string>
     <string name="sort_title">Personalización</string>
+    <string name="sll_error_title">Error de certificado</string>
+    <string name="section_ssl_error">Hay un problema con el certificado de la página a la que intenta acceder y puede no ser segura. ¿Continuar?</string>
+    <string name="config_file_extension">plist</string>
 
 </resources>

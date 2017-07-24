@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -320,7 +320,7 @@
 			<key>calendarWS</key>
 			<string>/calendario/92a9f32c38644ce212269300e4e9c19d/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/chile_apertura/</string>
+			<string>https://resultados.as.com/resultados/futbol/chile_apertura/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -371,7 +371,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>

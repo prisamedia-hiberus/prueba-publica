@@ -96,9 +96,27 @@ public class PalmaresDetailActivity extends GeneralFragmentActivity {
 	class MyWebViewClient extends WebViewClient {
 
 		@Override
-		public void onReceivedSslError(WebView view, SslErrorHandler handler,
-				SslError error) {
-			handler.proceed(); // Ignore SSL certificate errors
+		public void onReceivedSslError(WebView view, final SslErrorHandler handler,
+									   SslError error) {
+			AlertManager.showCancleableDialog(getBaseContext(),
+					getResources().getString(R.string.section_ssl_error),
+					getResources().getString(R.string.sll_error_title),
+					new android.content.DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							switch (which) {
+								case DialogInterface.BUTTON_POSITIVE:
+									handler.proceed();
+									break;
+								case DialogInterface.BUTTON_NEGATIVE:
+									handler.cancel();
+									break;
+							}
+							dialog.dismiss();
+						}
+
+					}, true);
 		}
 
 		@Override

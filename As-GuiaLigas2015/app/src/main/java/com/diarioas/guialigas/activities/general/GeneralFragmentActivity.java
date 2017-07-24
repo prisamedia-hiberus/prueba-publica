@@ -52,7 +52,6 @@ public class GeneralFragmentActivity extends GeneralPBSGoogleAdActivity {
 	/******************************************************************/
 
 	protected void configActionBar() {
-		getSupportActionBar().setIcon(R.drawable.ico_logo_navbar);
 
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);

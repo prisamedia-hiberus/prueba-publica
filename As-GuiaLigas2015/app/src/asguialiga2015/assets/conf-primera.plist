@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -29,7 +29,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/019/19/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/19.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/19.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -48,7 +48,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/108/108/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/108.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/108.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -67,7 +67,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/017/17/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/17.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/17.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -86,7 +86,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/053/53/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/53.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/53.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -105,7 +105,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/016/16/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/16.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/16.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -124,7 +124,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/001/1/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/1.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/1.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -143,7 +143,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/004/4/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/4.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/4.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -162,7 +162,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/007/7/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/7.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/7.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -181,7 +181,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/010/10/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/10.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/10.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -193,41 +193,60 @@
 					</dict>
 				</dict>
 
-				<key>13</key>
+				<key>648</key>
 				<dict>
 					<key>name</key>
-					<string>Osasuna</string>
+					<string>Girona</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/013/13/equipo.js2</string>
+					<string>/fichas/equipo/149/648/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/13.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/648.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_osasuna_size02.png</string>
+						<string>escudo_girona_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_osasuna_size03.png</string>
+						<string>escudo_girona_size03.png</string>
 						<key>detail</key>
-						<string>escudo_osasuna_size01.png</string>
+						<string>escudo_girona_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>347</key>
+				<key>136</key>
 				<dict>
 					<key>name</key>
-					<string>Granada</string>
+					<string>Levante</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/347/347/equipo.js2</string>
+					<string>/fichas/equipo/136/136/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/347.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/136.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_granada_size02.png</string>
+						<string>escudo_levante_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_granada_size03.png</string>
+						<string>escudo_levante_size03.png</string>
 						<key>detail</key>
-						<string>escudo_granada_size01.png</string>
+						<string>escudo_levante_size01.png</string>
+					</dict>
+				</dict>
+
+				<key>172</key>
+				<dict>
+					<key>name</key>
+					<string>Getafe</string>
+					<key>teamWS</key>
+					<string>/fichas/equipo/172/172/equipo.js2</string>
+					<key>teamInfo</key>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/172.xml</string>
+					<key>shields</key>
+					<dict>
+						<key>grid</key>
+						<string>escudo_getafe_size02.png</string>
+						<key>calendar</key>
+						<string>escudo_getafe_size03.png</string>
+						<key>detail</key>
+						<string>escudo_getafe_size01.png</string>
 					</dict>
 				</dict>
 
@@ -238,7 +257,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/132/132/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/132.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/132.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -257,7 +276,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/008/8/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/8.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/8.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -276,7 +295,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/009/9/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/9.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/9.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -295,7 +314,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/006/6/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/6.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/6.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -307,25 +326,6 @@
 					</dict>
 				</dict>
 
-				<key>76</key>
-				<dict>
-					<key>name</key>
-					<string>Sporting</string>
-					<key>teamWS</key>
-					<string>/fichas/equipo/076/76/equipo.js2</string>
-					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/76.xml</string>
-					<key>shields</key>
-					<dict>
-						<key>grid</key>
-						<string>escudo_sporting_size02.png</string>
-						<key>calendar</key>
-						<string>escudo_sporting_size03.png</string>
-						<key>detail</key>
-						<string>escudo_sporting_size01.png</string>
-					</dict>
-				</dict>
-
 				<key>3</key>
 				<dict>
 					<key>name</key>
@@ -333,7 +333,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/003/3/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/3.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/3.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -352,7 +352,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/005/5/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/5.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/5.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -371,7 +371,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/171/171/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/171.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/171.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -390,7 +390,7 @@
 					<key>teamWS</key>
 					<string>/fichas/equipo/042/42/equipo.js2</string>
 					<key>teamInfo</key>
-					<string>http://as.com/apps/guia_de_la_liga/data/2016_2017/teams/42.xml</string>
+					<string>https://as.com/apps/guia_de_la_liga/data/2016_2017/teams/42.xml</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
@@ -428,7 +428,7 @@
 			<key>calendarWS</key>
 			<string>/calendario/dd2d0d59fe0a84ff15fdb1aba46ffe39/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/primera/</string>
+			<string>https://resultados.as.com/resultados/futbol/primera/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -479,7 +479,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>

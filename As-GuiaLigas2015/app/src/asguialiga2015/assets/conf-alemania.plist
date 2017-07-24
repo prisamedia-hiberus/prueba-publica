@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 
@@ -39,20 +39,20 @@
 					</dict>
 				</dict>
 
-				<key>4240</key>
+				<key>551</key>
 		  		<dict>
 					<key>name</key>
-					<string>Darmstadt 98</string>
+					<string>Hannover 96</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/248/4240/equipo.js2</string>
+					<string>/fichas/equipo/052/551/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_darmstadt_size02.png</string>
+						<string>escudo_hannover_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_darmstadt_size03.png</string>
+						<string>escudo_hannover_size03.png</string>
 						<key>detail</key>
-						<string>escudo_darmstadt_size01.png</string>
+						<string>escudo_hannover_size01.png</string>
 					</dict>
 				</dict>
 
@@ -228,20 +228,20 @@
 
 				<!-- uefa -->
 
-				<key>4239</key>
+				<key>86</key>
 		  		<dict>
 					<key>name</key>
-					<string>Ingolstadt 04</string>
+					<string>Stuttgart</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/247/4239/equipo.js2</string>
+					<string>/fichas/equipo/086/86/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_ingolstadt_size02.png</string>
+						<string>escudo_stuttgart_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_ingolstadt_size03.png</string>
+						<string>escudo_stuttgart_size03.png</string>
 						<key>detail</key>
-						<string>escudo_ingolstadt_size01.png</string>
+						<string>escudo_stuttgart_size01.png</string>
 					</dict>
 				</dict>
 
@@ -358,7 +358,7 @@
 			<key>calendarWS</key>
 			<string>/calendario/b7cc6b7c160c4968b87eead831549ffe/calendario.js2</string>
 			<key>resultsURL</key>
-			<string>http://resultados.as.com/resultados/futbol/alemania/</string>
+			<string>https://resultados.as.com/resultados/futbol/alemania/</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
@@ -409,7 +409,7 @@
 			<key>name</key>
 			<string>Apuesta en bet365</string>
 			<key>urlWV</key>
-			<string>http://www.bet365.es</string>
+			<string>https://www.bet365.es</string>
 			<key>viewType</key>
 			<string>external_view</string>
 			<key>available</key>
