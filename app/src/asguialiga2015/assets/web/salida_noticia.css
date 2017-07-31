@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+@font-face { 
+    font-family: "HelveticaNeue"; 
+    src: url('fonts/HelveticaNeue.ttf'); 
+}
+/* CSS Document */
+
+body{
+    background: white;
+    margin: 0;
+    padding: 0;
+    font-family: HelveticaNeue;
+ 
+}
+
+.content{
+    background: white;
+    margin: 0;
+    color: #666666;
+    font-family: HelveticaNeue;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    width: 100%;
+
+}
+
+
+
+/* SUMARIOS */
+aside { float:none;}
+aside figure { margin:0;}
+.art-mod {
+    border-top: 2px solid #E98F13;
+    padding: 1px 0 12px;
+    position: relative;
+}
+.c-art-mod {
+    border-top: 1px dotted #CCCCCC;
+    padding-top: 1px;
+}
+.n-art-mod {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border-top: 1px dotted #CCCCCC;
+    color: #666;
+    padding: 10px;
+}
+.n-art-mod  p { margin:0; font-size:13px; line-height:15px;}
+
+/* SUMARIOS > FOTO */
+.ntc-media {
+	position:relative;
+	width:259px;
+	margin:0 auto;
+	background: #F8F8F8;}
+	.ntc-media img { 
+		display:block; 
+		margin:0 auto;}
+	.ntc-media figcaption {  
+		display:block;  
+    	color: #999999;
+    	font-size: 12px;
+    	line-height: 16px;
+    	padding: 8px;}
+	.ntc-media figcaption span {color: #666666;}
+
+/* SUMARIOS > VIDEO */
+.art-media { width:260px; margin:0 auto;}
+
+/* SUMARIOS > FICHAS */
+.card ul { 
+	margin:0; padding:0; 
+	list-style-type:none;}
+.card li { 
+	margin:0 0 10px; 
+	padding:10px; 
+	border:1px solid #f3f3f3;}
+	
+/* SUMARIOS > CITA */
+.art-cite { padding-top:3px; margin-bottom:7px; }
+ 	.art-cite-subtitle { color:#E98E13; 
+		margin:0 0 8px;  
+		font-size: 11px;
+    	font-style: normal;
+    	font-weight: normal;
+    	line-height: 1.2;
+	}
+ 	.art-cite-title { margin:0; color:#333; font-size:18px; font-family:Arial; line-height:22px; }
+	.art-cite-title-b { color:#333; font-size:14px; font-family:Arial; line-height:22px; padding:0 9px;}/* modif. para ladillos*/
+	.art-cite-title-c { color:#333; font-size:12px; font-family:Arial; line-height:22px; padding:2px 9px 4px; color:#666666;}/* modif. para interesar*/
+ 	.art-cite-info { 
+ 		background:#f8f8f8;
+ 		border-top:1px dotted #ccc;
+ 		padding:10px;
+ 		margin-top:12px;
+ 		color:#999;
+ 	}
+
+/* SUMARIOS > CRONICA */
+.mdl-res .res {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.mdl-res {
+	padding:0 0 1px 0;
+}
+.mdl-res .res > li {
+	float:left;
+	width:50%;
+	background: #DADADA; /* Old browsers */
+	background: -webkit-linear-gradient(top, #DADADA 1%, #F2F2F2 100%); /* Chrome10+,Safari5.1+ */
+	background: linear-gradient(to bottom, #DADADA 1%, #F2F2F2 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DADADA', endColorstr='#F2F2F2', GradientType=0 ); /* IE6-9 */
+}
+.mdl-res .res > li:last-child {
+	border-left:1px solid #fff;
+	margin-left:-2px;
+}
+.mdl-res .escudos > li:last-child {
+	border-left:1px solid #f5f5f5;
+	margin-left:-5px;
+}
+.mdl-res .mdl-rest-title {
+	font:bold 28px/34px Arial,Helvetica;
+	color:#666666;
+	text-shadow:1px 1px 2px rgba(255, 255, 255, 0.4);
+	margin:0;
+	text-align:center;
+}
+.mdl-res .equipos {
+	list-style-type:none;
+	margin:0;
+	padding:0;	
+	}
+.mdl-res .equipos li {
+	float:left;
+	width:50%;
+	padding: 6px 0;
+	border-bottom:1px solid #eee;
+	text-align:center;
+	font: 12px/14px Arial, Helvetica, sans-serif;
+	color:#333;
+}
+.mdl-res .equipos li:last-child {
+	border-left:1px solid #eee;
+	margin-left:-2px;
+}
+.mdl-res img {
+	padding:7px 0;
+}
+.mdl-res .datos {
+	clear:both;
+	padding: 0 5px 0px;
+	font-size: 12px;
+	line-height: 14px;
+	color: #5D5D5D;
+}
+.mdl-res .datos p {
+	border-bottom: 1px dotted #d5d5d5;
+	margin-bottom: 9px;
+}
+
+.mdl-res .datos p {
+	border:0
+}
+.mdl-res .datos > p {
+	border-bottom: 1px dotted #D5D5D5;
+    margin: 0;
+    padding: 9px 5px;
+	font-size: 12px;
+    line-height: 14px
+}
+.mdl-res .datos > p:last-child {
+	border-bottom: 0;
+}
+.mdl-res .datos:last-child li {
+	border:0
+}
+/* SUMARIOS > DESPIECE */
+.ladillo {
+    border-top: 2px solid #B2B2B2;
+    margin: 0 0 10px;
+    padding: 0;
+	position:relative;
+}
+.ladillo:before {
+    border-top: 1px dotted #CCCCCC;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 1px;
+}
+.img-decoration:before {
+    border: 1px solid #eee;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+blockquote { margin:0;}
+.art-cite-title-b {
+    color: #333333;
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 17px;
+	margin:0;
+    padding: 5px 10px;
+}
+.s-art-mod {
+    background:#EFEFEF;
+    color: #666666;
+    padding: 10px;
+	position:relative;
+}
+.s-art-mod:before {
+    border-top: 1px dotted #CCCCCC;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -2px;
+    width: 100%;
+}
+	.s-art-mod p { margin:0 0 5px;}
+
+
