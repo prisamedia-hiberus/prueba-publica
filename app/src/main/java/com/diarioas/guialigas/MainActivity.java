@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
@@ -20,12 +19,12 @@ import com.diarioas.guialigas.dao.model.Preferences;
 import com.diarioas.guialigas.dao.reader.CookieDAO;
 import com.diarioas.guialigas.dao.reader.DatabaseDAO;
 import com.diarioas.guialigas.dao.reader.ImageDAO;
-import com.diarioas.guialigas.dao.reader.OmnitureDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO;
 import com.diarioas.guialigas.dao.reader.RemoteDataDAO.RemoteDataDAOListener;
 import com.diarioas.guialigas.utils.Defines;
 import com.diarioas.guialigas.utils.Defines.ReturnRequestCodes;
-import com.diarioas.guialigas.utils.FileUtils;
+import com.diarioas.guialigas.utils.bitmapfun.Utils;
+import com.diarioas.guialigas.utils.firebase.FirebaseController;
 import com.urbanairship.google.PlayServicesUtils;
 
 public class MainActivity extends FragmentActivity implements
@@ -43,32 +42,35 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
 		this.mContext = this.getApplicationContext();
-        mPrefs = new Preferences(this);
+		if (isIntentComingFromNotificationURL()) {
+				String urlNewsToOpen = getIntent().getExtras().getString(FirebaseController.NOTIFICATION_URL_KEY);
+				Utils.openExternalURL(this, urlNewsToOpen );
+				finish();
+		}else{
+			initializeView();
+		}
+	}
 
+	public void initializeView(){
+		setContentView(R.layout.activity_main);
+		mPrefs = new Preferences(this);
 		ArrayList<Object> splash = DatabaseDAO.getInstance(mContext)
 				.getSplashInfo();
 		if (splash.size() > 0) {
 			splashTime = ((Integer) splash.get(1)) * 1000;
-
 			ImageDAO.getInstance(this.mContext).loadThreePartScreenImage(
 					(String) splash.get(0),
 					(ImageView) findViewById(R.id.publi_splash));
 		}
-
-
-        // Check Database version
-        int version = DatabaseDAO.getInstance(this).getVersionDatabase(this);
-
-        if(version != -1){
-            if(mPrefs.getLastDatabaseVersion() == -1 || mPrefs.getLastDatabaseVersion() < version){
-                DatabaseDAO.getInstance(this).clearDatabase(this);
-            }
-            mPrefs.setLastDatabaseVersionPref(version);
-        }
-
+		// Check Database version
+		int version = DatabaseDAO.getInstance(this).getVersionDatabase(this);
+		if(version != -1){
+			if(mPrefs.getLastDatabaseVersion() == -1 || mPrefs.getLastDatabaseVersion() < version){
+				DatabaseDAO.getInstance(this).clearDatabase(this);
+			}
+			mPrefs.setLastDatabaseVersionPref(version);
+		}
 	}
 
 	@Override
@@ -107,7 +109,6 @@ public class MainActivity extends FragmentActivity implements
 		if (PlayServicesUtils.isGooglePlayStoreAvailable()) {
 		    PlayServicesUtils.handleAnyPlayServicesError(this);
 		}
-
 	}
 
 	@Override
@@ -189,7 +190,6 @@ public class MainActivity extends FragmentActivity implements
 			msg.what = STOPSPLASH;
 			this.splashHandler.sendMessageDelayed(msg, splashTime);
 		}
-
 	}
 
 	@Override
@@ -200,7 +200,9 @@ public class MainActivity extends FragmentActivity implements
 			msg.what = STOPSPLASH;
 			this.splashHandler.sendMessageDelayed(msg, splashTime);
 		}
-
 	}
-
+	private boolean isIntentComingFromNotificationURL() {
+		return getIntent().getExtras() != null && getIntent().getExtras().containsKey(FirebaseController.NOTIFICATION_URL_KEY)
+				&& !getIntent().getExtras().getString(FirebaseController.NOTIFICATION_URL_KEY).isEmpty();
+	}
 }
