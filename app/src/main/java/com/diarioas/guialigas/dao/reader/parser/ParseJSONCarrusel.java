@@ -9,8 +9,10 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.calendar.Day;
@@ -138,7 +140,9 @@ public class ParseJSONCarrusel {
 				part = partidosJSON.getJSONObject(j);
 				match = new Match();
 				match.setState(part.getString("estado_class"));
-				match.setStateCode(part.getInt("estado"));
+				if(!TextUtils.isEmpty(part.getString("estado"))){
+					match.setStateCode(Integer.valueOf(part.getString("estado")));
+				}
 				match.setDate(String.valueOf(part.get("timestamp")));
 
 				obj = part.getJSONObject("equipo_local");
@@ -152,12 +156,17 @@ public class ParseJSONCarrusel {
 				match.setAwayTeamShieldName(obj.getString("escudo"));
 
 				obj = part.getJSONObject("resultado");
-				match.setMarkerLocalTeam(obj.getInt("equipo_local"));
-				match.setMarkerAwayTeam(obj.getInt("equipo_visitante"));
+				if(!TextUtils.isEmpty(obj.getString("equipo_local"))){
+					match.setMarkerLocalTeam(Integer.valueOf(obj.getString("equipo_local")));
+				}
+				if (!TextUtils.isEmpty(obj.getString("equipo_visitante"))){
+					match.setMarkerAwayTeam(Integer.valueOf(obj.getString("equipo_visitante")));
+				}
 
 				match.setPlace(part.getString("estadio"));
-
-				match.setReferee(part.getString("arbitro"));
+				if(part.has("arbitro")){
+					match.setReferee(part.getString("arbitro"));
+				}
 
 				if (part.has("enlace_directo")
 						&& !part.isNull("enlace_directo")
@@ -189,8 +198,12 @@ public class ParseJSONCarrusel {
 						obj = (JSONObject) goles.get(i);
 						gol = new Gol();
 						gol.setScoreBoard(obj.getString("marcador"));
-						gol.setMin(obj.getInt("minuto"));
-						gol.setPart(obj.getInt("parte"));
+						if(TextUtils.isEmpty(obj.getString("minuto"))){
+							gol.setMin(Integer.valueOf(obj.getString("minuto")));
+						}
+						if(TextUtils.isEmpty(obj.getString("parte"))){
+							gol.setPart(Integer.valueOf(obj.getString("parte")));
+						}
 						gol.setPlayer(obj.getString("jugador"));
 						gol.setUrlPlayer(obj.getString("enlace_jugador"));
 						match.addGol(gol);
@@ -205,8 +218,12 @@ public class ParseJSONCarrusel {
 					try {
 						obj = (JSONObject) tarjetas.get(i);
 						tarjeta = new Tarjeta();
-						tarjeta.setMin(obj.getInt("minuto"));
-						tarjeta.setPart(obj.getInt("parte"));
+						if(TextUtils.isEmpty(obj.getString("minuto"))){
+							tarjeta.setMin(Integer.valueOf(obj.getString("minuto")));
+						}
+						if(TextUtils.isEmpty(obj.getString("parte"))){
+							tarjeta.setPart(Integer.valueOf(obj.getString("parte")));
+						}
 						tarjeta.setPlayer(obj.getString("jugador"));
 						tarjeta.setUrlPlayer(obj.getString("enlace_jugador"));
 						match.addTarjetaRoja(tarjeta);
