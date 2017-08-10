@@ -27,21 +27,29 @@ public class FirebaseController extends FirebaseMessagingService {
     Log.d(TAG, "From: " + remoteMessage.getFrom());
     Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
 
-    Map<String, String> map = remoteMessage.getData();
     String url = null;
-    if (map != null ) {
-      url = map.get(NOTIFICATION_URL_KEY);
+
+    if(remoteMessage.getData() != null){
+      Map<String, String> map = remoteMessage.getData();
+      if (map != null && map.containsKey(NOTIFICATION_URL_KEY)) {
+        url = map.get(NOTIFICATION_URL_KEY);
+      }
     }
-    generateNotification(remoteMessage.getNotification().getBody(), url);
+
+    if(remoteMessage.getNotification() != null){
+      generateNotification(remoteMessage.getNotification(), url);
+    }
   }
 
-  private void generateNotification(String messageBody, String url) {
+  private void generateNotification(RemoteMessage.Notification notification, String url) {
 
     Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(this)
         .setSmallIcon(R.drawable.icon)
-        .setContentTitle(getString(R.string.app_name))
-        .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
+        .setContentTitle(notification.getTitle())
+        .setContentText(notification.getBody())
+        .setStyle(new NotificationCompat.BigTextStyle().bigText(notification.getBody()))
+        .setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS)
         .setAutoCancel(true)
         .setSound(defaultSoundUri)
         .setContentIntent(getPendingIntent(url));
