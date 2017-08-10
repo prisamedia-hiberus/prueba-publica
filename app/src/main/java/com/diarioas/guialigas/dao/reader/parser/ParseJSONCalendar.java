@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.diarioas.guialigas.dao.model.calendar.Day;
@@ -193,7 +194,7 @@ public class ParseJSONCalendar {
 				day.setDate("");
 			}
 			try {
-				day.setNumDay(jorn.getInt("nombre"));
+				day.setNumDay(Integer.valueOf(jorn.getString("nombre")));
 			} catch (Exception e) {
 				Log.w("PARSEJSONCALENDAR",
 						"No se ha podido leer el atributo nombre del grupo"
@@ -233,7 +234,9 @@ public class ParseJSONCalendar {
 				part = partidosJSON.getJSONObject(j);
 				match = new Match();
 				match.setState(part.getString("estado_class"));
-				match.setStateCode(part.getInt("estado"));
+				if(!TextUtils.isEmpty(part.getString("estado"))){
+					match.setStateCode(Integer.valueOf(part.getString("estado")));
+				}
 				match.setDate(String.valueOf(part.get("timestamp")));
 
 				obj = part.getJSONObject("equipo_local");
@@ -247,8 +250,12 @@ public class ParseJSONCalendar {
 				match.setAwayTeamShieldName(obj.getString("escudo"));
 
 				obj = part.getJSONObject("resultado");
-				match.setMarkerLocalTeam(obj.getInt("equipo_local"));
-				match.setMarkerAwayTeam(obj.getInt("equipo_visitante"));
+				if(!TextUtils.isEmpty(obj.getString("equipo_local"))){
+					match.setMarkerLocalTeam(Integer.valueOf(obj.getString("equipo_local")));
+				}
+				if(!TextUtils.isEmpty(obj.getString("equipo_visitante"))){
+					match.setMarkerAwayTeam(Integer.valueOf(obj.getString("equipo_visitante")));
+				}
 
 				if (part.has("enlace_directo")
 						&& !part.isNull("enlace_directo")
@@ -399,7 +406,9 @@ public class ParseJSONCalendar {
 			day.setDate("");
 		}
 		try {
-			day.setNumDay(jorn.getInt("nombre"));
+			if(!TextUtils.isEmpty(jorn.getString("nombre"))){
+				day.setNumDay(Integer.valueOf(jorn.getString("nombre")));
+			}
 		} catch (Exception e) {
 			Log.w("PARSEJSONCALENDAR",
 					"No se ha podido leer el atributo nombre del grupo"
