@@ -16,7 +16,19 @@
 
 package com.diarioas.guialigas.utils.bitmapfun;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
+
+import com.diarioas.guialigas.MyApplication;
+import com.diarioas.guialigas.R;
+
+import java.util.List;
 
 
 /**
@@ -48,5 +60,39 @@ public class Utils {
 
 	public static boolean hasJellyBean() {
 		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+	}
+
+	public static void openExternalURL(Context context, String url){
+
+		try{
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(url.toLowerCase()));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			PackageManager manager = context.getPackageManager();
+			List<ResolveInfo> infos = manager.queryIntentActivities(intent, 0);
+			if (infos.size() > 0) {
+				context.startActivity(intent);
+			} else {
+				Toast.makeText(context,
+						context.getString(R.string.error_invalid_url), Toast.LENGTH_LONG).show();
+			}
+		}catch (Exception e){
+			Toast.makeText(context,
+					context.getString(R.string.error_toast_browser), Toast.LENGTH_LONG).show();
+		}
+	}
+
+	public static boolean isAppRunning() {
+		ActivityManager activityManager =
+				(ActivityManager) MyApplication.get().getSystemService(Context.ACTIVITY_SERVICE);
+		List<ActivityManager.RunningTaskInfo> services = activityManager
+				.getRunningTasks(Integer.MAX_VALUE);
+		boolean isActivityFound = false;
+
+		if (services.get(0).topActivity.getPackageName()
+				.equalsIgnoreCase(MyApplication.get().getPackageName())) {
+			isActivityFound = true;
+		}
+		return isActivityFound;
 	}
 }

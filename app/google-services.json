@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "255135411175",
+    "firebase_url": "https://as-guia-ligas.firebaseio.com",
+    "project_id": "as-guia-ligas",
+    "storage_bucket": "as-guia-ligas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255135411175:android:dfe143fd0181c908",
+        "android_client_info": {
+          "package_name": "com.diarioas.guialigas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255135411175-cbh88bj000of1cgpj3n9u19vh4ibtom2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diarioas.guialigas",
+            "certificate_hash": "51e88bfe55a42fc7e133ca487428b6a89ed66dda"
+          }
+        },
+        {
+          "client_id": "255135411175-33t4ov8vui38m34tsto7cn3e9i6vfg0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNb7ymBBCOn4UfgTRbFhMJVF841iJhPN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255135411175-33t4ov8vui38m34tsto7cn3e9i6vfg0i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "255135411175-k0qi2leoibsg5dcf4te6bao5hibgi84p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sdos.diarioas.guia-ligas-14-15.dev"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255135411175:android:3c3e6d3092d939d2",
+        "android_client_info": {
+          "package_name": "com.diarioas.copaamerica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255135411175-mugvoiutqn66tqal5f3io76ln6360h73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diarioas.copaamerica",
+            "certificate_hash": "51e88bfe55a42fc7e133ca487428b6a89ed66dda"
+          }
+        },
+        {
+          "client_id": "255135411175-33t4ov8vui38m34tsto7cn3e9i6vfg0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNb7ymBBCOn4UfgTRbFhMJVF841iJhPN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255135411175-33t4ov8vui38m34tsto7cn3e9i6vfg0i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "255135411175-k0qi2leoibsg5dcf4te6bao5hibgi84p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sdos.diarioas.guia-ligas-14-15.dev"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
