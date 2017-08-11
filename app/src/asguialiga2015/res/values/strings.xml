@@ -258,5 +258,7 @@
     <string name="separator" translatable="false">&#160;-&#160;</string>
     <string name="defualt" translatable="false">Default</string>
     <string name="sort_title">Personalización</string>
+    <string name="error_invalid_url">Error, enlace no válido.</string>
+    <string name="error_toast_browser">Error, no se encontró ninguna aplicación para abrir el enlace.</string>
 
 </resources>
