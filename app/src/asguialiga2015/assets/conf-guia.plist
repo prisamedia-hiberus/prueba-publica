@@ -171,7 +171,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_laligasantander.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-10-08T00:00:40Z</date>
+			<date>2017-07-25T00:00:00Z</date>
 		</dict>
 
 		<key>7</key>
@@ -185,9 +185,9 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_laliga123.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-09-08T00:00:40Z</date>
+			<date>2017-07-25T00:00:00Z</date>
 		</dict>
-
+<!--
 		<key>13</key>
 		<dict>
 			<key>order</key>
@@ -215,7 +215,7 @@
 			<key>conFileTimestamp</key>
 			<date>2016-09-30T00:00:00Z</date>
 		</dict>
-<!--
+
 		<key>107</key>
 		<dict>
 			<key>order</key>
@@ -230,6 +230,50 @@
 			<date>2016-06-30T00:00:00Z</date>
 		</dict>
 -->
+
+
+		<key>8</key>
+		<dict>
+			<key>order</key>
+			<string>3</string>
+			<key>description</key>
+			<string>Premier League</string>
+			<key>confFileURL</key>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-inglaterra.xml2</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_inglaterra.png</string>
+			<key>conFileTimestamp</key>
+			<date>2017-07-25T00:00:00Z</date>
+		</dict>
+
+		<key>5</key>
+		<dict>
+			<key>order</key>
+			<string>4</string>
+			<key>description</key>
+			<string>Bundesliga</string>
+			<key>confFileURL</key>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-alemania.xml2</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_alemania.png</string>
+			<key>conFileTimestamp</key>
+			<date>2017-07-25T00:00:00Z</date>
+		</dict>
+
+		<key>6</key>
+		<dict>
+			<key>order</key>
+			<string>5</string>
+			<key>description</key>
+			<string>Liga Francesa</string>
+			<key>confFileURL</key>
+			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-francia.xml2</string>
+			<key>headerLogo</key>
+			<string>sliding_logo_francia.png</string>
+			<key>conFileTimestamp</key>
+			<date>2017-07-25T00:00:00Z</date>
+		</dict>
+
 		<key>9</key>
 		<dict>
 			<key>order</key>
@@ -241,55 +285,13 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_italia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-10-02T00:00:00Z</date>
-		</dict>
-
-		<key>8</key>
-		<dict>
-			<key>order</key>
-			<string>7</string>
-			<key>description</key>
-			<string>Premier League</string>
-			<key>confFileURL</key>
-			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-inglaterra.xml2</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_inglaterra.png</string>
-			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
-		</dict>
-
-		<key>5</key>
-		<dict>
-			<key>order</key>
-			<string>8</string>
-			<key>description</key>
-			<string>Bundesliga</string>
-			<key>confFileURL</key>
-			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-alemania.xml2</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_alemania.png</string>
-			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
-		</dict>
-
-		<key>6</key>
-		<dict>
-			<key>order</key>
-			<string>9</string>
-			<key>description</key>
-			<string>Liga Francesa</string>
-			<key>confFileURL</key>
-			<string>https://as.com/apps/guia_de_la_liga/config/v2.x/v2.3/conf-francia.xml2</string>
-			<key>headerLogo</key>
-			<string>sliding_logo_francia.png</string>
-			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2017-07-30T00:00:00Z</date>
 		</dict>
 
 		<key>3</key>
 		<dict>
 			<key>order</key>
-			<string>10</string>
+			<string>7</string>
 			<key>description</key>
 			<string>Liga Águila 2</string>
 			<key>confFileURL</key>
@@ -297,13 +299,13 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_colombia.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-06-30T00:00:00Z</date>
+			<date>2017-07-25T00:00:00Z</date>
 		</dict>
 
 		<key>4</key>
 		<dict>
 			<key>order</key>
-			<string>11</string>
+			<string>8</string>
 			<key>description</key>
 			<string>Liga Chilena - Apertura</string>
 			<key>confFileURL</key>
@@ -311,13 +313,13 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_chile.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-03T00:00:00Z</date>
+			<date>2017-07-25T00:00:00Z</date>
 		</dict>
 
 		<key>11</key>
 		<dict>
 			<key>order</key>
-			<string>12</string>
+			<string>9</string>
 			<key>description</key>
 			<string>Liga MX - Apertura</string>
 			<key>confFileURL</key>
@@ -325,7 +327,7 @@
 			<key>headerLogo</key>
 			<string>sliding_logo_mexico.png</string>
 			<key>conFileTimestamp</key>
-			<date>2016-08-02T00:00:00Z</date>
+			<date>2017-07-25T00:00:00Z</date>
 		</dict>
 	</dict>
 

@@ -294,54 +294,54 @@
 					</dict>
 				</dict>
 
-				<key>3848</key>
+				<key>3952</key>
 		  		<dict>
 					<key>name</key>
-					<string>Chicó</string>
+					<string>América de Cali</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/355/3848/equipo.js2</string>
+					<string>/fichas/equipo/459/3952/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_chico_size02.png</string>
+						<string>escudo_americacali_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_chico_size03.png</string>
+						<string>escudo_americacali_size03.png</string>
 						<key>detail</key>
-						<string>escudo_chico_size01.png</string>
+						<string>escudo_americacali_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>4207</key>
+				<key>4228</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cúcuta</string>
+					<string>Tigres FC</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/215/4207/equipo.js2</string>
+					<string>/fichas/equipo/236/4228/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cucuta_size02.png</string>
+						<string>escudo_tigres_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cucuta_size03.png</string>
+						<string>escudo_tigres_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cucuta_size01.png</string>
+						<string>escudo_tigres_size01.png</string>
 					</dict>
 				</dict>
 
-				<key>4198</key>
+				<key>4227</key>
 		  		<dict>
 					<key>name</key>
-					<string>Uniautónoma</string>
+					<string>Bucaramanga</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/206/4198/equipo.js2</string>
+					<string>/fichas/equipo/235/4227/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_uniautonoma_size02.png</string>
+						<string>escudo_bucaramanga_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_uniautonoma_size03.png</string>
+						<string>escudo_bucaramanga_size03.png</string>
 						<key>detail</key>
-						<string>escudo_uniautonoma_size01.png</string>
+						<string>escudo_bucaramanga_size01.png</string>
 					</dict>
 				</dict>
 
@@ -385,7 +385,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/94fe2f71b38cac1d4bc4f4f41f681824/calendario.js2</string>
+			<string>/calendario/dd6cbdaea8b462102f6ea9a013ca2b49/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/colombia_ii/</string>
 			<key>viewType</key>
@@ -399,7 +399,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/94fe2f71b38cac1d4bc4f4f41f681824/clasificacion_regular.js2</string>
+				<string>/clasificacion/dd6cbdaea8b462102f6ea9a013ca2b49/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -410,7 +410,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/94fe2f71b38cac1d4bc4f4f41f681824/carrusel.js2</string>
+			<string>/carrusel/dd6cbdaea8b462102f6ea9a013ca2b49/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
