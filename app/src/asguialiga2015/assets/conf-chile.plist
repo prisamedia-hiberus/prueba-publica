@@ -22,20 +22,20 @@
 			<key>teams</key>
 			<dict>
 
-				<key>4159</key>
+				<key>4183</key>
 		  		<dict>
 					<key>name</key>
-					<string>Cobresal</string>
+					<string>Curicó</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/167/4159/equipo.js2</string>
+					<string>/fichas/equipo/191/4183/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_cobresal_size02.png</string>
+						<string>escudo_curico_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_cobresal_size03.png</string>
+						<string>escudo_curico_size03.png</string>
 						<key>detail</key>
-						<string>escudo_cobresal_size01.png</string>
+						<string>escudo_curico_size01.png</string>
 					</dict>
 				</dict>
 
@@ -318,7 +318,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/92a9f32c38644ce212269300e4e9c19d/calendario.js2</string>
+			<string>/calendario/2b9f8a519fc33fbbf605f5a853a542ee/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/chile_apertura/</string>
 			<key>viewType</key>
@@ -332,7 +332,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/92a9f32c38644ce212269300e4e9c19d/clasificacion_regular.js2</string>
+				<string>/clasificacion/2b9f8a519fc33fbbf605f5a853a542ee/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -343,7 +343,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/92a9f32c38644ce212269300e4e9c19d/carrusel.js2</string>
+			<string>/carrusel/2b9f8a519fc33fbbf605f5a853a542ee/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>

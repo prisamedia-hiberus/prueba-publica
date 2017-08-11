@@ -73,20 +73,20 @@
 					</dict>
 				</dict>
 
-				<key>477</key>
+				<key>4345</key>
 		  		<dict>
 					<key>name</key>
-					<string>Nancy</string>
+					<string>Amiens</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/477/477/equipo.js2</string>
+					<string>/fichas/equipo/353/4345/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_nancylorrain_size02.png</string>
+						<string>escudo_amiens_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_nancylorrain_size03.png</string>
+						<string>escudo_amiens_size03.png</string>
 						<key>detail</key>
-						<string>escudo_nancylorrain_size01.png</string>
+						<string>escudo_amiens_size01.png</string>
 					</dict>
 				</dict>
 
@@ -124,20 +124,20 @@
 					</dict>
 				</dict>
 
-				<key>476</key>
+				<key>478</key>
 		  		<dict>
 					<key>name</key>
-					<string>Bastia</string>
+					<string>Troyes</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/476/476/equipo.js2</string>
+					<string>/fichas/equipo/478/478/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_bastia_size02.png</string>
+						<string>escudo_troyes_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_bastia_size03.png</string>
+						<string>escudo_troyes_size03.png</string>
 						<key>detail</key>
-						<string>escudo_bastia_size01.png</string>
+						<string>escudo_troyes_size01.png</string>
 					</dict>
 				</dict>
 
@@ -226,20 +226,20 @@
 					</dict>
 				</dict>
 
-				<key>1114</key>
+				<key>119</key>
 		  		<dict>
 					<key>name</key>
-					<string>Lorient</string>
+					<string>Estrasburgo</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/116/1114/equipo.js2</string>
+					<string>/fichas/equipo/119/119/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_lorient_size02.png</string>
+						<string>escudo_estrasburgo_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_lorient_size03.png</string>
+						<string>escudo_estrasburgo_size03.png</string>
 						<key>detail</key>
-						<string>escudo_lorient_size01.png</string>
+						<string>escudo_estrasburgo_size01.png</string>
 					</dict>
 				</dict>
 
@@ -394,7 +394,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/91390062bb4417766cfd4add6a2ac82e/calendario.js2</string>
+			<string>/calendario/78b6c17e8f37d655325008f8b127c305/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/francia/</string>
 			<key>viewType</key>
@@ -408,7 +408,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/91390062bb4417766cfd4add6a2ac82e/clasificacion_regular.js2</string>
+				<string>/clasificacion/78b6c17e8f37d655325008f8b127c305/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -419,7 +419,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/91390062bb4417766cfd4add6a2ac82e/carrusel.js2</string>
+			<string>/carrusel/78b6c17e8f37d655325008f8b127c305/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
