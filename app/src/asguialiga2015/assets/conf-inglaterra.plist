@@ -22,20 +22,20 @@
 			<key>teams</key>
 			<dict>
 
-				<key>1441</key>
+				<key>69</key>
 		  		<dict>
 					<key>name</key>
-					<string>Hull City</string>
+					<string>Newcastle</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/443/1441/equipo.js2</string>
+					<string>/fichas/equipo/069/69/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_hull_size02.png</string>
+						<string>escudo_newcastle_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_hull_size02.png</string>
+						<string>escudo_newcastle_size02.png</string>
 						<key>detail</key>
-						<string>escudo_hull_size01.png</string>
+						<string>escudo_newcastle_size01.png</string>
 					</dict>
 				</dict>
 
@@ -124,20 +124,20 @@
 					</dict>
 				</dict>
 
-				<key>68</key>
+				<key>4344</key>
 		  		<dict>
 					<key>name</key>
-					<string>Middlesbrough</string>
+					<string>Brighton</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/068/68/equipo.js2</string>
+					<string>/fichas/equipo/352/4344/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_middlesbrough_size02.png</string>
+						<string>escudo_brighton_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_middlesbrough_size03.png</string>
+						<string>escudo_brighton_size03.png</string>
 						<key>detail</key>
-						<string>escudo_middlesbrough_size01.png</string>
+						<string>escudo_brighton_size01.png</string>
 					</dict>
 				</dict>
 
@@ -226,20 +226,20 @@
 					</dict>
 				</dict>
 
-				<key>71</key>
+				<key>4343</key>
 		  		<dict>
 					<key>name</key>
-					<string>Sunderland</string>
+					<string>Huddersfield Town</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/071/71/equipo.js2</string>
+					<string>/fichas/equipo/351/4343/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_suderland_size02.png</string>
+						<string>escudo_huddersfield_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_suderland_size03.png</string>
+						<string>escudo_huddersfield_size03.png</string>
 						<key>detail</key>
-						<string>escudo_suderland_size01.png</string>
+						<string>escudo_huddersfield_size01.png</string>
 					</dict>
 				</dict>
 
@@ -398,7 +398,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/9078f2fb0d17e449d2b7611256fb6619/calendario.js2</string>
+			<string>/calendario/6a573a38e9b2bf9b117ca043f76307c6/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/inglaterra/</string>
 			<key>viewType</key>
@@ -412,7 +412,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/9078f2fb0d17e449d2b7611256fb6619/clasificacion_regular.js2</string>
+				<string>/clasificacion/6a573a38e9b2bf9b117ca043f76307c6/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -423,7 +423,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/9078f2fb0d17e449d2b7611256fb6619/carrusel.js2</string>
+			<string>/carrusel/6a573a38e9b2bf9b117ca043f76307c6/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>

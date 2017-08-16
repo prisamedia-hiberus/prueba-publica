@@ -260,20 +260,20 @@
 					</dict>
 				</dict>
 
-				<key>3829</key>
+				<key>4372</key>
 		  		<dict>
 					<key>name</key>
-					<string>Jaguares de Chiapas</string>
+					<string>Lobos BUAP</string>
 					<key>teamWS</key>
-					<string>/fichas/equipo/336/3829/equipo.js2</string>
+					<string>/fichas/equipo/380/4372/equipo.js2</string>
 					<key>shields</key>
 					<dict>
 						<key>grid</key>
-						<string>escudo_jaguareschiapas_size02.png</string>
+						<string>escudo_lobosuap_size02.png</string>
 						<key>calendar</key>
-						<string>escudo_jaguareschiapas_size03.png</string>
+						<string>escudo_lobosuap_size03.png</string>
 						<key>detail</key>
-						<string>escudo_jaguareschiapas_size01.png</string>
+						<string>escudo_lobosuap_size01.png</string>
 					</dict>
 				</dict>
 
@@ -351,7 +351,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/06907945b5072894b09503c9c3bb0a84/calendario.js2</string>
+			<string>/calendario/4fdf8a9cfa62fb1a49ac4740f991046c/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/mexico_apertura/2015/calendario/</string>
 			<key>viewType</key>
@@ -365,7 +365,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/06907945b5072894b09503c9c3bb0a84/clasificacion_regular.js2</string>
+				<string>/clasificacion/4fdf8a9cfa62fb1a49ac4740f991046c/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -376,7 +376,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/06907945b5072894b09503c9c3bb0a84/carrusel.js2</string>
+			<string>/carrusel/4fdf8a9cfa62fb1a49ac4740f991046c/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>

@@ -464,7 +464,7 @@
 			<key>name</key>
 			<string>calendar</string>
 			<key>calendarWS</key>
-			<string>/calendario/e428a3042b1046346255f8ddeba591bf/calendario.js2</string>
+			<string>/calendario/6bf8957e3d6bfad7bb7bf1726c32ed47/calendario.js2</string>
 			<key>resultsURL</key>
 			<string>https://resultados.as.com/resultados/futbol/segunda/</string>
 			<key>viewType</key>
@@ -478,7 +478,7 @@
 			<key>clasificationWS</key>
 			<dict>
 				<key>Fase Grupos</key>
-				<string>/clasificacion/e428a3042b1046346255f8ddeba591bf/clasificacion_regular.js2</string>
+				<string>/clasificacion/6bf8957e3d6bfad7bb7bf1726c32ed47/clasificacion_regular.js2</string>
 			</dict>
 			<key>viewType</key>
 			<string>principal_view</string>
@@ -489,7 +489,7 @@
 			<key>name</key>
 			<string>carrusel</string>
 			<key>carruselWS</key>
-			<string>/carrusel/e428a3042b1046346255f8ddeba591bf/carrusel.js2</string>
+			<string>/carrusel/6bf8957e3d6bfad7bb7bf1726c32ed47/carrusel.js2</string>
 			<key>viewType</key>
 			<string>principal_view</string>
 			<key>available</key>
