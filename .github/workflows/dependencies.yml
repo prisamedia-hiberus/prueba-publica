@@ -1,8 +1,5 @@
 name: Check dependencies
-on:
-  push:
-    branches:
-      - develop # run the action on your projects default branch
+on: workflow_dispatch
 
 jobs:
   build:
